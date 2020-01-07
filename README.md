@@ -11,4 +11,9 @@ Erik is tired of this shit
 
 Erik wants this to end
 
+
+End our suffering, please!
+
 Håvard likes penis very much
+
+Fuck off!
