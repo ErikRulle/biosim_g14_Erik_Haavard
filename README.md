@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Erik was here!
 # biosim_template
 
@@ -7,3 +8,7 @@ Erik was here!
 
 
 Håvard was here!
+=======
+Erik was her!
+# biosim_template
+>>>>>>> master
