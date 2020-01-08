@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-
 """
 Test set for superclass Animals, and subclasses Herbivores and Carnivores.
 
@@ -19,4 +18,14 @@ Notes:
 
 __author__ = "Erik Rullestad", "Håvard Molversmyr"
 __email__ = "erikrull@nmbu.no", "havardmo@nmbu.no"
+
+
+from biosim.animals import Animals
+
+
+def test_animal_weight():
+    """Tests that animals has a positive weight"""
+    animal = Animals()
+    assert weight >= 0
+
 
