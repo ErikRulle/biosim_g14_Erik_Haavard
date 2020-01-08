@@ -20,4 +20,21 @@ class Island:
         :param input_map: map represented as a multi line string.
         :return:
         """
-        pass
+        standard_map = """\
+               OOOOOOOOOOOOOOOOOOOOO
+               OOOOOOOOSMMMMJJJJJJJO
+               OSSSSSJJJJMMJJJJJJJOO
+               OSSSSSSSSSMMJJJJJJOOO
+               OSSSSSJJJJJJJJJJJJOOO
+               OSSSSSJJJDDJJJSJJJOOO
+               OSSJJJJJDDDJJJSSSSOOO
+               OOSSSSJJJDDJJJSOOOOOO
+               OSSSJJJJJDDJJJJJJJOOO
+               OSSSSJJJJDDJJJJOOOOOO
+               OOSSSSJJJJJJJJOOOOOOO
+               OOOSSSSJJJJJJJOOOOOOO
+               OOOOOOOOOOOOOOOOOOOOO"""
+        if input_map is None:
+            island_map = standard_map
+        else:
+            island_map = input_map
