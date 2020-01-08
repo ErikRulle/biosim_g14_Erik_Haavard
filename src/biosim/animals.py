@@ -22,6 +22,9 @@ Example of ... returned:
 
 class Animals:
     def __init__(self):
+        """
+        This method creates variables needed for the class.
+        """
         pass
 
     def weight(self):
