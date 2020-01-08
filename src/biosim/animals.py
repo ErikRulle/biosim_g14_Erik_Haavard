@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 
+__author__ = "Erik Rullestad, Håvard Molversmyr"
+__email__ = "erikrull@nmbu.no, havardmo@nmbu.no"
+
 """
 :mod:`biosim.animals` defines ... and returns ...
 
@@ -15,9 +18,6 @@ Example of ... returned:
 ::
 
 """
-
-__author__ = "Erik Rullestad", "Håvard Molversmyr"
-__email__ = "erikrull@nmbu.no", "havardmo@nmbu.no"
 
 
 class Animals:
