@@ -3,7 +3,7 @@
 __author__ = "Erik Rullestad, Håvard Molversmyr"
 __email__ = "erikrull@nmbu.no, havardmo@nmbu.no"
 
-from island import *
+from biosim.island import *
 
 def test_island_instance():
     """
