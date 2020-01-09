@@ -3,7 +3,8 @@
 __author__ = "Erik Rullestad, Håvard Molversmyr"
 __email__ = "erikrull@nmbu.no, havardmo@nmbu.no"
 
-from biosim.island import *
+import numpy as np
+from src.biosim.island import *
 
 
 def test_island_instance():
@@ -20,7 +21,7 @@ def test_landscape_position_in_map():
     """
     island = Island()
     island.landscape_position_in_map()
-    assert isinstance(island.numpy_map, numpy.ndarray)
+    assert isinstance(island.numpy_map, np.ndarray)
 
 
 

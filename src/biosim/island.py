@@ -5,7 +5,7 @@ __email__ = "erikrull@nmbu.no, havardmo@nmbu.no"
 
 
 import numpy as np
-from biosim.landscape import *
+from src.biosim.landscape import *
 
 class Island:
     """
@@ -37,7 +37,7 @@ class Island:
         else:
             self.island_map = island_map
 
-        self.string_map = island_map.replace(" ", "").splitlines()
+        self.string_map = self.island_map.replace(" ", "").splitlines()
         self.validate_map_string()
 
 

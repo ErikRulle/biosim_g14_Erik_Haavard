@@ -1,18 +1,23 @@
 # -*- coding: utf-8 -*-
 
-__author__ = "Erik Rullestad, Håvard Molversmyr"
-__email__ = "erikrull@nmbu.no, havardmo@nmbu.no"
+__author__ = "Erik Rullestad", "Håvard Molversmyr"
+__email__ = "erikrull@nmbu.no", "havardmo@nmbu.no"
 
 
 class Landscape:
     """
     This class decides the behaviour of the landscape.
     """
+
+    default_params = {'f_max': 0}
+
     def __init__(self):
         """
         This method creates variables needed for the class.
         """
-        pass
+        self.f = self.default_params['f_max']
+        self.pop_animals = [[], []]
+
 
     def counter(self):
         """
