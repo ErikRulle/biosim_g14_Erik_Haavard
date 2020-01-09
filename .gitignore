@@ -221,4 +221,5 @@ dmypy.json
 
 # End of https://www.gitignore.io/api/python,pycharm,jupyternotebooks,visualstudiocode
 
-.idea
+.idea/biosim_template.iml
+.idea/misc.xml
