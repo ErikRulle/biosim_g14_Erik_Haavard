@@ -5,12 +5,14 @@ __email__ = "erikrull@nmbu.no, havardmo@nmbu.no"
 
 from biosim.island import *
 
+
 def test_island_instance():
     """
 
     """
     island = Island()
     assert isinstance(island, Island)
+
 
 def test_map_string(island_map):
     string_map = island_map.replace(" ", "").splitlines()

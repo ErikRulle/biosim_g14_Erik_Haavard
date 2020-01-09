@@ -7,4 +7,7 @@
     <orderEntry type="jdk" jdkName="Python 3.7 (biosim_g14_Erik_Haavard) (2)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
+  <component name="ReSTService">
+    <option name="DOC_DIR" value="$MODULE_DIR$/doc" />
+  </component>
 </module>
