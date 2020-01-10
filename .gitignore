@@ -224,3 +224,9 @@ dmypy.json
 .idea/biosim_template.iml
 .idea/misc.xml
 .idea
+
+
+
+.DS_Store
+src/.DS_Store
+*.DS_Store
