@@ -30,10 +30,10 @@ class Landscape:
         for animal in population:
             if animal["species"] == "Herbivore":
                 self.animal_population[0].append(Herbivore(
-                    age=animal["age"], weigth=animal["weight"]))
+                    age=animal["age"], weight=animal["weight"]))
             else:
                 self.animal_population[1].append(Carnivore(
-                    age=animal["age"], weigth=animal["weight"]))
+                    age=animal["age"], weight=animal["weight"]))
 
     def number_of_herbivores(self):
         """
