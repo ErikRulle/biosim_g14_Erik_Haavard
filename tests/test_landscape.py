@@ -4,6 +4,9 @@ __author__ = "Erik Rullestad", "Håvard Molversmyr"
 __email__ = "erikrull@nmbu.no", "havardmo@nmbu.no"
 
 
+from src.biosim.landscape import *
+
+
 def test_number_of_herbivores():
     """
     Test that the method counts the number of herbivores in the specific cell.
@@ -43,6 +46,6 @@ def test_sort_by_fitness():
     fit1_herb = land.animal_population[0][0].phi
     fit1_carn = land.animal_population[1][0].phi
     assert fit0_herb > fit1_herb
-    assert fit0_carn > fit1_carn 
+    assert fit0_carn > fit1_carn
 
 
