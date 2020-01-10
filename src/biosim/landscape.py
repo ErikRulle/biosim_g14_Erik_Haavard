@@ -53,7 +53,6 @@ class Landscape:
         """
         Updates and sorts animals in a specific cell by fitness, in descending
         order.
-        :return:
         """
         for species in self.animal_population:
             for animal in species:
@@ -74,7 +73,6 @@ class Landscape:
         for species in self.animal_population:
             for animal in species:
                 animal.weight_loss()
-
 
     def available_fodder_herbivore(self):
         """
