@@ -4,6 +4,9 @@ __author__ = "Erik Rullestad", "Håvard Molversmyr"
 __email__ = "erikrull@nmbu.no", "havardmo@nmbu.no"
 
 
+from src.biosim.animals import *
+
+
 class Landscape:
     """
     This class decides the behaviour of the landscape.
@@ -16,8 +19,69 @@ class Landscape:
         This method creates variables needed for the class.
         """
         self.f = self.default_parameters['f_max']
-        self.pop_animals = [[], []]
+        self.animal_population = [[], []]
 
+    def cell_population(self, population=None):
+        """
+        Puts the animal population in the specific cell.
+        :param population: list
+        :return:
+        """
+        for animal in population:
+            if animal["species"] == "Herbivore":
+                self.animal_population[0].append(Herbivore(
+                    age=animal["age"], weigth=animal["weight"]))
+            else:
+                self.animal_population[1].append(Carnivore(
+                    age=animal["age"], weigth=animal["weight"]))
+
+    def number_of_herbivores(self):
+        """
+        Finds the total number of herbivores in a specific cell
+        :return: integer, number of herbivores.
+        """
+        return len(self.animal_population[0])
+
+    def number_of_carnivores(self):
+        """
+        Finds the total number of carnivores in a specific cell
+        :return: integer, number of carnivores.
+        """
+        return len(self.animal_population[1])
+
+    def sort_by_fitness(self):
+        """
+        Updates and sorts animals in a specific cell by fitness, in descending
+        order.
+        :return:
+        """
+        for species in self.animal_population:
+            for animal in species:
+                animal.calculate_fitness()
+
+        for species in self.animal_population:
+            for index in range(len(species)):
+                for animal in range(len(species) - index - 1):
+                    if species[animal].phi < species[animal + 1].phi:
+                        species[animal], species[animal + 1] = \
+                            species[animal + 1], species[animal]
+
+    def weight_loss(self):
+        """
+        Reduces weight of all animals once a year.
+        :return:
+        """
+        for species in self.animal_population:
+            for animal in species:
+                animal.weight_loss()
+
+
+    def available_fodder_herbivore(self):
+        """
+        Calculates the available fodder for herbivores in the landscape
+        :return fodder_amount:
+        """
+        pass
 
     def counter(self):
         """
