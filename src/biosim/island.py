@@ -5,7 +5,7 @@ __email__ = "erikrull@nmbu.no, havardmo@nmbu.no"
 
 
 import numpy as np
-from src.biosim.landscape import *
+from biosim.landscape import *
 
 class Island:
     """

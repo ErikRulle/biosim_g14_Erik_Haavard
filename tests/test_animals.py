@@ -20,7 +20,7 @@ __author__ = "Erik Rullestad", "Håvard Molversmyr"
 __email__ = "erikrull@nmbu.no", "havardmo@nmbu.no"
 
 
-from src.biosim.animals import *
+from biosim.animals import *
 from pytest import approx
 
 

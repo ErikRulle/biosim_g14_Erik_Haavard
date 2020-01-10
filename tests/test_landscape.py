@@ -4,6 +4,8 @@ __author__ = "Erik Rullestad", "Håvard Molversmyr"
 __email__ = "erikrull@nmbu.no", "havardmo@nmbu.no"
 
 
+from biosim.landscape import *
+
 def test_number_of_herbivores():
     """
     Test that the method counts the number of herbivores in the specific cell.

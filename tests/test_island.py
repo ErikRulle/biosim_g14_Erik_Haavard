@@ -4,7 +4,7 @@ __author__ = "Erik Rullestad, Håvard Molversmyr"
 __email__ = "erikrull@nmbu.no, havardmo@nmbu.no"
 
 import numpy as np
-from src.biosim.island import *
+from biosim.island import *
 
 
 def test_island_instance():
@@ -13,6 +13,7 @@ def test_island_instance():
     """
     island = Island()
     assert isinstance(island, Island)
+
 
 def test_landscape_position_in_map():
     """
