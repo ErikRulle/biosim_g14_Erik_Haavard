@@ -57,21 +57,12 @@ class Landscape:
         Updates and sorts animals in a specific cell by fitness, in descending
         order.
         """
-
-
         self.animal_population[0] = sorted(self.animal_population[0],
                                            key=lambda x: x.fitness,
                                            reverse=True)
         self.animal_population[1] = sorted(self.animal_population[1],
                                            key=lambda x: x.fitness,
                                            reverse=True)
-
-
-            # for index in range(len(species)):
-            #     for animal in range(len(species) - index - 1):
-            #         if species[animal].fitness < species[animal + 1].fitness:
-            #             species[animal], species[animal + 1] = \
-            #                 species[animal + 1], species[animal]
 
     def weight_loss(self):
         """

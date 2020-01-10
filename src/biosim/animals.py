@@ -28,14 +28,14 @@ class Animals:
     This class creates an idea Animal, not specifying the vore-type.
     """
 
-    default_parameters = {'w_birth': None, 'sigma_birth': None, 'beta': None,
-                          'eta': None, 'a_half': None, 'phi_age': None,
-                          'w_half': None, 'phi_weight': None, 'mu': None,
-                          'lambda': None, 'gamma': None, 'zeta': None,
-                          'xi': None, 'omega': None, 'F': None,
-                          'DeltaPhiMax': None}
+    default_parameters = {"w_birth": None, "sigma_birth": None, "beta": None,
+                          "eta": None, "a_half": None, "phi_age": None,
+                          "w_half": None, "phi_weight": None, "mu": None,
+                          "lambda": None, "gamma": None, "zeta": None,
+                          "xi": None, "omega": None, "F": None,
+                          "DeltaPhiMax": None}
 
-    def __init__(self, weight=default_parameters['w_birth'], age=0):
+    def __init__(self, weight=default_parameters["w_birth"], age=0):
         """
         This method creates variables needed for the class.
 
@@ -44,13 +44,13 @@ class Animals:
         """
 
         self.weight = random.normalvariate(
-            weight, self.default_parameters['sigma_birth']
+            weight, self.default_parameters["sigma_birth"]
         )
         self.age = age
-        self.phi = 1 / (1 + np.exp(self.default_parameters['phi_age'] * (
-                self.age - self.default_parameters['a_half']
-        ))) * 1 / (1 + np.exp(-self.default_parameters['phi_weight'] * (
-                    self.weight - self.default_parameters['w_half'])))
+        self.phi = 1 / (1 + np.exp(self.default_parameters["phi_age"] * (
+                self.age - self.default_parameters["a_half"]
+        ))) * 1 / (1 + np.exp(-self.default_parameters["phi_weight"] * (
+                    self.weight - self.default_parameters["w_half"])))
 
     def aging(self):
         """
@@ -68,7 +68,7 @@ class Animals:
         """
         Updates animal weight after annual weight loss.
         """
-        self.weight -= self.default_parameters['eta'] * self.weight
+        self.weight -= self.default_parameters["eta"] * self.weight
 
     def reproduction_probability(self, n_animals):
         """
@@ -79,19 +79,19 @@ class Animals:
                 newborn_weight: float, weight of the newborn animal.
         """
         newborn_weight = random.normalvariate(
-            self.default_parameters['w_birth'],
-            self.default_parameters['sigma_birth']
+            self.default_parameters["w_birth"],
+            self.default_parameters["sigma_birth"]
         )
 
-        if self.weight < self.default_parameters['zeta'] * (
-                self.default_parameters['w_birth'] + (
-                self.default_parameters['sigma_birth'])):
+        if self.weight < self.default_parameters["zeta"] * (
+                self.default_parameters["w_birth"] + (
+                self.default_parameters["sigma_birth"])):
             reproduction_prob = 0
         elif self.weight < newborn_weight:
             reproduction_prob = 0
         else:
             reproduction_prob = min(
-                [1, self.default_parameters['gamma'] * self.fitness * (
+                [1, self.default_parameters["gamma"] * self.fitness * (
                         n_animals - 1)])
 
         reproduction_success = random.random() <= reproduction_prob
@@ -100,7 +100,7 @@ class Animals:
     def update_weight_after_birth(self, newborn_weight):
         """
         If reproduction is successful, then a new animal is born, and the
-        mother's weight is reduced by the baby's birthweight.
+        mother"s weight is reduced by the baby"s birthweight.
 
         :param newborn_weight: float, weight of newborn animal
         """
@@ -112,7 +112,7 @@ class Animals:
 
         :return: bool
         """
-        death_prob = self.default_parameters['omega'] * (1 - self.fitness)
+        death_prob = self.default_parameters["omega"] * (1 - self.fitness)
         return random.random() < death_prob
 
     @property
@@ -123,11 +123,11 @@ class Animals:
         :return: float
         """
 
-        self.phi = 1 / (1 + np.exp(self.default_parameters['phi_age'] * (
-                    self.age - self.default_parameters['a_half']
+        self.phi = 1 / (1 + np.exp(self.default_parameters["phi_age"] * (
+                    self.age - self.default_parameters["a_half"]
             ))) * 1 / (1 + np.exp(
-                -self.default_parameters['phi_weight'] * (
-                        self.weight - self.default_parameters['w_half'])))
+                -self.default_parameters["phi_weight"] * (
+                        self.weight - self.default_parameters["w_half"])))
 
         return self.phi
 
@@ -141,18 +141,18 @@ class Herbivore(Animals):
     default parameters.
     """
 
-    default_parameters = {'w_birth': 8.0, 'sigma_birth': 1.5, 'beta': 0.9,
-                          'eta': 0.05, 'a_half': 40.0, 'phi_age': 0.2,
-                          'w_half': 10.0, 'phi_weight': 0.1, 'mu': 0.25,
-                          'lambda': 1.0, 'gamma': 0.2, 'zeta': 3.5,
-                          'xi': 1.2, 'omega': 0.4, 'F': 10.0}
+    default_parameters = {"w_birth": 8.0, "sigma_birth": 1.5, "beta": 0.9,
+                          "eta": 0.05, "a_half": 40.0, "phi_age": 0.2,
+                          "w_half": 10.0, "phi_weight": 0.1, "mu": 0.25,
+                          "lambda": 1.0, "gamma": 0.2, "zeta": 3.5,
+                          "xi": 1.2, "omega": 0.4, "F": 10.0}
 
     def __init__(self, weight=None, age=0):
         """
         Creates the variables needed for the subclass.
         """
         if weight is None:
-            weight = self.default_parameters['w_birth']
+            weight = self.default_parameters["w_birth"]
         super().__init__(weight=weight, age=age)
 
     def eating(self, fodder):
@@ -161,13 +161,65 @@ class Herbivore(Animals):
 
         :param fodder: float, amount of fodder eaten by the herbivore.
         """
-        self.weight += fodder * self.default_parameters['beta']
+        self.weight += fodder * self.default_parameters["beta"]
 
 
 class Carnivore(Animals):
     """
-
+    A subclass of the superclass Animals, which creates a carnivore with its
+    default parameters.
     """
 
-    def __init__(self):
-        pass
+    default_parameters = {"w_birth": 6.0, "sigma_birth": 1.0, "beta": 0.75,
+                          "eta": 0.125, "a_half": 60.0, "phi_age": 0.4,
+                          "w_half": 4.0, "phi_weight": 0.4, "mu": 0.4,
+                          "lambda": 1.0, "gamma": 0.8, "zeta": 3.5,
+                          "xi": 1.1, "omega": 0.9, "F": 50.0, 
+                          "DeltaPhiMax": 10.0}
+
+    def __init__(self, weight=None, age=0):
+        """
+        Creates the variables needed for the subclass.
+        """
+        if weight is None:
+            weight = self.default_parameters["w_birth"]
+        super().__init__(weight=weight, age=age)
+
+    def eating_probability(self, herbivore):
+        """
+
+        :param herbivore:
+        :return:
+        """
+        delta_phi_max = self.default_parameters["DeltaPhiMax"]
+
+        if self.fitness <= herbivore.fitness:
+            return 0
+        elif 0 < self.fitness - herbivore.fitness < delta_phi_max:
+            return (self.fitness - herbivore.fitness) / delta_phi_max
+        else:
+            return 1
+
+    def eating(self, herbivores):
+        """
+        Calculates the new weight of the carnivore after eating fodder.
+        :param fodder: float, amount of fodder eaten by the herbivore.
+        """
+        weight_eaten = 0
+        max_feed = self.default_parameters["F"]
+
+        for herbivore in herbivores[::-1]:
+            if weight_eaten < max_feed \
+                    and random.random() < self.eating_probability(herbivore):
+                if weight_eaten + herbivore.weight > max_feed:
+                    herbivore.weight = max_feed - weight_eaten
+                    self.weight += (
+                            self.default_parameters["beta"] * herbivore.weight
+                    )
+                    weight_eaten = max_feed
+
+                else:
+                    self.weight += (
+                            self.default_parameters["beta"] * herbivore.weight
+                    )
+                    weight_eaten += herbivore.weight
