@@ -4,8 +4,7 @@ __author__ = "Erik Rullestad", "Håvard Molversmyr"
 __email__ = "erikrull@nmbu.no", "havardmo@nmbu.no"
 
 
-from src.biosim.landscape import *
-
+from biosim.landscape import *
 
 def test_number_of_herbivores():
     """
