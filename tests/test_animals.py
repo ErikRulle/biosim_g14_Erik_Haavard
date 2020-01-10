@@ -21,6 +21,7 @@ __email__ = "erikrull@nmbu.no", "havardmo@nmbu.no"
 
 
 from src.biosim.animals import *
+from pytest import approx
 
 
 def test_herbivore_parameters():
@@ -45,6 +46,7 @@ def test_carnivore_parameters():
                  'xi', 'omega', 'F', 'DeltaPhiMax']
     carn = Carnivore()
     assert carn.default_parameters.keys() in keys_list
+
 
 def test_non_negative_herbivore_weight():
     """Tests that animals has a non-negative weight."""
@@ -89,19 +91,35 @@ def test_herbivore_fitness():
     assert value3 < value2
     
     
-def test_herbivore_reproduction():
+def test_herbivore_reproduction_probability():
     """
     Tests that the Herbivore reproduce after given specifications.
     """
     herb = Herbivore(weight=33)
     herb.calculate_fitness()
-    assert not herb.reproduction(10)
+    assert not herb.reproduction_probability(n_animals=10)
     herb2 = Herbivore(weight=50)
     herb2.calculate_fitness()
-    assert not herb2.reproduction(1)
-    assert herb2.reproduction(100)
-    
-    
+    assert not herb2.reproduction_probability(n_animals=1)
+    assert herb2.reproduction_probability(n_animals=1000)
+    herb3 = Herbivore(weight=2)
+    assert not herb3.reproduction_probability(n_animals=1000)
+
+
+def test_herbivore_update_weight_after_birth():
+    """
+    Tests that a herbivore weight is reduced following birth.
+    """
+    newborn_weight = 8
+    initial_weight = 50
+    herb = Herbivore(weight=initial_weight)
+    herb.update_weight_after_birth(newborn_weight=newborn_weight)
+    assert herb.weight < initial_weight
+    assert herb.weight == approx(initial_weight - (
+            herb.default_parameters["xi"] * newborn_weight
+    ))
+
+
 def test_animal_death():
     """
     Tests that animals die with certainty 1 if its fitness is 0, and dies
