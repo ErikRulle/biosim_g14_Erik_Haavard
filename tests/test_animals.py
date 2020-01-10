@@ -23,16 +23,28 @@ __email__ = "erikrull@nmbu.no", "havardmo@nmbu.no"
 from src.biosim.animals import *
 
 
-def test_animal_parameters():
+def test_herbivore_parameters():
     """
-    Tests that the given parameters are in the list of valid parameters.
+    Tests that the given parameters for the herbivore class are in the list
+     of valid parameters.
     """
     keys_list = ['w_birth', 'sigma_birth', 'beta','eta', 'a_half', 'phi_age',
-                 'w_half', 'phi_weight', 'mu','lambda', 'gamma',  'zeta',
-                 'xi', 'omega', 'F', 'DeltaPhiMax']
+                 'w_half', 'phi_weight', 'mu', 'lambda', 'gamma',  'zeta',
+                 'xi', 'omega', 'F']
     herb = Herbivore()
-    assert herb.default_parameters.keys() in keys_list
+    assert list(herb.default_parameters.keys()) in keys_list
 
+
+def test_carnivore_parameters():
+    """
+    Tests that the given parameters for the carnivore class are in the list
+     of valid parameters.
+    """
+    keys_list = ['w_birth', 'sigma_birth', 'beta', 'eta', 'a_half', 'phi_age',
+                 'w_half', 'phi_weight', 'mu', 'lambda', 'gamma', 'zeta',
+                 'xi', 'omega', 'F', 'DeltaPhiMax']
+    carn = Carnivore()
+    assert carn.default_parameters.keys() in keys_list
 
 def test_non_negative_herbivore_weight():
     """Tests that animals has a non-negative weight."""

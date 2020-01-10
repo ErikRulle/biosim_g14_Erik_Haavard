@@ -70,17 +70,23 @@ class Animals:
         """
         self.weight -= self.default_parameters['eta'] * self.weight
 
-    def reproduction(self, n_animals):
+    def reproduction_probability(self):
         """
         Estimates the probability of reproduction for the given animal.
 
-        :param n_animals: integer, number of animals that can potentially
-                                   reproduce.
         :return reproduction_success: bool, the animal reproduces or not.
+                newborn_weight: float, weight of the newborn animal.
         """
+        newborn_weight = random.normalvariate(
+            self.default_parameters['w_birth'],
+            self.default_parameters['sigma_birth']
+        )
+
         if self.weight < self.default_parameters['zeta'] * (
                 self.default_parameters['w_birth'] + (
                 self.default_parameters['sigma_birth'])):
+            reproduction_prob = 0
+        elif self.weight < newborn_weight: \
             reproduction_prob = 0
         else:
             reproduction_prob = min(
@@ -88,7 +94,20 @@ class Animals:
                         n_animals - 1)])
 
         reproduction_success = random.random() <= reproduction_prob
-        return reproduction_success
+        return reproduction_success, newborn_weight
+
+
+    def give_birth(self, newborn_weight):
+        """
+        If reproduction is successful, then a new animal is born, and the
+        mother's weight is reduced by the baby's birthweight.
+
+        :param newborn_weight:
+        :return:
+        """
+        newborn_weight
+
+
 
     def death(self):
         """
