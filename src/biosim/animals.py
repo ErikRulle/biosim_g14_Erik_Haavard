@@ -82,9 +82,10 @@ class Animals:
                 self.default_parameters['w_birth'] + (
                 self.default_parameters['sigma_birth'])):
             reproduction_prob = 0
-        else: reproduction_prob = min(
-            [1, self.default_parameters['gamma'] * self.phi * (n_animals - 1)]
-        )
+        else:
+            reproduction_prob = min(
+                [1, self.default_parameters['gamma'] * self.phi * (
+                        n_animals - 1)])
 
         reproduction_success = random.random() <= reproduction_prob
         return reproduction_success

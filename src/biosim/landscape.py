@@ -9,13 +9,13 @@ class Landscape:
     This class decides the behaviour of the landscape.
     """
 
-    default_params = {'f_max': 0}
+    default_parameters = {'f_max': 0}
 
     def __init__(self):
         """
         This method creates variables needed for the class.
         """
-        self.f = self.default_params['f_max']
+        self.f = self.default_parameters['f_max']
         self.pop_animals = [[], []]
 
 
