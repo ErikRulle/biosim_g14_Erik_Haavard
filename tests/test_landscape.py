@@ -6,6 +6,7 @@ __email__ = "erikrull@nmbu.no", "havardmo@nmbu.no"
 
 from biosim.landscape import *
 
+
 def test_number_of_herbivores():
     """
     Test that the method counts the number of herbivores in the specific cell.
@@ -14,6 +15,7 @@ def test_number_of_herbivores():
     land.animal_population[0].append(Herbivore())
     assert land.number_of_herbivores == 1
 
+
 def test_number_of_carnivores():
     """
     Test that the method counts the number of carnivores in the specific cell.
@@ -21,6 +23,7 @@ def test_number_of_carnivores():
     land = Landscape()
     land.animal_population[1].append(Carnivore())
     assert land.number_of_carnivores == 1
+
 
 def test_cell_population():
     """
@@ -35,7 +38,8 @@ def test_cell_population():
     assert land.number_of_herbivores == 2
     assert land.number_of_carnivores == 1
 
-def test_sort_by_fitness():
+
+def test_update_fitness():
     land = Landscape()
     land.animal_population[0].append(Herbivore())
     land.animal_population[1].append(Carnivore())
@@ -45,6 +49,12 @@ def test_sort_by_fitness():
     fit1_herb = land.animal_population[0][0].phi
     fit1_carn = land.animal_population[1][0].phi
     assert fit0_herb > fit1_herb
-    assert fit0_carn > fit1_carn 
+    assert fit0_carn > fit1_carn
+
+
+def test_sort_fitness():
+    land = Landscape()
+
+
 
 
