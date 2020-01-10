@@ -91,7 +91,7 @@ class Animals:
             reproduction_prob = 0
         else:
             reproduction_prob = min(
-                [1, self.default_parameters['gamma'] * self.phi * (
+                [1, self.default_parameters['gamma'] * self.fitness * (
                         n_animals - 1)])
 
         reproduction_success = random.random() <= reproduction_prob
@@ -112,10 +112,11 @@ class Animals:
 
         :return: bool
         """
-        death_prob = self.default_parameters['omega'] * (1 - self.phi)
+        death_prob = self.default_parameters['omega'] * (1 - self.fitness)
         return random.random() < death_prob
 
-    def calculate_fitness(self):
+    @property
+    def fitness(self):
         """
         Calculates the fitness of the animal.
 

@@ -78,16 +78,13 @@ def test_herbivore_fitness():
     as expected.
     """
     herb = Herbivore()
-    herb.calculate_fitness()
-    value1 = herb.phi
+    value1 = herb.fitness
     assert 0 <= value1 <= 1
     herb.aging()
-    herb.calculate_fitness()
-    value2 = herb.phi
+    value2 = herb.fitness
     assert value2 < value1
     herb.weight_loss()
-    herb.calculate_fitness()
-    value3 = herb.phi
+    value3 = herb.fitness
     assert value3 < value2
     
     
@@ -95,15 +92,13 @@ def test_herbivore_reproduction_probability():
     """
     Tests that the Herbivore reproduce after given specifications.
     """
-    herb = Herbivore(weight=33)
-    herb.calculate_fitness()
-    assert not herb.reproduction_probability(n_animals=10)
+    herb = Herbivore(weight=30)
+    assert not herb.reproduction_probability(n_animals=1)[0]
     herb2 = Herbivore(weight=50)
-    herb2.calculate_fitness()
-    assert not herb2.reproduction_probability(n_animals=1)
-    assert herb2.reproduction_probability(n_animals=1000)
+    assert not herb2.reproduction_probability(n_animals=1)[0]
+    assert herb2.reproduction_probability(n_animals=1000)[0]
     herb3 = Herbivore(weight=2)
-    assert not herb3.reproduction_probability(n_animals=1000)
+    assert not herb3.reproduction_probability(n_animals=1000)[0]
 
 
 def test_herbivore_update_weight_after_birth():
@@ -117,7 +112,7 @@ def test_herbivore_update_weight_after_birth():
     assert herb.weight < initial_weight
     assert herb.weight == approx(initial_weight - (
             herb.default_parameters["xi"] * newborn_weight
-    ))
+    ), rel=1e-1)
 
 
 def test_animal_death():

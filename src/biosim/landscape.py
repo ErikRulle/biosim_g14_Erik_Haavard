@@ -35,13 +35,16 @@ class Landscape:
                 self.animal_population[1].append(Carnivore(
                     age=animal["age"], weight=animal["weight"]))
 
+    @property
     def number_of_herbivores(self):
         """
         Finds the total number of herbivores in a specific cell
+
         :return: integer, number of herbivores.
         """
         return len(self.animal_population[0])
 
+    @property
     def number_of_carnivores(self):
         """
         Finds the total number of carnivores in a specific cell
@@ -54,22 +57,28 @@ class Landscape:
         Updates and sorts animals in a specific cell by fitness, in descending
         order.
         """
-        for species in self.animal_population:
-            for animal in species:
-                animal.calculate_fitness()
 
-        for species in self.animal_population:
-            for index in range(len(species)):
-                for animal in range(len(species) - index - 1):
-                    if species[animal].phi < species[animal + 1].phi:
-                        species[animal], species[animal + 1] = \
-                            species[animal + 1], species[animal]
+
+        self.animal_population[0] = sorted(self.animal_population[0],
+                                           key=lambda x: x.fitness,
+                                           reverse=True)
+        self.animal_population[1] = sorted(self.animal_population[1],
+                                           key=lambda x: x.fitness,
+                                           reverse=True)
+
+
+            # for index in range(len(species)):
+            #     for animal in range(len(species) - index - 1):
+            #         if species[animal].fitness < species[animal + 1].fitness:
+            #             species[animal], species[animal + 1] = \
+            #                 species[animal + 1], species[animal]
 
     def weight_loss(self):
         """
         Reduces weight of all animals once a year.
         :return:
         """
+
         for species in self.animal_population:
             for animal in species:
                 animal.weight_loss()
@@ -90,13 +99,6 @@ class Landscape:
         """
         pass
 
-    def weight_loss(self):
-        """
-        This method estimates the new weight after loss of weight
-
-        :return: New weight of animals
-        """
-        pass
 
 
 class Jungle(Landscape):
