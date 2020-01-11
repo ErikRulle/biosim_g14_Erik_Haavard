@@ -7,6 +7,7 @@ __email__ = "erikrull@nmbu.no, havardmo@nmbu.no"
 import numpy as np
 from biosim.landscape import *
 
+
 class Island:
     """
     This class generates the island nation of Pylandia.
@@ -39,7 +40,6 @@ class Island:
 
         self.string_map = self.island_map.replace(" ", "").splitlines()
         self.validate_map_string()
-
 
     def validate_map_string(self):
         accepted_landscape_types = ["J", "S", "D", "M", "O"]
@@ -76,18 +76,18 @@ class Island:
         Creates the numpy array map
         :return: numpy.ndarray, numpy map with landscape positions
         """
-        self.numpy_map = np.empty(
+        numpy_map = np.empty(
             (len(self.string_map), len(self.string_map[0])), dtype=object)
         for x, line in enumerate(self.string_map):
             for y, cell in enumerate(line):
                 if cell == "J":
-                    self.numpy_map[x, y] = Jungle()
+                    numpy_map[x, y] = Jungle()
                 elif cell == "S":
-                    self.numpy_map[x, y] = Savannah()
+                    numpy_map[x, y] = Savannah()
                 elif cell == "D":
-                    self.numpy_map[x, y] = Desert()
+                    numpy_map[x, y] = Desert()
                 elif cell == "M":
-                    self.numpy_map[x, y] = Mountain()
+                    numpy_map[x, y] = Mountain()
                 elif cell == "O":
-                    self.numpy_map[x, y] = Ocean()
-        return self.numpy_map
+                    numpy_map[x, y] = Ocean()
+        return numpy_map

@@ -43,14 +43,27 @@ class Animals:
         :param age: int, age of the animal
         """
 
-        self.weight = random.normalvariate(
-            weight, self.default_parameters["sigma_birth"]
-        )
+        if age == 0:
+            self.weight = random.normalvariate(
+                weight, self.default_parameters["sigma_birth"]
+            )
+        else:
+            self.weight = weight
         self.age = age
-        self.phi = 1 / (1 + np.exp(self.default_parameters["phi_age"] * (
-                self.age - self.default_parameters["a_half"]
-        ))) * 1 / (1 + np.exp(-self.default_parameters["phi_weight"] * (
-                    self.weight - self.default_parameters["w_half"])))
+        #self._phi = self.fitness
+        #self._phi = None
+
+    def set_animal_parameters(self, new_parameters):
+        """
+        This method allows for manual setting of animal parameters,
+        i.e. to change parameter values from default values to desired values.
+
+        :param new_parameters: dict, dictionary with the new parameter values
+                               Only keys from the default parameter value dict
+                               are valid.
+        """
+        for key in new_parameters:
+            self.default_parameters[key] = new_parameters[key]
 
     def aging(self):
         """
@@ -64,7 +77,7 @@ class Animals:
         """
         return self.weight
 
-    def weight_loss(self):
+    def animal_weight_loss(self):
         """
         Updates animal weight after annual weight loss.
         """
@@ -123,13 +136,22 @@ class Animals:
         :return: float
         """
 
-        self.phi = 1 / (1 + np.exp(self.default_parameters["phi_age"] * (
+        self._phi = 1 / (1 + np.exp(self.default_parameters["phi_age"] * (
                     self.age - self.default_parameters["a_half"]
             ))) * 1 / (1 + np.exp(
                 -self.default_parameters["phi_weight"] * (
                         self.weight - self.default_parameters["w_half"])))
 
-        return self.phi
+        return self._phi
+
+    @fitness.setter
+    def fitness(self, value):
+        """
+        A setter for the property attribute fitness, to allow for testing of
+        the code.
+        """
+        self._phi = value
+
 
     def migrate(self):
         pass
@@ -185,25 +207,25 @@ class Carnivore(Animals):
             weight = self.default_parameters["w_birth"]
         super().__init__(weight=weight, age=age)
 
-    def eating_probability(self, herbivore):
+    def eating_probability(self, herbivores):
         """
 
-        :param herbivore:
+        :param herbivores: list of herbivores
         :return:
         """
         delta_phi_max = self.default_parameters["DeltaPhiMax"]
 
-        if self.fitness <= herbivore.fitness:
+        if self.fitness <= herbivores.fitness:
             return 0
-        elif 0 < self.fitness - herbivore.fitness < delta_phi_max:
-            return (self.fitness - herbivore.fitness) / delta_phi_max
+        elif 0 < self.fitness - herbivores.fitness < deltafitness_max:
+            return (self.fitness - herbivores.fitness) / deltafitness_max
         else:
             return 1
 
     def eating(self, herbivores):
         """
         Calculates the new weight of the carnivore after eating fodder.
-        :param fodder: float, amount of fodder eaten by the herbivore.
+        :param herbivores: float, amount of fodder eaten by the herbivore.
         """
         weight_eaten = 0
         max_feed = self.default_parameters["F"]

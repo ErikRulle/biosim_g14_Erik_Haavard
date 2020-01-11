@@ -24,14 +24,45 @@ from biosim.animals import *
 from pytest import approx
 
 
+def test_set_animal_parameters():
+    """
+    Test that manual setting of animal parameters follows the given
+    restrictions.
+    """
+    herb = Herbivore()
+    new_parameters = {"w_birth": 10, "sigma_birth": 1.5, "beta": 0.78,
+                      "eta": 0.14, "a_half": 65.0, "phi_age": 0.5,
+                      "w_half": 4.5, "phi_weight": 0.3, "mu": 0.5,
+                      "lambda": 1.0, "gamma": 0.7, "zeta": 3.5,
+                      "xi": 1.1, "omega": 0.9, "F": 30.0}
+    herb.set_animal_parameters(new_parameters=new_parameters)
+    assert new_parameters["eta"] <= 1
+    for key in new_parameters.keys():
+        assert new_parameters[key] >= 0
+
+    carn = Carnivore()
+    new_parameters = {"w_birth": 10, "sigma_birth": 1.5, "beta": 0.78,
+                      "eta": 0.14, "a_half": 65.0, "phi_age": 0.5,
+                      "w_half": 4.5, "phi_weight": 0.3, "mu": 0.5,
+                      "lambda": 1.0, "gamma": 0.7, "zeta": 3.5,
+                      "xi": 1.1, "omega": 0.9, "F": 30.0,
+                      "DeltaPhiMax": 10.0}
+    carn.set_animal_parameters(new_parameters=new_parameters)
+    assert new_parameters["DeltaPhiMax"] > 0
+    assert new_parameters["eta"] <= 1
+    for key in new_parameters.keys():
+        if key is not "DeltaPhiMax":
+            assert new_parameters[key] >= 0
+
+
 def test_herbivore_parameters():
     """
     Tests that the given parameters for the herbivore class are in the list
      of valid parameters.
     """
-    keys_list = ['w_birth', 'sigma_birth', 'beta','eta', 'a_half', 'phi_age',
-                 'w_half', 'phi_weight', 'mu', 'lambda', 'gamma',  'zeta',
-                 'xi', 'omega', 'F']
+    keys_list = ["w_birth", "sigma_birth", "beta","eta", "a_half", "phi_age",
+                 "w_half", "phi_weight", "mu", "lambda", "gamma",  "zeta",
+                 "xi", "omega", "F"]
     herb = Herbivore()
     for key in keys_list:
         assert key in herb.default_parameters.keys()
@@ -42,9 +73,9 @@ def test_carnivore_parameters():
     Tests that the given parameters for the carnivore class are in the list
      of valid parameters.
     """
-    keys_list = ['w_birth', 'sigma_birth', 'beta', 'eta', 'a_half', 'phi_age',
-                 'w_half', 'phi_weight', 'mu', 'lambda', 'gamma', 'zeta',
-                 'xi', 'omega', 'F', 'DeltaPhiMax']
+    keys_list = ["w_birth", "sigma_birth", "beta", "eta", "a_half", "phi_age",
+                 "w_half", "phi_weight", "mu", "lambda", "gamma", "zeta",
+                 "xi", "omega", "F", "DeltaPhiMax"]
     carn = Carnivore()
     for key in keys_list:
         assert key in carn.default_parameters.keys()
@@ -74,10 +105,8 @@ def test_animals_lifecycle():
     assert herb.weight > start_weight
     assert herb.age == 1
     new_weight = herb.weight
-    herb.weight_loss()
+    herb.animal_weight_loss()
     assert herb.weight < new_weight
-
-
 
 
 def test_animals_fitness():
@@ -90,7 +119,7 @@ def test_animals_fitness():
     herb.aging()
     value2 = herb.fitness
     assert value2 < value1
-    herb.weight_loss()
+    herb.animal_weight_loss()
     value3 = herb.fitness
     assert value3 < value2
 
@@ -100,7 +129,7 @@ def test_animals_fitness():
     carn.aging()
     value2 = carn.fitness
     assert value2 < value1
-    carn.weight_loss()
+    carn.animal_weight_loss()
     value3 = carn.fitness
     assert value3 < value2
     
@@ -156,17 +185,17 @@ def test_animal_death():
     the probability of animal death.
     """
     herb = Herbivore()
-    herb.default_parameters['omega'] = 1
-    herb.phi = 0
+    herb.default_parameters["omega"] = 1
+    herb._phi = 0
     assert herb.death()
-    herb.phi = 1
+    herb._phi = 1
     assert not herb.death()
 
     carn = Carnivore()
-    carn.default_parameters['omega'] = 1
-    carn.phi = 0
+    carn.default_parameters["omega"] = 1
+    carn._phi = 0
     assert carn.death()
-    carn.phi = 1
+    carn._phi = 1
     assert not carn.death()
 
 
@@ -191,12 +220,12 @@ def test_carnivore_eating_probability():
 
 
 def test_carnivore_eating():
-    pop = [{'species': 'Herbivore', 'age': 10, 'weight': 15},
-           {'species': 'Herbivore', 'age': 5, 'weight': 40},
-           {'species': 'Herbivore', 'age': 15, 'weight': 25},
-           {'species': 'Herbivore', 'age': 17, 'weight': 20},
-           {'species': 'Herbivore', 'age': 8, 'weight': 30},
-           {'species': 'Herbivore', 'age': 20, 'weight': 35}]
+    pop = [{"species": "Herbivore", "age": 10, "weight": 15},
+           {"species": "Herbivore", "age": 5, "weight": 40},
+           {"species": "Herbivore", "age": 15, "weight": 25},
+           {"species": "Herbivore", "age": 17, "weight": 20},
+           {"species": "Herbivore", "age": 8, "weight": 30},
+           {"species": "Herbivore", "age": 20, "weight": 35}]
 
 
 

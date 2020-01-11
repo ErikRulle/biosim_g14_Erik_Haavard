@@ -21,11 +21,22 @@ class Landscape:
         self.f = self.default_parameters['f_max']
         self.animal_population = [[], []]
 
+    def set_landscape_parameters(self, new_parameters):
+        """
+        This method allows for manual setting of landscape parameters,
+        i.e. to change parameter values from default values to desired values.
+
+        :param new_parameters: dict, dictionary with the new parameter values
+                               Only keys from the default parameter value dict
+                               are valid.
+        """
+        for key in new_parameters:
+            self.default_parameters[key] = new_parameters[key]
+
     def cell_population(self, population=None):
         """
         Puts the animal population in the specific cell.
         :param population: list
-        :return:
         """
         for animal in population:
             if animal["species"] == "Herbivore":
@@ -67,12 +78,35 @@ class Landscape:
     def weight_loss(self):
         """
         Reduces weight of all animals once a year.
-        :return:
+        """
+        for species in self.animal_population:
+            for animal in species:
+                animal.animal_weight_loss()
+                
+    def aging(self):
+        """
+        The age of all animals in the specific cell is incremented by one,
+        once a year.
         """
 
         for species in self.animal_population:
             for animal in species:
-                animal.weight_loss()
+                animal.aging()
+
+    def death(self):
+        """
+        Updates the animal population list with the surviving animals after
+        every year.
+        """
+
+        self.animal_population[0] = [
+            animal for animal in self.animal_population[0] if not
+            animal.death()
+        ]
+        self.animal_population[1] = [
+            animal for animal in self.animal_population[1] if not
+            animal.death()
+        ]
 
     def available_fodder_herbivore(self):
         """
@@ -91,7 +125,6 @@ class Landscape:
         pass
 
 
-
 class Jungle(Landscape):
     """
     Defines the jungle type
@@ -106,7 +139,6 @@ class Jungle(Landscape):
         given formula for the jungle type.
         """
         pass
-
 
 
 class Savannah(Landscape):
