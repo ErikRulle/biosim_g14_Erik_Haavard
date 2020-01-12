@@ -52,6 +52,10 @@ class Animals:
         self.age = age
         #self._phi = self.fitness
         #self._phi = None
+        self.newborn_weight = random.normalvariate(
+            self.default_parameters["w_birth"],
+            self.default_parameters["sigma_birth"]
+        )
 
     def set_animal_parameters(self, new_parameters):
         """
@@ -91,16 +95,12 @@ class Animals:
         :return reproduction_success: bool, the animal reproduces or not.
                 newborn_weight: float, weight of the newborn animal.
         """
-        newborn_weight = random.normalvariate(
-            self.default_parameters["w_birth"],
-            self.default_parameters["sigma_birth"]
-        )
 
         if self.weight < self.default_parameters["zeta"] * (
                 self.default_parameters["w_birth"] + (
                 self.default_parameters["sigma_birth"])):
             reproduction_prob = 0
-        elif self.weight < newborn_weight:
+        elif self.weight < self.newborn_weight:
             reproduction_prob = 0
         else:
             reproduction_prob = min(
@@ -108,16 +108,16 @@ class Animals:
                         n_animals - 1)])
 
         reproduction_success = random.random() <= reproduction_prob
-        return reproduction_success, newborn_weight
+        return reproduction_success
 
-    def update_weight_after_birth(self, newborn_weight):
+    def update_weight_after_birth(self):
         """
         If reproduction is successful, then a new animal is born, and the
         mother"s weight is reduced by the baby"s birthweight.
 
         :param newborn_weight: float, weight of newborn animal
         """
-        self.weight -= self.default_parameters["xi"] * newborn_weight
+        self.weight -= self.default_parameters["xi"] * self.newborn_weight
 
     def death(self):
         """

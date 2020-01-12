@@ -63,6 +63,16 @@ class Landscape:
         """
         return len(self.animal_population[1])
 
+    @property
+    def sum_of_herbivore_mass(self):
+        """
+        Calculates the total herbivore mass in the specific cell, i.e. the
+        sum of the herbivore weights.
+
+        :return: integer, the sum of herbivore mass in the cell
+        """
+        return sum([herb.weight for herb in self.animal_population[0]])
+
     def sort_by_fitness(self):
         """
         Updates and sorts animals in a specific cell by fitness, in descending
@@ -108,19 +118,35 @@ class Landscape:
             animal.death()
         ]
 
+    def reproduction(self):
+        """
+        Finds out which animals for each species that reproduce, based on
+        reproduction probability, and adds a newborn of that species
+        to the cell.
+        """
+        for species in self.animal_population:
+            newborn_animals = []
+            for animal in species:
+                if animal.reproduction_probability(len(species)):
+                    if isinstance(animal, Herbivore):
+                        newborn_animals.append(Herbivore())
+                    elif isinstance(animal, Carnivore):
+                        newborn_animals.append(Carnivore())
+                    animal.update_weight_after_birth()
+            species.extend(newborn_animals)
+
     def available_fodder_herbivore(self):
         """
-        Calculates the available fodder for herbivores in the landscape
-        :return fodder_amount:
+        Calculates the available fodder for herbivores in the cell
+
+        :return fodder_amount: float, the amount of available fodder
         """
         pass
 
-    def counter(self):
+    def regenerate(self):
         """
-        This method counts the number of herbivores and carnivores in each
-        cell.
-
-        :return:
+        This method regenerates the amount of fodder in each cell according to
+        given formula for the given landscape type.
         """
         pass
 
@@ -129,69 +155,34 @@ class Jungle(Landscape):
     """
     Defines the jungle type
     """
-
-    def __init__(self):
-        pass
-
-    def regenerate(self):
-        """
-        This method regenerates the amount of fodder in each cell according to
-        given formula for the jungle type.
-        """
-        pass
+    default_params = {'f_max': 800.0}
 
 
 class Savannah(Landscape):
     """
     Defines the savannah type
     """
-
-    def __init__(self):
-        """
-        This method creates variables needed for the class.
-        """
-        pass
-
-    def regenerate(self):
-        """
-        This method regenerates the amount of fodder in each cell according to
-        given formula for the savannah type.
-        """
-        pass
+    default_params = {'f_max': 300.0, 'alpha': 0.3}
 
 
 class Desert(Landscape):
     """
     Defines the desert type
     """
-
-    def __init__(self):
-        """
-        This method creates variables needed for the class.
-        """
-        pass
+    default_params = {'f_max': 0.0}
 
 
 class Mountain(Landscape):
     """
     Defines the mountain type
     """
-
-    def __init__(self):
-        """
-        This method creates variables needed for the class.
-        """
-        pass
+    default_params = {'f_max': 0.0}
 
 
 class Ocean(Landscape):
     """
     Defines the ocean type
     """
+    default_params = {'f_max': 0.0}
 
-    def __init__(self):
-        """
-        This method creates variables needed for the class.
-        """
-        pass
 

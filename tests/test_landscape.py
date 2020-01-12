@@ -36,6 +36,15 @@ def test_number_of_carnivores():
     assert land.number_of_carnivores == 1
 
 
+def test_sum_of_herbivore_mass():
+    land = Landscape()
+    pop = [{'species': 'Herbivore', 'age': 5, 'weight': 20}
+           for _ in range(100)]
+    land.cell_population(pop)
+    herb_mass = land.sum_of_herbivore_mass
+    assert herb_mass == 2000
+
+
 def test_cell_population():
     """
     Checks if the cell_population method populates a specific cell with
@@ -158,3 +167,36 @@ def test_death():
     ]
     for number in range(len(num_animals)):
         assert num_animals[number] > num_animals_after_death[number]
+
+
+def test_reproduction():
+    """
+    Tests that animals in a given cell reproduce according to the provided
+    probability function, and add a new animal (a newborn) to the population.
+    """
+
+    land = Landscape()
+    herbs = [{'species': 'Herbivore', 'age': 5, 'weight': 40}
+             for _ in range(1000)]
+    carns = [{'species': 'Carnivores', 'age': 5, 'weight': 40}
+             for _ in range(1000)]
+    pop = herbs + carns
+    land.cell_population(pop)
+    ini_herbs = len(land.animal_population[0])
+    ini_carns = len(land.animal_population[1])
+    land.reproduction()
+    new_herbs = len(land.animal_population[0])
+    new_carns = len(land.animal_population[1])
+    assert new_herbs > ini_herbs
+    assert new_carns > ini_carns
+
+
+
+
+
+
+
+
+
+
+
