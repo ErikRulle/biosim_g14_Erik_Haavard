@@ -64,10 +64,10 @@ def test_update_fitness():
     land.animal_population[0].append(Herbivore())
     land.animal_population[1].append(Carnivore())
     fit0_herb = land.animal_population[0][0].fitness
-    fit0_carn = land.animal_population[1][0].phi
+    fit0_carn = land.animal_population[1][0].fitness
     land.weight_loss()
     fit1_herb = land.animal_population[0][0].fitness
-    fit1_carn = land.animal_population[1][0].phi
+    fit1_carn = land.animal_population[1][0].fitness
     assert fit0_herb > fit1_herb
     assert fit0_carn > fit1_carn
 
@@ -202,7 +202,7 @@ def test_eat_request_herbivore():
      {"species": "Herbivore", "age": 5, "weight": 20}]
     jungle.cell_population(pop)
     start_weight = jungle.sum_of_herbivore_mass
-    jungle.eat_request_herbivore
+    jungle.eat_request_herbivore()
     new_weight = jungle.sum_of_herbivore_mass
     assert new_weight > start_weight
 
