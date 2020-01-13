@@ -50,8 +50,6 @@ class Animals:
         else:
             self.weight = weight
         self.age = age
-        #self._phi = self.fitness
-        #self._phi = None
         self.newborn_weight = random.normalvariate(
             self.default_parameters["w_birth"],
             self.default_parameters["sigma_birth"]
@@ -131,22 +129,13 @@ class Animals:
         :return: float
         """
 
-        self._phi = 1 / (1 + np.exp(self.default_parameters["phi_age"] * (
+        phi = 1 / (1 + np.exp(self.default_parameters["phi_age"] * (
                     self.age - self.default_parameters["a_half"]
             ))) * 1 / (1 + np.exp(
                 -self.default_parameters["phi_weight"] * (
                         self.weight - self.default_parameters["w_half"])))
 
-        return self._phi
-
-    @fitness.setter
-    def fitness(self, value):
-        """
-        A setter for the property attribute fitness, to allow for testing of
-        the code.
-        """
-        self._phi = value
-
+        return phi
 
     def migrate(self):
         pass
@@ -242,7 +231,6 @@ class Carnivore(Animals):
                             self.default_parameters["beta"] * herbivore.weight
                     )
                     weight_eaten += herbivore.weight
-                self.fitness
             else:
                 herbivores_not_eaten.append(herbivore)
 

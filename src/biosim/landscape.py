@@ -21,6 +21,7 @@ class Landscape:
         self.f = self.default_parameters['f_max']
         self.animal_population = [[], []]
 
+    @classmethod
     def set_landscape_parameters(self, new_parameters):
         """
         This method allows for manual setting of landscape parameters,
@@ -156,24 +157,20 @@ class Landscape:
             self.animal_population[0] = carnivore.eating(
                 self.animal_population[0])
 
-    def regenerate(self):
-        """
-        This method regenerates the amount of fodder in each cell according to
-        given formula for the given landscape type.
-        """
-        if self.f != self.default_parameters["f_max"]:
-            if isinstance(self, Jungle):
-                self.f = self.default_parameters["f_max"]
-            elif isinstance(self, Savannah):
-                self.f += self.default_parameters["alpha"] * \
-                          (self.default_parameters["f_max"] - self.f)
-
 
 class Jungle(Landscape):
     """
     Defines the jungle type
     """
     default_parameters = {'f_max': 800.0}
+    habitable = True
+
+    def regenerate(self):
+        """
+        This method regenerates the amount of fodder in each cell according to
+        given formula for the given landscape type.
+        """
+        self.f = self.default_parameters["f_max"]
 
 
 class Savannah(Landscape):
@@ -181,6 +178,15 @@ class Savannah(Landscape):
     Defines the savannah type
     """
     default_parameters = {'f_max': 300.0, 'alpha': 0.3}
+    habitable = True
+
+    def regenerate(self):
+        """
+        This method regenerates the amount of fodder in each cell according to
+        given formula for the given landscape type.
+        """
+        self.f += self.default_parameters["alpha"] * \
+                  (self.default_parameters["f_max"] - self.f)
 
 
 class Desert(Landscape):
@@ -188,6 +194,7 @@ class Desert(Landscape):
     Defines the desert type
     """
     default_parameters = {'f_max': 0.0}
+    habitable = True
 
 
 class Mountain(Landscape):
@@ -195,6 +202,7 @@ class Mountain(Landscape):
     Defines the mountain type
     """
     default_parameters = {'f_max': 0.0}
+    habitable = False
 
 
 class Ocean(Landscape):
@@ -202,5 +210,6 @@ class Ocean(Landscape):
     Defines the ocean type
     """
     default_parameters = {'f_max': 0.0}
+    habitable = False
 
 

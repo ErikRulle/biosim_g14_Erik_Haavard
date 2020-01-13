@@ -20,8 +20,8 @@ __author__ = "Erik Rullestad", "Håvard Molversmyr"
 __email__ = "erikrull@nmbu.no", "havardmo@nmbu.no"
 
 
-from biosim.animals import *
-from pytest import approx
+import biosim.animals as ba
+import pytest
 
 
 def test_set_animal_parameters():
@@ -29,7 +29,7 @@ def test_set_animal_parameters():
     Test that manual setting of animal parameters follows the given
     restrictions.
     """
-    herb = Herbivore()
+    herb = ba.Herbivore()
     new_parameters = {"w_birth": 10, "sigma_birth": 1.5, "beta": 0.78,
                       "eta": 0.14, "a_half": 65.0, "phi_age": 0.5,
                       "w_half": 4.5, "phi_weight": 0.3, "mu": 0.5,
@@ -40,7 +40,7 @@ def test_set_animal_parameters():
     for key in new_parameters.keys():
         assert new_parameters[key] >= 0
 
-    carn = Carnivore()
+    carn = ba.Carnivore()
     new_parameters = {"w_birth": 10, "sigma_birth": 1.5, "beta": 0.78,
                       "eta": 0.14, "a_half": 65.0, "phi_age": 0.5,
                       "w_half": 4.5, "phi_weight": 0.3, "mu": 0.5,
@@ -63,7 +63,7 @@ def test_herbivore_parameters():
     keys_list = ["w_birth", "sigma_birth", "beta","eta", "a_half", "phi_age",
                  "w_half", "phi_weight", "mu", "lambda", "gamma",  "zeta",
                  "xi", "omega", "F"]
-    herb = Herbivore()
+    herb = ba.Herbivore()
     for key in keys_list:
         assert key in herb.default_parameters.keys()
 
@@ -76,18 +76,18 @@ def test_carnivore_parameters():
     keys_list = ["w_birth", "sigma_birth", "beta", "eta", "a_half", "phi_age",
                  "w_half", "phi_weight", "mu", "lambda", "gamma", "zeta",
                  "xi", "omega", "F", "DeltaPhiMax"]
-    carn = Carnivore()
+    carn = ba.Carnivore()
     for key in keys_list:
         assert key in carn.default_parameters.keys()
 
 
 def test_non_negative_animal_weight():
     """Tests that animals has a non-negative weight."""
-    herb = Herbivore()
-    carn = Carnivore()
-    assert isinstance(herb, Herbivore)
+    herb = ba.Herbivore()
+    carn = ba.Carnivore()
+    assert isinstance(herb, ba.Herbivore)
     assert herb.weight >= 0
-    assert isinstance(carn, Carnivore)
+    assert isinstance(carn, ba.Carnivore)
     assert carn.weight >= 0
 
 
@@ -97,7 +97,7 @@ def test_animals_lifecycle():
     incremented by one for every year passed. They eat and gains weight, and
     loose weight for every year.
     """
-    herb = Herbivore()
+    herb = ba.Herbivore()
     assert herb.age == 0
     herb.aging()
     start_weight = herb.weight
@@ -113,7 +113,7 @@ def test_animals_fitness():
     """Tests that the fitness of a Herbivore is between 0 and 1, and works
     as expected.
     """
-    herb = Herbivore()
+    herb = ba.Herbivore()
     value1 = herb.fitness
     assert 0 <= value1 <= 1
     herb.aging()
@@ -123,7 +123,7 @@ def test_animals_fitness():
     value3 = herb.fitness
     assert value3 < value2
 
-    carn = Carnivore()
+    carn = ba.Carnivore()
     value1 = carn.fitness
     assert 0 <= value1 <= 1
     carn.aging()
@@ -138,20 +138,20 @@ def test_animals_reproduction_probability():
     """
     Tests that the Herbivore reproduce after given specifications.
     """
-    herb = Herbivore(weight=30)
+    herb = ba.Herbivore(weight=30)
     assert not herb.reproduction_probability(n_animals=1)
-    herb2 = Herbivore(weight=50)
+    herb2 = ba.Herbivore(weight=50)
     assert not herb2.reproduction_probability(n_animals=1)
     assert herb2.reproduction_probability(n_animals=1000)
-    herb3 = Herbivore(weight=2)
+    herb3 = ba.Herbivore(weight=2)
     assert not herb3.reproduction_probability(n_animals=1000)
 
-    carn = Carnivore(weight=30)
+    carn = ba.Carnivore(weight=30)
     assert not carn.reproduction_probability(n_animals=1)
-    carn2 = Carnivore(weight=50)
+    carn2 = ba.Carnivore(weight=50)
     assert not carn2.reproduction_probability(n_animals=1)
     assert carn2.reproduction_probability(n_animals=1000)
-    carn3 = Carnivore(weight=2)
+    carn3 = ba.Carnivore(weight=2)
     assert not carn3.reproduction_probability(n_animals=1000)
 
 
@@ -161,21 +161,21 @@ def test_animal_update_weight_after_birth():
     """
     newborn_weight = 8
     initial_weight = 50
-    herb = Herbivore(weight=initial_weight)
+    herb = ba.Herbivore(weight=initial_weight)
     herb.newborn_weight = 8
     herb.update_weight_after_birth()
     assert herb.weight < initial_weight
-    assert herb.weight == approx(initial_weight - (
+    assert herb.weight == pytest.approx(initial_weight - (
             herb.default_parameters["xi"] * newborn_weight
     ), rel=1e-1)
 
     newborn_weight = 8
     initial_weight = 50
-    carn = Carnivore(weight=initial_weight)
+    carn = ba.Carnivore(weight=initial_weight)
     carn.newborn_weight = 8
     carn.update_weight_after_birth()
     assert carn.weight < initial_weight
-    assert carn.weight == approx(initial_weight - (
+    assert carn.weight == pytest.approx(initial_weight - (
             carn.default_parameters["xi"] * newborn_weight
     ), rel=1e-1)
 
@@ -186,18 +186,22 @@ def test_animal_death(mocker):
     with certainty 0 if its fitness is 1, according to the given formula for
     the probability of animal death.
     """
-    herb = Herbivore()
+    herb = ba.Herbivore()
     herb.default_parameters["omega"] = 1
-    mocker.patch("animals.fitness", return_value=0)
+    mocker.patch("biosim.animals.Animals.fitness",
+                 new_callable=mocker.PropertyMock, return_value=0)
     assert herb.death()
-    mocker.patch("animals.fitness", return_value=1)
+    mocker.patch("biosim.animals.Animals.fitness",
+                 new_callable=mocker.PropertyMock, return_value=1)
     assert not herb.death()
 
-    carn = Carnivore()
+    carn = ba.Carnivore()
     carn.default_parameters["omega"] = 1
-    mocker.patch("animals.fitness", return_value=0)
+    mocker.patch("biosim.animals.Animals.fitness",
+                 new_callable=mocker.PropertyMock, return_value=0)
     assert carn.death()
-    mocker.patch("animals.fitness", return_value=1)
+    mocker.patch("biosim.animals.Animals.fitness",
+                 new_callable=mocker.PropertyMock, return_value=1)
     assert not carn.death()
 
 
@@ -205,7 +209,7 @@ def test_herbivore_eating():
     """
 
     """
-    herb = Herbivore()
+    herb = ba.Herbivore()
     initial_weight = herb.weight
     herb.eating(fodder=10)
     new_weight = herb.weight
@@ -213,19 +217,41 @@ def test_herbivore_eating():
 
 
 def test_carnivore_eating_probability(mocker):
-    mocker.patch("animals.Animals.fitness")
-    herb = Herbivore()
-    herb.fitness = 0.7
-    carn = Carnivore()
-    carn.fitness = 0.3
-    assert not carn.eating_probability()
-    carn.fitness = 0.8
+    herb = ba.Herbivore()
+    mocker.patch("biosim.animals.Herbivore.fitness",
+                 new_callable=mocker.PropertyMock, return_value=0.7)
+    carn = ba.Carnivore()
+    mocker.patch("biosim.animals.Carnivore.fitness",
+                 new_callable=mocker.PropertyMock, return_value=0.3)
+    assert not carn.eating_probability(herb)
+
+    mocker.patch("biosim.animals.Herbivore.fitness",
+                 new_callable=mocker.PropertyMock, return_value=0.2)
+    mocker.patch("biosim.animals.Carnivore.fitness",
+                 new_callable=mocker.PropertyMock, return_value=0.7)
+    assert carn.eating_probability(herb) == pytest.approx(
+        0.05
+    )
+
+    carn.set_animal_parameters({"DeltaPhiMax": 0.000001})
+    assert carn.eating_probability(herb) == 1
+
+
+@pytest.fixture(autouse=True)
+def reset_parameters():
+    ba.Carnivore.set_animal_parameters({"w_birth": 6.0, "sigma_birth": 1.0,
+                                        "beta": 0.75, "eta": 0.125,
+                                        "a_half": 60.0, "phi_age": 0.4,
+                                        "w_half": 4.0, "phi_weight": 0.4,
+                                        "mu": 0.4, "lambda": 1.0, "gamma": 0.8,
+                                        "zeta": 3.5, "xi": 1.1, "omega": 0.9,
+                                        "F": 50.0, "DeltaPhiMax": 10.0})
 
 
 def test_carnivore_eating():
-    herbivores = [Herbivore(weight=15, age=5) for _ in range(6)]
-    Carnivore.set_animal_parameters({"DeltaPhiMax": 0.00000001})
-    carn = Carnivore(weight=500, age=5)
+    herbivores = [ba.Herbivore(weight=15, age=5) for _ in range(6)]
+    ba.Carnivore.set_animal_parameters({"DeltaPhiMax": 0.000001})
+    carn = ba.Carnivore(weight=500, age=5)
     start_weight = carn.weight
     surviving_herbivores = carn.eating(herbivores)
     new_weight = carn.weight

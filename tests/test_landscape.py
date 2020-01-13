@@ -4,14 +4,15 @@ __author__ = "Erik Rullestad", "Håvard Molversmyr"
 __email__ = "erikrull@nmbu.no", "havardmo@nmbu.no"
 
 
-from biosim.landscape import *
+import biosim.landscape as bl
+import random
 
 
 def test_set_landscape_parameters():
     """
     Test that manual setting of landscape parameters works.
     """
-    land = Landscape()
+    land = bl.Landscape()
     new_parameters = {"f_max": 150}
     land.set_landscape_parameters(new_parameters=new_parameters)
     for key in new_parameters.keys():
@@ -22,8 +23,8 @@ def test_number_of_herbivores():
     """
     Test that the method counts the number of herbivores in the specific cell.
     """
-    land = Landscape()
-    land.animal_population[0].append(Herbivore())
+    land = bl.Landscape()
+    land.animal_population[0].append(bl.Herbivore())
     assert land.number_of_herbivores == 1
 
 
@@ -31,13 +32,13 @@ def test_number_of_carnivores():
     """
     Test that the method counts the number of carnivores in the specific cell.
     """
-    land = Landscape()
-    land.animal_population[1].append(Carnivore())
+    land = bl.Landscape()
+    land.animal_population[1].append(bl.Carnivore())
     assert land.number_of_carnivores == 1
 
 
 def test_sum_of_herbivore_mass():
-    land = Landscape()
+    land = bl.Landscape()
     pop = [{'species': 'Herbivore', 'age': 5, 'weight': 20}
            for _ in range(100)]
     land.cell_population(pop)
@@ -50,7 +51,7 @@ def test_cell_population():
     Checks if the cell_population method populates a specific cell with
     the input population.
     """
-    land = Landscape()
+    land = bl.Landscape()
     pop = [{"species": "Herbivore", "age": 10, "weight": 15},
            {"species": "Herbivore", "age": 5, "weight": 40},
            {"species": "Carnivore", "age": 15, "weight": 25}]
@@ -60,9 +61,9 @@ def test_cell_population():
 
 
 def test_update_fitness():
-    land = Landscape()
-    land.animal_population[0].append(Herbivore())
-    land.animal_population[1].append(Carnivore())
+    land = bl.Landscape()
+    land.animal_population[0].append(bl.Herbivore())
+    land.animal_population[1].append(bl.Carnivore())
     fit0_herb = land.animal_population[0][0].fitness
     fit0_carn = land.animal_population[1][0].fitness
     land.weight_loss()
@@ -73,7 +74,7 @@ def test_update_fitness():
 
 
 def test_sort_fitness():
-    land = Landscape()
+    land = bl.Landscape()
     pop = [{"species": "Herbivore", "age": 10, "weight": 15},
            {"species": "Herbivore", "age": 5, "weight": 40},
            {"species": "Herbivore", "age": 15, "weight": 25},
@@ -102,7 +103,7 @@ def test_landscape_weight_loss():
     Test that the animal population in a cell has reduced weight following
     a weight-loss occurence.
     """
-    land = Landscape()
+    land = bl.Landscape()
     pop = [{"species": "Herbivore", "age": 10, "weight": 15},
            {"species": "Herbivore", "age": 5, "weight": 40},
            {"species": "Carnivore", "age": 10, "weight": 30},
@@ -124,9 +125,9 @@ def test_landscape_weight_loss():
 def test_aging():
     """
     Tests that all animals in a specific specific cell ages by 1 year
-    following an aging occurence.
+    following an aging occurrence.
     """
-    land = Landscape()
+    land = bl.Landscape()
     pop = [{"species": "Herbivore", "age": 10, "weight": 15},
            {"species": "Herbivore", "age": 5, "weight": 40},
            {"species": "Carnivore", "age": 10, "weight": 30},
@@ -152,7 +153,7 @@ def test_death():
     Tests that some animals die according to the given formula of probability.
     """
     random.seed(108)
-    land = Landscape()
+    land = bl.Landscape()
     herbs = [{'species': 'Herbivore', 'age': 5, 'weight': 20}
            for _ in range(1000)]
     carns = [{'species': 'Carnivores', 'age': 50, 'weight': 10}
@@ -175,7 +176,7 @@ def test_reproduction():
     probability function, and add a new animal (a newborn) to the population.
     """
 
-    land = Landscape()
+    land = bl.Landscape()
     herbs = [{'species': 'Herbivore', 'age': 5, 'weight': 40}
              for _ in range(1000)]
     carns = [{'species': 'Carnivores', 'age': 5, 'weight': 40}
@@ -195,7 +196,7 @@ def test_eat_request_herbivore():
     """
     Test if herbivores eats as expected.
     """
-    jungle = Jungle()
+    jungle = bl.Jungle()
     pop = [{"species": "Herbivore", "age": 10, "weight": 15},
      {"species": "Herbivore", "age": 5, "weight": 40},
      {"species": "Herbivore", "age": 10, "weight": 30},
@@ -211,8 +212,8 @@ def test_eat_request_carnivore():
     """
 
     """
-    Carnivore.set_animal_parameters({"DeltaPhiMax": 0.0001})
-    land = Landscape()
+    bl.Carnivore.set_animal_parameters({"DeltaPhiMax": 0.0001})
+    land = bl.Landscape()
     pop = [{"species": "Herbivore", "age": 10, "weight": 20},
            {"species": "Herbivore", "age": 5, "weight": 20},
            {"species": "Herbivore", "age": 10, "weight": 20},
@@ -230,16 +231,17 @@ def test_regenerate():
     """
 
     """
-    jungle = Jungle()
-    savannah = Savannah()
-    desert = Desert()
-    mountain = Mountain()
-    ocean = Ocean()
+    jungle = bl.Jungle()
+    savannah = bl.Savannah()
+    desert = bl.Desert()
+    mountain = bl.Mountain()
+    ocean = bl.Ocean()
     landscape_list = [jungle, savannah, desert, mountain, ocean]
     for landscape in landscape_list:
         landscape.f = 0
         landscape.regenerate()
-        if isinstance(landscape, Jungle) or isinstance(landscape, Savannah):
+        if isinstance(landscape, bl.Jungle) or isinstance(
+                landscape, bl.Savannah):
             assert landscape.f > 0
         else:
             assert landscape.f == 0
