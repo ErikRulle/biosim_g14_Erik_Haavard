@@ -57,6 +57,7 @@ class Animals:
             self.default_parameters["sigma_birth"]
         )
 
+    @classmethod
     def set_animal_parameters(self, new_parameters):
         """
         This method allows for manual setting of animal parameters,
@@ -211,8 +212,8 @@ class Carnivore(Animals):
 
         if self.fitness <= herbivores.fitness:
             return 0
-        elif 0 < self.fitness - herbivores.fitness < deltafitness_max:
-            return (self.fitness - herbivores.fitness) / deltafitness_max
+        elif 0 < self.fitness - herbivores.fitness < delta_phi_max:
+            return (self.fitness - herbivores.fitness) / delta_phi_max
         else:
             return 1
 

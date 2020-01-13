@@ -207,6 +207,46 @@ def test_eat_request_herbivore():
     assert new_weight > start_weight
 
 
+def test_eat_request_carnivore():
+    """
+
+    """
+    Carnivore.set_animal_parameters({"DeltaPhiMax": 0.0001})
+    land = Landscape()
+    pop = [{"species": "Herbivore", "age": 10, "weight": 20},
+           {"species": "Herbivore", "age": 5, "weight": 20},
+           {"species": "Herbivore", "age": 10, "weight": 20},
+           {"species": "Carnivore", "age": 5, "weight": 500}]
+    land.cell_population(pop)
+    land.sort_by_fitness()
+    start_weight = land.animal_population[1][0].weight
+    land.eat_request_carnivore()
+    new_weight = land.animal_population[1][0].weight
+    assert len(land.animal_population[0]) == 0
+    assert new_weight > start_weight
+
+
+def test_regenerate():
+    """
+
+    """
+    jungle = Jungle()
+    savannah = Savannah()
+    desert = Desert()
+    mountain = Mountain()
+    ocean = Ocean()
+    landscape_list = [jungle, savannah, desert, mountain, ocean]
+    for landscape in landscape_list:
+        landscape.f = 0
+        landscape.regenerate()
+        if isinstance(landscape, Jungle) or isinstance(landscape, Savannah):
+            assert landscape.f > 0
+        else:
+            assert landscape.f == 0
+
+
+
+
 
 
 

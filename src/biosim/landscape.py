@@ -173,34 +173,34 @@ class Jungle(Landscape):
     """
     Defines the jungle type
     """
-    default_params = {'f_max': 800.0}
+    default_parameters = {'f_max': 800.0}
 
 
 class Savannah(Landscape):
     """
     Defines the savannah type
     """
-    default_params = {'f_max': 300.0, 'alpha': 0.3}
+    default_parameters = {'f_max': 300.0, 'alpha': 0.3}
 
 
 class Desert(Landscape):
     """
     Defines the desert type
     """
-    default_params = {'f_max': 0.0}
+    default_parameters = {'f_max': 0.0}
 
 
 class Mountain(Landscape):
     """
     Defines the mountain type
     """
-    default_params = {'f_max': 0.0}
+    default_parameters = {'f_max': 0.0}
 
 
 class Ocean(Landscape):
     """
     Defines the ocean type
     """
-    default_params = {'f_max': 0.0}
+    default_parameters = {'f_max': 0.0}
 
 
