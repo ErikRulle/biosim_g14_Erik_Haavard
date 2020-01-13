@@ -139,20 +139,20 @@ def test_animals_reproduction_probability():
     Tests that the Herbivore reproduce after given specifications.
     """
     herb = Herbivore(weight=30)
-    assert not herb.reproduction_probability(n_animals=1)[0]
+    assert not herb.reproduction_probability(n_animals=1)
     herb2 = Herbivore(weight=50)
-    assert not herb2.reproduction_probability(n_animals=1)[0]
-    assert herb2.reproduction_probability(n_animals=1000)[0]
+    assert not herb2.reproduction_probability(n_animals=1)
+    assert herb2.reproduction_probability(n_animals=1000)
     herb3 = Herbivore(weight=2)
-    assert not herb3.reproduction_probability(n_animals=1000)[0]
+    assert not herb3.reproduction_probability(n_animals=1000)
 
     carn = Carnivore(weight=30)
-    assert not carn.reproduction_probability(n_animals=1)[0]
+    assert not carn.reproduction_probability(n_animals=1)
     carn2 = Carnivore(weight=50)
-    assert not carn2.reproduction_probability(n_animals=1)[0]
-    assert carn2.reproduction_probability(n_animals=1000)[0]
+    assert not carn2.reproduction_probability(n_animals=1)
+    assert carn2.reproduction_probability(n_animals=1000)
     carn3 = Carnivore(weight=2)
-    assert not carn3.reproduction_probability(n_animals=1000)[0]
+    assert not carn3.reproduction_probability(n_animals=1000)
 
 
 def test_animal_update_weight_after_birth():
@@ -162,7 +162,8 @@ def test_animal_update_weight_after_birth():
     newborn_weight = 8
     initial_weight = 50
     herb = Herbivore(weight=initial_weight)
-    herb.update_weight_after_birth(newborn_weight=newborn_weight)
+    herb.newborn_weight = 8
+    herb.update_weight_after_birth()
     assert herb.weight < initial_weight
     assert herb.weight == approx(initial_weight - (
             herb.default_parameters["xi"] * newborn_weight
@@ -171,14 +172,15 @@ def test_animal_update_weight_after_birth():
     newborn_weight = 8
     initial_weight = 50
     carn = Carnivore(weight=initial_weight)
-    carn.update_weight_after_birth(newborn_weight=newborn_weight)
+    carn.newborn_weight = 8
+    carn.update_weight_after_birth()
     assert carn.weight < initial_weight
     assert carn.weight == approx(initial_weight - (
             carn.default_parameters["xi"] * newborn_weight
     ), rel=1e-1)
 
 
-def test_animal_death():
+def test_animal_death(mocker):
     """
     Tests that animals die with certainty 1 if its fitness is 0, and dies
     with certainty 0 if its fitness is 1, according to the given formula for
@@ -186,16 +188,16 @@ def test_animal_death():
     """
     herb = Herbivore()
     herb.default_parameters["omega"] = 1
-    herb._phi = 0
+    mocker.patch("animals.fitness", return_value=0)
     assert herb.death()
-    herb._phi = 1
+    mocker.patch("animals.fitness", return_value=1)
     assert not herb.death()
 
     carn = Carnivore()
     carn.default_parameters["omega"] = 1
-    carn._phi = 0
+    mocker.patch("animals.fitness", return_value=0)
     assert carn.death()
-    carn._phi = 1
+    mocker.patch("animals.fitness", return_value=1)
     assert not carn.death()
 
 
@@ -210,7 +212,8 @@ def test_herbivore_eating():
     assert new_weight > initial_weight
 
 
-def test_carnivore_eating_probability():
+def test_carnivore_eating_probability(mocker):
+    mocker.patch("animals.Animals.fitness")
     herb = Herbivore()
     herb.fitness = 0.7
     carn = Carnivore()
@@ -220,12 +223,15 @@ def test_carnivore_eating_probability():
 
 
 def test_carnivore_eating():
-    pop = [{"species": "Herbivore", "age": 10, "weight": 15},
-           {"species": "Herbivore", "age": 5, "weight": 40},
-           {"species": "Herbivore", "age": 15, "weight": 25},
-           {"species": "Herbivore", "age": 17, "weight": 20},
-           {"species": "Herbivore", "age": 8, "weight": 30},
-           {"species": "Herbivore", "age": 20, "weight": 35}]
+    herbivores = [Herbivore(weight=15, age=5) for _ in range(6)]
+    Carnivore.set_animal_parameters({"DeltaPhiMax": 0.00000001})
+    carn = Carnivore(weight=500, age=5)
+    start_weight = carn.weight
+    surviving_herbivores = carn.eating(herbivores)
+    new_weight = carn.weight
+    assert len(herbivores) > len(surviving_herbivores)
+    assert new_weight > start_weight
+    assert carn.weight == 537.5
 
 
 

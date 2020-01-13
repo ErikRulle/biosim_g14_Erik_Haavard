@@ -151,11 +151,11 @@ def test_death():
     """
     Tests that some animals die according to the given formula of probability.
     """
-    random.seed(1093)
+    random.seed(108)
     land = Landscape()
     herbs = [{'species': 'Herbivore', 'age': 5, 'weight': 20}
            for _ in range(1000)]
-    carns = [{'species': 'Carnivores', 'age': 5, 'weight': 20}
+    carns = [{'species': 'Carnivores', 'age': 50, 'weight': 10}
            for _ in range(1000)]
     pop = herbs + carns
     land.cell_population(pop)

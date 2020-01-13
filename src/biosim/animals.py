@@ -242,6 +242,7 @@ class Carnivore(Animals):
                             self.default_parameters["beta"] * herbivore.weight
                     )
                     weight_eaten += herbivore.weight
+                self.fitness
             else:
                 herbivores_not_eaten.append(herbivore)
 
