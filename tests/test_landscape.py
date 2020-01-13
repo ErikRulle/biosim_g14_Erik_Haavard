@@ -53,23 +53,23 @@ def test_cell_population():
     land = Landscape()
     pop = [{"species": "Herbivore", "age": 10, "weight": 15},
            {"species": "Herbivore", "age": 5, "weight": 40},
-           {"species": "Herbivore", "age": 15, "weight": 25}]
+           {"species": "Carnivore", "age": 15, "weight": 25}]
     land.cell_population(population=pop)
-    assert land.number_of_herbivores == 3
-    #assert land.number_of_carnivores == 1
+    assert land.number_of_herbivores == 2
+    assert land.number_of_carnivores == 1
 
 
 def test_update_fitness():
     land = Landscape()
     land.animal_population[0].append(Herbivore())
-    #land.animal_population[1].append(Carnivore())
+    land.animal_population[1].append(Carnivore())
     fit0_herb = land.animal_population[0][0].fitness
-    #fit0_carn = land.animal_population[1][0].phi
+    fit0_carn = land.animal_population[1][0].phi
     land.weight_loss()
     fit1_herb = land.animal_population[0][0].fitness
-    #fit1_carn = land.animal_population[1][0].phi
+    fit1_carn = land.animal_population[1][0].phi
     assert fit0_herb > fit1_herb
-    #assert fit0_carn > fit1_carn
+    assert fit0_carn > fit1_carn
 
 
 def test_sort_fitness():
@@ -189,6 +189,22 @@ def test_reproduction():
     new_carns = len(land.animal_population[1])
     assert new_herbs > ini_herbs
     assert new_carns > ini_carns
+
+
+def test_eat_request_herbivore():
+    """
+    Test if herbivores eats as expected.
+    """
+    jungle = Jungle()
+    pop = [{"species": "Herbivore", "age": 10, "weight": 15},
+     {"species": "Herbivore", "age": 5, "weight": 40},
+     {"species": "Herbivore", "age": 10, "weight": 30},
+     {"species": "Herbivore", "age": 5, "weight": 20}]
+    jungle.cell_population(pop)
+    start_weight = jungle.sum_of_herbivore_mass
+    jungle.eat_request_herbivore
+    new_weight = jungle.sum_of_herbivore_mass
+    assert new_weight > start_weight
 
 
 

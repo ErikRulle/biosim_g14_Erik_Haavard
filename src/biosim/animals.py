@@ -75,12 +75,6 @@ class Animals:
         """
         self.age += 1
 
-    def check_weight(self):
-        """
-        Checks the weight of the animal.
-        """
-        return self.weight
-
     def animal_weight_loss(self):
         """
         Updates animal weight after annual weight loss.
@@ -226,7 +220,9 @@ class Carnivore(Animals):
         """
         Calculates the new weight of the carnivore after eating fodder.
         :param herbivores: float, amount of fodder eaten by the herbivore.
+        :return herbivores_not_eaten: list of surviving herbivores.
         """
+        herbivores_not_eaten = []
         weight_eaten = 0
         max_feed = self.default_parameters["F"]
 
@@ -245,3 +241,7 @@ class Carnivore(Animals):
                             self.default_parameters["beta"] * herbivore.weight
                     )
                     weight_eaten += herbivore.weight
+            else:
+                herbivores_not_eaten.append(herbivore)
+
+        return herbivores_not_eaten

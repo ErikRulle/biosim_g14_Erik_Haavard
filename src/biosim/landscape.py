@@ -135,20 +135,38 @@ class Landscape:
                     animal.update_weight_after_birth()
             species.extend(newborn_animals)
 
-    def available_fodder_herbivore(self):
+    def eat_request_herbivore(self):
         """
-        Calculates the available fodder for herbivores in the cell
+        Herbivores eats after request and update of available fodder.
+        """
+        for herbivore in self.animal_population[0]:
+            request = herbivore.default_parameters["F"]
+            if request <= self.f:
+                self.f -= request
+            else:
+                request = self.f
+                self.f = 0
+            herbivore.eating(request)
 
-        :return fodder_amount: float, the amount of available fodder
+    def eat_request_carnivore(self):
         """
-        pass
+         Carnivore eats after request.
+        """
+        for carnivore in self.animal_population[1]:
+            self.animal_population[0] = carnivore.eating(
+                self.animal_population[0])
 
     def regenerate(self):
         """
         This method regenerates the amount of fodder in each cell according to
         given formula for the given landscape type.
         """
-        pass
+        if self.f != self.default_parameters["f_max"]:
+            if isinstance(self, Jungle):
+                self.f = self.default_parameters["f_max"]
+            elif isinstance(self, Savannah):
+                self.f += self.default_parameters["alpha"] * \
+                          (self.default_parameters["f_max"] - self.f)
 
 
 class Jungle(Landscape):
