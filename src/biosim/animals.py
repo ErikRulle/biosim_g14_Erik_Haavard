@@ -138,7 +138,13 @@ class Animals:
         return phi
 
     def migrate(self):
-        pass
+        """
+        Probability for the animal to migrate.
+        :return: bool.
+        """
+        migration_probability = random.random() <= (
+                self.default_parameters["mu"] * self.fitness)
+        return migration_probability
 
 
 class Herbivore(Animals):

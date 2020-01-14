@@ -6,6 +6,8 @@ __email__ = "erikrull@nmbu.no", "havardmo@nmbu.no"
 
 import biosim.landscape as bl
 import random
+import pytest
+import numpy as np
 
 
 def test_set_landscape_parameters():
@@ -245,6 +247,58 @@ def test_regenerate():
             assert landscape.f > 0
         else:
             assert landscape.f == 0
+
+
+def test_available_fodder_herbivore():
+    """
+
+    """
+    jungle = bl.Jungle()
+    herbs = [{'species': 'Herbivore', 'age': 5, 'weight': 40}
+             for _ in range(4)]
+    jungle.cell_population(herbs)
+    assert jungle.available_fodder_herbivore == 16
+    jungle.eat_request_herbivore()
+    assert jungle.available_fodder_herbivore == pytest.approx(15.2)
+
+
+def test_available_fodder_carnivore():
+    """
+
+    """
+    jungle = bl.Jungle()
+    herbs = [{'species': 'Herbivore', 'age': 5, 'weight': 50}
+             for _ in range(4)]
+    bl.Carnivore.set_animal_parameters({"DeltaPhiMax": 0.0001})
+    carn = [{'species': 'Carnivore', 'age': 5, 'weight': 500}
+             for _ in range(2)]
+    pop = herbs + carn
+    jungle.cell_population(pop)
+    assert jungle.available_fodder_carnivore == pytest.approx(1.3333333)
+    jungle.eat_request_carnivore()
+    assert jungle.available_fodder_carnivore == pytest.approx(0.666666, 2)
+
+
+def test_propensity():
+    """
+
+    """
+    jungle = bl.Jungle()
+    savannah = bl.Savannah()
+    desert = bl.Desert()
+    mountain = bl.Mountain()
+    ocean = bl.Ocean()
+    uninhabitable_landscapes = [mountain, ocean]
+    herb = bl.Herbivore()
+
+    assert jungle.propensity(herb, available_fodder=jungle.available_fodder_herbivore) == pytest.approx(np.exp(80))
+
+    for landscape in uninhabitable_landscapes:
+        assert landscape.propensity(herb) == 0
+
+
+
+
 
 
 

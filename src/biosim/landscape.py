@@ -5,6 +5,7 @@ __email__ = "erikrull@nmbu.no", "havardmo@nmbu.no"
 
 
 from biosim.animals import *
+import numpy as np
 
 
 class Landscape:
@@ -13,6 +14,7 @@ class Landscape:
     """
 
     default_parameters = {'f_max': 0}
+    habitable = None
 
     def __init__(self):
         """
@@ -156,6 +158,38 @@ class Landscape:
         for carnivore in self.animal_population[1]:
             self.animal_population[0] = carnivore.eating(
                 self.animal_population[0])
+
+    @property
+    def available_fodder_herbivore(self):
+        """
+        Finding the relative abundance of fodder for herbivore.
+        :return: float
+        """
+        return self.f / ((self.number_of_herbivores + 1) *
+                         Herbivore.default_parameters["F"])
+
+    @property
+    def available_fodder_carnivore(self):
+        """
+        Finding the relative abundance of fodder for carnivore.
+        :return: float
+        """
+        return self.sum_of_herbivore_mass / ((self.number_of_carnivores + 1) *
+                         Carnivore.default_parameters["F"])
+
+    def propensity(self, animal,
+                   available_fodder):
+        """
+
+        :param animal:
+        :param available_fodder:
+        :return:
+        """
+        if self.habitable:
+            return np.exp(animal.default_parameters['lambda'] *
+                          available_fodder)
+        else:
+            return 0
 
 
 class Jungle(Landscape):

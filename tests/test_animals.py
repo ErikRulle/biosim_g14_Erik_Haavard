@@ -260,4 +260,11 @@ def test_carnivore_eating():
     assert carn.weight == 537.5
 
 
+def test_migrate(mocker):
+    ba.Herbivore.set_animal_parameters({"mu": 1})
+    herb = ba.Herbivore()
+    mocker.patch("biosim.animals.Herbivore.fitness",
+                 new_callable=mocker.PropertyMock, return_value=1)
+    assert herb.migrate()
+
 
