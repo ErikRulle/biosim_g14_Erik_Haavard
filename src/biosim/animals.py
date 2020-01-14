@@ -23,7 +23,7 @@ import numpy as np
 import random
 
 
-class Animals:
+class Animal:
     """
     This class creates an idea Animal, not specifying the vore-type.
     """
@@ -137,7 +137,7 @@ class Animals:
 
         return phi
 
-    def migrate(self):
+    def migration_probability(self):
         """
         Probability for the animal to migrate.
         :return: bool.
@@ -147,9 +147,9 @@ class Animals:
         return migration_probability
 
 
-class Herbivore(Animals):
+class Herbivore(Animal):
     """
-    A subclass of the superclass Animals, which creates a herbivore with its
+    A subclass of the superclass Animal, which creates a herbivore with its
     default parameters.
     """
 
@@ -176,9 +176,9 @@ class Herbivore(Animals):
         self.weight += fodder * self.default_parameters["beta"]
 
 
-class Carnivore(Animals):
+class Carnivore(Animal):
     """
-    A subclass of the superclass Animals, which creates a carnivore with its
+    A subclass of the superclass Animal, which creates a carnivore with its
     default parameters.
     """
 
@@ -241,3 +241,34 @@ class Carnivore(Animals):
                 herbivores_not_eaten.append(herbivore)
 
         return herbivores_not_eaten
+
+
+
+
+
+# def migration_animals(neighbours):
+#     props = [n.propensity(self, n.abundance_fodder_h) for n in neighbours]
+#             prob_list = [prop / sum(props) for prop in props]
+#             p = random.random()
+#             i = 0
+#             while p > sum(prob_list[0:i]):
+#                 i += 1
+#             return neighbours[i - 1].new_pop[0]
+#
+#
+# def migration_landscape():
+#     for species in self.pop_animals:
+#         for animal in species:
+#             if animal.migrating and animal.is_herbivore:
+#                 animal.new_grassland(neighbours).append(animal)
+#             elif animal.migrating and animal.is_carnivore:
+#                 animal.new_hunting_land(neighbours).append(animal)
+#             else:
+#                 if animal.is_herbivore:
+#                     self.new_pop[0].append(animal)
+#                 elif animal.is_carnivore:
+#                     self.new_pop[1].append(animal)
+#     self.pop_animals = [[], []]
+
+
+

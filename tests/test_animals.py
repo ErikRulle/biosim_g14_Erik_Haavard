@@ -188,19 +188,19 @@ def test_animal_death(mocker):
     """
     herb = ba.Herbivore()
     herb.default_parameters["omega"] = 1
-    mocker.patch("biosim.animals.Animals.fitness",
+    mocker.patch("biosim.animals.Animal.fitness",
                  new_callable=mocker.PropertyMock, return_value=0)
     assert herb.death()
-    mocker.patch("biosim.animals.Animals.fitness",
+    mocker.patch("biosim.animals.Animal.fitness",
                  new_callable=mocker.PropertyMock, return_value=1)
     assert not herb.death()
 
     carn = ba.Carnivore()
     carn.default_parameters["omega"] = 1
-    mocker.patch("biosim.animals.Animals.fitness",
+    mocker.patch("biosim.animals.Animal.fitness",
                  new_callable=mocker.PropertyMock, return_value=0)
     assert carn.death()
-    mocker.patch("biosim.animals.Animals.fitness",
+    mocker.patch("biosim.animals.Animal.fitness",
                  new_callable=mocker.PropertyMock, return_value=1)
     assert not carn.death()
 
@@ -260,11 +260,11 @@ def test_carnivore_eating():
     assert carn.weight == 537.5
 
 
-def test_migrate(mocker):
+def test_migration_probability(mocker):
     ba.Herbivore.set_animal_parameters({"mu": 1})
     herb = ba.Herbivore()
     mocker.patch("biosim.animals.Herbivore.fitness",
                  new_callable=mocker.PropertyMock, return_value=1)
-    assert herb.migrate()
+    assert herb.migration_probability()
 
 

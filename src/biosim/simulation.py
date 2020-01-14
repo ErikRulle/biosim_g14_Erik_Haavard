@@ -22,12 +22,16 @@ class BioSim:
         :param island_map: Multi-line string specifying island geography
         :param ini_pop: List of dictionaries specifying initial population
         :param seed: Integer used as random number seed
-        :param ymax_animals: Number specifying y-axis limit for graph showing animal numbers
-        :param cmax_animals: Dict specifying color-code limits for animal densities
-        :param img_base: String with beginning of file name for figures, including path
+        :param ymax_animals: Number specifying y-axis limit for graph showing
+        animal numbers
+        :param cmax_animals: Dict specifying color-code limits for animal
+        densities
+        :param img_base: String with beginning of file name for figures,
+        including path
         :param img_fmt: String with file type for figures, e.g. 'png'
 
-        If ymax_animals is None, the y-axis limit should be adjusted automatically.
+        If ymax_animals is None, the y-axis limit should be adjusted
+        automatically.
 
         If cmax_animals is None, sensible, fixed default values should be used.
         cmax_animals is a dict mapping species names to numbers, e.g.,
@@ -64,7 +68,8 @@ class BioSim:
 
         :param num_years: number of years to simulate
         :param vis_years: years between visualization updates
-        :param img_years: years between visualizations saved to files (default: vis_years)
+        :param img_years: years between visualizations saved to files
+        (default: vis_years)
 
         Image files will be numbered consecutively.
         """
@@ -78,19 +83,29 @@ class BioSim:
 
     @property
     def year(self):
-        """Last year simulated."""
+        """
+        Last year simulated.
+        """
 
     @property
     def num_animals(self):
-        """Total number of animals on island."""
+        """
+        Total number of animals on island.
+        """
 
     @property
     def num_animals_per_species(self):
-        """Number of animals per species in island, as dictionary."""
+        """
+        Number of animals per species in island, as dictionary.
+        """
 
     @property
     def animal_distribution(self):
-        """Pandas DataFrame with animal count per species for each cell on island."""
+        """
+        Pandas DataFrame with animal count per species for each cell on island.
+        """
 
     def make_movie(self):
-        """Create MPEG4 movie from visualization images saved."""
+        """
+        Create MPEG4 movie from visualization images saved.
+        """

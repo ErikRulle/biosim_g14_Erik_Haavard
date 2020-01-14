@@ -5,6 +5,7 @@ __email__ = "erikrull@nmbu.no", "havardmo@nmbu.no"
 
 
 import biosim.landscape as bl
+import biosim.animals as ba
 import random
 import pytest
 import numpy as np
@@ -279,23 +280,55 @@ def test_available_fodder_carnivore():
     assert jungle.available_fodder_carnivore == pytest.approx(0.666666, 2)
 
 
-def test_propensity():
+def test_propensity_herbivore():
     """
-
+    Tests that the propensity function for herbivores works.
     """
     jungle = bl.Jungle()
+    assert jungle.propensity_herbivore() == pytest.approx(np.exp(80))
+
     savannah = bl.Savannah()
+    assert savannah.propensity_herbivore() == pytest.approx(np.exp(30))
+
     desert = bl.Desert()
+    assert desert.propensity_herbivore() == 1
+
     mountain = bl.Mountain()
     ocean = bl.Ocean()
     uninhabitable_landscapes = [mountain, ocean]
-    herb = bl.Herbivore()
-
-    assert jungle.propensity(herb, available_fodder=jungle.available_fodder_herbivore) == pytest.approx(np.exp(80))
-
     for landscape in uninhabitable_landscapes:
-        assert landscape.propensity(herb) == 0
+        assert landscape.propensity_herbivore() == 0
 
+
+def test_propensity_carnivore():
+    """
+    Tests that the propensity function for carnivores works.
+    """
+    herbs = [{'species': 'Herbivore', 'age': 5, 'weight': 50}
+             for _ in range(4)]
+
+    jungle = bl.Jungle()
+    jungle.cell_population(herbs)
+    assert jungle.propensity_carnivore() == pytest.approx(np.exp(4))
+
+    savannah = bl.Savannah()
+    savannah.cell_population(herbs)
+    savannah.animal_population[0].append(ba.Herbivore(weight=25))
+    assert savannah.propensity_carnivore() == pytest.approx(np.exp(4.5),
+                                                            rel=1e-1)
+
+    desert = bl.Desert()
+    desert.cell_population(herbs)
+    desert.animal_population[0].append(ba.Herbivore(weight=68))
+    assert desert.propensity_carnivore() == pytest.approx(np.exp(5.36),
+                                                          rel=1e-1)
+
+    mountain = bl.Mountain()
+    ocean = bl.Ocean()
+    uninhabitable_landscapes = [mountain, ocean]
+    for landscape in uninhabitable_landscapes:
+        landscape.cell_population(herbs)
+        assert landscape.propensity_carnivore() == 0
 
 
 

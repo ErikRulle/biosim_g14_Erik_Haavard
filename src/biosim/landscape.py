@@ -4,7 +4,8 @@ __author__ = "Erik Rullestad", "Håvard Molversmyr"
 __email__ = "erikrull@nmbu.no", "havardmo@nmbu.no"
 
 
-from biosim.animals import *
+import biosim.animals as ba
+import biosim.island as bi
 import numpy as np
 
 
@@ -22,6 +23,8 @@ class Landscape:
         """
         self.f = self.default_parameters['f_max']
         self.animal_population = [[], []]
+        self.new_population = [[], []]
+        self.cell_position = np.where(bi.Island.numpy_map)
 
     @classmethod
     def set_landscape_parameters(self, new_parameters):
@@ -43,10 +46,10 @@ class Landscape:
         """
         for animal in population:
             if animal["species"] == "Herbivore":
-                self.animal_population[0].append(Herbivore(
+                self.animal_population[0].append(ba.Herbivore(
                     age=animal["age"], weight=animal["weight"]))
             else:
-                self.animal_population[1].append(Carnivore(
+                self.animal_population[1].append(ba.Carnivore(
                     age=animal["age"], weight=animal["weight"]))
 
     @property
@@ -131,10 +134,10 @@ class Landscape:
             newborn_animals = []
             for animal in species:
                 if animal.reproduction_probability(len(species)):
-                    if isinstance(animal, Herbivore):
-                        newborn_animals.append(Herbivore())
-                    elif isinstance(animal, Carnivore):
-                        newborn_animals.append(Carnivore())
+                    if isinstance(animal, ba.Herbivore):
+                        newborn_animals.append(ba.Herbivore())
+                    elif isinstance(animal, ba.Carnivore):
+                        newborn_animals.append(ba.Carnivore())
                     animal.update_weight_after_birth()
             species.extend(newborn_animals)
 
@@ -166,7 +169,7 @@ class Landscape:
         :return: float
         """
         return self.f / ((self.number_of_herbivores + 1) *
-                         Herbivore.default_parameters["F"])
+                         ba.Herbivore.default_parameters["F"])
 
     @property
     def available_fodder_carnivore(self):
@@ -174,11 +177,11 @@ class Landscape:
         Finding the relative abundance of fodder for carnivore.
         :return: float
         """
-        return self.sum_of_herbivore_mass / ((self.number_of_carnivores + 1) *
-                         Carnivore.default_parameters["F"])
+        return self.sum_of_herbivore_mass / (
+                (self.number_of_carnivores + 1) *
+                ba.Carnivore.default_parameters["F"])
 
-    def propensity(self, animal,
-                   available_fodder):
+    def propensity_herbivore(self):
         """
 
         :param animal:
@@ -186,10 +189,50 @@ class Landscape:
         :return:
         """
         if self.habitable:
-            return np.exp(animal.default_parameters['lambda'] *
-                          available_fodder)
+            return np.exp(ba.Herbivore.default_parameters['lambda'] *
+                          self.available_fodder_herbivore)
         else:
             return 0
+
+    def propensity_carnivore(self):
+        """
+
+        :param animal:
+        :param available_fodder:
+        :return:
+        """
+        if self.habitable:
+            return np.exp(ba.Carnivore.default_parameters['lambda'] *
+                          self.available_fodder_carnivore)
+        else:
+            return 0
+
+    def migrate(self):
+        """
+
+        """
+        for species in self.animal_population:
+            for animal in species:
+                if animal.migration_probability() and isinstance(
+                        animal, ba.Herbivore):
+                    neighbour_cells = bi.Island.possible_migration_cells(
+                        self.cell_position
+                    )
+                    probability_list = bi.Island.directional_probability_herbivore()
+
+                    bi.Island.island_migration(
+                        probability_list, neighbour_cells
+                    )
+
+                elif animal.migration_probability() and isinstance(
+                        animal, ba.Carnivore):
+                    pass
+                else:
+                    if isinstance(animal, ba.Herbivore):
+                        self.new_population[0].append(animal)
+                    elif isinstance(animal, ba.Carnivore):
+                        self.new_population[1].append(animal)
+        self.animal_population = [[], []]
 
 
 class Jungle(Landscape):
