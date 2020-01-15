@@ -183,26 +183,21 @@ class Landscape:
     def propensity(self):
         """
 
-        :param animal:
-        :param available_fodder:
-        :return:
+        :return: tuple
         """
-        for species in self.animal_population:
-            for animal in species:
-                if isinstance(animal, ba.Herbivore):
-                    if self.habitable:
-                        return np.exp(
-                            ba.Herbivore.default_parameters['lambda'] *
-                            self.available_fodder_herbivore)
-                    else:
-                        return 0
-                elif isinstance(animal, ba.Carnivore):
-                    if self.habitable:
-                        return np.exp(
-                            ba.Carnivore.default_parameters['lambda'] *
-                            self.available_fodder_carnivore)
-                    else:
-                        return 0
+        herbivore_propensity = np.exp(
+                    ba.Herbivore.default_parameters['lambda'] *
+                    self.available_fodder_herbivore)
+
+        carnivore_propensity = np.exp(
+                    ba.Carnivore.default_parameters['lambda'] *
+                    self.available_fodder_carnivore)
+
+        if self.habitable:
+            return tuple([herbivore_propensity, carnivore_propensity])
+        else:
+            return 0
+
 
     def directional_probability(self, neighbour_cells):
         """

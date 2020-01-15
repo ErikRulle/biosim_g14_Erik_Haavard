@@ -279,13 +279,13 @@ def test_propensity_herbivore():
     Tests that the propensity function for herbivores works.
     """
     jungle = bl.Jungle()
-    assert jungle.propensity() == pytest.approx(np.exp(80))
+    assert jungle.propensity()[0] == pytest.approx(np.exp(80))
 
     savannah = bl.Savannah()
-    assert savannah.propensity() == pytest.approx(np.exp(30))
+    assert savannah.propensity()[0] == pytest.approx(np.exp(30))
 
     desert = bl.Desert()
-    assert desert.propensity() == 1
+    assert desert.propensity()[0] == 1
 
     mountain = bl.Mountain()
     ocean = bl.Ocean()
@@ -303,18 +303,18 @@ def test_propensity_carnivore():
 
     jungle = bl.Jungle()
     jungle.cell_population(herbs)
-    assert jungle.propensity() == pytest.approx(np.exp(4))
+    assert jungle.propensity()[1] == pytest.approx(np.exp(4))
 
     savannah = bl.Savannah()
     savannah.cell_population(herbs)
     savannah.animal_population[0].append(ba.Herbivore(weight=25))
-    assert savannah.propensity() == pytest.approx(np.exp(4.5),
+    assert savannah.propensity()[1] == pytest.approx(np.exp(4.5),
                                                   rel=1e-1)
 
     desert = bl.Desert()
     desert.cell_population(herbs)
     desert.animal_population[0].append(ba.Herbivore(weight=68))
-    assert desert.propensity() == pytest.approx(np.exp(5.36),
+    assert desert.propensity()[1] == pytest.approx(np.exp(5.36),
                                                 rel=1e-1)
 
     mountain = bl.Mountain()
