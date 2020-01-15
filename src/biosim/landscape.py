@@ -27,7 +27,7 @@ class Landscape:
         self.cell_position = np.where(bi.Island.numpy_map)
 
     @classmethod
-    def set_landscape_parameters(self, new_parameters):
+    def set_landscape_parameters(cls, new_parameters):
         """
         This method allows for manual setting of landscape parameters,
         i.e. to change parameter values from default values to desired values.
