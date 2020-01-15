@@ -14,14 +14,14 @@ class Landscape:
     This class decides the behaviour of the landscape.
     """
 
-    default_parameters = {'f_max': 0}
+    default_parameters = {"f_max": 0}
     habitable = None
 
     def __init__(self):
         """
         This method creates variables needed for the class.
         """
-        self.f = self.default_parameters['f_max']
+        self.f = self.default_parameters["f_max"]
         self.animal_population = [[], []]
         self.new_population = [[], []]
 
@@ -182,15 +182,17 @@ class Landscape:
 
     def propensity(self):
         """
+        Calculates the propensity of an animal migrating.
 
-        :return: tuple
+        :return: tuple, the propensities of herbivore and carnivore migration
+                 in first and second element of the tuple, respectively.
         """
         herbivore_propensity = np.exp(
-                    ba.Herbivore.default_parameters['lambda'] *
+                    ba.Herbivore.default_parameters["lambda"] *
                     self.available_fodder_herbivore)
 
         carnivore_propensity = np.exp(
-                    ba.Carnivore.default_parameters['lambda'] *
+                    ba.Carnivore.default_parameters["lambda"] *
                     self.available_fodder_carnivore)
 
         if self.habitable:
@@ -220,13 +222,15 @@ class Landscape:
                                 for propensity in propensities]
         return probability_list
 
-    def choose_migration_cell(self, animal, probability_list, neighbour_cells):
+    def choose_migration_cell(self, animal, neighbour_cells, probability_list):
         """
+        A method to choose which of the adjacent cell the animal should
+        migrate to, given that it migrates, and moves that animal to that cell.
 
-        :param animal:
-        :param probability_list:
-        :param neighbour_cells:
-        :return: list, new population in the migration cell
+        :param animal: object, either Herbivore or Carnivore
+        :param probability_list: list, probabilities of moving to an adjacent
+                                 cell
+        :param neighbour_cells: list, objects of adjacent cells
         """
         p = random.random()
         i = 0
@@ -236,6 +240,7 @@ class Landscape:
 
     def migrate(self, neighbour_cells):
         """
+        A method that migrates all animals in a cell iteratively.
 
         :param neighbour_cells: list, objects of adjacent cells
         """
@@ -245,13 +250,12 @@ class Landscape:
             for animal in species:
                 if animal.migration_probability():
                     self.choose_migration_cell(
-                        animal, probability_list, neighbour_cells)
+                        animal, neighbour_cells, probability_list)
                 else:
                     if isinstance(animal, ba.Herbivore):
-                        ba.Herbivore.move(cell=self)
+                        ba.Herbivore.move(animal, cell=self)
                     elif isinstance(animal, ba.Carnivore):
-                        ba.Carnivore.move(cell=self)
-        self.animal_population = [[], []]
+                        ba.Carnivore.move(animal, cell=self)
 
     def update_cell_population(self):
         """
@@ -265,7 +269,7 @@ class Jungle(Landscape):
     """
     Defines the jungle type
     """
-    default_parameters = {'f_max': 800.0}
+    default_parameters = {"f_max": 800.0}
     habitable = True
 
     def regenerate(self):
@@ -280,7 +284,7 @@ class Savannah(Landscape):
     """
     Defines the savannah type
     """
-    default_parameters = {'f_max': 300.0, 'alpha': 0.3}
+    default_parameters = {"f_max": 300.0, "alpha": 0.3}
     habitable = True
 
     def regenerate(self):
@@ -296,7 +300,7 @@ class Desert(Landscape):
     """
     Defines the desert type
     """
-    default_parameters = {'f_max': 0.0}
+    default_parameters = {"f_max": 0.0}
     habitable = True
 
 
@@ -304,7 +308,7 @@ class Mountain(Landscape):
     """
     Defines the mountain type
     """
-    default_parameters = {'f_max': 0.0}
+    default_parameters = {"f_max": 0.0}
     habitable = False
 
 
@@ -312,5 +316,5 @@ class Ocean(Landscape):
     """
     Defines the ocean type
     """
-    default_parameters = {'f_max': 0.0}
+    default_parameters = {"f_max": 0.0}
     habitable = False

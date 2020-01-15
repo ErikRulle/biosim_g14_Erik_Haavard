@@ -41,8 +41,11 @@ def test_number_of_carnivores():
 
 
 def test_sum_of_herbivore_mass():
+    """
+    Tests that the sum of herbivore mass is correctly computed.
+    """
     land = bl.Landscape()
-    pop = [{'species': 'Herbivore', 'age': 5, 'weight': 20}
+    pop = [{"species": "Herbivore", "age": 5, "weight": 20}
            for _ in range(100)]
     land.cell_population(pop)
     herb_mass = land.sum_of_herbivore_mass
@@ -64,6 +67,9 @@ def test_cell_population():
 
 
 def test_update_fitness():
+    """
+    Tests if the fitness of animals is updated as expected after weight change.
+    """
     land = bl.Landscape()
     land.animal_population[0].append(ba.Herbivore())
     land.animal_population[1].append(ba.Carnivore())
@@ -77,6 +83,9 @@ def test_update_fitness():
 
 
 def test_sort_fitness():
+    """
+    Tests if sorting of animals based on fitness works correctly.
+    """
     land = bl.Landscape()
     pop = [{"species": "Herbivore", "age": 10, "weight": 15},
            {"species": "Herbivore", "age": 5, "weight": 40},
@@ -104,7 +113,7 @@ def test_sort_fitness():
 def test_landscape_weight_loss():
     """
     Test that the animal population in a cell has reduced weight following
-    a weight-loss occurence.
+    a weight-loss occurrence.
     """
     land = bl.Landscape()
     pop = [{"species": "Herbivore", "age": 10, "weight": 15},
@@ -157,9 +166,9 @@ def test_death():
     """
     random.seed(108)
     land = bl.Landscape()
-    herbs = [{'species': 'Herbivore', 'age': 5, 'weight': 20}
+    herbs = [{"species": "Herbivore", "age": 5, "weight": 20}
            for _ in range(1000)]
-    carns = [{'species': 'Carnivores', 'age': 50, 'weight': 10}
+    carns = [{"species": "Carnivores", "age": 50, "weight": 10}
            for _ in range(1000)]
     pop = herbs + carns
     land.cell_population(pop)
@@ -180,9 +189,9 @@ def test_reproduction():
     """
 
     land = bl.Landscape()
-    herbs = [{'species': 'Herbivore', 'age': 5, 'weight': 40}
+    herbs = [{"species": "Herbivore", "age": 5, "weight": 40}
              for _ in range(1000)]
-    carns = [{'species': 'Carnivores', 'age': 5, 'weight': 40}
+    carns = [{"species": "Carnivores", "age": 5, "weight": 40}
              for _ in range(1000)]
     pop = herbs + carns
     land.cell_population(pop)
@@ -213,7 +222,8 @@ def test_eat_request_herbivore():
 
 def test_eat_request_carnivore():
     """
-
+    Tests that carnivores eat until they are full, and that all herbivores
+    that have been eaten are removed from the cells herbivore population.
     """
     ba.Carnivore.set_animal_parameters({"DeltaPhiMax": 0.0001})
     land = bl.Landscape()
@@ -232,7 +242,8 @@ def test_eat_request_carnivore():
 
 def test_regenerate():
     """
-
+    Tests that fodder regenerates as expected in the landscape types jungle
+    and savannah.
     """
     jungle = bl.Jungle()
     savannah = bl.Savannah()
@@ -245,10 +256,11 @@ def test_regenerate():
 
 def test_available_fodder_herbivore():
     """
-
+    Tests that the available fodder for herbivores in a cell is computed
+    corresponding to the given formula.
     """
     jungle = bl.Jungle()
-    herbs = [{'species': 'Herbivore', 'age': 5, 'weight': 40}
+    herbs = [{"species": "Herbivore", "age": 5, "weight": 40}
              for _ in range(4)]
     jungle.cell_population(herbs)
 
@@ -259,13 +271,14 @@ def test_available_fodder_herbivore():
 
 def test_available_fodder_carnivore():
     """
-
+    Tests that the available fodder for carnivores in a cell is computed
+    corresponding to the given formula.
     """
     jungle = bl.Jungle()
-    herbs = [{'species': 'Herbivore', 'age': 5, 'weight': 50}
+    herbs = [{"species": "Herbivore", "age": 5, "weight": 50}
              for _ in range(4)]
     ba.Carnivore.set_animal_parameters({"DeltaPhiMax": 0.0001})
-    carn = [{'species': 'Carnivore', 'age': 5, 'weight': 500}
+    carn = [{"species": "Carnivore", "age": 5, "weight": 500}
             for _ in range(2)]
     pop = herbs + carn
     jungle.cell_population(pop)
@@ -291,14 +304,14 @@ def test_propensity_herbivore():
     ocean = bl.Ocean()
     uninhabitable_landscapes = [mountain, ocean]
     for landscape in uninhabitable_landscapes:
-        assert landscape.propensity() == 0
+        assert landscape.propensity()[0] == 0
 
 
 def test_propensity_carnivore():
     """
     Tests that the propensity function for carnivores works.
     """
-    herbs = [{'species': 'Herbivore', 'age': 5, 'weight': 50}
+    herbs = [{"species": "Herbivore", "age": 5, "weight": 50}
              for _ in range(4)]
 
     jungle = bl.Jungle()
@@ -309,36 +322,26 @@ def test_propensity_carnivore():
     savannah.cell_population(herbs)
     savannah.animal_population[0].append(ba.Herbivore(weight=25))
     assert savannah.propensity()[1] == pytest.approx(np.exp(4.5),
-                                                  rel=1e-1)
+                                                     rel=1e-1)
 
     desert = bl.Desert()
     desert.cell_population(herbs)
     desert.animal_population[0].append(ba.Herbivore(weight=68))
     assert desert.propensity()[1] == pytest.approx(np.exp(5.36),
-                                                rel=1e-1)
+                                                   rel=1e-1)
 
     mountain = bl.Mountain()
     ocean = bl.Ocean()
     uninhabitable_landscapes = [mountain, ocean]
     for landscape in uninhabitable_landscapes:
         landscape.cell_population(herbs)
-        assert landscape.propensity() == 0
-
-
-@pytest.fixture(autouse=True)
-def reset_parameters():
-    ba.Carnivore.set_animal_parameters({"w_birth": 6.0, "sigma_birth": 1.0,
-                                        "beta": 0.75, "eta": 0.125,
-                                        "a_half": 60.0, "phi_age": 0.4,
-                                        "w_half": 4.0, "phi_weight": 0.4,
-                                        "mu": 0.4, "lambda": 1.0, "gamma": 0.8,
-                                        "zeta": 3.5, "xi": 1.1, "omega": 0.9,
-                                        "F": 50.0, "DeltaPhiMax": 10.0})
+        assert landscape.propensity()[0] == 0
 
 
 def test_directional_probability():
     """
-
+    Tests that the probabilities of moving to the adjacent cells are computed
+    correctly.
     """
     current_cell_pop = [{"species": "Herbivore", "age": 10, "weight": 15},
            {"species": "Carnivore", "age": 5, "weight": 40},
@@ -370,4 +373,85 @@ def test_directional_probability():
                                                     rel=1e-1)
 
 
+def test_choose_migration_cell(mocker):
+    """
+    Tests whether animals are migrating to the correct cell given the animals
+    probability to move to a sepcific cell.
+    """
+    current_cell = bl.Desert()
+    current_cell.animal_population[0].append(ba.Herbivore())
+    desert = bl.Desert()
+    jungle = bl.Jungle()
+    savannah = bl.Savannah()
+    neighbour_cells = [desert, bl.Mountain(), jungle, savannah]
+    probability_list = [0.25, 0.0, 0.5, 0.25]
+    mocker.patch("random.random", return_value=0.7)
+    current_cell.choose_migration_cell(current_cell.animal_population[0][0],
+                                       neighbour_cells, probability_list)
+    assert len(current_cell.new_population[0]) == 0
+    assert len(jungle.new_population[0]) == 1
 
+
+def test_migrate():
+    """
+    Tests that migration of animals work as expected.
+    """
+    current_cell_pop = [{"species": "Herbivore", "age": 10, "weight": 15},
+                        {"species": "Herbivore", "age": 20, "weight": 35},
+                        {"species": "Carnivore", "age": 5, "weight": 40},
+                        {"species": "Carnivore", "age": 15, "weight": 25}]
+    current_cell = bl.Savannah()
+    current_cell.cell_population(current_cell_pop)
+    jungle_right = bl.Jungle()
+    jungle_left = bl.Jungle()
+    desert = bl.Desert()
+    jungle_right.animal_population[0].append(ba.Herbivore(weight=15))
+    jungle_pop = [{"species": "Herbivore", "age": 10, "weight": 15},
+                  {"species": "Herbivore", "age": 5, "weight": 15}]
+    jungle_left.cell_population(jungle_pop)
+    desert_pop = [{"species": "Herbivore", "age": 10, "weight": 20},
+                  {"species": "Herbivore", "age": 5, "weight": 15},
+                  {"species": "Herbivore", "age": 10, "weight": 35}]
+    desert.cell_population(desert_pop)
+
+    neighbour_cells = [desert, bl.Mountain(), jungle_right, jungle_left]
+
+    random.seed(124)
+    current_cell.migrate(neighbour_cells)
+
+    neighbour_cells.append(current_cell)
+    for cell in neighbour_cells:
+        if not isinstance(cell, bl.Mountain):
+            assert cell.new_population != cell.animal_population
+
+
+def test_update_cell_population(mocker):
+    """
+    Tests whether the cells animal population is updated after a migration
+    cycle.
+    """
+    current_cell = bl.Desert()
+    current_cell.animal_population[0].append(ba.Herbivore())
+    desert = bl.Desert()
+    jungle = bl.Jungle()
+    savannah = bl.Savannah()
+
+    neighbour_cells = [desert, bl.Mountain(), jungle, savannah]
+    probability_list = [0.25, 0.0, 0.5, 0.25]
+    mocker.patch("random.random", return_value=0.7)
+
+    current_cell_old_population = current_cell.animal_population
+    jungle_cell_old_population = jungle.animal_population
+
+    current_cell.choose_migration_cell(current_cell.animal_population[0][0],
+                                       neighbour_cells, probability_list)
+
+    neighbour_cells.append(current_cell)
+    for cell in neighbour_cells:
+        cell.update_cell_population()
+
+    current_cell_new_population = current_cell.animal_population
+    jungle_cell_new_population = jungle.animal_population
+
+    assert current_cell_new_population != current_cell_old_population
+    assert jungle_cell_new_population != jungle_cell_old_population

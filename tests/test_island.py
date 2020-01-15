@@ -9,7 +9,7 @@ import biosim.island as bi
 
 def test_island_instance():
     """
-
+    Tests whether an Island instance can be created.
     """
     island = bi.Island()
     assert isinstance(island, bi.Island)
@@ -17,8 +17,7 @@ def test_island_instance():
 
 def test_landscape_position_in_map():
     """
-
-    :return:
+    Tests that a numpy array is created from the method.
     """
     island = bi.Island()
     island.landscape_position_in_map()

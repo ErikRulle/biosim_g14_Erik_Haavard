@@ -177,8 +177,11 @@ class Herbivore(Animal):
 
     def move(self, cell):
         """
+        This method appends the herbivore to a list of the new population
+        of the cell it either migrates to or already was in, if the
+        herbivore do not migrate.
 
-        :param cell:
+        :param cell: object, landscape type of the position in map
         """
         cell.new_population[0].append(self)
 
@@ -251,7 +254,10 @@ class Carnivore(Animal):
 
     def move(self, cell):
         """
+        This method appends the carnivore to a list of the new population
+        of the cell it either migrates to or already was in, if the
+        carnivore do not migrate.
 
-        :param cell:
+        :param cell: object, landscape type of the position in map
         """
         cell.new_population[1].append(self)

@@ -45,7 +45,8 @@ class Island:
 
     def validate_map_string(self):
         """
-
+        Validates that a the input map string follows the constraints of the
+        model.
         """
         accepted_landscape_types = ["J", "S", "D", "M", "O"]
         for row in self.string_map:
@@ -100,11 +101,10 @@ class Island:
 
     def possible_migration_cells(self, position):
         """
-        Collects a cell's neighbouring cells
-        Returns a list of valid cells for migration
+        Collects a cell's neighbouring landscape types.
 
         :param position: tuple (cell coordinates)
-        :return neighbour_cells: list
+        :return neighbour_cells: list, objects of adjacent cells
         """
         neighbour_cells = []
         x, y = position

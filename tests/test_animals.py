@@ -82,7 +82,9 @@ def test_carnivore_parameters():
 
 
 def test_non_negative_animal_weight():
-    """Tests that animals has a non-negative weight."""
+    """
+    Tests that animals has a non-negative weight.
+    """
     herb = ba.Herbivore()
     carn = ba.Carnivore()
     assert isinstance(herb, ba.Herbivore)
@@ -207,7 +209,8 @@ def test_animal_death(mocker):
 
 def test_herbivore_eating():
     """
-
+    Tests that the herbivore weight is increased corresponding to the
+    expected formula.
     """
     herb = ba.Herbivore()
     initial_weight = herb.weight
@@ -217,6 +220,14 @@ def test_herbivore_eating():
 
 
 def test_carnivore_eating_probability(mocker):
+    """
+    Tests that the carnivore eating probability is 0 if the carnivore's fitness
+    is less than the herbivore's fitness, and that it will eat corresponding
+    to the given formula if its fitness is higher than the herbivore that it
+    is trying to eat.
+
+    Use mocking to set the value of the property fitness.
+    """
     herb = ba.Herbivore()
     mocker.patch("biosim.animals.Herbivore.fitness",
                  new_callable=mocker.PropertyMock, return_value=0.7)
@@ -239,6 +250,9 @@ def test_carnivore_eating_probability(mocker):
 
 @pytest.fixture(autouse=True)
 def reset_parameters():
+    """
+    Resets all carnivore parameters.
+    """
     ba.Carnivore.set_animal_parameters({"w_birth": 6.0, "sigma_birth": 1.0,
                                         "beta": 0.75, "eta": 0.125,
                                         "a_half": 60.0, "phi_age": 0.4,
@@ -249,6 +263,11 @@ def reset_parameters():
 
 
 def test_carnivore_eating():
+    """
+    Tests that carnivore weight increases as expected corresponding to the
+    given formula after eating a herbivore, and that the herbivore is removed
+    from the herbivore population.
+    """
     herbivores = [ba.Herbivore(weight=15, age=5) for _ in range(6)]
     ba.Carnivore.set_animal_parameters({"DeltaPhiMax": 0.000001})
     carn = ba.Carnivore(weight=500, age=5)
@@ -261,6 +280,10 @@ def test_carnivore_eating():
 
 
 def test_migration_probability(mocker):
+    """
+    Tests that the migration probability formula works in the corresponding
+    method in the Animal class.
+    """
     ba.Herbivore.set_animal_parameters({"mu": 1})
     herb = ba.Herbivore()
     mocker.patch("biosim.animals.Herbivore.fitness",
