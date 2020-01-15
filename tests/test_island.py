@@ -23,6 +23,3 @@ def test_landscape_position_in_map():
     island = bi.Island()
     island.landscape_position_in_map()
     assert isinstance(island.numpy_map, np.ndarray)
-
-
-

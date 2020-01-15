@@ -266,5 +266,3 @@ def test_migration_probability(mocker):
     mocker.patch("biosim.animals.Herbivore.fitness",
                  new_callable=mocker.PropertyMock, return_value=1)
     assert herb.migration_probability()
-
-

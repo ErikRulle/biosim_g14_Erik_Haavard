@@ -325,17 +325,49 @@ def test_propensity_carnivore():
         assert landscape.propensity() == 0
 
 
+@pytest.fixture(autouse=True)
+def reset_parameters():
+    ba.Carnivore.set_animal_parameters({"w_birth": 6.0, "sigma_birth": 1.0,
+                                        "beta": 0.75, "eta": 0.125,
+                                        "a_half": 60.0, "phi_age": 0.4,
+                                        "w_half": 4.0, "phi_weight": 0.4,
+                                        "mu": 0.4, "lambda": 1.0, "gamma": 0.8,
+                                        "zeta": 3.5, "xi": 1.1, "omega": 0.9,
+                                        "F": 50.0, "DeltaPhiMax": 10.0})
 
 
+def test_directional_probability():
+    """
 
+    """
+    current_cell_pop = [{"species": "Herbivore", "age": 10, "weight": 15},
+           {"species": "Carnivore", "age": 5, "weight": 40},
+           {"species": "Carnivore", "age": 15, "weight": 25}]
+    current_cell = bl.Jungle()
+    current_cell.cell_population(current_cell_pop)
+    jungle_right = bl.Jungle()
+    jungle_left = bl.Jungle()
+    desert = bl.Desert()
+    jungle_right.animal_population[0].append(ba.Herbivore(weight=15))
+    jungle_pop = [{"species": "Herbivore", "age": 10, "weight": 15},
+                  {"species": "Herbivore", "age": 5, "weight": 15}]
+    jungle_left.cell_population(jungle_pop)
+    desert_pop = [{"species": "Herbivore", "age": 10, "weight": 20},
+                  {"species": "Herbivore", "age": 5, "weight": 15},
+                  {"species": "Herbivore", "age": 10, "weight": 35}]
+    desert.cell_population(desert_pop)
 
+    neighbour_cells = [desert, bl.Mountain(), jungle_right, jungle_left]
 
+    herbivore_probabilities = current_cell.directional_probability(
+        current_cell.animal_population[0][0], neighbour_cells)
+    carnivore_probabilities = current_cell.directional_probability(
+        current_cell.animal_population[1][0], neighbour_cells)
 
-
-
-
-
-
+    assert herbivore_probabilities != carnivore_probabilities
+    # The numbers below are calculated manually.
+    assert carnivore_probabilities == pytest.approx([0.56, 0.0, 0.18, 0.25],
+                                                    rel=1e-1)
 
 
 

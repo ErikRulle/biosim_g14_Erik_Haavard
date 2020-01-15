@@ -196,10 +196,9 @@ class Landscape:
         if self.habitable:
             return tuple([herbivore_propensity, carnivore_propensity])
         else:
-            return 0
+            return tuple([0, 0])
 
-
-    def directional_probability(self, neighbour_cells):
+    def directional_probability(self, animal, neighbour_cells):
         """
         This method estimates the propensity for each neighbouring cell, and
         calculates the probability of herbivores migrating to that cell.
@@ -209,10 +208,16 @@ class Landscape:
         :return probability_list: list, probabilities of moving to an
                                   adjacent cell
         """
-        propensities = [cell.propensity()
-                        for cell in neighbour_cells]
-        probability_list = [propensity / sum(propensities)
-                            for propensity in propensities]
+        if isinstance(animal, ba.Herbivore):
+            propensities = [cell.propensity()[0]
+                            for cell in neighbour_cells]
+            probability_list = [propensity / sum(propensities)
+                                for propensity in propensities]
+        else:
+            propensities = [cell.propensity()[1]
+                            for cell in neighbour_cells]
+            probability_list = [propensity / sum(propensities)
+                                for propensity in propensities]
         return probability_list
 
     def choose_migration_cell(self, animal, probability_list, neighbour_cells):
@@ -235,10 +240,10 @@ class Landscape:
         :param neighbour_cells: list, objects of adjacent cells
         """
         for species in self.animal_population:
+            probability_list = self.directional_probability(
+                species[0], neighbour_cells)
             for animal in species:
                 if animal.migration_probability():
-                    probability_list = self.directional_probability(
-                        neighbour_cells)
                     self.choose_migration_cell(
                         animal, probability_list, neighbour_cells)
                 else:
@@ -309,5 +314,3 @@ class Ocean(Landscape):
     """
     default_parameters = {'f_max': 0.0}
     habitable = False
-
-

@@ -117,4 +117,3 @@ class Island:
         if y - 1 >= 0:
             neighbour_cells.append(self.numpy_map[x, y - 1])
         return neighbour_cells
-
