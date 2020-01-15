@@ -80,7 +80,7 @@ class Island:
         """
         Creates the numpy array map
 
-        :return: numpy.ndarray, numpy map with landscape positions
+        :return: numpy_map, numpy.ndarray map with landscape positions
         """
         self.numpy_map = np.empty(
             (len(self.string_map), len(self.string_map[0])), dtype=object)
@@ -118,45 +118,3 @@ class Island:
             neighbour_cells.append(self.numpy_map[x, y - 1])
         return neighbour_cells
 
-    def directional_probability_herbivore(self, neighbour_cells):
-        """
-        This method estimates the propensity for each neighbouring cell, and
-        calculates the probability of herbivores migrating to that cell.
-        Stores the result in a list.
-
-        :param neighbour_cells:
-        :return probability_list: list of probabilities
-        """
-        propensities = [cell.propensity_herbivore()
-                        for cell in neighbour_cells]
-        probability_list = [propensity / sum(propensities)
-                            for propensity in propensities]
-        return probability_list
-
-    def directional_probability_carnivore(self, neighbour_cells):
-        """
-        This method estimates the propensity for each neighbouring cell, and
-        calculates the probability of carnivores migrating to that cell.
-        Stores the result in a list.
-
-        :param neighbour_cells:
-        :return probability_list: list of probabilities
-        """
-        propensities = [cell.propensity_carnivore()
-                        for cell in neighbour_cells]
-        probability_list = [propensity / sum(propensities)
-                            for propensity in propensities]
-        return probability_list
-
-    def island_migration(self, probability_list, neighbour_cells):
-        """
-
-        :param probability_list:
-        :param neighbour_cells:
-        """
-
-        p = random.random()
-        i = 0
-        while p > sum(probability_list[0:i]):
-            i += 1
-        return neighbour_cells[i - 1].new_population[0]

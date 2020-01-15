@@ -175,6 +175,13 @@ class Herbivore(Animal):
         """
         self.weight += fodder * self.default_parameters["beta"]
 
+    def move(self, cell):
+        """
+
+        :param cell:
+        """
+        cell.new_population[0].append(self)
+
 
 class Carnivore(Animal):
     """
@@ -241,3 +248,10 @@ class Carnivore(Animal):
                 herbivores_not_eaten.append(herbivore)
 
         return herbivores_not_eaten
+
+    def move(self, cell):
+        """
+
+        :param cell:
+        """
+        cell.new_population[1].append(self)

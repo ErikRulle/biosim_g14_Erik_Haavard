@@ -27,7 +27,7 @@ def test_number_of_herbivores():
     Test that the method counts the number of herbivores in the specific cell.
     """
     land = bl.Landscape()
-    land.animal_population[0].append(bl.Herbivore())
+    land.animal_population[0].append(ba.Herbivore())
     assert land.number_of_herbivores == 1
 
 
@@ -36,7 +36,7 @@ def test_number_of_carnivores():
     Test that the method counts the number of carnivores in the specific cell.
     """
     land = bl.Landscape()
-    land.animal_population[1].append(bl.Carnivore())
+    land.animal_population[1].append(ba.Carnivore())
     assert land.number_of_carnivores == 1
 
 
@@ -65,8 +65,8 @@ def test_cell_population():
 
 def test_update_fitness():
     land = bl.Landscape()
-    land.animal_population[0].append(bl.Herbivore())
-    land.animal_population[1].append(bl.Carnivore())
+    land.animal_population[0].append(ba.Herbivore())
+    land.animal_population[1].append(ba.Carnivore())
     fit0_herb = land.animal_population[0][0].fitness
     fit0_carn = land.animal_population[1][0].fitness
     land.weight_loss()
@@ -215,7 +215,7 @@ def test_eat_request_carnivore():
     """
 
     """
-    bl.Carnivore.set_animal_parameters({"DeltaPhiMax": 0.0001})
+    ba.Carnivore.set_animal_parameters({"DeltaPhiMax": 0.0001})
     land = bl.Landscape()
     pop = [{"species": "Herbivore", "age": 10, "weight": 20},
            {"species": "Herbivore", "age": 5, "weight": 20},
@@ -236,18 +236,11 @@ def test_regenerate():
     """
     jungle = bl.Jungle()
     savannah = bl.Savannah()
-    desert = bl.Desert()
-    mountain = bl.Mountain()
-    ocean = bl.Ocean()
-    landscape_list = [jungle, savannah, desert, mountain, ocean]
+    landscape_list = [jungle, savannah]
     for landscape in landscape_list:
         landscape.f = 0
         landscape.regenerate()
-        if isinstance(landscape, bl.Jungle) or isinstance(
-                landscape, bl.Savannah):
-            assert landscape.f > 0
-        else:
-            assert landscape.f == 0
+        assert landscape.f > 0
 
 
 def test_available_fodder_herbivore():
@@ -258,6 +251,7 @@ def test_available_fodder_herbivore():
     herbs = [{'species': 'Herbivore', 'age': 5, 'weight': 40}
              for _ in range(4)]
     jungle.cell_population(herbs)
+
     assert jungle.available_fodder_herbivore == 16
     jungle.eat_request_herbivore()
     assert jungle.available_fodder_herbivore == pytest.approx(15.2)
@@ -270,9 +264,9 @@ def test_available_fodder_carnivore():
     jungle = bl.Jungle()
     herbs = [{'species': 'Herbivore', 'age': 5, 'weight': 50}
              for _ in range(4)]
-    bl.Carnivore.set_animal_parameters({"DeltaPhiMax": 0.0001})
+    ba.Carnivore.set_animal_parameters({"DeltaPhiMax": 0.0001})
     carn = [{'species': 'Carnivore', 'age': 5, 'weight': 500}
-             for _ in range(2)]
+            for _ in range(2)]
     pop = herbs + carn
     jungle.cell_population(pop)
     assert jungle.available_fodder_carnivore == pytest.approx(1.3333333)
@@ -285,19 +279,19 @@ def test_propensity_herbivore():
     Tests that the propensity function for herbivores works.
     """
     jungle = bl.Jungle()
-    assert jungle.propensity_herbivore() == pytest.approx(np.exp(80))
+    assert jungle.propensity() == pytest.approx(np.exp(80))
 
     savannah = bl.Savannah()
-    assert savannah.propensity_herbivore() == pytest.approx(np.exp(30))
+    assert savannah.propensity() == pytest.approx(np.exp(30))
 
     desert = bl.Desert()
-    assert desert.propensity_herbivore() == 1
+    assert desert.propensity() == 1
 
     mountain = bl.Mountain()
     ocean = bl.Ocean()
     uninhabitable_landscapes = [mountain, ocean]
     for landscape in uninhabitable_landscapes:
-        assert landscape.propensity_herbivore() == 0
+        assert landscape.propensity() == 0
 
 
 def test_propensity_carnivore():
@@ -309,26 +303,26 @@ def test_propensity_carnivore():
 
     jungle = bl.Jungle()
     jungle.cell_population(herbs)
-    assert jungle.propensity_carnivore() == pytest.approx(np.exp(4))
+    assert jungle.propensity() == pytest.approx(np.exp(4))
 
     savannah = bl.Savannah()
     savannah.cell_population(herbs)
     savannah.animal_population[0].append(ba.Herbivore(weight=25))
-    assert savannah.propensity_carnivore() == pytest.approx(np.exp(4.5),
-                                                            rel=1e-1)
+    assert savannah.propensity() == pytest.approx(np.exp(4.5),
+                                                  rel=1e-1)
 
     desert = bl.Desert()
     desert.cell_population(herbs)
     desert.animal_population[0].append(ba.Herbivore(weight=68))
-    assert desert.propensity_carnivore() == pytest.approx(np.exp(5.36),
-                                                          rel=1e-1)
+    assert desert.propensity() == pytest.approx(np.exp(5.36),
+                                                rel=1e-1)
 
     mountain = bl.Mountain()
     ocean = bl.Ocean()
     uninhabitable_landscapes = [mountain, ocean]
     for landscape in uninhabitable_landscapes:
         landscape.cell_population(herbs)
-        assert landscape.propensity_carnivore() == 0
+        assert landscape.propensity() == 0
 
 
 

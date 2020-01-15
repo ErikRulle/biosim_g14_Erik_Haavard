@@ -5,8 +5,8 @@ __email__ = "erikrull@nmbu.no", "havardmo@nmbu.no"
 
 
 import biosim.animals as ba
-import biosim.island as bi
 import numpy as np
+import random
 
 
 class Landscape:
@@ -24,7 +24,6 @@ class Landscape:
         self.f = self.default_parameters['f_max']
         self.animal_population = [[], []]
         self.new_population = [[], []]
-        self.cell_position = np.where(bi.Island.numpy_map)
 
     @classmethod
     def set_landscape_parameters(cls, new_parameters):
@@ -37,7 +36,7 @@ class Landscape:
                                are valid.
         """
         for key in new_parameters:
-            self.default_parameters[key] = new_parameters[key]
+            cls.default_parameters[key] = new_parameters[key]
 
     def cell_population(self, population=None):
         """
@@ -181,58 +180,85 @@ class Landscape:
                 (self.number_of_carnivores + 1) *
                 ba.Carnivore.default_parameters["F"])
 
-    def propensity_herbivore(self):
+    def propensity(self):
         """
 
         :param animal:
         :param available_fodder:
         :return:
-        """
-        if self.habitable:
-            return np.exp(ba.Herbivore.default_parameters['lambda'] *
-                          self.available_fodder_herbivore)
-        else:
-            return 0
-
-    def propensity_carnivore(self):
-        """
-
-        :param animal:
-        :param available_fodder:
-        :return:
-        """
-        if self.habitable:
-            return np.exp(ba.Carnivore.default_parameters['lambda'] *
-                          self.available_fodder_carnivore)
-        else:
-            return 0
-
-    def migrate(self):
-        """
-
         """
         for species in self.animal_population:
             for animal in species:
-                if animal.migration_probability() and isinstance(
-                        animal, ba.Herbivore):
-                    neighbour_cells = bi.Island.possible_migration_cells(
-                        self.cell_position
-                    )
-                    probability_list = bi.Island.directional_probability_herbivore()
+                if isinstance(animal, ba.Herbivore):
+                    if self.habitable:
+                        return np.exp(
+                            ba.Herbivore.default_parameters['lambda'] *
+                            self.available_fodder_herbivore)
+                    else:
+                        return 0
+                elif isinstance(animal, ba.Carnivore):
+                    if self.habitable:
+                        return np.exp(
+                            ba.Carnivore.default_parameters['lambda'] *
+                            self.available_fodder_carnivore)
+                    else:
+                        return 0
 
-                    bi.Island.island_migration(
-                        probability_list, neighbour_cells
-                    )
+    def directional_probability(self, neighbour_cells):
+        """
+        This method estimates the propensity for each neighbouring cell, and
+        calculates the probability of herbivores migrating to that cell.
+        Stores the result in a list.
 
-                elif animal.migration_probability() and isinstance(
-                        animal, ba.Carnivore):
-                    pass
+        :param neighbour_cells: list, the four adjacent cells
+        :return probability_list: list, probabilities of moving to an
+                                  adjacent cell
+        """
+        propensities = [cell.propensity()
+                        for cell in neighbour_cells]
+        probability_list = [propensity / sum(propensities)
+                            for propensity in propensities]
+        return probability_list
+
+    def choose_migration_cell(self, animal, probability_list, neighbour_cells):
+        """
+
+        :param animal:
+        :param probability_list:
+        :param neighbour_cells:
+        :return: list, new population in the migration cell
+        """
+        p = random.random()
+        i = 0
+        while p > sum(probability_list[0:i]):
+            i += 1
+        animal.move(neighbour_cells[i - 1])
+
+    def migrate(self, neighbour_cells):
+        """
+
+        :param neighbour_cells: list, objects of adjacent cells
+        """
+        for species in self.animal_population:
+            for animal in species:
+                if animal.migration_probability():
+                    probability_list = self.directional_probability(
+                        neighbour_cells)
+                    self.choose_migration_cell(
+                        animal, probability_list, neighbour_cells)
                 else:
                     if isinstance(animal, ba.Herbivore):
-                        self.new_population[0].append(animal)
+                        ba.Herbivore.move(cell=self)
                     elif isinstance(animal, ba.Carnivore):
-                        self.new_population[1].append(animal)
+                        ba.Carnivore.move(cell=self)
         self.animal_population = [[], []]
+
+    def update_cell_population(self):
+        """
+        Updates the animal population in the specific cell.
+        """
+        self.animal_population = self.new_population
+        self.new_population = [[], []]
 
 
 class Jungle(Landscape):
