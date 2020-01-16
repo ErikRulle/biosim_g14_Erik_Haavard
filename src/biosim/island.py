@@ -6,7 +6,6 @@ __email__ = "erikrull@nmbu.no, havardmo@nmbu.no"
 
 import biosim.landscape as bl
 import numpy as np
-import random
 
 
 class Island:
@@ -80,8 +79,6 @@ class Island:
     def landscape_position_in_map(self):
         """
         Creates the numpy array map
-
-        :return: numpy_map, numpy.ndarray map with landscape positions
         """
         self.numpy_map = np.empty(
             (len(self.string_map), len(self.string_map[0])), dtype=object)
@@ -97,9 +94,8 @@ class Island:
                     self.numpy_map[x, y] = bl.Mountain()
                 elif cell == "O":
                     self.numpy_map[x, y] = bl.Ocean()
-        return self.numpy_map
 
-    def possible_migration_cells(self, position):
+    def find_surrounding_cells(self, position):
         """
         Collects a cell's neighbouring landscape types.
 
@@ -125,10 +121,10 @@ class Island:
         """
         for row in self.numpy_map:
             for cell in row:
+                # Will only call on cells that have regenerate method, as only
+                # the subclasses Jungle and Savannah has this method.
                 if callable(getattr(cell, "regenerate", None)):
                     cell.regenerate()
-                else:
-                    pass
                 cell.sort_by_fitness()
                 cell.eat_request_herbivore()
                 cell.eat_request_carnivore()
@@ -154,7 +150,7 @@ class Island:
         number_of_herbivores = []
         number_of_carnivores = []
 
-        for row in self.map:
+        for row in self.numpy_map:
             for cell in row:
                 number_of_herbivores.append(len(cell.animal_population[0]))
                 number_of_carnivores.append(len(cell.animal_population[1]))
@@ -203,7 +199,7 @@ class Island:
                                  "please enter a value between 0 and " +
                                  str(self.numpy_map.shape[1]))
 
-            cell = self.numpy_map[(map_row - 1, map_col - 1)]
+            cell = self.numpy_map[(map_row, map_col)]
 
             if isinstance(cell, (bl.Mountain, bl.Ocean)):
                 raise ValueError("Animals can not stay in " +
@@ -226,5 +222,5 @@ class Island:
 
         :return:
         """
-        self.numpy_map = self.landscape_position_in_map()
+        self.landscape_position_in_map()
         self.assign_animals_to_cell(start_population)
