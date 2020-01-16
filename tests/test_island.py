@@ -139,20 +139,3 @@ def test_total_island_population():
     island.populate_the_island(pop)
     total_population = island.total_island_population
     assert total_population == (9, 4)
-
-
-def test_annual_cycle():
-    """
-
-    """
-    island_map = """\
-                                    OOOOOOO
-                                    OSSSSSO
-                                    OSJJJSO
-                                    OSMMJSO
-                                    OSDDJSO
-                                    OSJJJSO
-                                    OSSSSSO
-                                    OOOOOOO"""
-
-    island = bi.Island(island_map)
