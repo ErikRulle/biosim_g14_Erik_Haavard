@@ -7,6 +7,11 @@ __author__ = "Erik Rullestad", "Håvard Molversmyr"
 __email__ = "erikrull@nmbu.no", "havardmo@nmbu.no"
 
 
+import biosim.island as bi
+import random
+import pandas as pd
+
+
 class BioSim:
     def __init__(
         self,
@@ -45,6 +50,18 @@ class BioSim:
         where img_no are consecutive image numbers starting from 0.
         img_base should contain a path and beginning of a file name.
         """
+        random.seed(seed)
+        self.last_year_simulated = 0
+        self.island_map = island_map
+        self.ini_pop = ini_pop
+        self.island = bi.Island()
+        self.island.populate_the_island(ini_pop)
+        self.herbivore_list = [self.island.total_island_population[0]]
+        self.carnivore_list = [self.island.total_island_population[1]]
+        self.ymax_animals = ymax_animals
+        self.cmax_animals = cmax_animals
+        self.img_base = img_base
+        self.img_fmt = img_fmt
 
     def set_animal_parameters(self, species, params):
         """
@@ -53,6 +70,7 @@ class BioSim:
         :param species: String, name of animal species
         :param params: Dict with valid parameter specification for species
         """
+        species.set_animal_parameters(params)
 
     def set_landscape_parameters(self, landscape, params):
         """
@@ -61,6 +79,7 @@ class BioSim:
         :param landscape: String, code letter for landscape
         :param params: Dict with valid parameter specification for landscape
         """
+        landscape.set_landscape_parameters(params)
 
     def simulate(self, num_years, vis_years=1, img_years=None):
         """
@@ -73,6 +92,10 @@ class BioSim:
 
         Image files will be numbered consecutively.
         """
+        for _ in range(num_years):
+            new_island_population = self.island.annual_cycle()
+            self.herbivore_list.append(new_island_population[0])
+            self.carnivore_list.append(new_island_population[1])
 
     def add_population(self, population):
         """
@@ -80,30 +103,39 @@ class BioSim:
 
         :param population: List of dictionaries specifying population
         """
+        self.island.populate_the_island(population)
 
     @property
     def year(self):
         """
         Last year simulated.
         """
+        return self.last_year_simulated
 
     @property
     def num_animals(self):
         """
         Total number of animals on island.
         """
+        return self.herbivore_list[-1] + self.carnivore_list[-1]
 
     @property
     def num_animals_per_species(self):
         """
         Number of animals per species in island, as dictionary.
         """
+        animal_dict = {"Herbivores": self.island.total_island_population[0],
+                       "Carnivore": self.island.total_island_population[1]}
+        return animal_dict
 
     @property
     def animal_distribution(self):
         """
         Pandas DataFrame with animal count per species for each cell on island.
         """
+        pandas_population = pd.DataFrame(self.island.population_in_each_cell,
+                                         columns=["Herbivores", "Carnivores"])
+        return pandas_population
 
     def make_movie(self):
         """

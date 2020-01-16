@@ -56,7 +56,7 @@ class Animal:
         )
 
     @classmethod
-    def set_animal_parameters(self, new_parameters):
+    def set_animal_parameters(cls, new_parameters):
         """
         This method allows for manual setting of animal parameters,
         i.e. to change parameter values from default values to desired values.
@@ -66,7 +66,7 @@ class Animal:
                                are valid.
         """
         for key in new_parameters:
-            self.default_parameters[key] = new_parameters[key]
+            cls.default_parameters[key] = new_parameters[key]
 
     def aging(self):
         """

@@ -40,7 +40,7 @@ class Island:
 
         self.string_map = self.island_map.replace(" ", "").splitlines()
         self.validate_map_string()
-        self.numpy_map = None
+        self.numpy_map = self.landscape_position_in_map()
 
     def validate_map_string(self):
         """
@@ -80,20 +80,21 @@ class Island:
         """
         Creates the numpy array map
         """
-        self.numpy_map = np.empty(
+        numpy_map = np.empty(
             (len(self.string_map), len(self.string_map[0])), dtype=object)
         for x, line in enumerate(self.string_map):
             for y, cell in enumerate(line):
                 if cell == "J":
-                    self.numpy_map[x, y] = bl.Jungle()
+                    numpy_map[x, y] = bl.Jungle()
                 elif cell == "S":
-                    self.numpy_map[x, y] = bl.Savannah()
+                    numpy_map[x, y] = bl.Savannah()
                 elif cell == "D":
-                    self.numpy_map[x, y] = bl.Desert()
+                    numpy_map[x, y] = bl.Desert()
                 elif cell == "M":
-                    self.numpy_map[x, y] = bl.Mountain()
+                    numpy_map[x, y] = bl.Mountain()
                 elif cell == "O":
-                    self.numpy_map[x, y] = bl.Ocean()
+                    numpy_map[x, y] = bl.Ocean()
+        return numpy_map
 
     def find_surrounding_cells(self, position):
         """
@@ -168,16 +169,18 @@ class Island:
 
         return sum(herbivores), sum(carnivores)
 
-    def assign_animals_to_cell(self, start_population=None):
+    def populate_the_island(self, start_population=None):
         """
 
         """
-        start_herbivore_population = [{"loc": (10, 10),
-                      "pop": [{"species": "Herbivore", "age": 5,
-                               "weight": 20} for _ in range(150)]}]
-        start_carnivore_population = [{"loc": (10, 10),
-                      "pop": [{"species": "Carnivore", "age": 5,
-                               "weight": 20} for _ in range(40)]}]
+        start_herbivore_population = [
+            {"loc": (10, 10), "pop":
+                [{"species": "Herbivore", "age": 5, "weight": 20}
+                 for _ in range(150)]}]
+        start_carnivore_population = [
+            {"loc": (10, 10), "pop":
+                [{"species": "Carnivore", "age": 5, "weight": 20}
+                 for _ in range(40)]}]
         standard_pop = start_herbivore_population + start_carnivore_population
 
         if not start_population:
@@ -216,11 +219,3 @@ class Island:
                                      " a non-negative number(float).")
 
             cell.cell_population(dictionary["pop"])
-
-    def populate_the_island(self, start_population=None):
-        """
-
-        :return:
-        """
-        self.landscape_position_in_map()
-        self.assign_animals_to_cell(start_population)
