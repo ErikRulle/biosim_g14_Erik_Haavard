@@ -1,0 +1,14 @@
+API Reference
+=============
+
+.. automodule:: biosim.animals
+    :inherited-members:
+
+.. autoclass:: biosim.landscape
+    :inherited-members:
+
+.. autoclass:: biosim.island
+    :inherited-members:
+
+.. autoclass:: biosim.simulation
+    :inherited-members:

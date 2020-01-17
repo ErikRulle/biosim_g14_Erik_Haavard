@@ -10,6 +10,8 @@ Welcome to Biosim's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   api_reference
+
 
 
 
