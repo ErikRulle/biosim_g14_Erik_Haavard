@@ -145,3 +145,38 @@ class BioSim:
         """
         Create MPEG4 movie from visualization images saved.
         """
+
+    def setup_graphics(self):
+        """
+
+        """
+        # create new figure window
+        if self._fig is None:
+            self._fig = plt.figure()
+
+        # Add left subplot for images created with imshow().
+        # We cannot create the actual ImageAxis object before we know
+        # the size of the image, so we delay its creation.
+        if self._map_ax is None:
+            self._map_ax = self._fig.add_subplot(1, 2, 1)
+            self._img_axis = None
+
+        # Add right subplot for line graph of mean.
+        if self._mean_ax is None:
+            self._mean_ax = self._fig.add_subplot(1, 2, 2)
+            self._mean_ax.set_ylim(0, 0.02)
+
+        # needs updating on subsequent calls to simulate()
+        self._mean_ax.set_xlim(0, self._final_step + 1)
+
+        if self._mean_line is None:
+            mean_plot = self._mean_ax.plot(np.arange(0, self._final_step),
+                                           np.full(self._final_step, np.nan))
+            self._mean_line = mean_plot[0]
+        else:
+            xdata, ydata = self._mean_line.get_data()
+            xnew = np.arange(xdata[-1] + 1, self._final_step)
+            if len(xnew) > 0:
+                ynew = np.full(xnew.shape, np.nan)
+                self._mean_line.set_data(np.hstack((xdata, xnew)),
+                                         np.hstack((ydata, ynew)))

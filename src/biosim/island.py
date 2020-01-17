@@ -129,7 +129,6 @@ class Island:
         This method carries out one cycle on the island.
         :return:
         """
-        print(self.numpy_map.shape)
         for row in self.numpy_map:
             for cell in row:
                 # Will only call on cells that have regenerate method, as only
@@ -152,7 +151,7 @@ class Island:
                 cell.update_fitness()
                 cell.death()
 
-            return self.total_island_population
+        return self.total_island_population
 
     @property
     def population_in_each_cell(self):
