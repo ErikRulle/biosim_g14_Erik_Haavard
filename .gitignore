@@ -231,3 +231,4 @@ dmypy.json
 src/.DS_Store
 *.DS_Store
 venv/Scripts/f2py.exe
+venv
