@@ -9,7 +9,9 @@ __email__ = "erikrull@nmbu.no", "havardmo@nmbu.no"
 
 import biosim.island as bi
 import random
+import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 
 
 class BioSim:
@@ -180,3 +182,57 @@ class BioSim:
                 ynew = np.full(xnew.shape, np.nan)
                 self._mean_line.set_data(np.hstack((xdata, xnew)),
                                          np.hstack((ydata, ynew)))
+
+    def plot_map(self):
+        """
+        Creates a map plot of the input island map string.
+        """
+        #                   R    G    B
+        rgb_value = {'O': (0.0, 0.0, 1.0),  # blue
+                     'M': (0.5, 0.5, 0.5),  # grey
+                     'J': (0.0, 0.6, 0.0),  # dark green
+                     'S': (0.5, 1.0, 0.5),  # light green
+                     'D': (1.0, 1.0, 0.5)}  # light yellow
+
+        map_rgb = [[rgb_value[column] for column in row]
+                   for row in self.island.string_map]
+
+        fig = plt.figure()
+
+        axim = fig.add_axes([0.1, 0.1, 0.7, 0.8])  # llx, lly, w, h
+        axim.imshow(map_rgb)
+        axim.set_xticks(range(len(map_rgb[0])))
+        axim.set_xticklabels(range(0, 1 + len(map_rgb[0])))
+        axim.set_yticks(range(len(map_rgb)))
+        axim.set_yticklabels(range(0, 1 + len(map_rgb)))
+
+        axlg = fig.add_axes([0.85, 0.1, 0.1, 0.8])  # llx, lly, w, h
+        axlg.axis('off')
+        for ix, name in enumerate(('Ocean', 'Mountain', 'Jungle',
+                                   'Savannah', 'Desert')):
+            axlg.add_patch(plt.Rectangle((0., ix * 0.2), 0.3, 0.1,
+                                         edgecolor='none',
+                                         facecolor=rgb_value[name[0]]))
+            axlg.text(0.35, ix * 0.2, name, transform=axlg.transAxes)
+
+        #axim.grid()
+        plt.show()
+
+
+    def plot_population_graph(self, year):
+        """
+        Plots the total herbivore and carnivore population for a given year.
+
+        :param year: int, last year in simulation.
+        """
+        plt.plot(len(self.herbivore_list), self.herbivore_list)
+        plt.plot(len(self.carnivore_list), self.carnivore_list)
+        plt.legend(["Herbivores", "Carnivores"], loc="upper left")
+        #plt.savefig
+
+
+
+
+
+
+
