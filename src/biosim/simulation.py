@@ -97,6 +97,10 @@ class BioSim:
             self.herbivore_list.append(new_island_population[0])
             self.carnivore_list.append(new_island_population[1])
 
+            if num_years % vis_years == 0:
+                pass
+
+
     def add_population(self, population):
         """
         Add a population to the island

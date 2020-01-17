@@ -40,6 +40,19 @@ def test_landscape_position_in_map():
     assert isinstance(island.numpy_map[4][5], bl.Savannah)
 
 
+def test_find_cell_position():
+    """
+
+    """
+    island = bi.Island()
+    positions = []
+    for cell in island.numpy_map[0][0:5]:
+        positions.append(island.find_cell_position(cell))
+
+    true_positions = [(0, 0), (0, 1), (0, 2), (0, 3), (0, 4)]
+    assert positions == true_positions
+
+
 def test_find_surrounding_cells():
     """
 
@@ -136,3 +149,25 @@ def test_total_island_population():
     island.populate_the_island(pop)
     total_population = island.total_island_population
     assert total_population == (9, 4)
+
+
+def test_annual_cycle():
+    island_map = """\
+                     OOO
+                     OJO
+                     OSO
+                     OOO"""
+    island = bi.Island(island_map)
+
+    popgen = pg.Population(n_herbivores=3,
+                           coord_herb=[(1, 1), (1, 1), (2, 1)],
+                           n_carnivores=2, coord_carn=[(1, 1), (2, 1)])
+    pop = popgen.get_animals()
+    island.populate_the_island(pop)
+    herbivore_list = [island.total_island_population[0]]
+    carnivore_list = [island.total_island_population[1]]
+    for year in range(2):
+        new_island_population = island.annual_cycle()
+        herbivore_list.append(new_island_population[0])
+        carnivore_list.append(new_island_population[1])
+

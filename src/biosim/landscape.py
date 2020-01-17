@@ -253,17 +253,18 @@ class Landscape:
         :param neighbour_cells: list, objects of adjacent cells
         """
         for species in self.animal_population:
-            probability_list = self.directional_probability(
-                species[0], neighbour_cells)
-            for animal in species:
-                if animal.migration_probability():
-                    self.choose_migration_cell(
-                        animal, neighbour_cells, probability_list)
-                else:
-                    if isinstance(animal, ba.Herbivore):
-                        ba.Herbivore.move(animal, cell=self)
-                    elif isinstance(animal, ba.Carnivore):
-                        ba.Carnivore.move(animal, cell=self)
+            if len(species) > 0:
+                probability_list = self.directional_probability(
+                    species[0], neighbour_cells)
+                for animal in species:
+                    if animal.migration_probability():
+                        self.choose_migration_cell(
+                            animal, neighbour_cells, probability_list)
+                    else:
+                        if isinstance(animal, ba.Herbivore):
+                            ba.Herbivore.move(animal, cell=self)
+                        elif isinstance(animal, ba.Carnivore):
+                            ba.Carnivore.move(animal, cell=self)
 
     def update_cell_population(self):
         """

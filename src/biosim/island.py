@@ -96,6 +96,15 @@ class Island:
                     numpy_map[x, y] = bl.Ocean()
         return numpy_map
 
+    def find_cell_position(self, cell):
+        """
+
+        """
+        coord_array = np.where(self.numpy_map == cell)
+        x, y = coord_array[0][0], coord_array[1][0]
+        position = tuple([x, y])
+        return position
+
     def find_surrounding_cells(self, position):
         """
         Collects a cell's neighbouring landscape types.
@@ -120,6 +129,7 @@ class Island:
         This method carries out one cycle on the island.
         :return:
         """
+        print(self.numpy_map.shape)
         for row in self.numpy_map:
             for cell in row:
                 # Will only call on cells that have regenerate method, as only
@@ -131,7 +141,11 @@ class Island:
                 cell.eat_request_carnivore()
                 cell.update_fitness()
                 cell.reproduction()
-                cell.migrate()
+
+                position = self.find_cell_position(cell)
+                neighbour_cells = self.find_surrounding_cells(position)
+                cell.migrate(neighbour_cells)
+
                 cell.update_cell_population()
                 cell.aging()
                 cell.weight_loss()
