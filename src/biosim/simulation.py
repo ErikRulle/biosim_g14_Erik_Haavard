@@ -54,7 +54,7 @@ class BioSim:
         self.last_year_simulated = 0
         self.island_map = island_map
         self.ini_pop = ini_pop
-        self.island = bi.Island()
+        self.island = bi.Island(island_map=island_map)
         self.island.populate_the_island(ini_pop)
         self.herbivore_list = [self.island.total_island_population[0]]
         self.carnivore_list = [self.island.total_island_population[1]]
