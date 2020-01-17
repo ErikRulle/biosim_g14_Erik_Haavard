@@ -183,7 +183,7 @@ class BioSim:
                 self._mean_line.set_data(np.hstack((xdata, xnew)),
                                          np.hstack((ydata, ynew)))
 
-    def plot_map(self):
+    def plot_island_map(self):
         """
         Creates a map plot of the input island map string.
         """
