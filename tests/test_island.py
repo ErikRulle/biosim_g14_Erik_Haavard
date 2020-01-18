@@ -1,12 +1,24 @@
 # -*- coding: utf-8 -*-
 
+"""
+Test set for class Island.
+
+This set of tests checks that the island class work as expected.
+
+Notes:
+     - The class should pass all tests in this set.
+     - The tests check that the class functions work correctly.
+"""
+
 __author__ = "Erik Rullestad, Håvard Molversmyr"
 __email__ = "erikrull@nmbu.no, havardmo@nmbu.no"
 
+
 import numpy as np
+
+import examples.population_generator as pg
 import biosim.island as bi
 import biosim.landscape as bl
-import examples.population_generator as pg
 
 
 def test_island_instance():
@@ -42,7 +54,7 @@ def test_landscape_position_in_map():
 
 def test_find_cell_position():
     """
-
+    Tests if the function find correct cell positions.
     """
     island = bi.Island()
     positions = []
@@ -55,7 +67,8 @@ def test_find_cell_position():
 
 def test_find_surrounding_cells():
     """
-
+    Tests if the function finds the wanted neighbouring cells for a
+    specific cell.
     """
     island_map = """\
                        OOOO
@@ -73,7 +86,7 @@ def test_find_surrounding_cells():
 
 def test_populate_the_island():
     """
-
+    Tests that the function puts an animal population in the wanted cells.
     """
     island_map = """\
                         OOOOOOO
@@ -100,7 +113,7 @@ def test_populate_the_island():
 
 def test_population_in_each_cell():
     """
-
+    Tests if the function counts the population in each cell correctly.
     """
     island_map = """\
                             OOOOOOO
@@ -129,7 +142,7 @@ def test_population_in_each_cell():
 
 def test_total_island_population():
     """
-
+    Tests if the function can find the correct total island population.
     """
     island_map = """\
                                 OOOOOOO
@@ -151,30 +164,30 @@ def test_total_island_population():
     assert total_population == (9, 4)
 
 
-def test_annual_cycle():
-    import matplotlib.pyplot as plt
-    island_map = """\
-                     OOOOOO
-                     OJSSDO
-                     OSJJMO
-                     OOOOOO"""
-    island = bi.Island(island_map)
-
-    popgen = pg.Population(n_herbivores=3,
-                           coord_herb=[(1, 1), (1, 1), (2, 1)],
-                           n_carnivores=5, coord_carn=[(1, 1), (2, 1)])
-    pop = popgen.get_animals()
-    island.populate_the_island(pop)
-    herbivore_list = [island.total_island_population[0]]
-    carnivore_list = [island.total_island_population[1]]
-    for year in range(100):
-        new_island_population = island.annual_cycle()
-        herbivore_list.append(new_island_population[0])
-        carnivore_list.append(new_island_population[1])
-        plt.plot(range(len(herbivore_list)), herbivore_list)
-        plt.plot(range(len(carnivore_list)), carnivore_list)
-        plt.legend(["Herbivores", "Carnivores"], loc="upper left")
-        #plt.show()
+# def test_annual_cycle():
+#     import matplotlib.pyplot as plt
+#     island_map = """\
+#                      OOOOOO
+#                      OJSSDO
+#                      OSJJMO
+#                      OOOOOO"""
+#     island = bi.Island(island_map)
+#
+#     popgen = pg.Population(n_herbivores=3,
+#                            coord_herb=[(1, 1), (1, 1), (2, 1)],
+#                            n_carnivores=5, coord_carn=[(1, 1), (2, 1)])
+#     pop = popgen.get_animals()
+#     island.populate_the_island(pop)
+#     herbivore_list = [island.total_island_population[0]]
+#     carnivore_list = [island.total_island_population[1]]
+#     for year in range(100):
+#         new_island_population = island.annual_cycle()
+#         herbivore_list.append(new_island_population[0])
+#         carnivore_list.append(new_island_population[1])
+#         plt.plot(range(len(herbivore_list)), herbivore_list)
+#         plt.plot(range(len(carnivore_list)), carnivore_list)
+#         plt.legend(["Herbivores", "Carnivores"], loc="upper left")
+#         #plt.show()
         #plt.savefig()
 
 

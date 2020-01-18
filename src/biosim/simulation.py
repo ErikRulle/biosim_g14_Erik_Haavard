@@ -1,17 +1,20 @@
 # -*- coding: utf-8 -*-
 
 """
+:mod:`biosim.simulation` defines the BioSim class interface for simulation of
+Rossum island`s ecosystem.
 """
 
 __author__ = "Erik Rullestad", "Håvard Molversmyr"
 __email__ = "erikrull@nmbu.no", "havardmo@nmbu.no"
 
 
-import biosim.island as bi
 import random
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+
+import biosim.island as bi
 
 
 class BioSim:

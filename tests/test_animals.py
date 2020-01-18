@@ -1,27 +1,22 @@
 # -*- coding: utf-8 -*-
 
 """
-Test set for superclass Animals, and subclasses Herbivores and Carnivores.
+Test set for superclass Animal, and subclasses Herbivore and Carnivore.
 
-Test set for Animal class along with the subclasses Herbivores and Carnivores.
-
-This set of tests checks the interface of the BioSim class to be provided by
-the simulation module of the biosim package.
+This set of tests checks that the classes work as expected.
 
 Notes:
      - The classes should pass all tests in this set.
-     - The tests check only that the class interface can be used, not that
-       the class functions correctly. You need to write your own tests for that.
-     - You should only run these tests on your code *after* you have implemented
-       both animal and all landscape classes.
+     - The tests check that the class functions work correctly.
 """
 
 __author__ = "Erik Rullestad", "Håvard Molversmyr"
 __email__ = "erikrull@nmbu.no", "havardmo@nmbu.no"
 
 
-import biosim.animals as ba
 import pytest
+
+import biosim.animals as ba
 
 
 def test_set_animal_parameters():
@@ -58,7 +53,7 @@ def test_set_animal_parameters():
 def test_herbivore_parameters():
     """
     Tests that the given parameters for the herbivore class are in the list
-     of valid parameters.
+    of valid parameters.
     """
     keys_list = ["w_birth", "sigma_birth", "beta","eta", "a_half", "phi_age",
                  "w_half", "phi_weight", "mu", "lambda", "gamma",  "zeta",
@@ -71,7 +66,7 @@ def test_herbivore_parameters():
 def test_carnivore_parameters():
     """
     Tests that the given parameters for the carnivore class are in the list
-     of valid parameters.
+    of valid parameters.
     """
     keys_list = ["w_birth", "sigma_birth", "beta", "eta", "a_half", "phi_age",
                  "w_half", "phi_weight", "mu", "lambda", "gamma", "zeta",
@@ -83,7 +78,7 @@ def test_carnivore_parameters():
 
 def test_non_negative_animal_weight():
     """
-    Tests that animals has a non-negative weight.
+    Tests that animals have a non-negative weight.
     """
     herb = ba.Herbivore()
     carn = ba.Carnivore()
@@ -96,7 +91,7 @@ def test_non_negative_animal_weight():
 def test_animals_lifecycle():
     """
     Test the lifecycle of a herbivore; they start with age 0, which is
-    incremented by one for every year passed. They eat and gains weight, and
+    incremented by one for every year passed. They eat and gain weight, and
     loose weight for every year.
     """
     herb = ba.Herbivore()
@@ -112,8 +107,9 @@ def test_animals_lifecycle():
 
 
 def test_animals_fitness():
-    """Tests that the fitness of a Herbivore is between 0 and 1, and works
-    as expected.
+    """
+    Tests that the fitness of a herbivore and carnivore is between 0 and 1,
+    and decreases with age and weight-loss.
     """
     herb = ba.Herbivore()
     value1 = herb.fitness
@@ -184,7 +180,7 @@ def test_animal_update_weight_after_birth():
 
 def test_animal_death(mocker):
     """
-    Tests that animals die with certainty 1 if its fitness is 0, and dies
+    Tests that animals die with certainty 1 if its fitness is 0 and dies
     with certainty 0 if its fitness is 1, according to the given formula for
     the probability of animal death.
     """
@@ -210,7 +206,7 @@ def test_animal_death(mocker):
 def test_herbivore_eating():
     """
     Tests that the herbivore weight is increased corresponding to the
-    expected formula.
+    given formula.
     """
     herb = ba.Herbivore()
     initial_weight = herb.weight
@@ -221,10 +217,10 @@ def test_herbivore_eating():
 
 def test_carnivore_eating_probability(mocker):
     """
-    Tests that the carnivore eating probability is 0 if the carnivore's fitness
-    is less than the herbivore's fitness, and that it will eat corresponding
-    to the given formula if its fitness is higher than the herbivore that it
-    is trying to eat.
+    Tests that the carnivore eating probability is 0 if the carnivore's
+    fitness is less than the herbivore's fitness, and that it will eat
+    corresponding to the given formula if its fitness is higher than the
+    herbivore that it is trying to eat.
 
     Use mocking to set the value of the property fitness.
     """

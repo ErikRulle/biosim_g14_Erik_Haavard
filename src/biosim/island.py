@@ -1,16 +1,25 @@
 # -*- coding: utf-8 -*-
 
+"""
+:mod:`biosim.island` defines an island, populates the island and defines the
+annual cycle.
+
+The user can define:
+#. The island map.
+"""
+
 __author__ = "Erik Rullestad, Håvard Molversmyr"
 __email__ = "erikrull@nmbu.no, havardmo@nmbu.no"
 
 
-import biosim.landscape as bl
 import numpy as np
+
+import biosim.landscape as bl
 
 
 class Island:
     """
-    This class generates the island nation of Pylandia.
+    This class generates the island Rossum island and its ecosystem behaviour.
     """
 
     STANDARD_MAP = """\
@@ -78,7 +87,7 @@ class Island:
 
     def landscape_position_in_map(self):
         """
-        Creates the numpy array map
+        Creates a numpy array map from the string map.
         """
         numpy_map = np.empty(
             (len(self.string_map), len(self.string_map[0])), dtype=object)
@@ -98,7 +107,10 @@ class Island:
 
     def find_cell_position(self, cell):
         """
+        Finds the numpy map coordinates of the cell.
 
+        :param cell: a landscape object in the numpy map.
+        :return position: tuple (cell coordinates).
         """
         coord_array = np.where(self.numpy_map == cell)
         x, y = coord_array[0][0], coord_array[1][0]
@@ -109,8 +121,8 @@ class Island:
         """
         Collects a cell's neighbouring landscape types.
 
-        :param position: tuple (cell coordinates)
-        :return neighbour_cells: list, objects of adjacent cells
+        :param position: tuple (cell coordinates).
+        :return neighbour_cells: list, objects of adjacent cells.
         """
         neighbour_cells = []
         x, y = position
@@ -127,7 +139,10 @@ class Island:
     def annual_cycle(self):
         """
         This method carries out one cycle on the island.
-        :return:
+
+        :return total_island_population: tuple, first element is
+                                         herbivore population and second
+                                         element is carnivore population.
         """
         for row in self.numpy_map:
             for cell in row:
@@ -158,8 +173,9 @@ class Island:
         """
         This method calculates the herbivore and carnivore population for
         each cell.
+
         :return: numpy.ndarray, the herbivore and carnivore population in the
-                 first and second element of each list, respectively
+                 first and second element of each list, respectively.
         """
         number_of_herbivores = []
         number_of_carnivores = []
@@ -174,7 +190,8 @@ class Island:
     def total_island_population(self):
         """
         Finds the total number of herbivores and carnivores on the island.
-        :return: tuple
+
+        :return: tuple.
         """
         population = self.population_in_each_cell
         herbivores = [population[i][0] for i in range(len(population))]
@@ -184,7 +201,10 @@ class Island:
 
     def populate_the_island(self, start_population=None):
         """
+        Populates the island with an input start population.
 
+        :param start_population: list, lists of dictionaries with keys
+                                 "loc" (location) and "pop" (population).
         """
         start_herbivore_population = [
             {"loc": (10, 10), "pop":

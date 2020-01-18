@@ -1,12 +1,21 @@
 # -*- coding: utf-8 -*-
 
+"""
+:mod:`biosim.landscape` defines how a landscape object should behave and how
+its animal population interact with each other and their surroundings. The
+subclasses, Jungle, Savannah, Desert, Mountain and Ocean, contains information
+about the differences between each landscape type, e.g. availability and
+regeneration of fodder.
+"""
+
 __author__ = "Erik Rullestad", "Håvard Molversmyr"
 __email__ = "erikrull@nmbu.no", "havardmo@nmbu.no"
 
 
-import biosim.animals as ba
 import numpy as np
 import random
+
+import biosim.animals as ba
 
 
 class Landscape:
@@ -31,7 +40,7 @@ class Landscape:
         This method allows for manual setting of landscape parameters,
         i.e. to change parameter values from default values to desired values.
 
-        :param new_parameters: dict, dictionary with the new parameter values
+        :param new_parameters: dict, dictionary with the new parameter values.
                                Only keys from the default parameter value dict
                                are valid.
         """
@@ -41,7 +50,8 @@ class Landscape:
     def cell_population(self, population=None):
         """
         Puts the animal population in the specific cell.
-        :param population: list
+
+        :param population: list.
         """
         for animal in population:
             if animal["species"] == "Herbivore":
@@ -54,7 +64,7 @@ class Landscape:
     @property
     def number_of_herbivores(self):
         """
-        Finds the total number of herbivores in a specific cell
+        Finds the total number of herbivores in a specific cell.
 
         :return: integer, number of herbivores.
         """
@@ -63,7 +73,8 @@ class Landscape:
     @property
     def number_of_carnivores(self):
         """
-        Finds the total number of carnivores in a specific cell
+        Finds the total number of carnivores in a specific cell.
+
         :return: integer, number of carnivores.
         """
         return len(self.animal_population[1])
@@ -74,7 +85,7 @@ class Landscape:
         Calculates the total herbivore mass in the specific cell, i.e. the
         sum of the herbivore weights.
 
-        :return: integer, the sum of herbivore mass in the cell
+        :return: integer, the sum of herbivore mass in the cell.
         """
         return sum([herb.weight for herb in self.animal_population[0]])
 
@@ -163,7 +174,7 @@ class Landscape:
 
     def eat_request_carnivore(self):
         """
-         Carnivore eats after request.
+        Carnivore eats after request.
         """
         for carnivore in self.animal_population[1]:
             self.animal_population[0] = carnivore.eating(
@@ -173,7 +184,8 @@ class Landscape:
     def available_fodder_herbivore(self):
         """
         Finding the relative abundance of fodder for herbivore.
-        :return: float
+
+        :return: float.
         """
         return self.f / ((self.number_of_herbivores + 1) *
                          ba.Herbivore.default_parameters["F"])
@@ -182,7 +194,8 @@ class Landscape:
     def available_fodder_carnivore(self):
         """
         Finding the relative abundance of fodder for carnivore.
-        :return: float
+
+        :return: float.
         """
         return self.sum_of_herbivore_mass / (
                 (self.number_of_carnivores + 1) *
@@ -214,9 +227,10 @@ class Landscape:
         calculates the probability of herbivores migrating to that cell.
         Stores the result in a list.
 
-        :param neighbour_cells: list, the four adjacent cells
+        :param animal: object, either herbivore or carnivore.
+        :param neighbour_cells: list, the four adjacent cells.
         :return probability_list: list, probabilities of moving to an
-                                  adjacent cell
+                                  adjacent cell.
         """
         if isinstance(animal, ba.Herbivore):
             propensities = [cell.propensity()[0]
@@ -233,12 +247,12 @@ class Landscape:
     def choose_migration_cell(self, animal, neighbour_cells, probability_list):
         """
         A method to choose which of the adjacent cell the animal should
-        migrate to, given that it migrates, and moves that animal to that cell.
+        migrate to, given that it migrates, and moves the animal to that cell.
 
-        :param animal: object, either Herbivore or Carnivore
+        :param animal: object, either herbivore or carnivore.
         :param probability_list: list, probabilities of moving to an adjacent
-                                 cell
-        :param neighbour_cells: list, objects of adjacent cells
+                                 cell.
+        :param neighbour_cells: list, objects of adjacent cells.
         """
         p = random.random()
         i = 0
@@ -250,7 +264,7 @@ class Landscape:
         """
         A method that migrates all animals in a cell iteratively.
 
-        :param neighbour_cells: list, objects of adjacent cells
+        :param neighbour_cells: list, objects of adjacent cells.
         """
         for species in self.animal_population:
             if len(species) > 0:
@@ -276,30 +290,30 @@ class Landscape:
 
 class Jungle(Landscape):
     """
-    Defines the jungle type
+    Defines the jungle type.
     """
     default_parameters = {"f_max": 800.0}
     habitable = True
 
     def regenerate(self):
         """
-        This method regenerates the amount of fodder in each cell according to
-        given formula for the given landscape type.
+        This method regenerates the amount of fodder in each jungle-cell
+        according to the given formula for the jungle-type.
         """
         self.f = self.default_parameters["f_max"]
 
 
 class Savannah(Landscape):
     """
-    Defines the savannah type
+    Defines the savannah type.
     """
     default_parameters = {"f_max": 300.0, "alpha": 0.3}
     habitable = True
 
     def regenerate(self):
         """
-        This method regenerates the amount of fodder in each cell according to
-        given formula for the given landscape type.
+        This method regenerates the amount of fodder in each savannah-cell
+        according to the given formula for the savannah-type.
         """
         self.f += self.default_parameters["alpha"] * \
                   (self.default_parameters["f_max"] - self.f)
@@ -307,7 +321,7 @@ class Savannah(Landscape):
 
 class Desert(Landscape):
     """
-    Defines the desert type
+    Defines the desert type.
     """
     default_parameters = {"f_max": 0.0}
     habitable = True
@@ -315,7 +329,7 @@ class Desert(Landscape):
 
 class Mountain(Landscape):
     """
-    Defines the mountain type
+    Defines the mountain type.
     """
     default_parameters = {"f_max": 0.0}
     habitable = False
@@ -323,7 +337,7 @@ class Mountain(Landscape):
 
 class Ocean(Landscape):
     """
-    Defines the ocean type
+    Defines the ocean type.
     """
     default_parameters = {"f_max": 0.0}
     habitable = False

@@ -1,14 +1,25 @@
 # -*- coding: utf-8 -*-
 
+"""
+Test set for superclass Landscape.
+
+This set of tests checks that a landscape object work as expected.
+
+Notes:
+     - The classes should pass all tests in this set.
+     - The tests check that the class functions work correctly.
+"""
+
 __author__ = "Erik Rullestad", "Håvard Molversmyr"
 __email__ = "erikrull@nmbu.no", "havardmo@nmbu.no"
 
 
-import biosim.landscape as bl
-import biosim.animals as ba
 import random
 import pytest
 import numpy as np
+
+import biosim.landscape as bl
+import biosim.animals as ba
 
 
 def test_set_landscape_parameters():
@@ -223,7 +234,8 @@ def test_eat_request_herbivore():
 def test_eat_request_carnivore():
     """
     Tests that carnivores eat until they are full, and that all herbivores
-    that have been eaten are removed from the cells herbivore population.
+    that have been eaten are removed from the cells list of
+    herbivore population.
     """
     ba.Carnivore.set_animal_parameters({"DeltaPhiMax": 0.0001})
     land = bl.Landscape()
@@ -375,8 +387,8 @@ def test_directional_probability():
 
 def test_choose_migration_cell(mocker):
     """
-    Tests whether animals are migrating to the correct cell given the animals
-    probability to move to a sepcific cell.
+    Tests whether animals are migrating to the correct cell, given the animals
+    probability to move to a specific cell.
     """
     current_cell = bl.Desert()
     current_cell.animal_population[0].append(ba.Herbivore())

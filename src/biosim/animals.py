@@ -1,23 +1,20 @@
 # -*- coding: utf-8 -*-
 
+"""
+:mod:`biosim.animals` defines the similar traits between our two animals in
+the ecosystem. The two subclasses, Herbivore and Carnivore, specifies the
+more specific traits that are intrinsic for each animal. The module returns
+either herbivore or carnivore objects, depending on what the simulation is
+calling for.
+
+The user can define:
+#. The user can define the species of the animal.
+#. The weight and age can be specified.
+"""
+
 __author__ = "Erik Rullestad, Håvard Molversmyr"
 __email__ = "erikrull@nmbu.no, havardmo@nmbu.no"
 
-"""
-:mod:`biosim.animals` defines ... and returns ...
-
-The user can define:
-#.
-#.
-
-If different sizes of the population within an species is preferable,
-the user can simply make another population and add it to the island
-
-Example of ... returned:
--------------------------
-::
-
-"""
 
 import numpy as np
 import random
@@ -25,7 +22,7 @@ import random
 
 class Animal:
     """
-    This class creates an idea Animal, not specifying the vore-type.
+    This class creates an idea Animal, not specifying the -vore-type.
     """
 
     default_parameters = {"w_birth": None, "sigma_birth": None, "beta": None,
@@ -39,8 +36,8 @@ class Animal:
         """
         This method creates variables needed for the class.
 
-        :param weight: float, weight of the animals
-        :param age: int, age of the animal
+        :param weight: float, weight of the animal.
+        :param age: int, age of the animal.
         """
 
         if age == 0:
@@ -61,7 +58,7 @@ class Animal:
         This method allows for manual setting of animal parameters,
         i.e. to change parameter values from default values to desired values.
 
-        :param new_parameters: dict, dictionary with the new parameter values
+        :param new_parameters: dict, dictionary with the new parameter values.
                                Only keys from the default parameter value dict
                                are valid.
         """
@@ -84,9 +81,8 @@ class Animal:
         """
         Estimates the probability of reproduction for the given animal.
 
-        :param n_animals: integer, number of animals that may reproduce
+        :param n_animals: integer, number of animals that may reproduce.
         :return reproduction_success: bool, the animal reproduces or not.
-                newborn_weight: float, weight of the newborn animal.
         """
 
         if self.weight < self.default_parameters["zeta"] * (
@@ -106,9 +102,7 @@ class Animal:
     def update_weight_after_birth(self):
         """
         If reproduction is successful, then a new animal is born, and the
-        mother"s weight is reduced by the baby"s birthweight.
-
-        :param newborn_weight: float, weight of newborn animal
+        mother"s weight is reduced by the given formula.
         """
         self.weight -= self.default_parameters["xi"] * self.newborn_weight
 
@@ -116,7 +110,7 @@ class Animal:
         """
         Estimates the probability of an animal dying.
 
-        :return: bool
+        :return: bool.
         """
         death_prob = self.default_parameters["omega"] * (1 - self.fitness)
         return random.random() < death_prob
@@ -126,7 +120,7 @@ class Animal:
         """
         Calculates the fitness of the animal.
 
-        :return: float
+        :return: float.
         """
 
         phi = 1 / (1 + np.exp(self.default_parameters["phi_age"] * (
@@ -140,6 +134,7 @@ class Animal:
     def migration_probability(self):
         """
         Probability for the animal to migrate.
+
         :return: bool.
         """
         migration_probability = random.random() <= (
@@ -161,7 +156,8 @@ class Herbivore(Animal):
 
     def __init__(self, weight=None, age=0):
         """
-        Creates the variables needed for the subclass.
+        Creates the variables needed for the subclass. Inherits the
+        constructor of superclass.
         """
         if weight is None:
             weight = self.default_parameters["w_birth"]
@@ -169,7 +165,7 @@ class Herbivore(Animal):
 
     def eating(self, fodder):
         """
-        Caculates the new weight of the herbivore after eating fodder.
+        Calculates the new weight of the herbivore after eating fodder.
 
         :param fodder: float, amount of fodder eaten by the herbivore.
         """
@@ -178,10 +174,9 @@ class Herbivore(Animal):
     def move(self, cell):
         """
         This method appends the herbivore to a list of the new population
-        of the cell it either migrates to or already was in, if the
-        herbivore do not migrate.
+        of the cell.
 
-        :param cell: object, landscape type of the position in map
+        :param cell: object, landscape type of the position in island map.
         """
         cell.new_population[0].append(self)
 
@@ -201,7 +196,8 @@ class Carnivore(Animal):
 
     def __init__(self, weight=None, age=0):
         """
-        Creates the variables needed for the subclass.
+        Creates the variables needed for the subclass. Inherits the
+        constructor of superclass.
         """
         if weight is None:
             weight = self.default_parameters["w_birth"]
@@ -209,9 +205,10 @@ class Carnivore(Animal):
 
     def eating_probability(self, herbivores):
         """
+        Estimates the probability of a carnivore to eat a herbivore.
 
-        :param herbivores: list of herbivores
-        :return:
+        :param herbivores: list of herbivores.
+        :return: float, probability of eating.
         """
         delta_phi_max = self.default_parameters["DeltaPhiMax"]
 
@@ -225,6 +222,7 @@ class Carnivore(Animal):
     def eating(self, herbivores):
         """
         Calculates the new weight of the carnivore after eating fodder.
+
         :param herbivores: float, amount of fodder eaten by the herbivore.
         :return herbivores_not_eaten: list of surviving herbivores.
         """
@@ -255,9 +253,8 @@ class Carnivore(Animal):
     def move(self, cell):
         """
         This method appends the carnivore to a list of the new population
-        of the cell it either migrates to or already was in, if the
-        carnivore do not migrate.
+        of the cell.
 
-        :param cell: object, landscape type of the position in map
+        :param cell: object, landscape type of the position in map.
         """
         cell.new_population[1].append(self)
