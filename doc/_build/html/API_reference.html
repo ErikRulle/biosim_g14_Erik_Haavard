@@ -729,7 +729,2418 @@ mother”s weight is reduced by the baby”s birthweight.</p>
 
 </dd></dl>
 
-</div>
+<span class="target" id="module-biosim.landscape"></span><dl class="class">
+<dt id="biosim.landscape.Desert">
+<em class="property">class </em><code class="descclassname">biosim.landscape.</code><code class="descname">Desert</code><a class="reference internal" href="_modules/biosim/landscape.html#Desert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#biosim.landscape.Desert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the desert type</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attributes:</th><td class="field-body"><dl class="first last docutils">
+<dt><a class="reference internal" href="#biosim.landscape.Desert.available_fodder_carnivore" title="biosim.landscape.Desert.available_fodder_carnivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">available_fodder_carnivore</span></code></a></dt>
+<dd><p class="first last">Finding the relative abundance of fodder for carnivore.</p>
+</dd>
+<dt><a class="reference internal" href="#biosim.landscape.Desert.available_fodder_herbivore" title="biosim.landscape.Desert.available_fodder_herbivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">available_fodder_herbivore</span></code></a></dt>
+<dd><p class="first last">Finding the relative abundance of fodder for herbivore.</p>
+</dd>
+<dt><a class="reference internal" href="#biosim.landscape.Desert.number_of_carnivores" title="biosim.landscape.Desert.number_of_carnivores"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_of_carnivores</span></code></a></dt>
+<dd><p class="first last">Finds the total number of carnivores in a specific cell :return: integer, number of carnivores.</p>
+</dd>
+<dt><a class="reference internal" href="#biosim.landscape.Desert.number_of_herbivores" title="biosim.landscape.Desert.number_of_herbivores"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_of_herbivores</span></code></a></dt>
+<dd><p class="first last">Finds the total number of herbivores in a specific cell</p>
+</dd>
+<dt><a class="reference internal" href="#biosim.landscape.Desert.sum_of_herbivore_mass" title="biosim.landscape.Desert.sum_of_herbivore_mass"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sum_of_herbivore_mass</span></code></a></dt>
+<dd><p class="first last">Calculates the total herbivore mass in the specific cell, i.e.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Desert.aging" title="biosim.landscape.Desert.aging"><code class="xref py py-obj docutils literal notranslate"><span class="pre">aging</span></code></a>()</td>
+<td>The age of all animals in the specific cell is incremented by one, once a year.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Desert.cell_population" title="biosim.landscape.Desert.cell_population"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cell_population</span></code></a>([population])</td>
+<td>Puts the animal population in the specific cell.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Desert.choose_migration_cell" title="biosim.landscape.Desert.choose_migration_cell"><code class="xref py py-obj docutils literal notranslate"><span class="pre">choose_migration_cell</span></code></a>(animal,&nbsp;…)</td>
+<td>A method to choose which of the adjacent cell the animal should migrate to, given that it migrates, and moves that animal to that cell.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Desert.death" title="biosim.landscape.Desert.death"><code class="xref py py-obj docutils literal notranslate"><span class="pre">death</span></code></a>()</td>
+<td>Updates the animal population list with the surviving animals after every year.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Desert.directional_probability" title="biosim.landscape.Desert.directional_probability"><code class="xref py py-obj docutils literal notranslate"><span class="pre">directional_probability</span></code></a>(animal,&nbsp;neighbour_cells)</td>
+<td>This method estimates the propensity for each neighbouring cell, and calculates the probability of herbivores migrating to that cell.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Desert.eat_request_carnivore" title="biosim.landscape.Desert.eat_request_carnivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eat_request_carnivore</span></code></a>()</td>
+<td>Carnivore eats after request.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Desert.eat_request_herbivore" title="biosim.landscape.Desert.eat_request_herbivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eat_request_herbivore</span></code></a>()</td>
+<td>Herbivores eats after request and update of available fodder.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Desert.migrate" title="biosim.landscape.Desert.migrate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">migrate</span></code></a>(neighbour_cells)</td>
+<td>A method that migrates all animals in a cell iteratively.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Desert.propensity" title="biosim.landscape.Desert.propensity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">propensity</span></code></a>()</td>
+<td>Calculates the propensity of an animal migrating.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Desert.reproduction" title="biosim.landscape.Desert.reproduction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reproduction</span></code></a>()</td>
+<td>Finds out which animals for each species that reproduce, based on reproduction probability, and adds a newborn of that species to the cell.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Desert.set_landscape_parameters" title="biosim.landscape.Desert.set_landscape_parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_landscape_parameters</span></code></a>(new_parameters)</td>
+<td>This method allows for manual setting of landscape parameters, i.e.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Desert.sort_by_fitness" title="biosim.landscape.Desert.sort_by_fitness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sort_by_fitness</span></code></a>()</td>
+<td>Updates and sorts animals in a specific cell by fitness, in descending order.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Desert.update_cell_population" title="biosim.landscape.Desert.update_cell_population"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_cell_population</span></code></a>()</td>
+<td>Updates the animal population in the specific cell.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Desert.update_fitness" title="biosim.landscape.Desert.update_fitness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_fitness</span></code></a>()</td>
+<td>Updates the fitness for all animals in the cell.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Desert.weight_loss" title="biosim.landscape.Desert.weight_loss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">weight_loss</span></code></a>()</td>
+<td>Reduces weight of all animals once a year.</td>
+</tr>
+</tbody>
+</table>
+<p>This method creates variables needed for the class.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attributes:</th><td class="field-body"><dl class="first last docutils">
+<dt><a class="reference internal" href="#biosim.landscape.Desert.available_fodder_carnivore" title="biosim.landscape.Desert.available_fodder_carnivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">available_fodder_carnivore</span></code></a></dt>
+<dd><p class="first last">Finding the relative abundance of fodder for carnivore.</p>
+</dd>
+<dt><a class="reference internal" href="#biosim.landscape.Desert.available_fodder_herbivore" title="biosim.landscape.Desert.available_fodder_herbivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">available_fodder_herbivore</span></code></a></dt>
+<dd><p class="first last">Finding the relative abundance of fodder for herbivore.</p>
+</dd>
+<dt><a class="reference internal" href="#biosim.landscape.Desert.number_of_carnivores" title="biosim.landscape.Desert.number_of_carnivores"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_of_carnivores</span></code></a></dt>
+<dd><p class="first last">Finds the total number of carnivores in a specific cell :return: integer, number of carnivores.</p>
+</dd>
+<dt><a class="reference internal" href="#biosim.landscape.Desert.number_of_herbivores" title="biosim.landscape.Desert.number_of_herbivores"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_of_herbivores</span></code></a></dt>
+<dd><p class="first last">Finds the total number of herbivores in a specific cell</p>
+</dd>
+<dt><a class="reference internal" href="#biosim.landscape.Desert.sum_of_herbivore_mass" title="biosim.landscape.Desert.sum_of_herbivore_mass"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sum_of_herbivore_mass</span></code></a></dt>
+<dd><p class="first last">Calculates the total herbivore mass in the specific cell, i.e.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Desert.aging" title="biosim.landscape.Desert.aging"><code class="xref py py-obj docutils literal notranslate"><span class="pre">aging</span></code></a>()</td>
+<td>The age of all animals in the specific cell is incremented by one, once a year.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Desert.cell_population" title="biosim.landscape.Desert.cell_population"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cell_population</span></code></a>([population])</td>
+<td>Puts the animal population in the specific cell.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Desert.choose_migration_cell" title="biosim.landscape.Desert.choose_migration_cell"><code class="xref py py-obj docutils literal notranslate"><span class="pre">choose_migration_cell</span></code></a>(animal,&nbsp;…)</td>
+<td>A method to choose which of the adjacent cell the animal should migrate to, given that it migrates, and moves that animal to that cell.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Desert.death" title="biosim.landscape.Desert.death"><code class="xref py py-obj docutils literal notranslate"><span class="pre">death</span></code></a>()</td>
+<td>Updates the animal population list with the surviving animals after every year.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Desert.directional_probability" title="biosim.landscape.Desert.directional_probability"><code class="xref py py-obj docutils literal notranslate"><span class="pre">directional_probability</span></code></a>(animal,&nbsp;neighbour_cells)</td>
+<td>This method estimates the propensity for each neighbouring cell, and calculates the probability of herbivores migrating to that cell.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Desert.eat_request_carnivore" title="biosim.landscape.Desert.eat_request_carnivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eat_request_carnivore</span></code></a>()</td>
+<td>Carnivore eats after request.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Desert.eat_request_herbivore" title="biosim.landscape.Desert.eat_request_herbivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eat_request_herbivore</span></code></a>()</td>
+<td>Herbivores eats after request and update of available fodder.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Desert.migrate" title="biosim.landscape.Desert.migrate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">migrate</span></code></a>(neighbour_cells)</td>
+<td>A method that migrates all animals in a cell iteratively.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Desert.propensity" title="biosim.landscape.Desert.propensity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">propensity</span></code></a>()</td>
+<td>Calculates the propensity of an animal migrating.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Desert.reproduction" title="biosim.landscape.Desert.reproduction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reproduction</span></code></a>()</td>
+<td>Finds out which animals for each species that reproduce, based on reproduction probability, and adds a newborn of that species to the cell.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Desert.set_landscape_parameters" title="biosim.landscape.Desert.set_landscape_parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_landscape_parameters</span></code></a>(new_parameters)</td>
+<td>This method allows for manual setting of landscape parameters, i.e.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Desert.sort_by_fitness" title="biosim.landscape.Desert.sort_by_fitness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sort_by_fitness</span></code></a>()</td>
+<td>Updates and sorts animals in a specific cell by fitness, in descending order.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Desert.update_cell_population" title="biosim.landscape.Desert.update_cell_population"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_cell_population</span></code></a>()</td>
+<td>Updates the animal population in the specific cell.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Desert.update_fitness" title="biosim.landscape.Desert.update_fitness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_fitness</span></code></a>()</td>
+<td>Updates the fitness for all animals in the cell.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Desert.weight_loss" title="biosim.landscape.Desert.weight_loss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">weight_loss</span></code></a>()</td>
+<td>Reduces weight of all animals once a year.</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="biosim.landscape.Desert.aging">
+<code class="descname">aging</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Desert.aging" title="Permalink to this definition">¶</a></dt>
+<dd><p>The age of all animals in the specific cell is incremented by one,
+once a year.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="biosim.landscape.Desert.available_fodder_carnivore">
+<code class="descname">available_fodder_carnivore</code><a class="headerlink" href="#biosim.landscape.Desert.available_fodder_carnivore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finding the relative abundance of fodder for carnivore.
+:return: float</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="biosim.landscape.Desert.available_fodder_herbivore">
+<code class="descname">available_fodder_herbivore</code><a class="headerlink" href="#biosim.landscape.Desert.available_fodder_herbivore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finding the relative abundance of fodder for herbivore.
+:return: float</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Desert.cell_population">
+<code class="descname">cell_population</code><span class="sig-paren">(</span><em>population=None</em><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Desert.cell_population" title="Permalink to this definition">¶</a></dt>
+<dd><p>Puts the animal population in the specific cell.
+:param population: list</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Desert.choose_migration_cell">
+<code class="descname">choose_migration_cell</code><span class="sig-paren">(</span><em>animal</em>, <em>neighbour_cells</em>, <em>probability_list</em><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Desert.choose_migration_cell" title="Permalink to this definition">¶</a></dt>
+<dd><p>A method to choose which of the adjacent cell the animal should
+migrate to, given that it migrates, and moves that animal to that cell.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>animal</strong> – object, either Herbivore or Carnivore</li>
+<li><strong>probability_list</strong> – list, probabilities of moving to an adjacent
+cell</li>
+<li><strong>neighbour_cells</strong> – list, objects of adjacent cells</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Desert.death">
+<code class="descname">death</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Desert.death" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the animal population list with the surviving animals after
+every year.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Desert.directional_probability">
+<code class="descname">directional_probability</code><span class="sig-paren">(</span><em>animal</em>, <em>neighbour_cells</em><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Desert.directional_probability" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method estimates the propensity for each neighbouring cell, and
+calculates the probability of herbivores migrating to that cell.
+Stores the result in a list.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>neighbour_cells</strong> – list, the four adjacent cells</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Return probability_list:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">list, probabilities of moving to an
+adjacent cell</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Desert.eat_request_carnivore">
+<code class="descname">eat_request_carnivore</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Desert.eat_request_carnivore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Carnivore eats after request.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Desert.eat_request_herbivore">
+<code class="descname">eat_request_herbivore</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Desert.eat_request_herbivore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Herbivores eats after request and update of available fodder.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Desert.migrate">
+<code class="descname">migrate</code><span class="sig-paren">(</span><em>neighbour_cells</em><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Desert.migrate" title="Permalink to this definition">¶</a></dt>
+<dd><p>A method that migrates all animals in a cell iteratively.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>neighbour_cells</strong> – list, objects of adjacent cells</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="biosim.landscape.Desert.number_of_carnivores">
+<code class="descname">number_of_carnivores</code><a class="headerlink" href="#biosim.landscape.Desert.number_of_carnivores" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds the total number of carnivores in a specific cell
+:return: integer, number of carnivores.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="biosim.landscape.Desert.number_of_herbivores">
+<code class="descname">number_of_herbivores</code><a class="headerlink" href="#biosim.landscape.Desert.number_of_herbivores" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds the total number of herbivores in a specific cell</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">integer, number of herbivores.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Desert.propensity">
+<code class="descname">propensity</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Desert.propensity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the propensity of an animal migrating.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">tuple, the propensities of herbivore and carnivore migration
+in first and second element of the tuple, respectively.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Desert.reproduction">
+<code class="descname">reproduction</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Desert.reproduction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds out which animals for each species that reproduce, based on
+reproduction probability, and adds a newborn of that species
+to the cell.</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="biosim.landscape.Desert.set_landscape_parameters">
+<em class="property">classmethod </em><code class="descname">set_landscape_parameters</code><span class="sig-paren">(</span><em>new_parameters</em><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Desert.set_landscape_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method allows for manual setting of landscape parameters,
+i.e. to change parameter values from default values to desired values.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>new_parameters</strong> – dict, dictionary with the new parameter values
+Only keys from the default parameter value dict
+are valid.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Desert.sort_by_fitness">
+<code class="descname">sort_by_fitness</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Desert.sort_by_fitness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates and sorts animals in a specific cell by fitness, in descending
+order.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="biosim.landscape.Desert.sum_of_herbivore_mass">
+<code class="descname">sum_of_herbivore_mass</code><a class="headerlink" href="#biosim.landscape.Desert.sum_of_herbivore_mass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the total herbivore mass in the specific cell, i.e. the
+sum of the herbivore weights.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">integer, the sum of herbivore mass in the cell</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Desert.update_cell_population">
+<code class="descname">update_cell_population</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Desert.update_cell_population" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the animal population in the specific cell.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Desert.update_fitness">
+<code class="descname">update_fitness</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Desert.update_fitness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the fitness for all animals in the cell.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Desert.weight_loss">
+<code class="descname">weight_loss</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Desert.weight_loss" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reduces weight of all animals once a year.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="biosim.landscape.Jungle">
+<em class="property">class </em><code class="descclassname">biosim.landscape.</code><code class="descname">Jungle</code><a class="reference internal" href="_modules/biosim/landscape.html#Jungle"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#biosim.landscape.Jungle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the jungle type</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attributes:</th><td class="field-body"><dl class="first last docutils">
+<dt><a class="reference internal" href="#biosim.landscape.Jungle.available_fodder_carnivore" title="biosim.landscape.Jungle.available_fodder_carnivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">available_fodder_carnivore</span></code></a></dt>
+<dd><p class="first last">Finding the relative abundance of fodder for carnivore.</p>
+</dd>
+<dt><a class="reference internal" href="#biosim.landscape.Jungle.available_fodder_herbivore" title="biosim.landscape.Jungle.available_fodder_herbivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">available_fodder_herbivore</span></code></a></dt>
+<dd><p class="first last">Finding the relative abundance of fodder for herbivore.</p>
+</dd>
+<dt><a class="reference internal" href="#biosim.landscape.Jungle.number_of_carnivores" title="biosim.landscape.Jungle.number_of_carnivores"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_of_carnivores</span></code></a></dt>
+<dd><p class="first last">Finds the total number of carnivores in a specific cell :return: integer, number of carnivores.</p>
+</dd>
+<dt><a class="reference internal" href="#biosim.landscape.Jungle.number_of_herbivores" title="biosim.landscape.Jungle.number_of_herbivores"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_of_herbivores</span></code></a></dt>
+<dd><p class="first last">Finds the total number of herbivores in a specific cell</p>
+</dd>
+<dt><a class="reference internal" href="#biosim.landscape.Jungle.sum_of_herbivore_mass" title="biosim.landscape.Jungle.sum_of_herbivore_mass"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sum_of_herbivore_mass</span></code></a></dt>
+<dd><p class="first last">Calculates the total herbivore mass in the specific cell, i.e.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Jungle.aging" title="biosim.landscape.Jungle.aging"><code class="xref py py-obj docutils literal notranslate"><span class="pre">aging</span></code></a>()</td>
+<td>The age of all animals in the specific cell is incremented by one, once a year.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Jungle.cell_population" title="biosim.landscape.Jungle.cell_population"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cell_population</span></code></a>([population])</td>
+<td>Puts the animal population in the specific cell.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Jungle.choose_migration_cell" title="biosim.landscape.Jungle.choose_migration_cell"><code class="xref py py-obj docutils literal notranslate"><span class="pre">choose_migration_cell</span></code></a>(animal,&nbsp;…)</td>
+<td>A method to choose which of the adjacent cell the animal should migrate to, given that it migrates, and moves that animal to that cell.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Jungle.death" title="biosim.landscape.Jungle.death"><code class="xref py py-obj docutils literal notranslate"><span class="pre">death</span></code></a>()</td>
+<td>Updates the animal population list with the surviving animals after every year.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Jungle.directional_probability" title="biosim.landscape.Jungle.directional_probability"><code class="xref py py-obj docutils literal notranslate"><span class="pre">directional_probability</span></code></a>(animal,&nbsp;neighbour_cells)</td>
+<td>This method estimates the propensity for each neighbouring cell, and calculates the probability of herbivores migrating to that cell.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Jungle.eat_request_carnivore" title="biosim.landscape.Jungle.eat_request_carnivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eat_request_carnivore</span></code></a>()</td>
+<td>Carnivore eats after request.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Jungle.eat_request_herbivore" title="biosim.landscape.Jungle.eat_request_herbivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eat_request_herbivore</span></code></a>()</td>
+<td>Herbivores eats after request and update of available fodder.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Jungle.migrate" title="biosim.landscape.Jungle.migrate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">migrate</span></code></a>(neighbour_cells)</td>
+<td>A method that migrates all animals in a cell iteratively.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Jungle.propensity" title="biosim.landscape.Jungle.propensity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">propensity</span></code></a>()</td>
+<td>Calculates the propensity of an animal migrating.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Jungle.regenerate" title="biosim.landscape.Jungle.regenerate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">regenerate</span></code></a>()</td>
+<td>This method regenerates the amount of fodder in each cell according to given formula for the given landscape type.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Jungle.reproduction" title="biosim.landscape.Jungle.reproduction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reproduction</span></code></a>()</td>
+<td>Finds out which animals for each species that reproduce, based on reproduction probability, and adds a newborn of that species to the cell.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Jungle.set_landscape_parameters" title="biosim.landscape.Jungle.set_landscape_parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_landscape_parameters</span></code></a>(new_parameters)</td>
+<td>This method allows for manual setting of landscape parameters, i.e.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Jungle.sort_by_fitness" title="biosim.landscape.Jungle.sort_by_fitness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sort_by_fitness</span></code></a>()</td>
+<td>Updates and sorts animals in a specific cell by fitness, in descending order.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Jungle.update_cell_population" title="biosim.landscape.Jungle.update_cell_population"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_cell_population</span></code></a>()</td>
+<td>Updates the animal population in the specific cell.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Jungle.update_fitness" title="biosim.landscape.Jungle.update_fitness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_fitness</span></code></a>()</td>
+<td>Updates the fitness for all animals in the cell.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Jungle.weight_loss" title="biosim.landscape.Jungle.weight_loss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">weight_loss</span></code></a>()</td>
+<td>Reduces weight of all animals once a year.</td>
+</tr>
+</tbody>
+</table>
+<p>This method creates variables needed for the class.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attributes:</th><td class="field-body"><dl class="first last docutils">
+<dt><a class="reference internal" href="#biosim.landscape.Jungle.available_fodder_carnivore" title="biosim.landscape.Jungle.available_fodder_carnivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">available_fodder_carnivore</span></code></a></dt>
+<dd><p class="first last">Finding the relative abundance of fodder for carnivore.</p>
+</dd>
+<dt><a class="reference internal" href="#biosim.landscape.Jungle.available_fodder_herbivore" title="biosim.landscape.Jungle.available_fodder_herbivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">available_fodder_herbivore</span></code></a></dt>
+<dd><p class="first last">Finding the relative abundance of fodder for herbivore.</p>
+</dd>
+<dt><a class="reference internal" href="#biosim.landscape.Jungle.number_of_carnivores" title="biosim.landscape.Jungle.number_of_carnivores"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_of_carnivores</span></code></a></dt>
+<dd><p class="first last">Finds the total number of carnivores in a specific cell :return: integer, number of carnivores.</p>
+</dd>
+<dt><a class="reference internal" href="#biosim.landscape.Jungle.number_of_herbivores" title="biosim.landscape.Jungle.number_of_herbivores"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_of_herbivores</span></code></a></dt>
+<dd><p class="first last">Finds the total number of herbivores in a specific cell</p>
+</dd>
+<dt><a class="reference internal" href="#biosim.landscape.Jungle.sum_of_herbivore_mass" title="biosim.landscape.Jungle.sum_of_herbivore_mass"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sum_of_herbivore_mass</span></code></a></dt>
+<dd><p class="first last">Calculates the total herbivore mass in the specific cell, i.e.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Jungle.aging" title="biosim.landscape.Jungle.aging"><code class="xref py py-obj docutils literal notranslate"><span class="pre">aging</span></code></a>()</td>
+<td>The age of all animals in the specific cell is incremented by one, once a year.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Jungle.cell_population" title="biosim.landscape.Jungle.cell_population"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cell_population</span></code></a>([population])</td>
+<td>Puts the animal population in the specific cell.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Jungle.choose_migration_cell" title="biosim.landscape.Jungle.choose_migration_cell"><code class="xref py py-obj docutils literal notranslate"><span class="pre">choose_migration_cell</span></code></a>(animal,&nbsp;…)</td>
+<td>A method to choose which of the adjacent cell the animal should migrate to, given that it migrates, and moves that animal to that cell.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Jungle.death" title="biosim.landscape.Jungle.death"><code class="xref py py-obj docutils literal notranslate"><span class="pre">death</span></code></a>()</td>
+<td>Updates the animal population list with the surviving animals after every year.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Jungle.directional_probability" title="biosim.landscape.Jungle.directional_probability"><code class="xref py py-obj docutils literal notranslate"><span class="pre">directional_probability</span></code></a>(animal,&nbsp;neighbour_cells)</td>
+<td>This method estimates the propensity for each neighbouring cell, and calculates the probability of herbivores migrating to that cell.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Jungle.eat_request_carnivore" title="biosim.landscape.Jungle.eat_request_carnivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eat_request_carnivore</span></code></a>()</td>
+<td>Carnivore eats after request.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Jungle.eat_request_herbivore" title="biosim.landscape.Jungle.eat_request_herbivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eat_request_herbivore</span></code></a>()</td>
+<td>Herbivores eats after request and update of available fodder.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Jungle.migrate" title="biosim.landscape.Jungle.migrate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">migrate</span></code></a>(neighbour_cells)</td>
+<td>A method that migrates all animals in a cell iteratively.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Jungle.propensity" title="biosim.landscape.Jungle.propensity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">propensity</span></code></a>()</td>
+<td>Calculates the propensity of an animal migrating.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Jungle.regenerate" title="biosim.landscape.Jungle.regenerate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">regenerate</span></code></a>()</td>
+<td>This method regenerates the amount of fodder in each cell according to given formula for the given landscape type.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Jungle.reproduction" title="biosim.landscape.Jungle.reproduction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reproduction</span></code></a>()</td>
+<td>Finds out which animals for each species that reproduce, based on reproduction probability, and adds a newborn of that species to the cell.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Jungle.set_landscape_parameters" title="biosim.landscape.Jungle.set_landscape_parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_landscape_parameters</span></code></a>(new_parameters)</td>
+<td>This method allows for manual setting of landscape parameters, i.e.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Jungle.sort_by_fitness" title="biosim.landscape.Jungle.sort_by_fitness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sort_by_fitness</span></code></a>()</td>
+<td>Updates and sorts animals in a specific cell by fitness, in descending order.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Jungle.update_cell_population" title="biosim.landscape.Jungle.update_cell_population"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_cell_population</span></code></a>()</td>
+<td>Updates the animal population in the specific cell.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Jungle.update_fitness" title="biosim.landscape.Jungle.update_fitness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_fitness</span></code></a>()</td>
+<td>Updates the fitness for all animals in the cell.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Jungle.weight_loss" title="biosim.landscape.Jungle.weight_loss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">weight_loss</span></code></a>()</td>
+<td>Reduces weight of all animals once a year.</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="biosim.landscape.Jungle.aging">
+<code class="descname">aging</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Jungle.aging" title="Permalink to this definition">¶</a></dt>
+<dd><p>The age of all animals in the specific cell is incremented by one,
+once a year.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="biosim.landscape.Jungle.available_fodder_carnivore">
+<code class="descname">available_fodder_carnivore</code><a class="headerlink" href="#biosim.landscape.Jungle.available_fodder_carnivore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finding the relative abundance of fodder for carnivore.
+:return: float</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="biosim.landscape.Jungle.available_fodder_herbivore">
+<code class="descname">available_fodder_herbivore</code><a class="headerlink" href="#biosim.landscape.Jungle.available_fodder_herbivore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finding the relative abundance of fodder for herbivore.
+:return: float</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Jungle.cell_population">
+<code class="descname">cell_population</code><span class="sig-paren">(</span><em>population=None</em><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Jungle.cell_population" title="Permalink to this definition">¶</a></dt>
+<dd><p>Puts the animal population in the specific cell.
+:param population: list</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Jungle.choose_migration_cell">
+<code class="descname">choose_migration_cell</code><span class="sig-paren">(</span><em>animal</em>, <em>neighbour_cells</em>, <em>probability_list</em><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Jungle.choose_migration_cell" title="Permalink to this definition">¶</a></dt>
+<dd><p>A method to choose which of the adjacent cell the animal should
+migrate to, given that it migrates, and moves that animal to that cell.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>animal</strong> – object, either Herbivore or Carnivore</li>
+<li><strong>probability_list</strong> – list, probabilities of moving to an adjacent
+cell</li>
+<li><strong>neighbour_cells</strong> – list, objects of adjacent cells</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Jungle.death">
+<code class="descname">death</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Jungle.death" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the animal population list with the surviving animals after
+every year.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Jungle.directional_probability">
+<code class="descname">directional_probability</code><span class="sig-paren">(</span><em>animal</em>, <em>neighbour_cells</em><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Jungle.directional_probability" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method estimates the propensity for each neighbouring cell, and
+calculates the probability of herbivores migrating to that cell.
+Stores the result in a list.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>neighbour_cells</strong> – list, the four adjacent cells</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Return probability_list:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">list, probabilities of moving to an
+adjacent cell</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Jungle.eat_request_carnivore">
+<code class="descname">eat_request_carnivore</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Jungle.eat_request_carnivore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Carnivore eats after request.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Jungle.eat_request_herbivore">
+<code class="descname">eat_request_herbivore</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Jungle.eat_request_herbivore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Herbivores eats after request and update of available fodder.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Jungle.migrate">
+<code class="descname">migrate</code><span class="sig-paren">(</span><em>neighbour_cells</em><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Jungle.migrate" title="Permalink to this definition">¶</a></dt>
+<dd><p>A method that migrates all animals in a cell iteratively.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>neighbour_cells</strong> – list, objects of adjacent cells</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="biosim.landscape.Jungle.number_of_carnivores">
+<code class="descname">number_of_carnivores</code><a class="headerlink" href="#biosim.landscape.Jungle.number_of_carnivores" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds the total number of carnivores in a specific cell
+:return: integer, number of carnivores.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="biosim.landscape.Jungle.number_of_herbivores">
+<code class="descname">number_of_herbivores</code><a class="headerlink" href="#biosim.landscape.Jungle.number_of_herbivores" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds the total number of herbivores in a specific cell</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">integer, number of herbivores.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Jungle.propensity">
+<code class="descname">propensity</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Jungle.propensity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the propensity of an animal migrating.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">tuple, the propensities of herbivore and carnivore migration
+in first and second element of the tuple, respectively.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Jungle.regenerate">
+<code class="descname">regenerate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/landscape.html#Jungle.regenerate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#biosim.landscape.Jungle.regenerate" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method regenerates the amount of fodder in each cell according to
+given formula for the given landscape type.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Jungle.reproduction">
+<code class="descname">reproduction</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Jungle.reproduction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds out which animals for each species that reproduce, based on
+reproduction probability, and adds a newborn of that species
+to the cell.</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="biosim.landscape.Jungle.set_landscape_parameters">
+<em class="property">classmethod </em><code class="descname">set_landscape_parameters</code><span class="sig-paren">(</span><em>new_parameters</em><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Jungle.set_landscape_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method allows for manual setting of landscape parameters,
+i.e. to change parameter values from default values to desired values.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>new_parameters</strong> – dict, dictionary with the new parameter values
+Only keys from the default parameter value dict
+are valid.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Jungle.sort_by_fitness">
+<code class="descname">sort_by_fitness</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Jungle.sort_by_fitness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates and sorts animals in a specific cell by fitness, in descending
+order.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="biosim.landscape.Jungle.sum_of_herbivore_mass">
+<code class="descname">sum_of_herbivore_mass</code><a class="headerlink" href="#biosim.landscape.Jungle.sum_of_herbivore_mass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the total herbivore mass in the specific cell, i.e. the
+sum of the herbivore weights.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">integer, the sum of herbivore mass in the cell</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Jungle.update_cell_population">
+<code class="descname">update_cell_population</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Jungle.update_cell_population" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the animal population in the specific cell.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Jungle.update_fitness">
+<code class="descname">update_fitness</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Jungle.update_fitness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the fitness for all animals in the cell.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Jungle.weight_loss">
+<code class="descname">weight_loss</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Jungle.weight_loss" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reduces weight of all animals once a year.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="biosim.landscape.Landscape">
+<em class="property">class </em><code class="descclassname">biosim.landscape.</code><code class="descname">Landscape</code><a class="reference internal" href="_modules/biosim/landscape.html#Landscape"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#biosim.landscape.Landscape" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class decides the behaviour of the landscape.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attributes:</th><td class="field-body"><dl class="first last docutils">
+<dt><a class="reference internal" href="#biosim.landscape.Landscape.available_fodder_carnivore" title="biosim.landscape.Landscape.available_fodder_carnivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">available_fodder_carnivore</span></code></a></dt>
+<dd><p class="first last">Finding the relative abundance of fodder for carnivore.</p>
+</dd>
+<dt><a class="reference internal" href="#biosim.landscape.Landscape.available_fodder_herbivore" title="biosim.landscape.Landscape.available_fodder_herbivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">available_fodder_herbivore</span></code></a></dt>
+<dd><p class="first last">Finding the relative abundance of fodder for herbivore.</p>
+</dd>
+<dt><strong>habitable</strong></dt>
+<dd></dd>
+<dt><a class="reference internal" href="#biosim.landscape.Landscape.number_of_carnivores" title="biosim.landscape.Landscape.number_of_carnivores"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_of_carnivores</span></code></a></dt>
+<dd><p class="first last">Finds the total number of carnivores in a specific cell :return: integer, number of carnivores.</p>
+</dd>
+<dt><a class="reference internal" href="#biosim.landscape.Landscape.number_of_herbivores" title="biosim.landscape.Landscape.number_of_herbivores"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_of_herbivores</span></code></a></dt>
+<dd><p class="first last">Finds the total number of herbivores in a specific cell</p>
+</dd>
+<dt><a class="reference internal" href="#biosim.landscape.Landscape.sum_of_herbivore_mass" title="biosim.landscape.Landscape.sum_of_herbivore_mass"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sum_of_herbivore_mass</span></code></a></dt>
+<dd><p class="first last">Calculates the total herbivore mass in the specific cell, i.e.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Landscape.aging" title="biosim.landscape.Landscape.aging"><code class="xref py py-obj docutils literal notranslate"><span class="pre">aging</span></code></a>()</td>
+<td>The age of all animals in the specific cell is incremented by one, once a year.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Landscape.cell_population" title="biosim.landscape.Landscape.cell_population"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cell_population</span></code></a>([population])</td>
+<td>Puts the animal population in the specific cell.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Landscape.choose_migration_cell" title="biosim.landscape.Landscape.choose_migration_cell"><code class="xref py py-obj docutils literal notranslate"><span class="pre">choose_migration_cell</span></code></a>(animal,&nbsp;…)</td>
+<td>A method to choose which of the adjacent cell the animal should migrate to, given that it migrates, and moves that animal to that cell.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Landscape.death" title="biosim.landscape.Landscape.death"><code class="xref py py-obj docutils literal notranslate"><span class="pre">death</span></code></a>()</td>
+<td>Updates the animal population list with the surviving animals after every year.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Landscape.directional_probability" title="biosim.landscape.Landscape.directional_probability"><code class="xref py py-obj docutils literal notranslate"><span class="pre">directional_probability</span></code></a>(animal,&nbsp;neighbour_cells)</td>
+<td>This method estimates the propensity for each neighbouring cell, and calculates the probability of herbivores migrating to that cell.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Landscape.eat_request_carnivore" title="biosim.landscape.Landscape.eat_request_carnivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eat_request_carnivore</span></code></a>()</td>
+<td>Carnivore eats after request.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Landscape.eat_request_herbivore" title="biosim.landscape.Landscape.eat_request_herbivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eat_request_herbivore</span></code></a>()</td>
+<td>Herbivores eats after request and update of available fodder.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Landscape.migrate" title="biosim.landscape.Landscape.migrate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">migrate</span></code></a>(neighbour_cells)</td>
+<td>A method that migrates all animals in a cell iteratively.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Landscape.propensity" title="biosim.landscape.Landscape.propensity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">propensity</span></code></a>()</td>
+<td>Calculates the propensity of an animal migrating.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Landscape.reproduction" title="biosim.landscape.Landscape.reproduction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reproduction</span></code></a>()</td>
+<td>Finds out which animals for each species that reproduce, based on reproduction probability, and adds a newborn of that species to the cell.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Landscape.set_landscape_parameters" title="biosim.landscape.Landscape.set_landscape_parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_landscape_parameters</span></code></a>(new_parameters)</td>
+<td>This method allows for manual setting of landscape parameters, i.e.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Landscape.sort_by_fitness" title="biosim.landscape.Landscape.sort_by_fitness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sort_by_fitness</span></code></a>()</td>
+<td>Updates and sorts animals in a specific cell by fitness, in descending order.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Landscape.update_cell_population" title="biosim.landscape.Landscape.update_cell_population"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_cell_population</span></code></a>()</td>
+<td>Updates the animal population in the specific cell.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Landscape.update_fitness" title="biosim.landscape.Landscape.update_fitness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_fitness</span></code></a>()</td>
+<td>Updates the fitness for all animals in the cell.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Landscape.weight_loss" title="biosim.landscape.Landscape.weight_loss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">weight_loss</span></code></a>()</td>
+<td>Reduces weight of all animals once a year.</td>
+</tr>
+</tbody>
+</table>
+<p>This method creates variables needed for the class.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attributes:</th><td class="field-body"><dl class="first last docutils">
+<dt><a class="reference internal" href="#biosim.landscape.Landscape.available_fodder_carnivore" title="biosim.landscape.Landscape.available_fodder_carnivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">available_fodder_carnivore</span></code></a></dt>
+<dd><p class="first last">Finding the relative abundance of fodder for carnivore.</p>
+</dd>
+<dt><a class="reference internal" href="#biosim.landscape.Landscape.available_fodder_herbivore" title="biosim.landscape.Landscape.available_fodder_herbivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">available_fodder_herbivore</span></code></a></dt>
+<dd><p class="first last">Finding the relative abundance of fodder for herbivore.</p>
+</dd>
+<dt><strong>habitable</strong></dt>
+<dd></dd>
+<dt><a class="reference internal" href="#biosim.landscape.Landscape.number_of_carnivores" title="biosim.landscape.Landscape.number_of_carnivores"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_of_carnivores</span></code></a></dt>
+<dd><p class="first last">Finds the total number of carnivores in a specific cell :return: integer, number of carnivores.</p>
+</dd>
+<dt><a class="reference internal" href="#biosim.landscape.Landscape.number_of_herbivores" title="biosim.landscape.Landscape.number_of_herbivores"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_of_herbivores</span></code></a></dt>
+<dd><p class="first last">Finds the total number of herbivores in a specific cell</p>
+</dd>
+<dt><a class="reference internal" href="#biosim.landscape.Landscape.sum_of_herbivore_mass" title="biosim.landscape.Landscape.sum_of_herbivore_mass"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sum_of_herbivore_mass</span></code></a></dt>
+<dd><p class="first last">Calculates the total herbivore mass in the specific cell, i.e.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Landscape.aging" title="biosim.landscape.Landscape.aging"><code class="xref py py-obj docutils literal notranslate"><span class="pre">aging</span></code></a>()</td>
+<td>The age of all animals in the specific cell is incremented by one, once a year.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Landscape.cell_population" title="biosim.landscape.Landscape.cell_population"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cell_population</span></code></a>([population])</td>
+<td>Puts the animal population in the specific cell.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Landscape.choose_migration_cell" title="biosim.landscape.Landscape.choose_migration_cell"><code class="xref py py-obj docutils literal notranslate"><span class="pre">choose_migration_cell</span></code></a>(animal,&nbsp;…)</td>
+<td>A method to choose which of the adjacent cell the animal should migrate to, given that it migrates, and moves that animal to that cell.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Landscape.death" title="biosim.landscape.Landscape.death"><code class="xref py py-obj docutils literal notranslate"><span class="pre">death</span></code></a>()</td>
+<td>Updates the animal population list with the surviving animals after every year.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Landscape.directional_probability" title="biosim.landscape.Landscape.directional_probability"><code class="xref py py-obj docutils literal notranslate"><span class="pre">directional_probability</span></code></a>(animal,&nbsp;neighbour_cells)</td>
+<td>This method estimates the propensity for each neighbouring cell, and calculates the probability of herbivores migrating to that cell.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Landscape.eat_request_carnivore" title="biosim.landscape.Landscape.eat_request_carnivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eat_request_carnivore</span></code></a>()</td>
+<td>Carnivore eats after request.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Landscape.eat_request_herbivore" title="biosim.landscape.Landscape.eat_request_herbivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eat_request_herbivore</span></code></a>()</td>
+<td>Herbivores eats after request and update of available fodder.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Landscape.migrate" title="biosim.landscape.Landscape.migrate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">migrate</span></code></a>(neighbour_cells)</td>
+<td>A method that migrates all animals in a cell iteratively.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Landscape.propensity" title="biosim.landscape.Landscape.propensity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">propensity</span></code></a>()</td>
+<td>Calculates the propensity of an animal migrating.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Landscape.reproduction" title="biosim.landscape.Landscape.reproduction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reproduction</span></code></a>()</td>
+<td>Finds out which animals for each species that reproduce, based on reproduction probability, and adds a newborn of that species to the cell.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Landscape.set_landscape_parameters" title="biosim.landscape.Landscape.set_landscape_parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_landscape_parameters</span></code></a>(new_parameters)</td>
+<td>This method allows for manual setting of landscape parameters, i.e.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Landscape.sort_by_fitness" title="biosim.landscape.Landscape.sort_by_fitness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sort_by_fitness</span></code></a>()</td>
+<td>Updates and sorts animals in a specific cell by fitness, in descending order.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Landscape.update_cell_population" title="biosim.landscape.Landscape.update_cell_population"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_cell_population</span></code></a>()</td>
+<td>Updates the animal population in the specific cell.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Landscape.update_fitness" title="biosim.landscape.Landscape.update_fitness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_fitness</span></code></a>()</td>
+<td>Updates the fitness for all animals in the cell.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Landscape.weight_loss" title="biosim.landscape.Landscape.weight_loss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">weight_loss</span></code></a>()</td>
+<td>Reduces weight of all animals once a year.</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="biosim.landscape.Landscape.aging">
+<code class="descname">aging</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/landscape.html#Landscape.aging"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#biosim.landscape.Landscape.aging" title="Permalink to this definition">¶</a></dt>
+<dd><p>The age of all animals in the specific cell is incremented by one,
+once a year.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="biosim.landscape.Landscape.available_fodder_carnivore">
+<code class="descname">available_fodder_carnivore</code><a class="headerlink" href="#biosim.landscape.Landscape.available_fodder_carnivore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finding the relative abundance of fodder for carnivore.
+:return: float</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="biosim.landscape.Landscape.available_fodder_herbivore">
+<code class="descname">available_fodder_herbivore</code><a class="headerlink" href="#biosim.landscape.Landscape.available_fodder_herbivore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finding the relative abundance of fodder for herbivore.
+:return: float</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Landscape.cell_population">
+<code class="descname">cell_population</code><span class="sig-paren">(</span><em>population=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/landscape.html#Landscape.cell_population"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#biosim.landscape.Landscape.cell_population" title="Permalink to this definition">¶</a></dt>
+<dd><p>Puts the animal population in the specific cell.
+:param population: list</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Landscape.choose_migration_cell">
+<code class="descname">choose_migration_cell</code><span class="sig-paren">(</span><em>animal</em>, <em>neighbour_cells</em>, <em>probability_list</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/landscape.html#Landscape.choose_migration_cell"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#biosim.landscape.Landscape.choose_migration_cell" title="Permalink to this definition">¶</a></dt>
+<dd><p>A method to choose which of the adjacent cell the animal should
+migrate to, given that it migrates, and moves that animal to that cell.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>animal</strong> – object, either Herbivore or Carnivore</li>
+<li><strong>probability_list</strong> – list, probabilities of moving to an adjacent
+cell</li>
+<li><strong>neighbour_cells</strong> – list, objects of adjacent cells</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Landscape.death">
+<code class="descname">death</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/landscape.html#Landscape.death"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#biosim.landscape.Landscape.death" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the animal population list with the surviving animals after
+every year.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Landscape.directional_probability">
+<code class="descname">directional_probability</code><span class="sig-paren">(</span><em>animal</em>, <em>neighbour_cells</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/landscape.html#Landscape.directional_probability"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#biosim.landscape.Landscape.directional_probability" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method estimates the propensity for each neighbouring cell, and
+calculates the probability of herbivores migrating to that cell.
+Stores the result in a list.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>neighbour_cells</strong> – list, the four adjacent cells</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Return probability_list:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">list, probabilities of moving to an
+adjacent cell</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Landscape.eat_request_carnivore">
+<code class="descname">eat_request_carnivore</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/landscape.html#Landscape.eat_request_carnivore"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#biosim.landscape.Landscape.eat_request_carnivore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Carnivore eats after request.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Landscape.eat_request_herbivore">
+<code class="descname">eat_request_herbivore</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/landscape.html#Landscape.eat_request_herbivore"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#biosim.landscape.Landscape.eat_request_herbivore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Herbivores eats after request and update of available fodder.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Landscape.migrate">
+<code class="descname">migrate</code><span class="sig-paren">(</span><em>neighbour_cells</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/landscape.html#Landscape.migrate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#biosim.landscape.Landscape.migrate" title="Permalink to this definition">¶</a></dt>
+<dd><p>A method that migrates all animals in a cell iteratively.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>neighbour_cells</strong> – list, objects of adjacent cells</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="biosim.landscape.Landscape.number_of_carnivores">
+<code class="descname">number_of_carnivores</code><a class="headerlink" href="#biosim.landscape.Landscape.number_of_carnivores" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds the total number of carnivores in a specific cell
+:return: integer, number of carnivores.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="biosim.landscape.Landscape.number_of_herbivores">
+<code class="descname">number_of_herbivores</code><a class="headerlink" href="#biosim.landscape.Landscape.number_of_herbivores" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds the total number of herbivores in a specific cell</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">integer, number of herbivores.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Landscape.propensity">
+<code class="descname">propensity</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/landscape.html#Landscape.propensity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#biosim.landscape.Landscape.propensity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the propensity of an animal migrating.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">tuple, the propensities of herbivore and carnivore migration
+in first and second element of the tuple, respectively.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Landscape.reproduction">
+<code class="descname">reproduction</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/landscape.html#Landscape.reproduction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#biosim.landscape.Landscape.reproduction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds out which animals for each species that reproduce, based on
+reproduction probability, and adds a newborn of that species
+to the cell.</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="biosim.landscape.Landscape.set_landscape_parameters">
+<em class="property">classmethod </em><code class="descname">set_landscape_parameters</code><span class="sig-paren">(</span><em>new_parameters</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/landscape.html#Landscape.set_landscape_parameters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#biosim.landscape.Landscape.set_landscape_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method allows for manual setting of landscape parameters,
+i.e. to change parameter values from default values to desired values.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>new_parameters</strong> – dict, dictionary with the new parameter values
+Only keys from the default parameter value dict
+are valid.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Landscape.sort_by_fitness">
+<code class="descname">sort_by_fitness</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/landscape.html#Landscape.sort_by_fitness"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#biosim.landscape.Landscape.sort_by_fitness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates and sorts animals in a specific cell by fitness, in descending
+order.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="biosim.landscape.Landscape.sum_of_herbivore_mass">
+<code class="descname">sum_of_herbivore_mass</code><a class="headerlink" href="#biosim.landscape.Landscape.sum_of_herbivore_mass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the total herbivore mass in the specific cell, i.e. the
+sum of the herbivore weights.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">integer, the sum of herbivore mass in the cell</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Landscape.update_cell_population">
+<code class="descname">update_cell_population</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/landscape.html#Landscape.update_cell_population"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#biosim.landscape.Landscape.update_cell_population" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the animal population in the specific cell.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Landscape.update_fitness">
+<code class="descname">update_fitness</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/landscape.html#Landscape.update_fitness"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#biosim.landscape.Landscape.update_fitness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the fitness for all animals in the cell.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Landscape.weight_loss">
+<code class="descname">weight_loss</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/landscape.html#Landscape.weight_loss"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#biosim.landscape.Landscape.weight_loss" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reduces weight of all animals once a year.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="biosim.landscape.Mountain">
+<em class="property">class </em><code class="descclassname">biosim.landscape.</code><code class="descname">Mountain</code><a class="reference internal" href="_modules/biosim/landscape.html#Mountain"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#biosim.landscape.Mountain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the mountain type</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attributes:</th><td class="field-body"><dl class="first last docutils">
+<dt><a class="reference internal" href="#biosim.landscape.Mountain.available_fodder_carnivore" title="biosim.landscape.Mountain.available_fodder_carnivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">available_fodder_carnivore</span></code></a></dt>
+<dd><p class="first last">Finding the relative abundance of fodder for carnivore.</p>
+</dd>
+<dt><a class="reference internal" href="#biosim.landscape.Mountain.available_fodder_herbivore" title="biosim.landscape.Mountain.available_fodder_herbivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">available_fodder_herbivore</span></code></a></dt>
+<dd><p class="first last">Finding the relative abundance of fodder for herbivore.</p>
+</dd>
+<dt><a class="reference internal" href="#biosim.landscape.Mountain.number_of_carnivores" title="biosim.landscape.Mountain.number_of_carnivores"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_of_carnivores</span></code></a></dt>
+<dd><p class="first last">Finds the total number of carnivores in a specific cell :return: integer, number of carnivores.</p>
+</dd>
+<dt><a class="reference internal" href="#biosim.landscape.Mountain.number_of_herbivores" title="biosim.landscape.Mountain.number_of_herbivores"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_of_herbivores</span></code></a></dt>
+<dd><p class="first last">Finds the total number of herbivores in a specific cell</p>
+</dd>
+<dt><a class="reference internal" href="#biosim.landscape.Mountain.sum_of_herbivore_mass" title="biosim.landscape.Mountain.sum_of_herbivore_mass"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sum_of_herbivore_mass</span></code></a></dt>
+<dd><p class="first last">Calculates the total herbivore mass in the specific cell, i.e.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Mountain.aging" title="biosim.landscape.Mountain.aging"><code class="xref py py-obj docutils literal notranslate"><span class="pre">aging</span></code></a>()</td>
+<td>The age of all animals in the specific cell is incremented by one, once a year.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Mountain.cell_population" title="biosim.landscape.Mountain.cell_population"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cell_population</span></code></a>([population])</td>
+<td>Puts the animal population in the specific cell.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Mountain.choose_migration_cell" title="biosim.landscape.Mountain.choose_migration_cell"><code class="xref py py-obj docutils literal notranslate"><span class="pre">choose_migration_cell</span></code></a>(animal,&nbsp;…)</td>
+<td>A method to choose which of the adjacent cell the animal should migrate to, given that it migrates, and moves that animal to that cell.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Mountain.death" title="biosim.landscape.Mountain.death"><code class="xref py py-obj docutils literal notranslate"><span class="pre">death</span></code></a>()</td>
+<td>Updates the animal population list with the surviving animals after every year.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Mountain.directional_probability" title="biosim.landscape.Mountain.directional_probability"><code class="xref py py-obj docutils literal notranslate"><span class="pre">directional_probability</span></code></a>(animal,&nbsp;neighbour_cells)</td>
+<td>This method estimates the propensity for each neighbouring cell, and calculates the probability of herbivores migrating to that cell.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Mountain.eat_request_carnivore" title="biosim.landscape.Mountain.eat_request_carnivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eat_request_carnivore</span></code></a>()</td>
+<td>Carnivore eats after request.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Mountain.eat_request_herbivore" title="biosim.landscape.Mountain.eat_request_herbivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eat_request_herbivore</span></code></a>()</td>
+<td>Herbivores eats after request and update of available fodder.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Mountain.migrate" title="biosim.landscape.Mountain.migrate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">migrate</span></code></a>(neighbour_cells)</td>
+<td>A method that migrates all animals in a cell iteratively.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Mountain.propensity" title="biosim.landscape.Mountain.propensity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">propensity</span></code></a>()</td>
+<td>Calculates the propensity of an animal migrating.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Mountain.reproduction" title="biosim.landscape.Mountain.reproduction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reproduction</span></code></a>()</td>
+<td>Finds out which animals for each species that reproduce, based on reproduction probability, and adds a newborn of that species to the cell.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Mountain.set_landscape_parameters" title="biosim.landscape.Mountain.set_landscape_parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_landscape_parameters</span></code></a>(new_parameters)</td>
+<td>This method allows for manual setting of landscape parameters, i.e.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Mountain.sort_by_fitness" title="biosim.landscape.Mountain.sort_by_fitness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sort_by_fitness</span></code></a>()</td>
+<td>Updates and sorts animals in a specific cell by fitness, in descending order.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Mountain.update_cell_population" title="biosim.landscape.Mountain.update_cell_population"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_cell_population</span></code></a>()</td>
+<td>Updates the animal population in the specific cell.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Mountain.update_fitness" title="biosim.landscape.Mountain.update_fitness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_fitness</span></code></a>()</td>
+<td>Updates the fitness for all animals in the cell.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Mountain.weight_loss" title="biosim.landscape.Mountain.weight_loss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">weight_loss</span></code></a>()</td>
+<td>Reduces weight of all animals once a year.</td>
+</tr>
+</tbody>
+</table>
+<p>This method creates variables needed for the class.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attributes:</th><td class="field-body"><dl class="first last docutils">
+<dt><a class="reference internal" href="#biosim.landscape.Mountain.available_fodder_carnivore" title="biosim.landscape.Mountain.available_fodder_carnivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">available_fodder_carnivore</span></code></a></dt>
+<dd><p class="first last">Finding the relative abundance of fodder for carnivore.</p>
+</dd>
+<dt><a class="reference internal" href="#biosim.landscape.Mountain.available_fodder_herbivore" title="biosim.landscape.Mountain.available_fodder_herbivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">available_fodder_herbivore</span></code></a></dt>
+<dd><p class="first last">Finding the relative abundance of fodder for herbivore.</p>
+</dd>
+<dt><a class="reference internal" href="#biosim.landscape.Mountain.number_of_carnivores" title="biosim.landscape.Mountain.number_of_carnivores"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_of_carnivores</span></code></a></dt>
+<dd><p class="first last">Finds the total number of carnivores in a specific cell :return: integer, number of carnivores.</p>
+</dd>
+<dt><a class="reference internal" href="#biosim.landscape.Mountain.number_of_herbivores" title="biosim.landscape.Mountain.number_of_herbivores"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_of_herbivores</span></code></a></dt>
+<dd><p class="first last">Finds the total number of herbivores in a specific cell</p>
+</dd>
+<dt><a class="reference internal" href="#biosim.landscape.Mountain.sum_of_herbivore_mass" title="biosim.landscape.Mountain.sum_of_herbivore_mass"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sum_of_herbivore_mass</span></code></a></dt>
+<dd><p class="first last">Calculates the total herbivore mass in the specific cell, i.e.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Mountain.aging" title="biosim.landscape.Mountain.aging"><code class="xref py py-obj docutils literal notranslate"><span class="pre">aging</span></code></a>()</td>
+<td>The age of all animals in the specific cell is incremented by one, once a year.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Mountain.cell_population" title="biosim.landscape.Mountain.cell_population"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cell_population</span></code></a>([population])</td>
+<td>Puts the animal population in the specific cell.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Mountain.choose_migration_cell" title="biosim.landscape.Mountain.choose_migration_cell"><code class="xref py py-obj docutils literal notranslate"><span class="pre">choose_migration_cell</span></code></a>(animal,&nbsp;…)</td>
+<td>A method to choose which of the adjacent cell the animal should migrate to, given that it migrates, and moves that animal to that cell.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Mountain.death" title="biosim.landscape.Mountain.death"><code class="xref py py-obj docutils literal notranslate"><span class="pre">death</span></code></a>()</td>
+<td>Updates the animal population list with the surviving animals after every year.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Mountain.directional_probability" title="biosim.landscape.Mountain.directional_probability"><code class="xref py py-obj docutils literal notranslate"><span class="pre">directional_probability</span></code></a>(animal,&nbsp;neighbour_cells)</td>
+<td>This method estimates the propensity for each neighbouring cell, and calculates the probability of herbivores migrating to that cell.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Mountain.eat_request_carnivore" title="biosim.landscape.Mountain.eat_request_carnivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eat_request_carnivore</span></code></a>()</td>
+<td>Carnivore eats after request.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Mountain.eat_request_herbivore" title="biosim.landscape.Mountain.eat_request_herbivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eat_request_herbivore</span></code></a>()</td>
+<td>Herbivores eats after request and update of available fodder.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Mountain.migrate" title="biosim.landscape.Mountain.migrate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">migrate</span></code></a>(neighbour_cells)</td>
+<td>A method that migrates all animals in a cell iteratively.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Mountain.propensity" title="biosim.landscape.Mountain.propensity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">propensity</span></code></a>()</td>
+<td>Calculates the propensity of an animal migrating.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Mountain.reproduction" title="biosim.landscape.Mountain.reproduction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reproduction</span></code></a>()</td>
+<td>Finds out which animals for each species that reproduce, based on reproduction probability, and adds a newborn of that species to the cell.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Mountain.set_landscape_parameters" title="biosim.landscape.Mountain.set_landscape_parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_landscape_parameters</span></code></a>(new_parameters)</td>
+<td>This method allows for manual setting of landscape parameters, i.e.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Mountain.sort_by_fitness" title="biosim.landscape.Mountain.sort_by_fitness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sort_by_fitness</span></code></a>()</td>
+<td>Updates and sorts animals in a specific cell by fitness, in descending order.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Mountain.update_cell_population" title="biosim.landscape.Mountain.update_cell_population"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_cell_population</span></code></a>()</td>
+<td>Updates the animal population in the specific cell.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Mountain.update_fitness" title="biosim.landscape.Mountain.update_fitness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_fitness</span></code></a>()</td>
+<td>Updates the fitness for all animals in the cell.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Mountain.weight_loss" title="biosim.landscape.Mountain.weight_loss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">weight_loss</span></code></a>()</td>
+<td>Reduces weight of all animals once a year.</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="biosim.landscape.Mountain.aging">
+<code class="descname">aging</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Mountain.aging" title="Permalink to this definition">¶</a></dt>
+<dd><p>The age of all animals in the specific cell is incremented by one,
+once a year.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="biosim.landscape.Mountain.available_fodder_carnivore">
+<code class="descname">available_fodder_carnivore</code><a class="headerlink" href="#biosim.landscape.Mountain.available_fodder_carnivore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finding the relative abundance of fodder for carnivore.
+:return: float</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="biosim.landscape.Mountain.available_fodder_herbivore">
+<code class="descname">available_fodder_herbivore</code><a class="headerlink" href="#biosim.landscape.Mountain.available_fodder_herbivore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finding the relative abundance of fodder for herbivore.
+:return: float</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Mountain.cell_population">
+<code class="descname">cell_population</code><span class="sig-paren">(</span><em>population=None</em><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Mountain.cell_population" title="Permalink to this definition">¶</a></dt>
+<dd><p>Puts the animal population in the specific cell.
+:param population: list</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Mountain.choose_migration_cell">
+<code class="descname">choose_migration_cell</code><span class="sig-paren">(</span><em>animal</em>, <em>neighbour_cells</em>, <em>probability_list</em><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Mountain.choose_migration_cell" title="Permalink to this definition">¶</a></dt>
+<dd><p>A method to choose which of the adjacent cell the animal should
+migrate to, given that it migrates, and moves that animal to that cell.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>animal</strong> – object, either Herbivore or Carnivore</li>
+<li><strong>probability_list</strong> – list, probabilities of moving to an adjacent
+cell</li>
+<li><strong>neighbour_cells</strong> – list, objects of adjacent cells</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Mountain.death">
+<code class="descname">death</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Mountain.death" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the animal population list with the surviving animals after
+every year.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Mountain.directional_probability">
+<code class="descname">directional_probability</code><span class="sig-paren">(</span><em>animal</em>, <em>neighbour_cells</em><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Mountain.directional_probability" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method estimates the propensity for each neighbouring cell, and
+calculates the probability of herbivores migrating to that cell.
+Stores the result in a list.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>neighbour_cells</strong> – list, the four adjacent cells</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Return probability_list:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">list, probabilities of moving to an
+adjacent cell</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Mountain.eat_request_carnivore">
+<code class="descname">eat_request_carnivore</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Mountain.eat_request_carnivore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Carnivore eats after request.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Mountain.eat_request_herbivore">
+<code class="descname">eat_request_herbivore</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Mountain.eat_request_herbivore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Herbivores eats after request and update of available fodder.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Mountain.migrate">
+<code class="descname">migrate</code><span class="sig-paren">(</span><em>neighbour_cells</em><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Mountain.migrate" title="Permalink to this definition">¶</a></dt>
+<dd><p>A method that migrates all animals in a cell iteratively.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>neighbour_cells</strong> – list, objects of adjacent cells</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="biosim.landscape.Mountain.number_of_carnivores">
+<code class="descname">number_of_carnivores</code><a class="headerlink" href="#biosim.landscape.Mountain.number_of_carnivores" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds the total number of carnivores in a specific cell
+:return: integer, number of carnivores.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="biosim.landscape.Mountain.number_of_herbivores">
+<code class="descname">number_of_herbivores</code><a class="headerlink" href="#biosim.landscape.Mountain.number_of_herbivores" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds the total number of herbivores in a specific cell</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">integer, number of herbivores.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Mountain.propensity">
+<code class="descname">propensity</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Mountain.propensity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the propensity of an animal migrating.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">tuple, the propensities of herbivore and carnivore migration
+in first and second element of the tuple, respectively.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Mountain.reproduction">
+<code class="descname">reproduction</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Mountain.reproduction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds out which animals for each species that reproduce, based on
+reproduction probability, and adds a newborn of that species
+to the cell.</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="biosim.landscape.Mountain.set_landscape_parameters">
+<em class="property">classmethod </em><code class="descname">set_landscape_parameters</code><span class="sig-paren">(</span><em>new_parameters</em><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Mountain.set_landscape_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method allows for manual setting of landscape parameters,
+i.e. to change parameter values from default values to desired values.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>new_parameters</strong> – dict, dictionary with the new parameter values
+Only keys from the default parameter value dict
+are valid.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Mountain.sort_by_fitness">
+<code class="descname">sort_by_fitness</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Mountain.sort_by_fitness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates and sorts animals in a specific cell by fitness, in descending
+order.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="biosim.landscape.Mountain.sum_of_herbivore_mass">
+<code class="descname">sum_of_herbivore_mass</code><a class="headerlink" href="#biosim.landscape.Mountain.sum_of_herbivore_mass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the total herbivore mass in the specific cell, i.e. the
+sum of the herbivore weights.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">integer, the sum of herbivore mass in the cell</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Mountain.update_cell_population">
+<code class="descname">update_cell_population</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Mountain.update_cell_population" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the animal population in the specific cell.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Mountain.update_fitness">
+<code class="descname">update_fitness</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Mountain.update_fitness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the fitness for all animals in the cell.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Mountain.weight_loss">
+<code class="descname">weight_loss</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Mountain.weight_loss" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reduces weight of all animals once a year.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="biosim.landscape.Ocean">
+<em class="property">class </em><code class="descclassname">biosim.landscape.</code><code class="descname">Ocean</code><a class="reference internal" href="_modules/biosim/landscape.html#Ocean"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#biosim.landscape.Ocean" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the ocean type</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attributes:</th><td class="field-body"><dl class="first last docutils">
+<dt><a class="reference internal" href="#biosim.landscape.Ocean.available_fodder_carnivore" title="biosim.landscape.Ocean.available_fodder_carnivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">available_fodder_carnivore</span></code></a></dt>
+<dd><p class="first last">Finding the relative abundance of fodder for carnivore.</p>
+</dd>
+<dt><a class="reference internal" href="#biosim.landscape.Ocean.available_fodder_herbivore" title="biosim.landscape.Ocean.available_fodder_herbivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">available_fodder_herbivore</span></code></a></dt>
+<dd><p class="first last">Finding the relative abundance of fodder for herbivore.</p>
+</dd>
+<dt><a class="reference internal" href="#biosim.landscape.Ocean.number_of_carnivores" title="biosim.landscape.Ocean.number_of_carnivores"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_of_carnivores</span></code></a></dt>
+<dd><p class="first last">Finds the total number of carnivores in a specific cell :return: integer, number of carnivores.</p>
+</dd>
+<dt><a class="reference internal" href="#biosim.landscape.Ocean.number_of_herbivores" title="biosim.landscape.Ocean.number_of_herbivores"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_of_herbivores</span></code></a></dt>
+<dd><p class="first last">Finds the total number of herbivores in a specific cell</p>
+</dd>
+<dt><a class="reference internal" href="#biosim.landscape.Ocean.sum_of_herbivore_mass" title="biosim.landscape.Ocean.sum_of_herbivore_mass"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sum_of_herbivore_mass</span></code></a></dt>
+<dd><p class="first last">Calculates the total herbivore mass in the specific cell, i.e.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Ocean.aging" title="biosim.landscape.Ocean.aging"><code class="xref py py-obj docutils literal notranslate"><span class="pre">aging</span></code></a>()</td>
+<td>The age of all animals in the specific cell is incremented by one, once a year.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Ocean.cell_population" title="biosim.landscape.Ocean.cell_population"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cell_population</span></code></a>([population])</td>
+<td>Puts the animal population in the specific cell.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Ocean.choose_migration_cell" title="biosim.landscape.Ocean.choose_migration_cell"><code class="xref py py-obj docutils literal notranslate"><span class="pre">choose_migration_cell</span></code></a>(animal,&nbsp;…)</td>
+<td>A method to choose which of the adjacent cell the animal should migrate to, given that it migrates, and moves that animal to that cell.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Ocean.death" title="biosim.landscape.Ocean.death"><code class="xref py py-obj docutils literal notranslate"><span class="pre">death</span></code></a>()</td>
+<td>Updates the animal population list with the surviving animals after every year.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Ocean.directional_probability" title="biosim.landscape.Ocean.directional_probability"><code class="xref py py-obj docutils literal notranslate"><span class="pre">directional_probability</span></code></a>(animal,&nbsp;neighbour_cells)</td>
+<td>This method estimates the propensity for each neighbouring cell, and calculates the probability of herbivores migrating to that cell.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Ocean.eat_request_carnivore" title="biosim.landscape.Ocean.eat_request_carnivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eat_request_carnivore</span></code></a>()</td>
+<td>Carnivore eats after request.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Ocean.eat_request_herbivore" title="biosim.landscape.Ocean.eat_request_herbivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eat_request_herbivore</span></code></a>()</td>
+<td>Herbivores eats after request and update of available fodder.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Ocean.migrate" title="biosim.landscape.Ocean.migrate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">migrate</span></code></a>(neighbour_cells)</td>
+<td>A method that migrates all animals in a cell iteratively.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Ocean.propensity" title="biosim.landscape.Ocean.propensity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">propensity</span></code></a>()</td>
+<td>Calculates the propensity of an animal migrating.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Ocean.reproduction" title="biosim.landscape.Ocean.reproduction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reproduction</span></code></a>()</td>
+<td>Finds out which animals for each species that reproduce, based on reproduction probability, and adds a newborn of that species to the cell.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Ocean.set_landscape_parameters" title="biosim.landscape.Ocean.set_landscape_parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_landscape_parameters</span></code></a>(new_parameters)</td>
+<td>This method allows for manual setting of landscape parameters, i.e.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Ocean.sort_by_fitness" title="biosim.landscape.Ocean.sort_by_fitness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sort_by_fitness</span></code></a>()</td>
+<td>Updates and sorts animals in a specific cell by fitness, in descending order.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Ocean.update_cell_population" title="biosim.landscape.Ocean.update_cell_population"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_cell_population</span></code></a>()</td>
+<td>Updates the animal population in the specific cell.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Ocean.update_fitness" title="biosim.landscape.Ocean.update_fitness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_fitness</span></code></a>()</td>
+<td>Updates the fitness for all animals in the cell.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Ocean.weight_loss" title="biosim.landscape.Ocean.weight_loss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">weight_loss</span></code></a>()</td>
+<td>Reduces weight of all animals once a year.</td>
+</tr>
+</tbody>
+</table>
+<p>This method creates variables needed for the class.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attributes:</th><td class="field-body"><dl class="first last docutils">
+<dt><a class="reference internal" href="#biosim.landscape.Ocean.available_fodder_carnivore" title="biosim.landscape.Ocean.available_fodder_carnivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">available_fodder_carnivore</span></code></a></dt>
+<dd><p class="first last">Finding the relative abundance of fodder for carnivore.</p>
+</dd>
+<dt><a class="reference internal" href="#biosim.landscape.Ocean.available_fodder_herbivore" title="biosim.landscape.Ocean.available_fodder_herbivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">available_fodder_herbivore</span></code></a></dt>
+<dd><p class="first last">Finding the relative abundance of fodder for herbivore.</p>
+</dd>
+<dt><a class="reference internal" href="#biosim.landscape.Ocean.number_of_carnivores" title="biosim.landscape.Ocean.number_of_carnivores"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_of_carnivores</span></code></a></dt>
+<dd><p class="first last">Finds the total number of carnivores in a specific cell :return: integer, number of carnivores.</p>
+</dd>
+<dt><a class="reference internal" href="#biosim.landscape.Ocean.number_of_herbivores" title="biosim.landscape.Ocean.number_of_herbivores"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_of_herbivores</span></code></a></dt>
+<dd><p class="first last">Finds the total number of herbivores in a specific cell</p>
+</dd>
+<dt><a class="reference internal" href="#biosim.landscape.Ocean.sum_of_herbivore_mass" title="biosim.landscape.Ocean.sum_of_herbivore_mass"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sum_of_herbivore_mass</span></code></a></dt>
+<dd><p class="first last">Calculates the total herbivore mass in the specific cell, i.e.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Ocean.aging" title="biosim.landscape.Ocean.aging"><code class="xref py py-obj docutils literal notranslate"><span class="pre">aging</span></code></a>()</td>
+<td>The age of all animals in the specific cell is incremented by one, once a year.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Ocean.cell_population" title="biosim.landscape.Ocean.cell_population"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cell_population</span></code></a>([population])</td>
+<td>Puts the animal population in the specific cell.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Ocean.choose_migration_cell" title="biosim.landscape.Ocean.choose_migration_cell"><code class="xref py py-obj docutils literal notranslate"><span class="pre">choose_migration_cell</span></code></a>(animal,&nbsp;…)</td>
+<td>A method to choose which of the adjacent cell the animal should migrate to, given that it migrates, and moves that animal to that cell.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Ocean.death" title="biosim.landscape.Ocean.death"><code class="xref py py-obj docutils literal notranslate"><span class="pre">death</span></code></a>()</td>
+<td>Updates the animal population list with the surviving animals after every year.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Ocean.directional_probability" title="biosim.landscape.Ocean.directional_probability"><code class="xref py py-obj docutils literal notranslate"><span class="pre">directional_probability</span></code></a>(animal,&nbsp;neighbour_cells)</td>
+<td>This method estimates the propensity for each neighbouring cell, and calculates the probability of herbivores migrating to that cell.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Ocean.eat_request_carnivore" title="biosim.landscape.Ocean.eat_request_carnivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eat_request_carnivore</span></code></a>()</td>
+<td>Carnivore eats after request.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Ocean.eat_request_herbivore" title="biosim.landscape.Ocean.eat_request_herbivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eat_request_herbivore</span></code></a>()</td>
+<td>Herbivores eats after request and update of available fodder.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Ocean.migrate" title="biosim.landscape.Ocean.migrate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">migrate</span></code></a>(neighbour_cells)</td>
+<td>A method that migrates all animals in a cell iteratively.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Ocean.propensity" title="biosim.landscape.Ocean.propensity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">propensity</span></code></a>()</td>
+<td>Calculates the propensity of an animal migrating.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Ocean.reproduction" title="biosim.landscape.Ocean.reproduction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reproduction</span></code></a>()</td>
+<td>Finds out which animals for each species that reproduce, based on reproduction probability, and adds a newborn of that species to the cell.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Ocean.set_landscape_parameters" title="biosim.landscape.Ocean.set_landscape_parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_landscape_parameters</span></code></a>(new_parameters)</td>
+<td>This method allows for manual setting of landscape parameters, i.e.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Ocean.sort_by_fitness" title="biosim.landscape.Ocean.sort_by_fitness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sort_by_fitness</span></code></a>()</td>
+<td>Updates and sorts animals in a specific cell by fitness, in descending order.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Ocean.update_cell_population" title="biosim.landscape.Ocean.update_cell_population"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_cell_population</span></code></a>()</td>
+<td>Updates the animal population in the specific cell.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Ocean.update_fitness" title="biosim.landscape.Ocean.update_fitness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_fitness</span></code></a>()</td>
+<td>Updates the fitness for all animals in the cell.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Ocean.weight_loss" title="biosim.landscape.Ocean.weight_loss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">weight_loss</span></code></a>()</td>
+<td>Reduces weight of all animals once a year.</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="biosim.landscape.Ocean.aging">
+<code class="descname">aging</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Ocean.aging" title="Permalink to this definition">¶</a></dt>
+<dd><p>The age of all animals in the specific cell is incremented by one,
+once a year.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="biosim.landscape.Ocean.available_fodder_carnivore">
+<code class="descname">available_fodder_carnivore</code><a class="headerlink" href="#biosim.landscape.Ocean.available_fodder_carnivore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finding the relative abundance of fodder for carnivore.
+:return: float</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="biosim.landscape.Ocean.available_fodder_herbivore">
+<code class="descname">available_fodder_herbivore</code><a class="headerlink" href="#biosim.landscape.Ocean.available_fodder_herbivore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finding the relative abundance of fodder for herbivore.
+:return: float</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Ocean.cell_population">
+<code class="descname">cell_population</code><span class="sig-paren">(</span><em>population=None</em><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Ocean.cell_population" title="Permalink to this definition">¶</a></dt>
+<dd><p>Puts the animal population in the specific cell.
+:param population: list</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Ocean.choose_migration_cell">
+<code class="descname">choose_migration_cell</code><span class="sig-paren">(</span><em>animal</em>, <em>neighbour_cells</em>, <em>probability_list</em><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Ocean.choose_migration_cell" title="Permalink to this definition">¶</a></dt>
+<dd><p>A method to choose which of the adjacent cell the animal should
+migrate to, given that it migrates, and moves that animal to that cell.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>animal</strong> – object, either Herbivore or Carnivore</li>
+<li><strong>probability_list</strong> – list, probabilities of moving to an adjacent
+cell</li>
+<li><strong>neighbour_cells</strong> – list, objects of adjacent cells</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Ocean.death">
+<code class="descname">death</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Ocean.death" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the animal population list with the surviving animals after
+every year.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Ocean.directional_probability">
+<code class="descname">directional_probability</code><span class="sig-paren">(</span><em>animal</em>, <em>neighbour_cells</em><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Ocean.directional_probability" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method estimates the propensity for each neighbouring cell, and
+calculates the probability of herbivores migrating to that cell.
+Stores the result in a list.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>neighbour_cells</strong> – list, the four adjacent cells</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Return probability_list:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">list, probabilities of moving to an
+adjacent cell</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Ocean.eat_request_carnivore">
+<code class="descname">eat_request_carnivore</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Ocean.eat_request_carnivore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Carnivore eats after request.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Ocean.eat_request_herbivore">
+<code class="descname">eat_request_herbivore</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Ocean.eat_request_herbivore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Herbivores eats after request and update of available fodder.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Ocean.migrate">
+<code class="descname">migrate</code><span class="sig-paren">(</span><em>neighbour_cells</em><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Ocean.migrate" title="Permalink to this definition">¶</a></dt>
+<dd><p>A method that migrates all animals in a cell iteratively.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>neighbour_cells</strong> – list, objects of adjacent cells</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="biosim.landscape.Ocean.number_of_carnivores">
+<code class="descname">number_of_carnivores</code><a class="headerlink" href="#biosim.landscape.Ocean.number_of_carnivores" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds the total number of carnivores in a specific cell
+:return: integer, number of carnivores.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="biosim.landscape.Ocean.number_of_herbivores">
+<code class="descname">number_of_herbivores</code><a class="headerlink" href="#biosim.landscape.Ocean.number_of_herbivores" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds the total number of herbivores in a specific cell</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">integer, number of herbivores.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Ocean.propensity">
+<code class="descname">propensity</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Ocean.propensity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the propensity of an animal migrating.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">tuple, the propensities of herbivore and carnivore migration
+in first and second element of the tuple, respectively.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Ocean.reproduction">
+<code class="descname">reproduction</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Ocean.reproduction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds out which animals for each species that reproduce, based on
+reproduction probability, and adds a newborn of that species
+to the cell.</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="biosim.landscape.Ocean.set_landscape_parameters">
+<em class="property">classmethod </em><code class="descname">set_landscape_parameters</code><span class="sig-paren">(</span><em>new_parameters</em><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Ocean.set_landscape_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method allows for manual setting of landscape parameters,
+i.e. to change parameter values from default values to desired values.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>new_parameters</strong> – dict, dictionary with the new parameter values
+Only keys from the default parameter value dict
+are valid.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Ocean.sort_by_fitness">
+<code class="descname">sort_by_fitness</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Ocean.sort_by_fitness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates and sorts animals in a specific cell by fitness, in descending
+order.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="biosim.landscape.Ocean.sum_of_herbivore_mass">
+<code class="descname">sum_of_herbivore_mass</code><a class="headerlink" href="#biosim.landscape.Ocean.sum_of_herbivore_mass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the total herbivore mass in the specific cell, i.e. the
+sum of the herbivore weights.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">integer, the sum of herbivore mass in the cell</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Ocean.update_cell_population">
+<code class="descname">update_cell_population</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Ocean.update_cell_population" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the animal population in the specific cell.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Ocean.update_fitness">
+<code class="descname">update_fitness</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Ocean.update_fitness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the fitness for all animals in the cell.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Ocean.weight_loss">
+<code class="descname">weight_loss</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Ocean.weight_loss" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reduces weight of all animals once a year.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="biosim.landscape.Savannah">
+<em class="property">class </em><code class="descclassname">biosim.landscape.</code><code class="descname">Savannah</code><a class="reference internal" href="_modules/biosim/landscape.html#Savannah"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#biosim.landscape.Savannah" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the savannah type</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attributes:</th><td class="field-body"><dl class="first last docutils">
+<dt><a class="reference internal" href="#biosim.landscape.Savannah.available_fodder_carnivore" title="biosim.landscape.Savannah.available_fodder_carnivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">available_fodder_carnivore</span></code></a></dt>
+<dd><p class="first last">Finding the relative abundance of fodder for carnivore.</p>
+</dd>
+<dt><a class="reference internal" href="#biosim.landscape.Savannah.available_fodder_herbivore" title="biosim.landscape.Savannah.available_fodder_herbivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">available_fodder_herbivore</span></code></a></dt>
+<dd><p class="first last">Finding the relative abundance of fodder for herbivore.</p>
+</dd>
+<dt><a class="reference internal" href="#biosim.landscape.Savannah.number_of_carnivores" title="biosim.landscape.Savannah.number_of_carnivores"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_of_carnivores</span></code></a></dt>
+<dd><p class="first last">Finds the total number of carnivores in a specific cell :return: integer, number of carnivores.</p>
+</dd>
+<dt><a class="reference internal" href="#biosim.landscape.Savannah.number_of_herbivores" title="biosim.landscape.Savannah.number_of_herbivores"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_of_herbivores</span></code></a></dt>
+<dd><p class="first last">Finds the total number of herbivores in a specific cell</p>
+</dd>
+<dt><a class="reference internal" href="#biosim.landscape.Savannah.sum_of_herbivore_mass" title="biosim.landscape.Savannah.sum_of_herbivore_mass"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sum_of_herbivore_mass</span></code></a></dt>
+<dd><p class="first last">Calculates the total herbivore mass in the specific cell, i.e.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Savannah.aging" title="biosim.landscape.Savannah.aging"><code class="xref py py-obj docutils literal notranslate"><span class="pre">aging</span></code></a>()</td>
+<td>The age of all animals in the specific cell is incremented by one, once a year.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Savannah.cell_population" title="biosim.landscape.Savannah.cell_population"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cell_population</span></code></a>([population])</td>
+<td>Puts the animal population in the specific cell.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Savannah.choose_migration_cell" title="biosim.landscape.Savannah.choose_migration_cell"><code class="xref py py-obj docutils literal notranslate"><span class="pre">choose_migration_cell</span></code></a>(animal,&nbsp;…)</td>
+<td>A method to choose which of the adjacent cell the animal should migrate to, given that it migrates, and moves that animal to that cell.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Savannah.death" title="biosim.landscape.Savannah.death"><code class="xref py py-obj docutils literal notranslate"><span class="pre">death</span></code></a>()</td>
+<td>Updates the animal population list with the surviving animals after every year.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Savannah.directional_probability" title="biosim.landscape.Savannah.directional_probability"><code class="xref py py-obj docutils literal notranslate"><span class="pre">directional_probability</span></code></a>(animal,&nbsp;neighbour_cells)</td>
+<td>This method estimates the propensity for each neighbouring cell, and calculates the probability of herbivores migrating to that cell.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Savannah.eat_request_carnivore" title="biosim.landscape.Savannah.eat_request_carnivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eat_request_carnivore</span></code></a>()</td>
+<td>Carnivore eats after request.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Savannah.eat_request_herbivore" title="biosim.landscape.Savannah.eat_request_herbivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eat_request_herbivore</span></code></a>()</td>
+<td>Herbivores eats after request and update of available fodder.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Savannah.migrate" title="biosim.landscape.Savannah.migrate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">migrate</span></code></a>(neighbour_cells)</td>
+<td>A method that migrates all animals in a cell iteratively.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Savannah.propensity" title="biosim.landscape.Savannah.propensity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">propensity</span></code></a>()</td>
+<td>Calculates the propensity of an animal migrating.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Savannah.regenerate" title="biosim.landscape.Savannah.regenerate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">regenerate</span></code></a>()</td>
+<td>This method regenerates the amount of fodder in each cell according to given formula for the given landscape type.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Savannah.reproduction" title="biosim.landscape.Savannah.reproduction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reproduction</span></code></a>()</td>
+<td>Finds out which animals for each species that reproduce, based on reproduction probability, and adds a newborn of that species to the cell.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Savannah.set_landscape_parameters" title="biosim.landscape.Savannah.set_landscape_parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_landscape_parameters</span></code></a>(new_parameters)</td>
+<td>This method allows for manual setting of landscape parameters, i.e.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Savannah.sort_by_fitness" title="biosim.landscape.Savannah.sort_by_fitness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sort_by_fitness</span></code></a>()</td>
+<td>Updates and sorts animals in a specific cell by fitness, in descending order.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Savannah.update_cell_population" title="biosim.landscape.Savannah.update_cell_population"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_cell_population</span></code></a>()</td>
+<td>Updates the animal population in the specific cell.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Savannah.update_fitness" title="biosim.landscape.Savannah.update_fitness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_fitness</span></code></a>()</td>
+<td>Updates the fitness for all animals in the cell.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Savannah.weight_loss" title="biosim.landscape.Savannah.weight_loss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">weight_loss</span></code></a>()</td>
+<td>Reduces weight of all animals once a year.</td>
+</tr>
+</tbody>
+</table>
+<p>This method creates variables needed for the class.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attributes:</th><td class="field-body"><dl class="first last docutils">
+<dt><a class="reference internal" href="#biosim.landscape.Savannah.available_fodder_carnivore" title="biosim.landscape.Savannah.available_fodder_carnivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">available_fodder_carnivore</span></code></a></dt>
+<dd><p class="first last">Finding the relative abundance of fodder for carnivore.</p>
+</dd>
+<dt><a class="reference internal" href="#biosim.landscape.Savannah.available_fodder_herbivore" title="biosim.landscape.Savannah.available_fodder_herbivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">available_fodder_herbivore</span></code></a></dt>
+<dd><p class="first last">Finding the relative abundance of fodder for herbivore.</p>
+</dd>
+<dt><a class="reference internal" href="#biosim.landscape.Savannah.number_of_carnivores" title="biosim.landscape.Savannah.number_of_carnivores"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_of_carnivores</span></code></a></dt>
+<dd><p class="first last">Finds the total number of carnivores in a specific cell :return: integer, number of carnivores.</p>
+</dd>
+<dt><a class="reference internal" href="#biosim.landscape.Savannah.number_of_herbivores" title="biosim.landscape.Savannah.number_of_herbivores"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_of_herbivores</span></code></a></dt>
+<dd><p class="first last">Finds the total number of herbivores in a specific cell</p>
+</dd>
+<dt><a class="reference internal" href="#biosim.landscape.Savannah.sum_of_herbivore_mass" title="biosim.landscape.Savannah.sum_of_herbivore_mass"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sum_of_herbivore_mass</span></code></a></dt>
+<dd><p class="first last">Calculates the total herbivore mass in the specific cell, i.e.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Savannah.aging" title="biosim.landscape.Savannah.aging"><code class="xref py py-obj docutils literal notranslate"><span class="pre">aging</span></code></a>()</td>
+<td>The age of all animals in the specific cell is incremented by one, once a year.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Savannah.cell_population" title="biosim.landscape.Savannah.cell_population"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cell_population</span></code></a>([population])</td>
+<td>Puts the animal population in the specific cell.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Savannah.choose_migration_cell" title="biosim.landscape.Savannah.choose_migration_cell"><code class="xref py py-obj docutils literal notranslate"><span class="pre">choose_migration_cell</span></code></a>(animal,&nbsp;…)</td>
+<td>A method to choose which of the adjacent cell the animal should migrate to, given that it migrates, and moves that animal to that cell.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Savannah.death" title="biosim.landscape.Savannah.death"><code class="xref py py-obj docutils literal notranslate"><span class="pre">death</span></code></a>()</td>
+<td>Updates the animal population list with the surviving animals after every year.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Savannah.directional_probability" title="biosim.landscape.Savannah.directional_probability"><code class="xref py py-obj docutils literal notranslate"><span class="pre">directional_probability</span></code></a>(animal,&nbsp;neighbour_cells)</td>
+<td>This method estimates the propensity for each neighbouring cell, and calculates the probability of herbivores migrating to that cell.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Savannah.eat_request_carnivore" title="biosim.landscape.Savannah.eat_request_carnivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eat_request_carnivore</span></code></a>()</td>
+<td>Carnivore eats after request.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Savannah.eat_request_herbivore" title="biosim.landscape.Savannah.eat_request_herbivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eat_request_herbivore</span></code></a>()</td>
+<td>Herbivores eats after request and update of available fodder.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Savannah.migrate" title="biosim.landscape.Savannah.migrate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">migrate</span></code></a>(neighbour_cells)</td>
+<td>A method that migrates all animals in a cell iteratively.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Savannah.propensity" title="biosim.landscape.Savannah.propensity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">propensity</span></code></a>()</td>
+<td>Calculates the propensity of an animal migrating.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Savannah.regenerate" title="biosim.landscape.Savannah.regenerate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">regenerate</span></code></a>()</td>
+<td>This method regenerates the amount of fodder in each cell according to given formula for the given landscape type.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Savannah.reproduction" title="biosim.landscape.Savannah.reproduction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reproduction</span></code></a>()</td>
+<td>Finds out which animals for each species that reproduce, based on reproduction probability, and adds a newborn of that species to the cell.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Savannah.set_landscape_parameters" title="biosim.landscape.Savannah.set_landscape_parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_landscape_parameters</span></code></a>(new_parameters)</td>
+<td>This method allows for manual setting of landscape parameters, i.e.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Savannah.sort_by_fitness" title="biosim.landscape.Savannah.sort_by_fitness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sort_by_fitness</span></code></a>()</td>
+<td>Updates and sorts animals in a specific cell by fitness, in descending order.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Savannah.update_cell_population" title="biosim.landscape.Savannah.update_cell_population"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_cell_population</span></code></a>()</td>
+<td>Updates the animal population in the specific cell.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Savannah.update_fitness" title="biosim.landscape.Savannah.update_fitness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_fitness</span></code></a>()</td>
+<td>Updates the fitness for all animals in the cell.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Savannah.weight_loss" title="biosim.landscape.Savannah.weight_loss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">weight_loss</span></code></a>()</td>
+<td>Reduces weight of all animals once a year.</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="biosim.landscape.Savannah.aging">
+<code class="descname">aging</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Savannah.aging" title="Permalink to this definition">¶</a></dt>
+<dd><p>The age of all animals in the specific cell is incremented by one,
+once a year.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="biosim.landscape.Savannah.available_fodder_carnivore">
+<code class="descname">available_fodder_carnivore</code><a class="headerlink" href="#biosim.landscape.Savannah.available_fodder_carnivore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finding the relative abundance of fodder for carnivore.
+:return: float</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="biosim.landscape.Savannah.available_fodder_herbivore">
+<code class="descname">available_fodder_herbivore</code><a class="headerlink" href="#biosim.landscape.Savannah.available_fodder_herbivore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finding the relative abundance of fodder for herbivore.
+:return: float</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Savannah.cell_population">
+<code class="descname">cell_population</code><span class="sig-paren">(</span><em>population=None</em><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Savannah.cell_population" title="Permalink to this definition">¶</a></dt>
+<dd><p>Puts the animal population in the specific cell.
+:param population: list</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Savannah.choose_migration_cell">
+<code class="descname">choose_migration_cell</code><span class="sig-paren">(</span><em>animal</em>, <em>neighbour_cells</em>, <em>probability_list</em><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Savannah.choose_migration_cell" title="Permalink to this definition">¶</a></dt>
+<dd><p>A method to choose which of the adjacent cell the animal should
+migrate to, given that it migrates, and moves that animal to that cell.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>animal</strong> – object, either Herbivore or Carnivore</li>
+<li><strong>probability_list</strong> – list, probabilities of moving to an adjacent
+cell</li>
+<li><strong>neighbour_cells</strong> – list, objects of adjacent cells</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Savannah.death">
+<code class="descname">death</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Savannah.death" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the animal population list with the surviving animals after
+every year.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Savannah.directional_probability">
+<code class="descname">directional_probability</code><span class="sig-paren">(</span><em>animal</em>, <em>neighbour_cells</em><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Savannah.directional_probability" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method estimates the propensity for each neighbouring cell, and
+calculates the probability of herbivores migrating to that cell.
+Stores the result in a list.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>neighbour_cells</strong> – list, the four adjacent cells</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Return probability_list:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">list, probabilities of moving to an
+adjacent cell</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Savannah.eat_request_carnivore">
+<code class="descname">eat_request_carnivore</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Savannah.eat_request_carnivore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Carnivore eats after request.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Savannah.eat_request_herbivore">
+<code class="descname">eat_request_herbivore</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Savannah.eat_request_herbivore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Herbivores eats after request and update of available fodder.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Savannah.migrate">
+<code class="descname">migrate</code><span class="sig-paren">(</span><em>neighbour_cells</em><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Savannah.migrate" title="Permalink to this definition">¶</a></dt>
+<dd><p>A method that migrates all animals in a cell iteratively.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>neighbour_cells</strong> – list, objects of adjacent cells</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="biosim.landscape.Savannah.number_of_carnivores">
+<code class="descname">number_of_carnivores</code><a class="headerlink" href="#biosim.landscape.Savannah.number_of_carnivores" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds the total number of carnivores in a specific cell
+:return: integer, number of carnivores.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="biosim.landscape.Savannah.number_of_herbivores">
+<code class="descname">number_of_herbivores</code><a class="headerlink" href="#biosim.landscape.Savannah.number_of_herbivores" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds the total number of herbivores in a specific cell</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">integer, number of herbivores.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Savannah.propensity">
+<code class="descname">propensity</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Savannah.propensity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the propensity of an animal migrating.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">tuple, the propensities of herbivore and carnivore migration
+in first and second element of the tuple, respectively.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Savannah.regenerate">
+<code class="descname">regenerate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/landscape.html#Savannah.regenerate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#biosim.landscape.Savannah.regenerate" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method regenerates the amount of fodder in each cell according to
+given formula for the given landscape type.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Savannah.reproduction">
+<code class="descname">reproduction</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Savannah.reproduction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds out which animals for each species that reproduce, based on
+reproduction probability, and adds a newborn of that species
+to the cell.</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="biosim.landscape.Savannah.set_landscape_parameters">
+<em class="property">classmethod </em><code class="descname">set_landscape_parameters</code><span class="sig-paren">(</span><em>new_parameters</em><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Savannah.set_landscape_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method allows for manual setting of landscape parameters,
+i.e. to change parameter values from default values to desired values.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>new_parameters</strong> – dict, dictionary with the new parameter values
+Only keys from the default parameter value dict
+are valid.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Savannah.sort_by_fitness">
+<code class="descname">sort_by_fitness</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Savannah.sort_by_fitness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates and sorts animals in a specific cell by fitness, in descending
+order.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="biosim.landscape.Savannah.sum_of_herbivore_mass">
+<code class="descname">sum_of_herbivore_mass</code><a class="headerlink" href="#biosim.landscape.Savannah.sum_of_herbivore_mass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the total herbivore mass in the specific cell, i.e. the
+sum of the herbivore weights.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">integer, the sum of herbivore mass in the cell</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Savannah.update_cell_population">
+<code class="descname">update_cell_population</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Savannah.update_cell_population" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the animal population in the specific cell.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Savannah.update_fitness">
+<code class="descname">update_fitness</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Savannah.update_fitness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the fitness for all animals in the cell.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.landscape.Savannah.weight_loss">
+<code class="descname">weight_loss</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Savannah.weight_loss" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reduces weight of all animals once a year.</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-biosim.island"></span><dl class="class">
+<dt id="biosim.island.Island">
+<em class="property">class </em><code class="descclassname">biosim.island.</code><code class="descname">Island</code><span class="sig-paren">(</span><em>island_map=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/island.html#Island"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#biosim.island.Island" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class generates the island nation of Pylandia.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attributes:</th><td class="field-body"><dl class="first last docutils">
+<dt><a class="reference internal" href="#biosim.island.Island.population_in_each_cell" title="biosim.island.Island.population_in_each_cell"><code class="xref py py-obj docutils literal notranslate"><span class="pre">population_in_each_cell</span></code></a></dt>
+<dd><p class="first last">This method calculates the herbivore and carnivore population for each cell.</p>
+</dd>
+<dt><a class="reference internal" href="#biosim.island.Island.total_island_population" title="biosim.island.Island.total_island_population"><code class="xref py py-obj docutils literal notranslate"><span class="pre">total_island_population</span></code></a></dt>
+<dd><p class="first last">Finds the total number of herbivores and carnivores on the island.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.island.Island.annual_cycle" title="biosim.island.Island.annual_cycle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">annual_cycle</span></code></a>()</td>
+<td>This method carries out one cycle on the island.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.island.Island.find_surrounding_cells" title="biosim.island.Island.find_surrounding_cells"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_surrounding_cells</span></code></a>(position)</td>
+<td>Collects a cell’s neighbouring landscape types.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.island.Island.landscape_position_in_map" title="biosim.island.Island.landscape_position_in_map"><code class="xref py py-obj docutils literal notranslate"><span class="pre">landscape_position_in_map</span></code></a>()</td>
+<td>Creates the numpy array map</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.island.Island.validate_map_string" title="biosim.island.Island.validate_map_string"><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_map_string</span></code></a>()</td>
+<td>Validates that a the input map string follows the constraints of the model.</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="70%" />
+<col width="30%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>find_cell_position</strong></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td><strong>populate_the_island</strong></td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+<p>This method creates variables needed for the class.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attributes:</th><td class="field-body"><dl class="first last docutils">
+<dt><a class="reference internal" href="#biosim.island.Island.population_in_each_cell" title="biosim.island.Island.population_in_each_cell"><code class="xref py py-obj docutils literal notranslate"><span class="pre">population_in_each_cell</span></code></a></dt>
+<dd><p class="first last">This method calculates the herbivore and carnivore population for each cell.</p>
+</dd>
+<dt><a class="reference internal" href="#biosim.island.Island.total_island_population" title="biosim.island.Island.total_island_population"><code class="xref py py-obj docutils literal notranslate"><span class="pre">total_island_population</span></code></a></dt>
+<dd><p class="first last">Finds the total number of herbivores and carnivores on the island.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.island.Island.annual_cycle" title="biosim.island.Island.annual_cycle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">annual_cycle</span></code></a>()</td>
+<td>This method carries out one cycle on the island.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.island.Island.find_surrounding_cells" title="biosim.island.Island.find_surrounding_cells"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_surrounding_cells</span></code></a>(position)</td>
+<td>Collects a cell’s neighbouring landscape types.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#biosim.island.Island.landscape_position_in_map" title="biosim.island.Island.landscape_position_in_map"><code class="xref py py-obj docutils literal notranslate"><span class="pre">landscape_position_in_map</span></code></a>()</td>
+<td>Creates the numpy array map</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#biosim.island.Island.validate_map_string" title="biosim.island.Island.validate_map_string"><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_map_string</span></code></a>()</td>
+<td>Validates that a the input map string follows the constraints of the model.</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="70%" />
+<col width="30%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>find_cell_position</strong></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td><strong>populate_the_island</strong></td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="biosim.island.Island.annual_cycle">
+<code class="descname">annual_cycle</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/island.html#Island.annual_cycle"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#biosim.island.Island.annual_cycle" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method carries out one cycle on the island.
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.island.Island.find_cell_position">
+<code class="descname">find_cell_position</code><span class="sig-paren">(</span><em>cell</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/island.html#Island.find_cell_position"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#biosim.island.Island.find_cell_position" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="biosim.island.Island.find_surrounding_cells">
+<code class="descname">find_surrounding_cells</code><span class="sig-paren">(</span><em>position</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/island.html#Island.find_surrounding_cells"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#biosim.island.Island.find_surrounding_cells" title="Permalink to this definition">¶</a></dt>
+<dd><p>Collects a cell’s neighbouring landscape types.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>position</strong> – tuple (cell coordinates)</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Return neighbour_cells:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">list, objects of adjacent cells</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.island.Island.landscape_position_in_map">
+<code class="descname">landscape_position_in_map</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/island.html#Island.landscape_position_in_map"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#biosim.island.Island.landscape_position_in_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates the numpy array map</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.island.Island.populate_the_island">
+<code class="descname">populate_the_island</code><span class="sig-paren">(</span><em>start_population=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/island.html#Island.populate_the_island"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#biosim.island.Island.populate_the_island" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="biosim.island.Island.population_in_each_cell">
+<code class="descname">population_in_each_cell</code><a class="headerlink" href="#biosim.island.Island.population_in_each_cell" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method calculates the herbivore and carnivore population for
+each cell.
+:return: numpy.ndarray, the herbivore and carnivore population in the</p>
+<blockquote>
+<div>first and second element of each list, respectively</div></blockquote>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="biosim.island.Island.total_island_population">
+<code class="descname">total_island_population</code><a class="headerlink" href="#biosim.island.Island.total_island_population" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds the total number of herbivores and carnivores on the island.
+:return: tuple</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="biosim.island.Island.validate_map_string">
+<code class="descname">validate_map_string</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/island.html#Island.validate_map_string"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#biosim.island.Island.validate_map_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validates that a the input map string follows the constraints of the
+model.</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-biosim.simulation"></span></div>
 
 
           </div>

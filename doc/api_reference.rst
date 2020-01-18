@@ -4,11 +4,11 @@ API Reference
 .. automodule:: biosim.animals
     :inherited-members:
 
-.. autoclass:: biosim.landscape
+.. automodule:: biosim.landscape
     :inherited-members:
 
-.. autoclass:: biosim.island
+.. automodule:: biosim.island
     :inherited-members:
 
-.. autoclass:: biosim.simulation
+.. automodule:: biosim.simulation
     :inherited-members:
