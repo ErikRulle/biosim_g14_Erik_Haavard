@@ -140,9 +140,10 @@ def test_population_in_each_cell():
     assert cell_populations[36].all() == 0
 
 
-def test_total_island_population():
+def test_total_population():
     """
-    Tests if the function can find the correct total island population.
+    Tests if the function can find the correct herbivore, carnivore and
+    total animal population of the island.
     """
     island_map = """\
                                 OOOOOOO
@@ -160,8 +161,10 @@ def test_total_island_population():
                            n_carnivores=2, coord_carn=[(5, 3), (1, 5)])
     pop = popgen.get_animals()
     island.populate_the_island(pop)
+    species_population = island.total_species_population
     total_population = island.total_island_population
-    assert total_population == (9, 4)
+    assert species_population == (9, 4)
+    assert total_population == 13
 
 
 # def test_annual_cycle():
@@ -191,3 +194,11 @@ def test_total_island_population():
         #plt.savefig()
 
 
+
+
+def test_animals_in_island():
+    island_map = "OOOO\nOJSO\nOOOO"
+    ini_pop = []
+    island = bi.Island(island_map)
+    island.populate_the_island(ini_pop)
+    assert island.total_island_population == 0

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-"""
+r"""
 :mod:`biosim.simulation` defines the BioSim class interface for simulation of
-Rossum island`s ecosystem.
+Rossumøya's ecosystem.
 """
 
 __author__ = "Erik Rullestad", "Håvard Molversmyr"
@@ -15,6 +15,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 import biosim.island as bi
+import biosim.landscape as bl
+import biosim.animals as ba
 
 
 class BioSim:
@@ -61,8 +63,8 @@ class BioSim:
         self.ini_pop = ini_pop
         self.island = bi.Island(island_map=island_map)
         self.island.populate_the_island(ini_pop)
-        self.herbivore_list = [self.island.total_island_population[0]]
-        self.carnivore_list = [self.island.total_island_population[1]]
+        self.herbivore_list = [self.island.total_species_population[0]]
+        self.carnivore_list = [self.island.total_species_population[1]]
         self.ymax_animals = ymax_animals
         self.cmax_animals = cmax_animals
         self.img_base = img_base
@@ -75,7 +77,10 @@ class BioSim:
         :param species: String, name of animal species
         :param params: Dict with valid parameter specification for species
         """
-        species.set_animal_parameters(params)
+        if species == "Herbivore":
+            ba.Herbivore.set_animal_parameters(params)
+        elif species == "Carnivore":
+            ba.Carnivore.set_animal_parameters(params)
 
     def set_landscape_parameters(self, landscape, params):
         """
@@ -84,7 +89,16 @@ class BioSim:
         :param landscape: String, code letter for landscape
         :param params: Dict with valid parameter specification for landscape
         """
-        landscape.set_landscape_parameters(params)
+        if landscape == "J":
+            bl.Jungle.set_landscape_parameters(params)
+        elif landscape == "S":
+            bl.Savannah.set_landscape_parameters(params)
+        elif landscape == "D":
+            bl.Desert.set_landscape_parameters(params)
+        elif landscape == "M":
+            bl.Mountain.set_landscape_parameters(params)
+        elif landscape == "O":
+            bl.Ocean.set_landscape_parameters(params)
 
     def simulate(self, num_years, vis_years=1, img_years=None):
         """
@@ -101,10 +115,10 @@ class BioSim:
             new_island_population = self.island.annual_cycle()
             self.herbivore_list.append(new_island_population[0])
             self.carnivore_list.append(new_island_population[1])
+            self.last_year_simulated += 1
 
             if num_years % vis_years == 0:
                 pass
-
 
     def add_population(self, population):
         """
@@ -133,8 +147,8 @@ class BioSim:
         """
         Number of animals per species in island, as dictionary.
         """
-        animal_dict = {"Herbivores": self.island.total_island_population[0],
-                       "Carnivore": self.island.total_island_population[1]}
+        animal_dict = {"Herbivore": self.island.total_species_population[0],
+                       "Carnivore": self.island.total_species_population[1]}
         return animal_dict
 
     @property
@@ -142,8 +156,9 @@ class BioSim:
         """
         Pandas DataFrame with animal count per species for each cell on island.
         """
-        pandas_population = pd.DataFrame(self.island.population_in_each_cell,
-                                         columns=["Herbivores", "Carnivores"])
+        pandas_population = pd.DataFrame(
+            self.island.population_in_each_cell,
+            columns=["Row", "Col", "Herbivore", "Carnivore"])
         return pandas_population
 
     def make_movie(self):
@@ -151,40 +166,40 @@ class BioSim:
         Create MPEG4 movie from visualization images saved.
         """
 
-    def setup_graphics(self):
-        """
-
-        """
-        # create new figure window
-        if self._fig is None:
-            self._fig = plt.figure()
-
-        # Add left subplot for images created with imshow().
-        # We cannot create the actual ImageAxis object before we know
-        # the size of the image, so we delay its creation.
-        if self._map_ax is None:
-            self._map_ax = self._fig.add_subplot(1, 2, 1)
-            self._img_axis = None
-
-        # Add right subplot for line graph of mean.
-        if self._mean_ax is None:
-            self._mean_ax = self._fig.add_subplot(1, 2, 2)
-            self._mean_ax.set_ylim(0, 0.02)
-
-        # needs updating on subsequent calls to simulate()
-        self._mean_ax.set_xlim(0, self._final_step + 1)
-
-        if self._mean_line is None:
-            mean_plot = self._mean_ax.plot(np.arange(0, self._final_step),
-                                           np.full(self._final_step, np.nan))
-            self._mean_line = mean_plot[0]
-        else:
-            xdata, ydata = self._mean_line.get_data()
-            xnew = np.arange(xdata[-1] + 1, self._final_step)
-            if len(xnew) > 0:
-                ynew = np.full(xnew.shape, np.nan)
-                self._mean_line.set_data(np.hstack((xdata, xnew)),
-                                         np.hstack((ydata, ynew)))
+    # def setup_graphics(self):
+    #     """
+    #
+    #     """
+    #     # create new figure window
+    #     if self._fig is None:
+    #         self._fig = plt.figure()
+    #
+    #     # Add left subplot for images created with imshow().
+    #     # We cannot create the actual ImageAxis object before we know
+    #     # the size of the image, so we delay its creation.
+    #     if self._map_ax is None:
+    #         self._map_ax = self._fig.add_subplot(1, 2, 1)
+    #         self._img_axis = None
+    #
+    #     # Add right subplot for line graph of mean.
+    #     if self._mean_ax is None:
+    #         self._mean_ax = self._fig.add_subplot(1, 2, 2)
+    #         self._mean_ax.set_ylim(0, 0.02)
+    #
+    #     # needs updating on subsequent calls to simulate()
+    #     self._mean_ax.set_xlim(0, self._final_step + 1)
+    #
+    #     if self._mean_line is None:
+    #         mean_plot = self._mean_ax.plot(np.arange(0, self._final_step),
+    #                                        np.full(self._final_step, np.nan))
+    #         self._mean_line = mean_plot[0]
+    #     else:
+    #         xdata, ydata = self._mean_line.get_data()
+    #         xnew = np.arange(xdata[-1] + 1, self._final_step)
+    #         if len(xnew) > 0:
+    #             ynew = np.full(xnew.shape, np.nan)
+    #             self._mean_line.set_data(np.hstack((xdata, xnew)),
+    #                                      np.hstack((ydata, ynew)))
 
     def plot_island_map(self):
         """
@@ -219,8 +234,8 @@ class BioSim:
             axlg.text(0.35, ix * 0.2, name, transform=axlg.transAxes)
 
         #axim.grid()
-        plt.show()
-
+        #plt.show()
+        #plt.savefig("src/biosim/images/Rossumøya.png")
 
     def plot_population_graph(self, year):
         """

@@ -232,3 +232,6 @@ src/.DS_Store
 *.DS_Store
 venv/Scripts/f2py.exe
 venv
+src/biosim/images
+!doc/
+doc/*

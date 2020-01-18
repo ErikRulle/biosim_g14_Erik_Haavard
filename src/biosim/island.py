@@ -5,7 +5,7 @@
 annual cycle.
 
 The user can define:
-#. The island map.
+    * The island map.
 """
 
 __author__ = "Erik Rullestad, Håvard Molversmyr"
@@ -140,7 +140,7 @@ class Island:
         """
         This method carries out one cycle on the island.
 
-        :return total_island_population: tuple, first element is
+        :return total_species_population: tuple, first element is
                                          herbivore population and second
                                          element is carnivore population.
         """
@@ -166,7 +166,7 @@ class Island:
                 cell.update_fitness()
                 cell.death()
 
-        return self.total_island_population
+        return self.total_species_population
 
     @property
     def population_in_each_cell(self):
@@ -179,25 +179,47 @@ class Island:
         """
         number_of_herbivores = []
         number_of_carnivores = []
+        row_position = []
+        col_position = []
 
         for row in self.numpy_map:
             for cell in row:
-                number_of_herbivores.append(len(cell.animal_population[0]))
-                number_of_carnivores.append(len(cell.animal_population[1]))
-        return np.column_stack((number_of_herbivores, number_of_carnivores))
+                position = self.find_cell_position(cell)
+                row_position.append(position[0])
+                col_position.append(position[1])
+                number_of_herbivores.append(
+                    len(cell.animal_population[0]))
+                number_of_carnivores.append(
+                    len(cell.animal_population[1]))
+
+        return np.column_stack((row_position, col_position,
+                                number_of_herbivores,
+                                number_of_carnivores))
 
     @property
-    def total_island_population(self):
+    def total_species_population(self):
         """
-        Finds the total number of herbivores and carnivores on the island.
+        Finds the total number of herbivores and carnivores on the island, in
+        the first and second element of the returned tuple, respectively.
 
         :return: tuple.
         """
         population = self.population_in_each_cell
-        herbivores = [population[i][0] for i in range(len(population))]
-        carnivores = [population[i][1] for i in range(len(population))]
+        herbivores = [population[i][2] for i in range(len(population))]
+        carnivores = [population[i][3] for i in range(len(population))]
 
         return sum(herbivores), sum(carnivores)
+
+    @property
+    def total_island_population(self):
+        """
+        Finds the total number of animals on the island.
+
+        :return: int
+        """
+
+        return self.total_species_population[0] + \
+               self.total_species_population[1]
 
     def populate_the_island(self, start_population=None):
         """

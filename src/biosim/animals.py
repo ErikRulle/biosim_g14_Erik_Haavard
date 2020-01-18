@@ -8,8 +8,8 @@ either herbivore or carnivore objects, depending on what the simulation is
 calling for.
 
 The user can define:
-#. The user can define the species of the animal.
-#. The weight and age can be specified.
+    * The user can define the species of the animal.
+    * The weight and age can be specified.
 """
 
 __author__ = "Erik Rullestad, Håvard Molversmyr"
@@ -100,9 +100,14 @@ class Animal:
         return reproduction_success
 
     def update_weight_after_birth(self):
-        """
+        r"""
         If reproduction is successful, then a new animal is born, and the
         mother"s weight is reduced by the given formula.
+
+        .. math::
+
+            w = \xi * N(w_{birth}, \sigma_{birth})
+
         """
         self.weight -= self.default_parameters["xi"] * self.newborn_weight
 

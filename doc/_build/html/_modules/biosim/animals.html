@@ -1,57 +1,171 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>biosim.animals &#8212; Biosim 1.1 documentation</title>
-    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>biosim.animals &mdash; Biosim 1.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
    
-  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
-
-  </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
           
 
-          <div class="body" role="main">
+          
+            <a href="../../index.html" class="icon icon-home"> Biosim
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../motivation.html">Motivation for the coursework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api_reference.html">API Reference</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Biosim</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>biosim.animals</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <h1>Source code for biosim.animals</h1><div class="highlight"><pre>
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">:mod:`biosim.animals` defines the similar traits between our two animals in</span>
+<span class="sd">the ecosystem. The two subclasses, Herbivore and Carnivore, specifies the</span>
+<span class="sd">more specific traits that are intrinsic for each animal. The module returns</span>
+<span class="sd">either herbivore or carnivore objects, depending on what the simulation is</span>
+<span class="sd">calling for.</span>
+
+<span class="sd">The user can define:</span>
+<span class="sd">    * The user can define the species of the animal.</span>
+<span class="sd">    * The weight and age can be specified.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
 <span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;Erik Rullestad, Håvard Molversmyr&quot;</span>
 <span class="n">__email__</span> <span class="o">=</span> <span class="s2">&quot;erikrull@nmbu.no, havardmo@nmbu.no&quot;</span>
 
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">:mod:`biosim.animals` defines ... and returns ...</span>
-
-<span class="sd">The user can define:</span>
-<span class="sd">#.</span>
-<span class="sd">#.</span>
-
-<span class="sd">If different sizes of the population within an species is preferable,</span>
-<span class="sd">the user can simply make another population and add it to the island</span>
-
-<span class="sd">Example of ... returned:</span>
-<span class="sd">-------------------------</span>
-<span class="sd">::</span>
-
-<span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">random</span>
@@ -59,7 +173,7 @@
 
 <div class="viewcode-block" id="Animal"><a class="viewcode-back" href="../../api_reference.html#biosim.animals.Animal">[docs]</a><span class="k">class</span> <span class="nc">Animal</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    This class creates an idea Animal, not specifying the vore-type.</span>
+<span class="sd">    This class creates an idea Animal, not specifying the -vore-type.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">default_parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;w_birth&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;sigma_birth&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;beta&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
@@ -73,8 +187,8 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This method creates variables needed for the class.</span>
 
-<span class="sd">        :param weight: float, weight of the animals</span>
-<span class="sd">        :param age: int, age of the animal</span>
+<span class="sd">        :param weight: float, weight of the animal.</span>
+<span class="sd">        :param age: int, age of the animal.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="n">age</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
@@ -95,7 +209,7 @@
 <span class="sd">        This method allows for manual setting of animal parameters,</span>
 <span class="sd">        i.e. to change parameter values from default values to desired values.</span>
 
-<span class="sd">        :param new_parameters: dict, dictionary with the new parameter values</span>
+<span class="sd">        :param new_parameters: dict, dictionary with the new parameter values.</span>
 <span class="sd">                               Only keys from the default parameter value dict</span>
 <span class="sd">                               are valid.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -118,9 +232,8 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Estimates the probability of reproduction for the given animal.</span>
 
-<span class="sd">        :param n_animals: integer, number of animals that may reproduce</span>
+<span class="sd">        :param n_animals: integer, number of animals that may reproduce.</span>
 <span class="sd">        :return reproduction_success: bool, the animal reproduces or not.</span>
-<span class="sd">                newborn_weight: float, weight of the newborn animal.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_parameters</span><span class="p">[</span><span class="s2">&quot;zeta&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span>
@@ -138,11 +251,14 @@
         <span class="k">return</span> <span class="n">reproduction_success</span></div>
 
 <div class="viewcode-block" id="Animal.update_weight_after_birth"><a class="viewcode-back" href="../../api_reference.html#biosim.animals.Animal.update_weight_after_birth">[docs]</a>    <span class="k">def</span> <span class="nf">update_weight_after_birth</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        If reproduction is successful, then a new animal is born, and the</span>
-<span class="sd">        mother&quot;s weight is reduced by the baby&quot;s birthweight.</span>
+<span class="sd">        mother&quot;s weight is reduced by the given formula.</span>
 
-<span class="sd">        :param newborn_weight: float, weight of newborn animal</span>
+<span class="sd">        .. math::</span>
+
+<span class="sd">            w = \xi * N(w_{birth}, \sigma_{birth})</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">weight</span> <span class="o">-=</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_parameters</span><span class="p">[</span><span class="s2">&quot;xi&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">newborn_weight</span></div>
 
@@ -150,7 +266,7 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Estimates the probability of an animal dying.</span>
 
-<span class="sd">        :return: bool</span>
+<span class="sd">        :return: bool.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">death_prob</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_parameters</span><span class="p">[</span><span class="s2">&quot;omega&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">fitness</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">death_prob</span></div>
@@ -160,7 +276,7 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculates the fitness of the animal.</span>
 
-<span class="sd">        :return: float</span>
+<span class="sd">        :return: float.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">phi</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">default_parameters</span><span class="p">[</span><span class="s2">&quot;phi_age&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span>
@@ -174,6 +290,7 @@
 <div class="viewcode-block" id="Animal.migration_probability"><a class="viewcode-back" href="../../api_reference.html#biosim.animals.Animal.migration_probability">[docs]</a>    <span class="k">def</span> <span class="nf">migration_probability</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Probability for the animal to migrate.</span>
+
 <span class="sd">        :return: bool.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">migration_probability</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="p">(</span>
@@ -195,7 +312,8 @@
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Creates the variables needed for the subclass.</span>
+<span class="sd">        Creates the variables needed for the subclass. Inherits the</span>
+<span class="sd">        constructor of superclass.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">weight</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">weight</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_parameters</span><span class="p">[</span><span class="s2">&quot;w_birth&quot;</span><span class="p">]</span>
@@ -203,7 +321,7 @@
 
 <div class="viewcode-block" id="Herbivore.eating"><a class="viewcode-back" href="../../api_reference.html#biosim.animals.Herbivore.eating">[docs]</a>    <span class="k">def</span> <span class="nf">eating</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fodder</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Caculates the new weight of the herbivore after eating fodder.</span>
+<span class="sd">        Calculates the new weight of the herbivore after eating fodder.</span>
 
 <span class="sd">        :param fodder: float, amount of fodder eaten by the herbivore.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -212,10 +330,9 @@
 <div class="viewcode-block" id="Herbivore.move"><a class="viewcode-back" href="../../api_reference.html#biosim.animals.Herbivore.move">[docs]</a>    <span class="k">def</span> <span class="nf">move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cell</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This method appends the herbivore to a list of the new population</span>
-<span class="sd">        of the cell it either migrates to or already was in, if the</span>
-<span class="sd">        herbivore do not migrate.</span>
+<span class="sd">        of the cell.</span>
 
-<span class="sd">        :param cell: object, landscape type of the position in map</span>
+<span class="sd">        :param cell: object, landscape type of the position in island map.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">cell</span><span class="o">.</span><span class="n">new_population</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div></div>
 
@@ -235,7 +352,8 @@
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Creates the variables needed for the subclass.</span>
+<span class="sd">        Creates the variables needed for the subclass. Inherits the</span>
+<span class="sd">        constructor of superclass.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">weight</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">weight</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_parameters</span><span class="p">[</span><span class="s2">&quot;w_birth&quot;</span><span class="p">]</span>
@@ -243,9 +361,10 @@
 
 <div class="viewcode-block" id="Carnivore.eating_probability"><a class="viewcode-back" href="../../api_reference.html#biosim.animals.Carnivore.eating_probability">[docs]</a>    <span class="k">def</span> <span class="nf">eating_probability</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">herbivores</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Estimates the probability of a carnivore to eat a herbivore.</span>
 
-<span class="sd">        :param herbivores: list of herbivores</span>
-<span class="sd">        :return:</span>
+<span class="sd">        :param herbivores: list of herbivores.</span>
+<span class="sd">        :return: float, probability of eating.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">delta_phi_max</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_parameters</span><span class="p">[</span><span class="s2">&quot;DeltaPhiMax&quot;</span><span class="p">]</span>
 
@@ -259,6 +378,7 @@
 <div class="viewcode-block" id="Carnivore.eating"><a class="viewcode-back" href="../../api_reference.html#biosim.animals.Carnivore.eating">[docs]</a>    <span class="k">def</span> <span class="nf">eating</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">herbivores</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculates the new weight of the carnivore after eating fodder.</span>
+
 <span class="sd">        :param herbivores: float, amount of fodder eaten by the herbivore.</span>
 <span class="sd">        :return herbivores_not_eaten: list of surviving herbivores.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -289,79 +409,50 @@
 <div class="viewcode-block" id="Carnivore.move"><a class="viewcode-back" href="../../api_reference.html#biosim.animals.Carnivore.move">[docs]</a>    <span class="k">def</span> <span class="nf">move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cell</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This method appends the carnivore to a list of the new population</span>
-<span class="sd">        of the cell it either migrates to or already was in, if the</span>
-<span class="sd">        carnivore do not migrate.</span>
+<span class="sd">        of the cell.</span>
 
-<span class="sd">        :param cell: object, landscape type of the position in map</span>
+<span class="sd">        :param cell: object, landscape type of the position in map.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">cell</span><span class="o">.</span><span class="n">new_population</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div></div>
 </pre></div>
 
+           </div>
+           
           </div>
-          
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="../../index.html">Biosim</a></h1>
+          <footer>
+  
 
+  <hr/>
 
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Erik Rullestad &amp; Håvard Molversmyr
 
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
-
-
-
-
-<h3>Navigation</h3>
-<p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../api_reference.html">API Reference</a></li>
-</ul>
-
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="../index.html">Module code</a><ul>
-  </ul></li>
-  </ul></li>
-</ul>
-</div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    </div>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-
-
-
-
-
-
-
+</footer>
 
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &copy;2020, Erik Rullestad & Håvard Molversmyr.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.2</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
-      
-    </div>
 
-    
+    </section>
 
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
     
-  </body>
+   
+
+</body>
 </html>
