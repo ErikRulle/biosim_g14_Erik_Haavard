@@ -216,7 +216,7 @@ class Island:
                  for _ in range(40)]}]
         standard_pop = start_herbivore_population + start_carnivore_population
 
-        if not start_population:
+        if start_population is None:
             population = standard_pop
         else:
             population = start_population

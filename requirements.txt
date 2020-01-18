@@ -2,5 +2,5 @@ numpy
 pytest
 tox
 numpydoc
-panda
+pandas
 matplotlib
