@@ -8,8 +8,8 @@ The user can define:
     * The island map.
 """
 
-__author__ = "Erik Rullestad, Håvard Molversmyr"
-__email__ = "erikrull@nmbu.no, havardmo@nmbu.no"
+__author__ = "Erik Rullestad", "Håvard Molversmyr"
+__email__ = "erikrull@nmbu.no", "havardmo@nmbu.no"
 
 
 import numpy as np
@@ -19,7 +19,7 @@ import biosim.landscape as bl
 
 class Island:
     """
-    This class generates the island Rossum island and its ecosystem behaviour.
+    This class generates the island Rossumøya and its ecosystem behaviour.
     """
 
     STANDARD_MAP = """\

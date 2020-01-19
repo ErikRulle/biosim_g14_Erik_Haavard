@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-r"""
+"""
 :mod:`biosim.simulation` defines the BioSim class interface for simulation of
 Rossumøya's ecosystem.
 """
@@ -247,10 +247,4 @@ class BioSim:
         plt.plot(len(self.carnivore_list), self.carnivore_list)
         plt.legend(["Herbivores", "Carnivores"], loc="upper left")
         #plt.savefig
-
-
-
-
-
-
 

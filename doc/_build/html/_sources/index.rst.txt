@@ -8,11 +8,18 @@ Documentation for the modelling of the ecosystem of Rossumøya:
 INF200 January 2020
 =================================================================
 
+This library provides a population dynamics simulation of Rossumøya's
+ecosystem.
+
+
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
    motivation
+   thought_process
+   examples
    api_reference
 
 

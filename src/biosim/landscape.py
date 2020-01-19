@@ -298,7 +298,12 @@ class Jungle(Landscape):
     def regenerate(self):
         """
         This method regenerates the amount of fodder in each jungle-cell
-        according to the given formula for the jungle-type.
+        according to the equation
+
+        .. math::
+
+            f_{ij} \gets f_{max}^{Jungle}
+
         """
         self.f = self.default_parameters["f_max"]
 
@@ -313,7 +318,14 @@ class Savannah(Landscape):
     def regenerate(self):
         """
         This method regenerates the amount of fodder in each savannah-cell
-        according to the given formula for the savannah-type.
+        according to the equation
+
+        .. math::
+
+            f_{ij} \gets f_{ij} + \\alpha \\times (f_{max}^{Sav} - f_{ij}),
+
+        where :math:`\alpha` is a parameter value for the svannah landscape
+        type
         """
         self.f += self.default_parameters["alpha"] * \
                   (self.default_parameters["f_max"] - self.f)

@@ -34,8 +34,7 @@
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Motivation for the coursework" href="motivation.html" /> 
+    <link rel="search" title="Search" href="search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -57,10 +56,6 @@
 
           
             
-            
-              <div class="version">
-                1
-              </div>
             
           
 
@@ -86,15 +81,17 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="motivation.html">Motivation for the coursework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="thought_process.html">Our thought process for solving the task</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#module-biosim.simulation">Module <code class="docutils literal notranslate"><span class="pre">simulation</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-biosim.island">Module <code class="docutils literal notranslate"><span class="pre">island</span></code></a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#module-landscape">Module <code class="docutils literal notranslate"><span class="pre">landscape</span></code></a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="#module-biosim.landscape">Module <code class="docutils literal notranslate"><span class="pre">landscape</span></code></a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#module-animals">Module <code class="docutils literal notranslate"><span class="pre">animals</span></code></a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="#module-biosim.animals">Module <code class="docutils literal notranslate"><span class="pre">animals</span></code></a><ul class="simple">
 </ul>
 </li>
 </ul>
@@ -184,7 +181,7 @@ annual cycle.</p>
 <dl class="class">
 <dt id="biosim.island.Island">
 <em class="property">class </em><code class="descclassname">biosim.island.</code><code class="descname">Island</code><span class="sig-paren">(</span><em>island_map=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/island.html#Island"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#biosim.island.Island" title="Permalink to this definition">¶</a></dt>
-<dd><p>This class generates the island Rossum island and its ecosystem behaviour.</p>
+<dd><p>This class generates the island Rossumøya and its ecosystem behaviour.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -405,9 +402,9 @@ model.</p>
 </dd></dl>
 
 </div>
-<div class="section" id="module-landscape">
-<h2>Module <code class="docutils literal notranslate"><span class="pre">landscape</span></code><a class="headerlink" href="#module-landscape" title="Permalink to this headline">¶</a></h2>
-<span class="target" id="module-biosim.landscape"></span><p><a class="reference internal" href="#module-biosim.landscape" title="biosim.landscape"><code class="xref py py-mod docutils literal notranslate"><span class="pre">biosim.landscape</span></code></a> defines how a landscape object should behave and how
+<div class="section" id="module-biosim.landscape">
+<span id="module-landscape"></span><h2>Module <code class="docutils literal notranslate"><span class="pre">landscape</span></code><a class="headerlink" href="#module-biosim.landscape" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="#module-biosim.landscape" title="biosim.landscape"><code class="xref py py-mod docutils literal notranslate"><span class="pre">biosim.landscape</span></code></a> defines how a landscape object should behave and how
 its animal population interact with each other and their surroundings. The
 subclasses, Jungle, Savannah, Desert, Mountain and Ocean, contains information
 about the differences between each landscape type, e.g. availability and
@@ -877,7 +874,7 @@ sum of the herbivore weights.</p>
 <td>Calculates the propensity of an animal migrating.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Jungle.regenerate" title="biosim.landscape.Jungle.regenerate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">regenerate</span></code></a>()</td>
-<td>This method regenerates the amount of fodder in each jungle-cell according to the given formula for the jungle-type.</td>
+<td>This method regenerates the amount of fodder in each jungle-cell according to the equation</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Jungle.reproduction" title="biosim.landscape.Jungle.reproduction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reproduction</span></code></a>()</td>
 <td>Finds out which animals for each species that reproduce, based on reproduction probability, and adds a newborn of that species to the cell.</td>
@@ -960,7 +957,7 @@ sum of the herbivore weights.</p>
 <td>Calculates the propensity of an animal migrating.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Jungle.regenerate" title="biosim.landscape.Jungle.regenerate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">regenerate</span></code></a>()</td>
-<td>This method regenerates the amount of fodder in each jungle-cell according to the given formula for the jungle-type.</td>
+<td>This method regenerates the amount of fodder in each jungle-cell according to the equation</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Jungle.reproduction" title="biosim.landscape.Jungle.reproduction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reproduction</span></code></a>()</td>
 <td>Finds out which animals for each species that reproduce, based on reproduction probability, and adds a newborn of that species to the cell.</td>
@@ -1157,7 +1154,9 @@ in first and second element of the tuple, respectively.</td>
 <dt id="biosim.landscape.Jungle.regenerate">
 <code class="descname">regenerate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/landscape.html#Jungle.regenerate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#biosim.landscape.Jungle.regenerate" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method regenerates the amount of fodder in each jungle-cell
-according to the given formula for the jungle-type.</p>
+according to the equation</p>
+<div class="math notranslate nohighlight">
+\[f_{ij} \gets f_{max}^{Jungle}\]</div>
 </dd></dl>
 
 <dl class="method">
@@ -2498,7 +2497,7 @@ sum of the herbivore weights.</p>
 <td>Calculates the propensity of an animal migrating.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Savannah.regenerate" title="biosim.landscape.Savannah.regenerate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">regenerate</span></code></a>()</td>
-<td>This method regenerates the amount of fodder in each savannah-cell according to the given formula for the savannah-type.</td>
+<td>This method regenerates the amount of fodder in each savannah-cell according to the equation</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Savannah.reproduction" title="biosim.landscape.Savannah.reproduction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reproduction</span></code></a>()</td>
 <td>Finds out which animals for each species that reproduce, based on reproduction probability, and adds a newborn of that species to the cell.</td>
@@ -2581,7 +2580,7 @@ sum of the herbivore weights.</p>
 <td>Calculates the propensity of an animal migrating.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#biosim.landscape.Savannah.regenerate" title="biosim.landscape.Savannah.regenerate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">regenerate</span></code></a>()</td>
-<td>This method regenerates the amount of fodder in each savannah-cell according to the given formula for the savannah-type.</td>
+<td>This method regenerates the amount of fodder in each savannah-cell according to the equation</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#biosim.landscape.Savannah.reproduction" title="biosim.landscape.Savannah.reproduction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reproduction</span></code></a>()</td>
 <td>Finds out which animals for each species that reproduce, based on reproduction probability, and adds a newborn of that species to the cell.</td>
@@ -2778,7 +2777,11 @@ in first and second element of the tuple, respectively.</td>
 <dt id="biosim.landscape.Savannah.regenerate">
 <code class="descname">regenerate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/landscape.html#Savannah.regenerate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#biosim.landscape.Savannah.regenerate" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method regenerates the amount of fodder in each savannah-cell
-according to the given formula for the savannah-type.</p>
+according to the equation</p>
+<div class="math notranslate nohighlight">
+\[f_{ij} \gets f_{ij} + \alpha \times (f_{max}^{Sav} - f_{ij}),\]</div>
+<p>where <span class="math notranslate nohighlight">\(lpha\)</span> is a parameter value for the svannah landscape
+type</p>
 </dd></dl>
 
 <dl class="method">
@@ -2849,9 +2852,9 @@ sum of the herbivore weights.</p>
 </dd></dl>
 
 </div>
-<div class="section" id="module-animals">
-<h2>Module <code class="docutils literal notranslate"><span class="pre">animals</span></code><a class="headerlink" href="#module-animals" title="Permalink to this headline">¶</a></h2>
-<span class="target" id="module-biosim.animals"></span><p><a class="reference internal" href="#module-biosim.animals" title="biosim.animals"><code class="xref py py-mod docutils literal notranslate"><span class="pre">biosim.animals</span></code></a> defines the similar traits between our two animals in
+<div class="section" id="module-biosim.animals">
+<span id="module-animals"></span><h2>Module <code class="docutils literal notranslate"><span class="pre">animals</span></code><a class="headerlink" href="#module-biosim.animals" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="#module-biosim.animals" title="biosim.animals"><code class="xref py py-mod docutils literal notranslate"><span class="pre">biosim.animals</span></code></a> defines the similar traits between our two animals in
 the ecosystem. The two subclasses, Herbivore and Carnivore, specifies the
 more specific traits that are intrinsic for each animal. The module returns
 either herbivore or carnivore objects, depending on what the simulation is
@@ -2874,7 +2877,7 @@ calling for.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Attributes:</th><td class="field-body"><dl class="first last docutils">
 <dt><a class="reference internal" href="#biosim.animals.Animal.fitness" title="biosim.animals.Animal.fitness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fitness</span></code></a></dt>
-<dd><p class="first last">Calculates the fitness of the animal.</p>
+<dd><p class="first last">Calculates the fitness of the animal, given by the equation</p>
 </dd>
 </dl>
 </td>
@@ -2892,22 +2895,22 @@ calling for.</p>
 <td>Animal ages by one year.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#biosim.animals.Animal.animal_weight_loss" title="biosim.animals.Animal.animal_weight_loss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">animal_weight_loss</span></code></a>()</td>
-<td>Updates animal weight after annual weight loss.</td>
+<td>Updates animal weight after annual weight loss with  a decrease rate of <span class="math notranslate nohighlight">\(\eta w\)</span>, where <span class="math notranslate nohighlight">\(\eta\)</span> is a parameter value for the animal, and <span class="math notranslate nohighlight">\(w\)</span> is the animal’s current weight.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#biosim.animals.Animal.death" title="biosim.animals.Animal.death"><code class="xref py py-obj docutils literal notranslate"><span class="pre">death</span></code></a>()</td>
-<td>Estimates the probability of an animal dying.</td>
+<td>Estimates the probability of an animal dying, given by the equation</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#biosim.animals.Animal.migration_probability" title="biosim.animals.Animal.migration_probability"><code class="xref py py-obj docutils literal notranslate"><span class="pre">migration_probability</span></code></a>()</td>
 <td>Probability for the animal to migrate.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#biosim.animals.Animal.reproduction_probability" title="biosim.animals.Animal.reproduction_probability"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reproduction_probability</span></code></a>(n_animals)</td>
-<td>Estimates the probability of reproduction for the given animal.</td>
+<td>Estimates the probability of reproduction for the given animal according to the equation</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#biosim.animals.Animal.set_animal_parameters" title="biosim.animals.Animal.set_animal_parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_animal_parameters</span></code></a>(new_parameters)</td>
 <td>This method allows for manual setting of animal parameters, i.e.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#biosim.animals.Animal.update_weight_after_birth" title="biosim.animals.Animal.update_weight_after_birth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_weight_after_birth</span></code></a>()</td>
-<td>If reproduction is successful, then a new animal is born, and the mother”s weight is reduced by the given formula.</td>
+<td>If reproduction is successful  a new animal is born, and the mother’s weight is reduced by the equation</td>
 </tr>
 </tbody>
 </table>
@@ -2924,7 +2927,7 @@ calling for.</p>
 </tr>
 <tr class="field-even field"><th class="field-name">Attributes:</th><td class="field-body"><dl class="first last docutils">
 <dt><a class="reference internal" href="#biosim.animals.Animal.fitness" title="biosim.animals.Animal.fitness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fitness</span></code></a></dt>
-<dd><p class="first last">Calculates the fitness of the animal.</p>
+<dd><p class="first last">Calculates the fitness of the animal, given by the equation</p>
 </dd>
 </dl>
 </td>
@@ -2942,22 +2945,22 @@ calling for.</p>
 <td>Animal ages by one year.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#biosim.animals.Animal.animal_weight_loss" title="biosim.animals.Animal.animal_weight_loss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">animal_weight_loss</span></code></a>()</td>
-<td>Updates animal weight after annual weight loss.</td>
+<td>Updates animal weight after annual weight loss with  a decrease rate of <span class="math notranslate nohighlight">\(\eta w\)</span>, where <span class="math notranslate nohighlight">\(\eta\)</span> is a parameter value for the animal, and <span class="math notranslate nohighlight">\(w\)</span> is the animal’s current weight.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#biosim.animals.Animal.death" title="biosim.animals.Animal.death"><code class="xref py py-obj docutils literal notranslate"><span class="pre">death</span></code></a>()</td>
-<td>Estimates the probability of an animal dying.</td>
+<td>Estimates the probability of an animal dying, given by the equation</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#biosim.animals.Animal.migration_probability" title="biosim.animals.Animal.migration_probability"><code class="xref py py-obj docutils literal notranslate"><span class="pre">migration_probability</span></code></a>()</td>
 <td>Probability for the animal to migrate.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#biosim.animals.Animal.reproduction_probability" title="biosim.animals.Animal.reproduction_probability"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reproduction_probability</span></code></a>(n_animals)</td>
-<td>Estimates the probability of reproduction for the given animal.</td>
+<td>Estimates the probability of reproduction for the given animal according to the equation</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#biosim.animals.Animal.set_animal_parameters" title="biosim.animals.Animal.set_animal_parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_animal_parameters</span></code></a>(new_parameters)</td>
 <td>This method allows for manual setting of animal parameters, i.e.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#biosim.animals.Animal.update_weight_after_birth" title="biosim.animals.Animal.update_weight_after_birth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_weight_after_birth</span></code></a>()</td>
-<td>If reproduction is successful, then a new animal is born, and the mother”s weight is reduced by the given formula.</td>
+<td>If reproduction is successful  a new animal is born, and the mother’s weight is reduced by the equation</td>
 </tr>
 </tbody>
 </table>
@@ -2970,13 +2973,17 @@ calling for.</p>
 <dl class="method">
 <dt id="biosim.animals.Animal.animal_weight_loss">
 <code class="descname">animal_weight_loss</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/animals.html#Animal.animal_weight_loss"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#biosim.animals.Animal.animal_weight_loss" title="Permalink to this definition">¶</a></dt>
-<dd><p>Updates animal weight after annual weight loss.</p>
+<dd><p>Updates animal weight after annual weight loss with  a decrease rate
+of <span class="math notranslate nohighlight">\(\eta w\)</span>, where <span class="math notranslate nohighlight">\(\eta\)</span> is a parameter value for the
+animal, and <span class="math notranslate nohighlight">\(w\)</span> is the animal’s current weight.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="biosim.animals.Animal.death">
 <code class="descname">death</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/animals.html#Animal.death"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#biosim.animals.Animal.death" title="Permalink to this definition">¶</a></dt>
-<dd><p>Estimates the probability of an animal dying.</p>
+<dd><p>Estimates the probability of an animal dying, given by the equation</p>
+<div class="math notranslate nohighlight">
+\[\omega(1-\phi)\]</div>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -2990,7 +2997,21 @@ calling for.</p>
 <dl class="attribute">
 <dt id="biosim.animals.Animal.fitness">
 <code class="descname">fitness</code><a class="headerlink" href="#biosim.animals.Animal.fitness" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculates the fitness of the animal.</p>
+<dd><p>Calculates the fitness of the animal, given by the equation</p>
+<div class="math notranslate nohighlight">
+\[\Phi
+=
+\Biggl \lbrace
+{
+0, {w ≤ 0}
+\atop
+q^{+}(a, a_{\frac{1}{2}}, \phi_{age}) \times q^{-}(w, w_{\frac
+{1}{2}}, \phi_{weight}), \text{ else }
+}\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[q^{\pm}(x, x_{\frac{1}{2}}, \phi) = \frac{1}{1 + e^{\pm \phi(x
+ - x_{\frac{1}{2}})}}\]</div>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -3004,7 +3025,8 @@ calling for.</p>
 <dl class="method">
 <dt id="biosim.animals.Animal.migration_probability">
 <code class="descname">migration_probability</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/animals.html#Animal.migration_probability"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#biosim.animals.Animal.migration_probability" title="Permalink to this definition">¶</a></dt>
-<dd><p>Probability for the animal to migrate.</p>
+<dd><p>Probability for the animal to migrate. The probability is calculated
+as <span class="math notranslate nohighlight">\(\mu \Phi\)</span>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -3018,7 +3040,20 @@ calling for.</p>
 <dl class="method">
 <dt id="biosim.animals.Animal.reproduction_probability">
 <code class="descname">reproduction_probability</code><span class="sig-paren">(</span><em>n_animals</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/animals.html#Animal.reproduction_probability"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#biosim.animals.Animal.reproduction_probability" title="Permalink to this definition">¶</a></dt>
-<dd><p>Estimates the probability of reproduction for the given animal.</p>
+<dd><p>Estimates the probability of reproduction for the given animal
+according to the equation</p>
+<div class="math notranslate nohighlight">
+\[min(1, \gamma \times \phi \times (N-1),\]</div>
+<p>where <span class="math notranslate nohighlight">\(N\)</span> is the number of conspecific animals at the start of
+the breeding season, and <span class="math notranslate nohighlight">\(\gamma\)</span> and <span class="math notranslate nohighlight">\(\phi\)</span> are
+species-specific parameter values. This means that the reproduction
+probability is 0 if there is only one individual of a species in the
+given cell.</p>
+<p>Furthermore, the probability is also 0 if the weight is</p>
+<div class="math notranslate nohighlight">
+\[w &lt; \zeta (w_{birth} + \sigma_{birth}),\]</div>
+<p>where <span class="math notranslate nohighlight">\(\zeta, w_{birth}\)</span> and <span class="math notranslate nohighlight">\(\sigma_{birth}\)</span> are all
+species-specific parameter values.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -3037,6 +3072,11 @@ calling for.</p>
 <em class="property">classmethod </em><code class="descname">set_animal_parameters</code><span class="sig-paren">(</span><em>new_parameters</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/animals.html#Animal.set_animal_parameters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#biosim.animals.Animal.set_animal_parameters" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method allows for manual setting of animal parameters,
 i.e. to change parameter values from default values to desired values.</p>
+<p>The parameters <span class="math notranslate nohighlight">\(w_{birth},\sigma_{birth}, \beta, \eta,
+a_\frac{1}{2}, \phi_{age}, w_\frac{1}{2}, \phi_{weight}, \mu,
+\lambda, \gamma, \zeta, \xi, \omega, F\)</span> and
+<span class="math notranslate nohighlight">\(\Delta\Phi_{max}\)</span> are identical for all animals of the same
+species, but may be different between herbivores and carnivores.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -3052,10 +3092,14 @@ are valid.</td>
 <dl class="method">
 <dt id="biosim.animals.Animal.update_weight_after_birth">
 <code class="descname">update_weight_after_birth</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/animals.html#Animal.update_weight_after_birth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#biosim.animals.Animal.update_weight_after_birth" title="Permalink to this definition">¶</a></dt>
-<dd><p>If reproduction is successful, then a new animal is born, and the
-mother”s weight is reduced by the given formula.</p>
+<dd><p>If reproduction is successful  a new animal is born, and the mother’s
+weight is reduced by the equation</p>
 <div class="math notranslate nohighlight">
-\[w = \xi * N(w_{birth}, \sigma_{birth})\]</div>
+\[w = \xi * N(w_{birth}, \sigma_{birth}),\]</div>
+<p>where <span class="math notranslate nohighlight">\(N(w_{birth}, \sigma_{birth})\)</span> is the newborn’s weight
+that is normally distributed with mean <span class="math notranslate nohighlight">\(w_{birth}\)</span> and
+standard deviation <span class="math notranslate nohighlight">\(\sigma_{birth}\)</span>, and <span class="math notranslate nohighlight">\(\xi\)</span> is a
+parameter value for the animal.</p>
 </dd></dl>
 
 </dd></dl>
@@ -3071,7 +3115,7 @@ default parameters.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Attributes:</th><td class="field-body"><dl class="first last docutils">
 <dt><a class="reference internal" href="#biosim.animals.Carnivore.fitness" title="biosim.animals.Carnivore.fitness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fitness</span></code></a></dt>
-<dd><p class="first last">Calculates the fitness of the animal.</p>
+<dd><p class="first last">Calculates the fitness of the animal, given by the equation</p>
 </dd>
 </dl>
 </td>
@@ -3089,10 +3133,10 @@ default parameters.</p>
 <td>Animal ages by one year.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#biosim.animals.Carnivore.animal_weight_loss" title="biosim.animals.Carnivore.animal_weight_loss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">animal_weight_loss</span></code></a>()</td>
-<td>Updates animal weight after annual weight loss.</td>
+<td>Updates animal weight after annual weight loss with  a decrease rate of <span class="math notranslate nohighlight">\(\eta w\)</span>, where <span class="math notranslate nohighlight">\(\eta\)</span> is a parameter value for the animal, and <span class="math notranslate nohighlight">\(w\)</span> is the animal’s current weight.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#biosim.animals.Carnivore.death" title="biosim.animals.Carnivore.death"><code class="xref py py-obj docutils literal notranslate"><span class="pre">death</span></code></a>()</td>
-<td>Estimates the probability of an animal dying.</td>
+<td>Estimates the probability of an animal dying, given by the equation</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#biosim.animals.Carnivore.eating" title="biosim.animals.Carnivore.eating"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eating</span></code></a>(herbivores)</td>
 <td>Calculates the new weight of the carnivore after eating fodder.</td>
@@ -3107,13 +3151,13 @@ default parameters.</p>
 <td>This method appends the carnivore to a list of the new population of the cell.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#biosim.animals.Carnivore.reproduction_probability" title="biosim.animals.Carnivore.reproduction_probability"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reproduction_probability</span></code></a>(n_animals)</td>
-<td>Estimates the probability of reproduction for the given animal.</td>
+<td>Estimates the probability of reproduction for the given animal according to the equation</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#biosim.animals.Carnivore.set_animal_parameters" title="biosim.animals.Carnivore.set_animal_parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_animal_parameters</span></code></a>(new_parameters)</td>
 <td>This method allows for manual setting of animal parameters, i.e.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#biosim.animals.Carnivore.update_weight_after_birth" title="biosim.animals.Carnivore.update_weight_after_birth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_weight_after_birth</span></code></a>()</td>
-<td>If reproduction is successful, then a new animal is born, and the mother”s weight is reduced by the given formula.</td>
+<td>If reproduction is successful  a new animal is born, and the mother’s weight is reduced by the equation</td>
 </tr>
 </tbody>
 </table>
@@ -3125,7 +3169,7 @@ constructor of superclass.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Attributes:</th><td class="field-body"><dl class="first last docutils">
 <dt><a class="reference internal" href="#biosim.animals.Carnivore.fitness" title="biosim.animals.Carnivore.fitness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fitness</span></code></a></dt>
-<dd><p class="first last">Calculates the fitness of the animal.</p>
+<dd><p class="first last">Calculates the fitness of the animal, given by the equation</p>
 </dd>
 </dl>
 </td>
@@ -3143,10 +3187,10 @@ constructor of superclass.</p>
 <td>Animal ages by one year.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#biosim.animals.Carnivore.animal_weight_loss" title="biosim.animals.Carnivore.animal_weight_loss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">animal_weight_loss</span></code></a>()</td>
-<td>Updates animal weight after annual weight loss.</td>
+<td>Updates animal weight after annual weight loss with  a decrease rate of <span class="math notranslate nohighlight">\(\eta w\)</span>, where <span class="math notranslate nohighlight">\(\eta\)</span> is a parameter value for the animal, and <span class="math notranslate nohighlight">\(w\)</span> is the animal’s current weight.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#biosim.animals.Carnivore.death" title="biosim.animals.Carnivore.death"><code class="xref py py-obj docutils literal notranslate"><span class="pre">death</span></code></a>()</td>
-<td>Estimates the probability of an animal dying.</td>
+<td>Estimates the probability of an animal dying, given by the equation</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#biosim.animals.Carnivore.eating" title="biosim.animals.Carnivore.eating"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eating</span></code></a>(herbivores)</td>
 <td>Calculates the new weight of the carnivore after eating fodder.</td>
@@ -3161,13 +3205,13 @@ constructor of superclass.</p>
 <td>This method appends the carnivore to a list of the new population of the cell.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#biosim.animals.Carnivore.reproduction_probability" title="biosim.animals.Carnivore.reproduction_probability"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reproduction_probability</span></code></a>(n_animals)</td>
-<td>Estimates the probability of reproduction for the given animal.</td>
+<td>Estimates the probability of reproduction for the given animal according to the equation</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#biosim.animals.Carnivore.set_animal_parameters" title="biosim.animals.Carnivore.set_animal_parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_animal_parameters</span></code></a>(new_parameters)</td>
 <td>This method allows for manual setting of animal parameters, i.e.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#biosim.animals.Carnivore.update_weight_after_birth" title="biosim.animals.Carnivore.update_weight_after_birth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_weight_after_birth</span></code></a>()</td>
-<td>If reproduction is successful, then a new animal is born, and the mother”s weight is reduced by the given formula.</td>
+<td>If reproduction is successful  a new animal is born, and the mother’s weight is reduced by the equation</td>
 </tr>
 </tbody>
 </table>
@@ -3180,13 +3224,17 @@ constructor of superclass.</p>
 <dl class="method">
 <dt id="biosim.animals.Carnivore.animal_weight_loss">
 <code class="descname">animal_weight_loss</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.animals.Carnivore.animal_weight_loss" title="Permalink to this definition">¶</a></dt>
-<dd><p>Updates animal weight after annual weight loss.</p>
+<dd><p>Updates animal weight after annual weight loss with  a decrease rate
+of <span class="math notranslate nohighlight">\(\eta w\)</span>, where <span class="math notranslate nohighlight">\(\eta\)</span> is a parameter value for the
+animal, and <span class="math notranslate nohighlight">\(w\)</span> is the animal’s current weight.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="biosim.animals.Carnivore.death">
 <code class="descname">death</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.animals.Carnivore.death" title="Permalink to this definition">¶</a></dt>
-<dd><p>Estimates the probability of an animal dying.</p>
+<dd><p>Estimates the probability of an animal dying, given by the equation</p>
+<div class="math notranslate nohighlight">
+\[\omega(1-\phi)\]</div>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -3200,7 +3248,11 @@ constructor of superclass.</p>
 <dl class="method">
 <dt id="biosim.animals.Carnivore.eating">
 <code class="descname">eating</code><span class="sig-paren">(</span><em>herbivores</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/animals.html#Carnivore.eating"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#biosim.animals.Carnivore.eating" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculates the new weight of the carnivore after eating fodder.</p>
+<dd><p>Calculates the new weight of the carnivore after eating fodder.
+The carnivores weight increases by <span class="math notranslate nohighlight">\(\beta w_{herb}\)</span>, where
+<span class="math notranslate nohighlight">\(w_{herb}\)</span> is the weight of the herbivore killed, or the
+weight amount of the herbivore that the carnivore eats to
+become satiated.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -3217,7 +3269,18 @@ constructor of superclass.</p>
 <dl class="method">
 <dt id="biosim.animals.Carnivore.eating_probability">
 <code class="descname">eating_probability</code><span class="sig-paren">(</span><em>herbivores</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/animals.html#Carnivore.eating_probability"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#biosim.animals.Carnivore.eating_probability" title="Permalink to this definition">¶</a></dt>
-<dd><p>Estimates the probability of a carnivore to eat a herbivore.</p>
+<dd><p>Estimates the probability of a carnivore to eat a herbivore.
+Carnivores kill herbivores with probability</p>
+<div class="math notranslate nohighlight">
+\[p = \Biggl \lbrace
+{
+0, \text{ if } {\Phi_{carn} ≤ \Phi_{herb}}
+\atop
+\frac{\Phi_{carn} - \Phi_{herb}}{\Delta\Phi_{max}}, \text{ if }
+{0 &lt; \Phi_{carn} - \Phi_{herb} &lt; \Delta\Phi_{max}}
+\substack
+1, \text{ otherwise. }
+}\]</div>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -3233,7 +3296,21 @@ constructor of superclass.</p>
 <dl class="attribute">
 <dt id="biosim.animals.Carnivore.fitness">
 <code class="descname">fitness</code><a class="headerlink" href="#biosim.animals.Carnivore.fitness" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculates the fitness of the animal.</p>
+<dd><p>Calculates the fitness of the animal, given by the equation</p>
+<div class="math notranslate nohighlight">
+\[\Phi
+=
+\Biggl \lbrace
+{
+0, {w ≤ 0}
+\atop
+q^{+}(a, a_{\frac{1}{2}}, \phi_{age}) \times q^{-}(w, w_{\frac
+{1}{2}}, \phi_{weight}), \text{ else }
+}\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[q^{\pm}(x, x_{\frac{1}{2}}, \phi) = \frac{1}{1 + e^{\pm \phi(x
+ - x_{\frac{1}{2}})}}\]</div>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -3247,7 +3324,8 @@ constructor of superclass.</p>
 <dl class="method">
 <dt id="biosim.animals.Carnivore.migration_probability">
 <code class="descname">migration_probability</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.animals.Carnivore.migration_probability" title="Permalink to this definition">¶</a></dt>
-<dd><p>Probability for the animal to migrate.</p>
+<dd><p>Probability for the animal to migrate. The probability is calculated
+as <span class="math notranslate nohighlight">\(\mu \Phi\)</span>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -3276,7 +3354,20 @@ of the cell.</p>
 <dl class="method">
 <dt id="biosim.animals.Carnivore.reproduction_probability">
 <code class="descname">reproduction_probability</code><span class="sig-paren">(</span><em>n_animals</em><span class="sig-paren">)</span><a class="headerlink" href="#biosim.animals.Carnivore.reproduction_probability" title="Permalink to this definition">¶</a></dt>
-<dd><p>Estimates the probability of reproduction for the given animal.</p>
+<dd><p>Estimates the probability of reproduction for the given animal
+according to the equation</p>
+<div class="math notranslate nohighlight">
+\[min(1, \gamma \times \phi \times (N-1),\]</div>
+<p>where <span class="math notranslate nohighlight">\(N\)</span> is the number of conspecific animals at the start of
+the breeding season, and <span class="math notranslate nohighlight">\(\gamma\)</span> and <span class="math notranslate nohighlight">\(\phi\)</span> are
+species-specific parameter values. This means that the reproduction
+probability is 0 if there is only one individual of a species in the
+given cell.</p>
+<p>Furthermore, the probability is also 0 if the weight is</p>
+<div class="math notranslate nohighlight">
+\[w &lt; \zeta (w_{birth} + \sigma_{birth}),\]</div>
+<p>where <span class="math notranslate nohighlight">\(\zeta, w_{birth}\)</span> and <span class="math notranslate nohighlight">\(\sigma_{birth}\)</span> are all
+species-specific parameter values.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -3295,6 +3386,11 @@ of the cell.</p>
 <em class="property">classmethod </em><code class="descname">set_animal_parameters</code><span class="sig-paren">(</span><em>new_parameters</em><span class="sig-paren">)</span><a class="headerlink" href="#biosim.animals.Carnivore.set_animal_parameters" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method allows for manual setting of animal parameters,
 i.e. to change parameter values from default values to desired values.</p>
+<p>The parameters <span class="math notranslate nohighlight">\(w_{birth},\sigma_{birth}, \beta, \eta,
+a_\frac{1}{2}, \phi_{age}, w_\frac{1}{2}, \phi_{weight}, \mu,
+\lambda, \gamma, \zeta, \xi, \omega, F\)</span> and
+<span class="math notranslate nohighlight">\(\Delta\Phi_{max}\)</span> are identical for all animals of the same
+species, but may be different between herbivores and carnivores.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -3310,10 +3406,14 @@ are valid.</td>
 <dl class="method">
 <dt id="biosim.animals.Carnivore.update_weight_after_birth">
 <code class="descname">update_weight_after_birth</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.animals.Carnivore.update_weight_after_birth" title="Permalink to this definition">¶</a></dt>
-<dd><p>If reproduction is successful, then a new animal is born, and the
-mother”s weight is reduced by the given formula.</p>
+<dd><p>If reproduction is successful  a new animal is born, and the mother’s
+weight is reduced by the equation</p>
 <div class="math notranslate nohighlight">
-\[w = \xi * N(w_{birth}, \sigma_{birth})\]</div>
+\[w = \xi * N(w_{birth}, \sigma_{birth}),\]</div>
+<p>where <span class="math notranslate nohighlight">\(N(w_{birth}, \sigma_{birth})\)</span> is the newborn’s weight
+that is normally distributed with mean <span class="math notranslate nohighlight">\(w_{birth}\)</span> and
+standard deviation <span class="math notranslate nohighlight">\(\sigma_{birth}\)</span>, and <span class="math notranslate nohighlight">\(\xi\)</span> is a
+parameter value for the animal.</p>
 </dd></dl>
 
 </dd></dl>
@@ -3329,7 +3429,7 @@ default parameters.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Attributes:</th><td class="field-body"><dl class="first last docutils">
 <dt><a class="reference internal" href="#biosim.animals.Herbivore.fitness" title="biosim.animals.Herbivore.fitness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fitness</span></code></a></dt>
-<dd><p class="first last">Calculates the fitness of the animal.</p>
+<dd><p class="first last">Calculates the fitness of the animal, given by the equation</p>
 </dd>
 </dl>
 </td>
@@ -3347,10 +3447,10 @@ default parameters.</p>
 <td>Animal ages by one year.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#biosim.animals.Herbivore.animal_weight_loss" title="biosim.animals.Herbivore.animal_weight_loss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">animal_weight_loss</span></code></a>()</td>
-<td>Updates animal weight after annual weight loss.</td>
+<td>Updates animal weight after annual weight loss with  a decrease rate of <span class="math notranslate nohighlight">\(\eta w\)</span>, where <span class="math notranslate nohighlight">\(\eta\)</span> is a parameter value for the animal, and <span class="math notranslate nohighlight">\(w\)</span> is the animal’s current weight.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#biosim.animals.Herbivore.death" title="biosim.animals.Herbivore.death"><code class="xref py py-obj docutils literal notranslate"><span class="pre">death</span></code></a>()</td>
-<td>Estimates the probability of an animal dying.</td>
+<td>Estimates the probability of an animal dying, given by the equation</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#biosim.animals.Herbivore.eating" title="biosim.animals.Herbivore.eating"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eating</span></code></a>(fodder)</td>
 <td>Calculates the new weight of the herbivore after eating fodder.</td>
@@ -3362,13 +3462,13 @@ default parameters.</p>
 <td>This method appends the herbivore to a list of the new population of the cell.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#biosim.animals.Herbivore.reproduction_probability" title="biosim.animals.Herbivore.reproduction_probability"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reproduction_probability</span></code></a>(n_animals)</td>
-<td>Estimates the probability of reproduction for the given animal.</td>
+<td>Estimates the probability of reproduction for the given animal according to the equation</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#biosim.animals.Herbivore.set_animal_parameters" title="biosim.animals.Herbivore.set_animal_parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_animal_parameters</span></code></a>(new_parameters)</td>
 <td>This method allows for manual setting of animal parameters, i.e.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#biosim.animals.Herbivore.update_weight_after_birth" title="biosim.animals.Herbivore.update_weight_after_birth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_weight_after_birth</span></code></a>()</td>
-<td>If reproduction is successful, then a new animal is born, and the mother”s weight is reduced by the given formula.</td>
+<td>If reproduction is successful  a new animal is born, and the mother’s weight is reduced by the equation</td>
 </tr>
 </tbody>
 </table>
@@ -3380,7 +3480,7 @@ constructor of superclass.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Attributes:</th><td class="field-body"><dl class="first last docutils">
 <dt><a class="reference internal" href="#biosim.animals.Herbivore.fitness" title="biosim.animals.Herbivore.fitness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fitness</span></code></a></dt>
-<dd><p class="first last">Calculates the fitness of the animal.</p>
+<dd><p class="first last">Calculates the fitness of the animal, given by the equation</p>
 </dd>
 </dl>
 </td>
@@ -3398,10 +3498,10 @@ constructor of superclass.</p>
 <td>Animal ages by one year.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#biosim.animals.Herbivore.animal_weight_loss" title="biosim.animals.Herbivore.animal_weight_loss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">animal_weight_loss</span></code></a>()</td>
-<td>Updates animal weight after annual weight loss.</td>
+<td>Updates animal weight after annual weight loss with  a decrease rate of <span class="math notranslate nohighlight">\(\eta w\)</span>, where <span class="math notranslate nohighlight">\(\eta\)</span> is a parameter value for the animal, and <span class="math notranslate nohighlight">\(w\)</span> is the animal’s current weight.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#biosim.animals.Herbivore.death" title="biosim.animals.Herbivore.death"><code class="xref py py-obj docutils literal notranslate"><span class="pre">death</span></code></a>()</td>
-<td>Estimates the probability of an animal dying.</td>
+<td>Estimates the probability of an animal dying, given by the equation</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#biosim.animals.Herbivore.eating" title="biosim.animals.Herbivore.eating"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eating</span></code></a>(fodder)</td>
 <td>Calculates the new weight of the herbivore after eating fodder.</td>
@@ -3413,13 +3513,13 @@ constructor of superclass.</p>
 <td>This method appends the herbivore to a list of the new population of the cell.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#biosim.animals.Herbivore.reproduction_probability" title="biosim.animals.Herbivore.reproduction_probability"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reproduction_probability</span></code></a>(n_animals)</td>
-<td>Estimates the probability of reproduction for the given animal.</td>
+<td>Estimates the probability of reproduction for the given animal according to the equation</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#biosim.animals.Herbivore.set_animal_parameters" title="biosim.animals.Herbivore.set_animal_parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_animal_parameters</span></code></a>(new_parameters)</td>
 <td>This method allows for manual setting of animal parameters, i.e.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#biosim.animals.Herbivore.update_weight_after_birth" title="biosim.animals.Herbivore.update_weight_after_birth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_weight_after_birth</span></code></a>()</td>
-<td>If reproduction is successful, then a new animal is born, and the mother”s weight is reduced by the given formula.</td>
+<td>If reproduction is successful  a new animal is born, and the mother’s weight is reduced by the equation</td>
 </tr>
 </tbody>
 </table>
@@ -3432,13 +3532,17 @@ constructor of superclass.</p>
 <dl class="method">
 <dt id="biosim.animals.Herbivore.animal_weight_loss">
 <code class="descname">animal_weight_loss</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.animals.Herbivore.animal_weight_loss" title="Permalink to this definition">¶</a></dt>
-<dd><p>Updates animal weight after annual weight loss.</p>
+<dd><p>Updates animal weight after annual weight loss with  a decrease rate
+of <span class="math notranslate nohighlight">\(\eta w\)</span>, where <span class="math notranslate nohighlight">\(\eta\)</span> is a parameter value for the
+animal, and <span class="math notranslate nohighlight">\(w\)</span> is the animal’s current weight.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="biosim.animals.Herbivore.death">
 <code class="descname">death</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.animals.Herbivore.death" title="Permalink to this definition">¶</a></dt>
-<dd><p>Estimates the probability of an animal dying.</p>
+<dd><p>Estimates the probability of an animal dying, given by the equation</p>
+<div class="math notranslate nohighlight">
+\[\omega(1-\phi)\]</div>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -3452,7 +3556,10 @@ constructor of superclass.</p>
 <dl class="method">
 <dt id="biosim.animals.Herbivore.eating">
 <code class="descname">eating</code><span class="sig-paren">(</span><em>fodder</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/animals.html#Herbivore.eating"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#biosim.animals.Herbivore.eating" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculates the new weight of the herbivore after eating fodder.</p>
+<dd><p>Calculates the new weight of the herbivore after eating fodder.
+Given that a herbivore eats an amount <span class="math notranslate nohighlight">\(\tilde{F}\)</span> of fodder,
+it’s weight increases by <span class="math notranslate nohighlight">\(\beta \tilde{F}\)</span>, where
+<span class="math notranslate nohighlight">\(\beta\)</span> is a parameter value specific for herbivores.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -3466,7 +3573,21 @@ constructor of superclass.</p>
 <dl class="attribute">
 <dt id="biosim.animals.Herbivore.fitness">
 <code class="descname">fitness</code><a class="headerlink" href="#biosim.animals.Herbivore.fitness" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculates the fitness of the animal.</p>
+<dd><p>Calculates the fitness of the animal, given by the equation</p>
+<div class="math notranslate nohighlight">
+\[\Phi
+=
+\Biggl \lbrace
+{
+0, {w ≤ 0}
+\atop
+q^{+}(a, a_{\frac{1}{2}}, \phi_{age}) \times q^{-}(w, w_{\frac
+{1}{2}}, \phi_{weight}), \text{ else }
+}\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[q^{\pm}(x, x_{\frac{1}{2}}, \phi) = \frac{1}{1 + e^{\pm \phi(x
+ - x_{\frac{1}{2}})}}\]</div>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -3480,7 +3601,8 @@ constructor of superclass.</p>
 <dl class="method">
 <dt id="biosim.animals.Herbivore.migration_probability">
 <code class="descname">migration_probability</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.animals.Herbivore.migration_probability" title="Permalink to this definition">¶</a></dt>
-<dd><p>Probability for the animal to migrate.</p>
+<dd><p>Probability for the animal to migrate. The probability is calculated
+as <span class="math notranslate nohighlight">\(\mu \Phi\)</span>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -3509,7 +3631,20 @@ of the cell.</p>
 <dl class="method">
 <dt id="biosim.animals.Herbivore.reproduction_probability">
 <code class="descname">reproduction_probability</code><span class="sig-paren">(</span><em>n_animals</em><span class="sig-paren">)</span><a class="headerlink" href="#biosim.animals.Herbivore.reproduction_probability" title="Permalink to this definition">¶</a></dt>
-<dd><p>Estimates the probability of reproduction for the given animal.</p>
+<dd><p>Estimates the probability of reproduction for the given animal
+according to the equation</p>
+<div class="math notranslate nohighlight">
+\[min(1, \gamma \times \phi \times (N-1),\]</div>
+<p>where <span class="math notranslate nohighlight">\(N\)</span> is the number of conspecific animals at the start of
+the breeding season, and <span class="math notranslate nohighlight">\(\gamma\)</span> and <span class="math notranslate nohighlight">\(\phi\)</span> are
+species-specific parameter values. This means that the reproduction
+probability is 0 if there is only one individual of a species in the
+given cell.</p>
+<p>Furthermore, the probability is also 0 if the weight is</p>
+<div class="math notranslate nohighlight">
+\[w &lt; \zeta (w_{birth} + \sigma_{birth}),\]</div>
+<p>where <span class="math notranslate nohighlight">\(\zeta, w_{birth}\)</span> and <span class="math notranslate nohighlight">\(\sigma_{birth}\)</span> are all
+species-specific parameter values.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -3528,6 +3663,11 @@ of the cell.</p>
 <em class="property">classmethod </em><code class="descname">set_animal_parameters</code><span class="sig-paren">(</span><em>new_parameters</em><span class="sig-paren">)</span><a class="headerlink" href="#biosim.animals.Herbivore.set_animal_parameters" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method allows for manual setting of animal parameters,
 i.e. to change parameter values from default values to desired values.</p>
+<p>The parameters <span class="math notranslate nohighlight">\(w_{birth},\sigma_{birth}, \beta, \eta,
+a_\frac{1}{2}, \phi_{age}, w_\frac{1}{2}, \phi_{weight}, \mu,
+\lambda, \gamma, \zeta, \xi, \omega, F\)</span> and
+<span class="math notranslate nohighlight">\(\Delta\Phi_{max}\)</span> are identical for all animals of the same
+species, but may be different between herbivores and carnivores.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -3543,10 +3683,14 @@ are valid.</td>
 <dl class="method">
 <dt id="biosim.animals.Herbivore.update_weight_after_birth">
 <code class="descname">update_weight_after_birth</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.animals.Herbivore.update_weight_after_birth" title="Permalink to this definition">¶</a></dt>
-<dd><p>If reproduction is successful, then a new animal is born, and the
-mother”s weight is reduced by the given formula.</p>
+<dd><p>If reproduction is successful  a new animal is born, and the mother’s
+weight is reduced by the equation</p>
 <div class="math notranslate nohighlight">
-\[w = \xi * N(w_{birth}, \sigma_{birth})\]</div>
+\[w = \xi * N(w_{birth}, \sigma_{birth}),\]</div>
+<p>where <span class="math notranslate nohighlight">\(N(w_{birth}, \sigma_{birth})\)</span> is the newborn’s weight
+that is normally distributed with mean <span class="math notranslate nohighlight">\(w_{birth}\)</span> and
+standard deviation <span class="math notranslate nohighlight">\(\sigma_{birth}\)</span>, and <span class="math notranslate nohighlight">\(\xi\)</span> is a
+parameter value for the animal.</p>
 </dd></dl>
 
 </dd></dl>
@@ -3559,13 +3703,6 @@ mother”s weight is reduced by the given formula.</p>
            
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-      
-        <a href="motivation.html" class="btn btn-neutral float-left" title="Motivation for the coursework" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>

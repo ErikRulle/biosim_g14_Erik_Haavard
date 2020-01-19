@@ -57,10 +57,6 @@
           
             
             
-              <div class="version">
-                1
-              </div>
-            
           
 
           
@@ -85,6 +81,8 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../motivation.html">Motivation for the coursework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../thought_process.html">Our thought process for solving the task</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../api_reference.html">API Reference</a></li>
 </ul>
 
@@ -163,8 +161,8 @@
 <span class="sd">    * The weight and age can be specified.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;Erik Rullestad, Håvard Molversmyr&quot;</span>
-<span class="n">__email__</span> <span class="o">=</span> <span class="s2">&quot;erikrull@nmbu.no, havardmo@nmbu.no&quot;</span>
+<span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;Erik Rullestad&quot;</span><span class="p">,</span> <span class="s2">&quot;Håvard Molversmyr&quot;</span>
+<span class="n">__email__</span> <span class="o">=</span> <span class="s2">&quot;erikrull@nmbu.no&quot;</span><span class="p">,</span> <span class="s2">&quot;havardmo@nmbu.no&quot;</span>
 
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -209,6 +207,12 @@
 <span class="sd">        This method allows for manual setting of animal parameters,</span>
 <span class="sd">        i.e. to change parameter values from default values to desired values.</span>
 
+<span class="sd">        The parameters :math:`w_{birth},\\sigma_{birth}, \\beta, \\eta,</span>
+<span class="sd">        a_\\frac{1}{2}, \\phi_{age}, w_\\frac{1}{2}, \\phi_{weight}, \\mu,</span>
+<span class="sd">        \\lambda, \\gamma, \\zeta, \\xi, \\omega, F` and</span>
+<span class="sd">        :math:`\\Delta\\Phi_{max}` are identical for all animals of the same</span>
+<span class="sd">        species, but may be different between herbivores and carnivores.</span>
+
 <span class="sd">        :param new_parameters: dict, dictionary with the new parameter values.</span>
 <span class="sd">                               Only keys from the default parameter value dict</span>
 <span class="sd">                               are valid.</span>
@@ -224,13 +228,36 @@
 
 <div class="viewcode-block" id="Animal.animal_weight_loss"><a class="viewcode-back" href="../../api_reference.html#biosim.animals.Animal.animal_weight_loss">[docs]</a>    <span class="k">def</span> <span class="nf">animal_weight_loss</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Updates animal weight after annual weight loss.</span>
+<span class="sd">        Updates animal weight after annual weight loss with  a decrease rate</span>
+<span class="sd">        of :math:`\\eta w`, where :math:`\\eta` is a parameter value for the</span>
+<span class="sd">        animal, and :math:`w` is the animal&#39;s current weight.</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">weight</span> <span class="o">-=</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_parameters</span><span class="p">[</span><span class="s2">&quot;eta&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span></div>
 
 <div class="viewcode-block" id="Animal.reproduction_probability"><a class="viewcode-back" href="../../api_reference.html#biosim.animals.Animal.reproduction_probability">[docs]</a>    <span class="k">def</span> <span class="nf">reproduction_probability</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_animals</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Estimates the probability of reproduction for the given animal.</span>
+<span class="sd">        Estimates the probability of reproduction for the given animal</span>
+<span class="sd">        according to the equation</span>
+
+<span class="sd">        .. math::</span>
+
+<span class="sd">            min(1, \gamma \\times \phi \\times (N-1),</span>
+
+<span class="sd">        where :math:`N` is the number of conspecific animals at the start of</span>
+<span class="sd">        the breeding season, and :math:`\\gamma` and :math:`\\phi` are</span>
+<span class="sd">        species-specific parameter values. This means that the reproduction</span>
+<span class="sd">        probability is 0 if there is only one individual of a species in the</span>
+<span class="sd">        given cell.</span>
+
+<span class="sd">        Furthermore, the probability is also 0 if the weight is</span>
+
+<span class="sd">        .. math::</span>
+
+<span class="sd">            w &lt; \\zeta (w_{birth} + \sigma_{birth}),</span>
+
+<span class="sd">        where :math:`\\zeta, w_{birth}` and :math:`\\sigma_{birth}` are all</span>
+<span class="sd">        species-specific parameter values.</span>
 
 <span class="sd">        :param n_animals: integer, number of animals that may reproduce.</span>
 <span class="sd">        :return reproduction_success: bool, the animal reproduces or not.</span>
@@ -252,19 +279,27 @@
 
 <div class="viewcode-block" id="Animal.update_weight_after_birth"><a class="viewcode-back" href="../../api_reference.html#biosim.animals.Animal.update_weight_after_birth">[docs]</a>    <span class="k">def</span> <span class="nf">update_weight_after_birth</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        If reproduction is successful, then a new animal is born, and the</span>
-<span class="sd">        mother&quot;s weight is reduced by the given formula.</span>
+<span class="sd">        If reproduction is successful  a new animal is born, and the mother&#39;s</span>
+<span class="sd">        weight is reduced by the equation</span>
 
 <span class="sd">        .. math::</span>
 
-<span class="sd">            w = \xi * N(w_{birth}, \sigma_{birth})</span>
+<span class="sd">            w = \xi * N(w_{birth}, \sigma_{birth}),</span>
 
+<span class="sd">        where :math:`N(w_{birth}, \sigma_{birth})` is the newborn&#39;s weight</span>
+<span class="sd">        that is normally distributed with mean :math:`w_{birth}` and</span>
+<span class="sd">        standard deviation :math:`\sigma_{birth}`, and :math:`\xi` is a</span>
+<span class="sd">        parameter value for the animal.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">weight</span> <span class="o">-=</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_parameters</span><span class="p">[</span><span class="s2">&quot;xi&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">newborn_weight</span></div>
 
 <div class="viewcode-block" id="Animal.death"><a class="viewcode-back" href="../../api_reference.html#biosim.animals.Animal.death">[docs]</a>    <span class="k">def</span> <span class="nf">death</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Estimates the probability of an animal dying.</span>
+<span class="sd">        Estimates the probability of an animal dying, given by the equation</span>
+
+<span class="sd">        .. math::</span>
+
+<span class="sd">            \\omega(1-\\phi)</span>
 
 <span class="sd">        :return: bool.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -274,7 +309,26 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">fitness</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Calculates the fitness of the animal.</span>
+<span class="sd">        Calculates the fitness of the animal, given by the equation</span>
+
+<span class="sd">        .. math::</span>
+
+<span class="sd">            \Phi</span>
+<span class="sd">            =</span>
+<span class="sd">            \Biggl \lbrace</span>
+<span class="sd">            {</span>
+<span class="sd">            0, {w ≤ 0}</span>
+<span class="sd">            \\atop</span>
+<span class="sd">            q^{+}(a, a_{\\frac{1}{2}}, \phi_{age}) \\times q^{-}(w, w_{\\frac</span>
+<span class="sd">            {1}{2}}, \phi_{weight}), \\text{ else }</span>
+<span class="sd">            }</span>
+
+<span class="sd">        where</span>
+
+<span class="sd">        .. math::</span>
+
+<span class="sd">            q^{\pm}(x, x_{\\frac{1}{2}}, \phi) = \\frac{1}{1 + e^{\pm \phi(x</span>
+<span class="sd">             - x_{\\frac{1}{2}})}}</span>
 
 <span class="sd">        :return: float.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -289,7 +343,8 @@
 
 <div class="viewcode-block" id="Animal.migration_probability"><a class="viewcode-back" href="../../api_reference.html#biosim.animals.Animal.migration_probability">[docs]</a>    <span class="k">def</span> <span class="nf">migration_probability</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Probability for the animal to migrate.</span>
+<span class="sd">        Probability for the animal to migrate. The probability is calculated</span>
+<span class="sd">        as :math:`\mu \Phi`.</span>
 
 <span class="sd">        :return: bool.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -322,6 +377,10 @@
 <div class="viewcode-block" id="Herbivore.eating"><a class="viewcode-back" href="../../api_reference.html#biosim.animals.Herbivore.eating">[docs]</a>    <span class="k">def</span> <span class="nf">eating</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fodder</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculates the new weight of the herbivore after eating fodder.</span>
+<span class="sd">        Given that a herbivore eats an amount :math:`\\tilde{F}` of fodder,</span>
+<span class="sd">        it&#39;s weight increases by :math:`\\beta \\tilde{F}`, where</span>
+<span class="sd">        :math:`\\beta` is a parameter value specific for herbivores.</span>
+
 
 <span class="sd">        :param fodder: float, amount of fodder eaten by the herbivore.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -362,6 +421,19 @@
 <div class="viewcode-block" id="Carnivore.eating_probability"><a class="viewcode-back" href="../../api_reference.html#biosim.animals.Carnivore.eating_probability">[docs]</a>    <span class="k">def</span> <span class="nf">eating_probability</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">herbivores</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Estimates the probability of a carnivore to eat a herbivore.</span>
+<span class="sd">        Carnivores kill herbivores with probability</span>
+
+<span class="sd">        .. math::</span>
+
+<span class="sd">            p = \Biggl \lbrace</span>
+<span class="sd">            {</span>
+<span class="sd">            0, \\text{ if } {\Phi_{carn} ≤ \Phi_{herb}}</span>
+<span class="sd">            \\atop</span>
+<span class="sd">            \\frac{\Phi_{carn} - \Phi_{herb}}{\Delta\Phi_{max}}, \\text{ if }</span>
+<span class="sd">            {0 &lt; \Phi_{carn} - \Phi_{herb} &lt; \Delta\Phi_{max}}</span>
+<span class="sd">            \\substack</span>
+<span class="sd">            1, \\text{ otherwise. }</span>
+<span class="sd">            }</span>
 
 <span class="sd">        :param herbivores: list of herbivores.</span>
 <span class="sd">        :return: float, probability of eating.</span>
@@ -378,6 +450,10 @@
 <div class="viewcode-block" id="Carnivore.eating"><a class="viewcode-back" href="../../api_reference.html#biosim.animals.Carnivore.eating">[docs]</a>    <span class="k">def</span> <span class="nf">eating</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">herbivores</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculates the new weight of the carnivore after eating fodder.</span>
+<span class="sd">        The carnivores weight increases by :math:`\\beta w_{herb}`, where</span>
+<span class="sd">        :math:`w_{herb}` is the weight of the herbivore killed, or the</span>
+<span class="sd">        weight amount of the herbivore that the carnivore eats to</span>
+<span class="sd">        become satiated.</span>
 
 <span class="sd">        :param herbivores: float, amount of fodder eaten by the herbivore.</span>
 <span class="sd">        :return herbivores_not_eaten: list of surviving herbivores.</span>

@@ -57,10 +57,6 @@
           
             
             
-              <div class="version">
-                1
-              </div>
-            
           
 
           
@@ -85,6 +81,8 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../motivation.html">Motivation for the coursework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../thought_process.html">Our thought process for solving the task</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../api_reference.html">API Reference</a></li>
 </ul>
 
@@ -449,7 +447,12 @@
 <div class="viewcode-block" id="Jungle.regenerate"><a class="viewcode-back" href="../../api_reference.html#biosim.landscape.Jungle.regenerate">[docs]</a>    <span class="k">def</span> <span class="nf">regenerate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This method regenerates the amount of fodder in each jungle-cell</span>
-<span class="sd">        according to the given formula for the jungle-type.</span>
+<span class="sd">        according to the equation</span>
+
+<span class="sd">        .. math::</span>
+
+<span class="sd">            f_{ij} \gets f_{max}^{Jungle}</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_parameters</span><span class="p">[</span><span class="s2">&quot;f_max&quot;</span><span class="p">]</span></div></div>
 
@@ -464,7 +467,14 @@
 <div class="viewcode-block" id="Savannah.regenerate"><a class="viewcode-back" href="../../api_reference.html#biosim.landscape.Savannah.regenerate">[docs]</a>    <span class="k">def</span> <span class="nf">regenerate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This method regenerates the amount of fodder in each savannah-cell</span>
-<span class="sd">        according to the given formula for the savannah-type.</span>
+<span class="sd">        according to the equation</span>
+
+<span class="sd">        .. math::</span>
+
+<span class="sd">            f_{ij} \gets f_{ij} + \\alpha \\times (f_{max}^{Sav} - f_{ij}),</span>
+
+<span class="sd">        where :math:`\alpha` is a parameter value for the svannah landscape</span>
+<span class="sd">        type</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">f</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_parameters</span><span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">]</span> <span class="o">*</span> \
                   <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">default_parameters</span><span class="p">[</span><span class="s2">&quot;f_max&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">)</span></div></div>

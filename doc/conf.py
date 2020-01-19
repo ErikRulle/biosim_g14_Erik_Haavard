@@ -25,7 +25,7 @@ copyright = '2020, Erik Rullestad & Håvard Molversmyr'
 author = 'Erik Rullestad & Håvard Molversmyr'
 
 # The short X.Y version
-version = '1'
+version = ''
 # The full version, including alpha/beta/rc tags
 release = '1.1'
 
@@ -44,6 +44,7 @@ extensions = [
     'sphinx.ext.coverage',
     'sphinx.ext.mathjax',
     'sphinx.ext.viewcode',
+    'sphinx.ext.autosectionlabel',
     'numpydoc'
 ]
 

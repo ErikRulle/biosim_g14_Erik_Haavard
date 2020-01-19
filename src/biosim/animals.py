@@ -12,8 +12,8 @@ The user can define:
     * The weight and age can be specified.
 """
 
-__author__ = "Erik Rullestad, Håvard Molversmyr"
-__email__ = "erikrull@nmbu.no, havardmo@nmbu.no"
+__author__ = "Erik Rullestad", "Håvard Molversmyr"
+__email__ = "erikrull@nmbu.no", "havardmo@nmbu.no"
 
 
 import numpy as np
@@ -58,6 +58,12 @@ class Animal:
         This method allows for manual setting of animal parameters,
         i.e. to change parameter values from default values to desired values.
 
+        The parameters :math:`w_{birth},\\sigma_{birth}, \\beta, \\eta,
+        a_\\frac{1}{2}, \\phi_{age}, w_\\frac{1}{2}, \\phi_{weight}, \\mu,
+        \\lambda, \\gamma, \\zeta, \\xi, \\omega, F` and
+        :math:`\\Delta\\Phi_{max}` are identical for all animals of the same
+        species, but may be different between herbivores and carnivores.
+
         :param new_parameters: dict, dictionary with the new parameter values.
                                Only keys from the default parameter value dict
                                are valid.
@@ -73,13 +79,36 @@ class Animal:
 
     def animal_weight_loss(self):
         """
-        Updates animal weight after annual weight loss.
+        Updates animal weight after annual weight loss with  a decrease rate
+        of :math:`\\eta w`, where :math:`\\eta` is a parameter value for the
+        animal, and :math:`w` is the animal's current weight.
+
         """
         self.weight -= self.default_parameters["eta"] * self.weight
 
     def reproduction_probability(self, n_animals):
         """
-        Estimates the probability of reproduction for the given animal.
+        Estimates the probability of reproduction for the given animal
+        according to the equation
+
+        .. math::
+
+            min(1, \gamma \\times \phi \\times (N-1),
+
+        where :math:`N` is the number of conspecific animals at the start of
+        the breeding season, and :math:`\\gamma` and :math:`\\phi` are
+        species-specific parameter values. This means that the reproduction
+        probability is 0 if there is only one individual of a species in the
+        given cell.
+
+        Furthermore, the probability is also 0 if the weight is
+
+        .. math::
+
+            w < \\zeta (w_{birth} + \sigma_{birth}),
+
+        where :math:`\\zeta, w_{birth}` and :math:`\\sigma_{birth}` are all
+        species-specific parameter values.
 
         :param n_animals: integer, number of animals that may reproduce.
         :return reproduction_success: bool, the animal reproduces or not.
@@ -101,19 +130,27 @@ class Animal:
 
     def update_weight_after_birth(self):
         r"""
-        If reproduction is successful, then a new animal is born, and the
-        mother"s weight is reduced by the given formula.
+        If reproduction is successful  a new animal is born, and the mother's
+        weight is reduced by the equation
 
         .. math::
 
-            w = \xi * N(w_{birth}, \sigma_{birth})
+            w = \xi * N(w_{birth}, \sigma_{birth}),
 
+        where :math:`N(w_{birth}, \sigma_{birth})` is the newborn's weight
+        that is normally distributed with mean :math:`w_{birth}` and
+        standard deviation :math:`\sigma_{birth}`, and :math:`\xi` is a
+        parameter value for the animal.
         """
         self.weight -= self.default_parameters["xi"] * self.newborn_weight
 
     def death(self):
         """
-        Estimates the probability of an animal dying.
+        Estimates the probability of an animal dying, given by the equation
+
+        .. math::
+
+            \\omega(1-\\phi)
 
         :return: bool.
         """
@@ -123,7 +160,26 @@ class Animal:
     @property
     def fitness(self):
         """
-        Calculates the fitness of the animal.
+        Calculates the fitness of the animal, given by the equation
+
+        .. math::
+
+            \Phi
+            =
+            \Biggl \lbrace
+            {
+            0, {w ≤ 0}
+            \\atop
+            q^{+}(a, a_{\\frac{1}{2}}, \phi_{age}) \\times q^{-}(w, w_{\\frac
+            {1}{2}}, \phi_{weight}), \\text{ else }
+            }
+
+        where
+
+        .. math::
+
+            q^{\pm}(x, x_{\\frac{1}{2}}, \phi) = \\frac{1}{1 + e^{\pm \phi(x
+             - x_{\\frac{1}{2}})}}
 
         :return: float.
         """
@@ -138,7 +194,8 @@ class Animal:
 
     def migration_probability(self):
         """
-        Probability for the animal to migrate.
+        Probability for the animal to migrate. The probability is calculated
+        as :math:`\mu \Phi`.
 
         :return: bool.
         """
@@ -171,6 +228,10 @@ class Herbivore(Animal):
     def eating(self, fodder):
         """
         Calculates the new weight of the herbivore after eating fodder.
+        Given that a herbivore eats an amount :math:`\\tilde{F}` of fodder,
+        it's weight increases by :math:`\\beta \\tilde{F}`, where
+        :math:`\\beta` is a parameter value specific for herbivores.
+
 
         :param fodder: float, amount of fodder eaten by the herbivore.
         """
@@ -211,6 +272,19 @@ class Carnivore(Animal):
     def eating_probability(self, herbivores):
         """
         Estimates the probability of a carnivore to eat a herbivore.
+        Carnivores kill herbivores with probability
+
+        .. math::
+
+            p = \Biggl \lbrace
+            {
+            0, \\text{ if } {\Phi_{carn} ≤ \Phi_{herb}}
+            \\atop
+            \\frac{\Phi_{carn} - \Phi_{herb}}{\Delta\Phi_{max}}, \\text{ if }
+            {0 < \Phi_{carn} - \Phi_{herb} < \Delta\Phi_{max}}
+            \\substack
+            1, \\text{ otherwise. }
+            }
 
         :param herbivores: list of herbivores.
         :return: float, probability of eating.
@@ -227,6 +301,10 @@ class Carnivore(Animal):
     def eating(self, herbivores):
         """
         Calculates the new weight of the carnivore after eating fodder.
+        The carnivores weight increases by :math:`\\beta w_{herb}`, where
+        :math:`w_{herb}` is the weight of the herbivore killed, or the
+        weight amount of the herbivore that the carnivore eats to
+        become satiated.
 
         :param herbivores: float, amount of fodder eaten by the herbivore.
         :return herbivores_not_eaten: list of surviving herbivores.
