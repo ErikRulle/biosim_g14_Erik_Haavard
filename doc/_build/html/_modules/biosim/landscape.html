@@ -332,7 +332,17 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">available_fodder_herbivore</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Finding the relative abundance of fodder for herbivore.</span>
+<span class="sd">        Finding the relative abundance of fodder for herbivore, which is</span>
+<span class="sd">        defined as</span>
+
+<span class="sd">        .. math::</span>
+
+<span class="sd">            \\epsilon_{k} = \\frac{f_{k}}{(n_{k} + 1)F&#39;},</span>
+
+<span class="sd">        where :math:`f_{k}` is the amount of relevant fodder available in cell</span>
+<span class="sd">        :math:`k`, :math:`n_{k}` is the is the number of herbivores in cell</span>
+<span class="sd">        :math:`k` and :math:`F` the “appetite” of each herbivore.</span>
+<span class="sd">        “Relevant fodder” is the amount of plant fodder available.</span>
 
 <span class="sd">        :return: float.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -344,6 +354,16 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Finding the relative abundance of fodder for carnivore.</span>
 
+<span class="sd">        .. math::</span>
+
+<span class="sd">            \\epsilon_{k} = \\frac{f_{k}}{(n_{k} + 1)F&#39;},</span>
+
+<span class="sd">        where :math:`f_{k}` is the amount of relevant fodder available in cell</span>
+<span class="sd">        :math:`k`, :math:`n_{k}` is the is the number of carnivores in cell</span>
+<span class="sd">        :math:`k` and :math:`F` the “appetite” of each carnivore.</span>
+<span class="sd">        “Relevant fodder” is the total weight of all herbivores in cell</span>
+<span class="sd">        :math:`k`.</span>
+
 <span class="sd">        :return: float.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sum_of_herbivore_mass</span> <span class="o">/</span> <span class="p">(</span>
@@ -353,6 +373,20 @@
 <div class="viewcode-block" id="Landscape.propensity"><a class="viewcode-back" href="../../api_reference.html#biosim.landscape.Landscape.propensity">[docs]</a>    <span class="k">def</span> <span class="nf">propensity</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculates the propensity of an animal migrating.</span>
+<span class="sd">        The propensity to move from :math:`i` to :math:`j \in C^{(i)}`, i.e.</span>
+<span class="sd">        from current cell to one of it&#39;s neighbouring cells in set</span>
+<span class="sd">        :math:`C^{(i)}`, is given by the equation</span>
+
+<span class="sd">        .. math::</span>
+
+<span class="sd">            \\pi_{i \\rightarrow j}</span>
+<span class="sd">            =</span>
+<span class="sd">            \Biggl \lbrace</span>
+<span class="sd">            {</span>
+<span class="sd">            0, \\text{ if } j \\text{ is Mountain or Ocean}</span>
+<span class="sd">            \\atop</span>
+<span class="sd">            e^{\lambda \epsilon_{j}}, \\text{ otherwise }</span>
+<span class="sd">            }</span>
 
 <span class="sd">        :return: tuple, the propensities of herbivore and carnivore migration</span>
 <span class="sd">                 in first and second element of the tuple, respectively.</span>
@@ -375,6 +409,14 @@
 <span class="sd">        This method estimates the propensity for each neighbouring cell, and</span>
 <span class="sd">        calculates the probability of herbivores migrating to that cell.</span>
 <span class="sd">        Stores the result in a list.</span>
+
+<span class="sd">        The propensity-dependent probability is calculated according to the</span>
+<span class="sd">        equation</span>
+
+<span class="sd">        .. math::</span>
+
+<span class="sd">            p_{i \\rightarrow j} = \\frac{\\pi_{i \\rightarrow j}}</span>
+<span class="sd">            {\\sum_{j \\in C^{(i)}} \\pi_{i \\rightarrow j}}</span>
 
 <span class="sd">        :param animal: object, either herbivore or carnivore.</span>
 <span class="sd">        :param neighbour_cells: list, the four adjacent cells.</span>

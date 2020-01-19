@@ -119,7 +119,8 @@ class Island:
 
     def find_surrounding_cells(self, position):
         """
-        Collects a cell's neighbouring landscape types.
+        Collects a cell's neighbouring landscape types, i.e. the set
+        :math:`C^{(i)}`.
 
         :param position: tuple (cell coordinates).
         :return neighbour_cells: list, objects of adjacent cells.

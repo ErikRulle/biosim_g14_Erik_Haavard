@@ -183,7 +183,17 @@ class Landscape:
     @property
     def available_fodder_herbivore(self):
         """
-        Finding the relative abundance of fodder for herbivore.
+        Finding the relative abundance of fodder for herbivore, which is
+        defined as
+
+        .. math::
+
+            \\epsilon_{k} = \\frac{f_{k}}{(n_{k} + 1)F'},
+
+        where :math:`f_{k}` is the amount of relevant fodder available in cell
+        :math:`k`, :math:`n_{k}` is the is the number of herbivores in cell
+        :math:`k` and :math:`F` the “appetite” of each herbivore.
+        “Relevant fodder” is the amount of plant fodder available.
 
         :return: float.
         """
@@ -195,6 +205,16 @@ class Landscape:
         """
         Finding the relative abundance of fodder for carnivore.
 
+        .. math::
+
+            \\epsilon_{k} = \\frac{f_{k}}{(n_{k} + 1)F'},
+
+        where :math:`f_{k}` is the amount of relevant fodder available in cell
+        :math:`k`, :math:`n_{k}` is the is the number of carnivores in cell
+        :math:`k` and :math:`F` the “appetite” of each carnivore.
+        “Relevant fodder” is the total weight of all herbivores in cell
+        :math:`k`.
+
         :return: float.
         """
         return self.sum_of_herbivore_mass / (
@@ -204,6 +224,20 @@ class Landscape:
     def propensity(self):
         """
         Calculates the propensity of an animal migrating.
+        The propensity to move from :math:`i` to :math:`j \in C^{(i)}`, i.e.
+        from current cell to one of it's neighbouring cells in set
+        :math:`C^{(i)}`, is given by the equation
+
+        .. math::
+
+            \\pi_{i \\rightarrow j}
+            =
+            \Biggl \lbrace
+            {
+            0, \\text{ if } j \\text{ is Mountain or Ocean}
+            \\atop
+            e^{\lambda \epsilon_{j}}, \\text{ otherwise }
+            }
 
         :return: tuple, the propensities of herbivore and carnivore migration
                  in first and second element of the tuple, respectively.
@@ -226,6 +260,14 @@ class Landscape:
         This method estimates the propensity for each neighbouring cell, and
         calculates the probability of herbivores migrating to that cell.
         Stores the result in a list.
+
+        The propensity-dependent probability is calculated according to the
+        equation
+
+        .. math::
+
+            p_{i \\rightarrow j} = \\frac{\\pi_{i \\rightarrow j}}
+            {\\sum_{j \\in C^{(i)}} \\pi_{i \\rightarrow j}}
 
         :param animal: object, either herbivore or carnivore.
         :param neighbour_cells: list, the four adjacent cells.

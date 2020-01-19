@@ -215,7 +215,7 @@ annual cycle.</p>
 <td>Finds the numpy map coordinates of the cell.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#biosim.island.Island.find_surrounding_cells" title="biosim.island.Island.find_surrounding_cells"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_surrounding_cells</span></code></a>(position)</td>
-<td>Collects a cell’s neighbouring landscape types.</td>
+<td>Collects a cell’s neighbouring landscape types, i.e.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#biosim.island.Island.landscape_position_in_map" title="biosim.island.Island.landscape_position_in_map"><code class="xref py py-obj docutils literal notranslate"><span class="pre">landscape_position_in_map</span></code></a>()</td>
 <td>Creates a numpy array map from the string map.</td>
@@ -262,7 +262,7 @@ annual cycle.</p>
 <td>Finds the numpy map coordinates of the cell.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#biosim.island.Island.find_surrounding_cells" title="biosim.island.Island.find_surrounding_cells"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_surrounding_cells</span></code></a>(position)</td>
-<td>Collects a cell’s neighbouring landscape types.</td>
+<td>Collects a cell’s neighbouring landscape types, i.e.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#biosim.island.Island.landscape_position_in_map" title="biosim.island.Island.landscape_position_in_map"><code class="xref py py-obj docutils literal notranslate"><span class="pre">landscape_position_in_map</span></code></a>()</td>
 <td>Creates a numpy array map from the string map.</td>
@@ -312,7 +312,8 @@ element is carnivore population.</td>
 <dl class="method">
 <dt id="biosim.island.Island.find_surrounding_cells">
 <code class="descname">find_surrounding_cells</code><span class="sig-paren">(</span><em>position</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/island.html#Island.find_surrounding_cells"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#biosim.island.Island.find_surrounding_cells" title="Permalink to this definition">¶</a></dt>
-<dd><p>Collects a cell’s neighbouring landscape types.</p>
+<dd><p>Collects a cell’s neighbouring landscape types, i.e. the set
+<span class="math notranslate nohighlight">\(C^{(i)}\)</span>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -422,7 +423,7 @@ regeneration of fodder.</p>
 <dd><p class="first last">Finding the relative abundance of fodder for carnivore.</p>
 </dd>
 <dt><a class="reference internal" href="#biosim.landscape.Desert.available_fodder_herbivore" title="biosim.landscape.Desert.available_fodder_herbivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">available_fodder_herbivore</span></code></a></dt>
-<dd><p class="first last">Finding the relative abundance of fodder for herbivore.</p>
+<dd><p class="first last">Finding the relative abundance of fodder for herbivore, which is</p>
 </dd>
 <dt><a class="reference internal" href="#biosim.landscape.Desert.number_of_carnivores" title="biosim.landscape.Desert.number_of_carnivores"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_of_carnivores</span></code></a></dt>
 <dd><p class="first last">Finds the total number of carnivores in a specific cell.</p>
@@ -502,7 +503,7 @@ regeneration of fodder.</p>
 <dd><p class="first last">Finding the relative abundance of fodder for carnivore.</p>
 </dd>
 <dt><a class="reference internal" href="#biosim.landscape.Desert.available_fodder_herbivore" title="biosim.landscape.Desert.available_fodder_herbivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">available_fodder_herbivore</span></code></a></dt>
-<dd><p class="first last">Finding the relative abundance of fodder for herbivore.</p>
+<dd><p class="first last">Finding the relative abundance of fodder for herbivore, which is</p>
 </dd>
 <dt><a class="reference internal" href="#biosim.landscape.Desert.number_of_carnivores" title="biosim.landscape.Desert.number_of_carnivores"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_of_carnivores</span></code></a></dt>
 <dd><p class="first last">Finds the total number of carnivores in a specific cell.</p>
@@ -583,6 +584,13 @@ once a year.</p>
 <dt id="biosim.landscape.Desert.available_fodder_carnivore">
 <code class="descname">available_fodder_carnivore</code><a class="headerlink" href="#biosim.landscape.Desert.available_fodder_carnivore" title="Permalink to this definition">¶</a></dt>
 <dd><p>Finding the relative abundance of fodder for carnivore.</p>
+<div class="math notranslate nohighlight">
+\[\epsilon_{k} = \frac{f_{k}}{(n_{k} + 1)F'},\]</div>
+<p>where <span class="math notranslate nohighlight">\(f_{k}\)</span> is the amount of relevant fodder available in cell
+<span class="math notranslate nohighlight">\(k\)</span>, <span class="math notranslate nohighlight">\(n_{k}\)</span> is the is the number of carnivores in cell
+<span class="math notranslate nohighlight">\(k\)</span> and <span class="math notranslate nohighlight">\(F\)</span> the “appetite” of each carnivore.
+“Relevant fodder” is the total weight of all herbivores in cell
+<span class="math notranslate nohighlight">\(k\)</span>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -596,7 +604,14 @@ once a year.</p>
 <dl class="attribute">
 <dt id="biosim.landscape.Desert.available_fodder_herbivore">
 <code class="descname">available_fodder_herbivore</code><a class="headerlink" href="#biosim.landscape.Desert.available_fodder_herbivore" title="Permalink to this definition">¶</a></dt>
-<dd><p>Finding the relative abundance of fodder for herbivore.</p>
+<dd><p>Finding the relative abundance of fodder for herbivore, which is
+defined as</p>
+<div class="math notranslate nohighlight">
+\[\epsilon_{k} = \frac{f_{k}}{(n_{k} + 1)F'},\]</div>
+<p>where <span class="math notranslate nohighlight">\(f_{k}\)</span> is the amount of relevant fodder available in cell
+<span class="math notranslate nohighlight">\(k\)</span>, <span class="math notranslate nohighlight">\(n_{k}\)</span> is the is the number of herbivores in cell
+<span class="math notranslate nohighlight">\(k\)</span> and <span class="math notranslate nohighlight">\(F\)</span> the “appetite” of each herbivore.
+“Relevant fodder” is the amount of plant fodder available.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -655,6 +670,11 @@ every year.</p>
 <dd><p>This method estimates the propensity for each neighbouring cell, and
 calculates the probability of herbivores migrating to that cell.
 Stores the result in a list.</p>
+<p>The propensity-dependent probability is calculated according to the
+equation</p>
+<div class="math notranslate nohighlight">
+\[p_{i \rightarrow j} = \frac{\pi_{i \rightarrow j}}
+{\sum_{j \in C^{(i)}} \pi_{i \rightarrow j}}\]</div>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -731,7 +751,19 @@ adjacent cell.</p>
 <dl class="method">
 <dt id="biosim.landscape.Desert.propensity">
 <code class="descname">propensity</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Desert.propensity" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculates the propensity of an animal migrating.</p>
+<dd><p>Calculates the propensity of an animal migrating.
+The propensity to move from <span class="math notranslate nohighlight">\(i\)</span> to <span class="math notranslate nohighlight">\(j \in C^{(i)}\)</span>, i.e.
+from current cell to one of it’s neighbouring cells in set
+<span class="math notranslate nohighlight">\(C^{(i)}\)</span>, is given by the equation</p>
+<div class="math notranslate nohighlight">
+\[\pi_{i \rightarrow j}
+=
+\Biggl \lbrace
+{
+0, \text{ if } j \text{ is Mountain or Ocean}
+\atop
+e^{\lambda \epsilon_{j}}, \text{ otherwise }
+}\]</div>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -823,7 +855,7 @@ sum of the herbivore weights.</p>
 <dd><p class="first last">Finding the relative abundance of fodder for carnivore.</p>
 </dd>
 <dt><a class="reference internal" href="#biosim.landscape.Jungle.available_fodder_herbivore" title="biosim.landscape.Jungle.available_fodder_herbivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">available_fodder_herbivore</span></code></a></dt>
-<dd><p class="first last">Finding the relative abundance of fodder for herbivore.</p>
+<dd><p class="first last">Finding the relative abundance of fodder for herbivore, which is</p>
 </dd>
 <dt><a class="reference internal" href="#biosim.landscape.Jungle.number_of_carnivores" title="biosim.landscape.Jungle.number_of_carnivores"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_of_carnivores</span></code></a></dt>
 <dd><p class="first last">Finds the total number of carnivores in a specific cell.</p>
@@ -906,7 +938,7 @@ sum of the herbivore weights.</p>
 <dd><p class="first last">Finding the relative abundance of fodder for carnivore.</p>
 </dd>
 <dt><a class="reference internal" href="#biosim.landscape.Jungle.available_fodder_herbivore" title="biosim.landscape.Jungle.available_fodder_herbivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">available_fodder_herbivore</span></code></a></dt>
-<dd><p class="first last">Finding the relative abundance of fodder for herbivore.</p>
+<dd><p class="first last">Finding the relative abundance of fodder for herbivore, which is</p>
 </dd>
 <dt><a class="reference internal" href="#biosim.landscape.Jungle.number_of_carnivores" title="biosim.landscape.Jungle.number_of_carnivores"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_of_carnivores</span></code></a></dt>
 <dd><p class="first last">Finds the total number of carnivores in a specific cell.</p>
@@ -990,6 +1022,13 @@ once a year.</p>
 <dt id="biosim.landscape.Jungle.available_fodder_carnivore">
 <code class="descname">available_fodder_carnivore</code><a class="headerlink" href="#biosim.landscape.Jungle.available_fodder_carnivore" title="Permalink to this definition">¶</a></dt>
 <dd><p>Finding the relative abundance of fodder for carnivore.</p>
+<div class="math notranslate nohighlight">
+\[\epsilon_{k} = \frac{f_{k}}{(n_{k} + 1)F'},\]</div>
+<p>where <span class="math notranslate nohighlight">\(f_{k}\)</span> is the amount of relevant fodder available in cell
+<span class="math notranslate nohighlight">\(k\)</span>, <span class="math notranslate nohighlight">\(n_{k}\)</span> is the is the number of carnivores in cell
+<span class="math notranslate nohighlight">\(k\)</span> and <span class="math notranslate nohighlight">\(F\)</span> the “appetite” of each carnivore.
+“Relevant fodder” is the total weight of all herbivores in cell
+<span class="math notranslate nohighlight">\(k\)</span>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -1003,7 +1042,14 @@ once a year.</p>
 <dl class="attribute">
 <dt id="biosim.landscape.Jungle.available_fodder_herbivore">
 <code class="descname">available_fodder_herbivore</code><a class="headerlink" href="#biosim.landscape.Jungle.available_fodder_herbivore" title="Permalink to this definition">¶</a></dt>
-<dd><p>Finding the relative abundance of fodder for herbivore.</p>
+<dd><p>Finding the relative abundance of fodder for herbivore, which is
+defined as</p>
+<div class="math notranslate nohighlight">
+\[\epsilon_{k} = \frac{f_{k}}{(n_{k} + 1)F'},\]</div>
+<p>where <span class="math notranslate nohighlight">\(f_{k}\)</span> is the amount of relevant fodder available in cell
+<span class="math notranslate nohighlight">\(k\)</span>, <span class="math notranslate nohighlight">\(n_{k}\)</span> is the is the number of herbivores in cell
+<span class="math notranslate nohighlight">\(k\)</span> and <span class="math notranslate nohighlight">\(F\)</span> the “appetite” of each herbivore.
+“Relevant fodder” is the amount of plant fodder available.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -1062,6 +1108,11 @@ every year.</p>
 <dd><p>This method estimates the propensity for each neighbouring cell, and
 calculates the probability of herbivores migrating to that cell.
 Stores the result in a list.</p>
+<p>The propensity-dependent probability is calculated according to the
+equation</p>
+<div class="math notranslate nohighlight">
+\[p_{i \rightarrow j} = \frac{\pi_{i \rightarrow j}}
+{\sum_{j \in C^{(i)}} \pi_{i \rightarrow j}}\]</div>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -1138,7 +1189,19 @@ adjacent cell.</p>
 <dl class="method">
 <dt id="biosim.landscape.Jungle.propensity">
 <code class="descname">propensity</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Jungle.propensity" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculates the propensity of an animal migrating.</p>
+<dd><p>Calculates the propensity of an animal migrating.
+The propensity to move from <span class="math notranslate nohighlight">\(i\)</span> to <span class="math notranslate nohighlight">\(j \in C^{(i)}\)</span>, i.e.
+from current cell to one of it’s neighbouring cells in set
+<span class="math notranslate nohighlight">\(C^{(i)}\)</span>, is given by the equation</p>
+<div class="math notranslate nohighlight">
+\[\pi_{i \rightarrow j}
+=
+\Biggl \lbrace
+{
+0, \text{ if } j \text{ is Mountain or Ocean}
+\atop
+e^{\lambda \epsilon_{j}}, \text{ otherwise }
+}\]</div>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -1239,7 +1302,7 @@ sum of the herbivore weights.</p>
 <dd><p class="first last">Finding the relative abundance of fodder for carnivore.</p>
 </dd>
 <dt><a class="reference internal" href="#biosim.landscape.Landscape.available_fodder_herbivore" title="biosim.landscape.Landscape.available_fodder_herbivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">available_fodder_herbivore</span></code></a></dt>
-<dd><p class="first last">Finding the relative abundance of fodder for herbivore.</p>
+<dd><p class="first last">Finding the relative abundance of fodder for herbivore, which is</p>
 </dd>
 <dt><strong>habitable</strong></dt>
 <dd></dd>
@@ -1321,7 +1384,7 @@ sum of the herbivore weights.</p>
 <dd><p class="first last">Finding the relative abundance of fodder for carnivore.</p>
 </dd>
 <dt><a class="reference internal" href="#biosim.landscape.Landscape.available_fodder_herbivore" title="biosim.landscape.Landscape.available_fodder_herbivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">available_fodder_herbivore</span></code></a></dt>
-<dd><p class="first last">Finding the relative abundance of fodder for herbivore.</p>
+<dd><p class="first last">Finding the relative abundance of fodder for herbivore, which is</p>
 </dd>
 <dt><strong>habitable</strong></dt>
 <dd></dd>
@@ -1404,6 +1467,13 @@ once a year.</p>
 <dt id="biosim.landscape.Landscape.available_fodder_carnivore">
 <code class="descname">available_fodder_carnivore</code><a class="headerlink" href="#biosim.landscape.Landscape.available_fodder_carnivore" title="Permalink to this definition">¶</a></dt>
 <dd><p>Finding the relative abundance of fodder for carnivore.</p>
+<div class="math notranslate nohighlight">
+\[\epsilon_{k} = \frac{f_{k}}{(n_{k} + 1)F'},\]</div>
+<p>where <span class="math notranslate nohighlight">\(f_{k}\)</span> is the amount of relevant fodder available in cell
+<span class="math notranslate nohighlight">\(k\)</span>, <span class="math notranslate nohighlight">\(n_{k}\)</span> is the is the number of carnivores in cell
+<span class="math notranslate nohighlight">\(k\)</span> and <span class="math notranslate nohighlight">\(F\)</span> the “appetite” of each carnivore.
+“Relevant fodder” is the total weight of all herbivores in cell
+<span class="math notranslate nohighlight">\(k\)</span>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -1417,7 +1487,14 @@ once a year.</p>
 <dl class="attribute">
 <dt id="biosim.landscape.Landscape.available_fodder_herbivore">
 <code class="descname">available_fodder_herbivore</code><a class="headerlink" href="#biosim.landscape.Landscape.available_fodder_herbivore" title="Permalink to this definition">¶</a></dt>
-<dd><p>Finding the relative abundance of fodder for herbivore.</p>
+<dd><p>Finding the relative abundance of fodder for herbivore, which is
+defined as</p>
+<div class="math notranslate nohighlight">
+\[\epsilon_{k} = \frac{f_{k}}{(n_{k} + 1)F'},\]</div>
+<p>where <span class="math notranslate nohighlight">\(f_{k}\)</span> is the amount of relevant fodder available in cell
+<span class="math notranslate nohighlight">\(k\)</span>, <span class="math notranslate nohighlight">\(n_{k}\)</span> is the is the number of herbivores in cell
+<span class="math notranslate nohighlight">\(k\)</span> and <span class="math notranslate nohighlight">\(F\)</span> the “appetite” of each herbivore.
+“Relevant fodder” is the amount of plant fodder available.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -1476,6 +1553,11 @@ every year.</p>
 <dd><p>This method estimates the propensity for each neighbouring cell, and
 calculates the probability of herbivores migrating to that cell.
 Stores the result in a list.</p>
+<p>The propensity-dependent probability is calculated according to the
+equation</p>
+<div class="math notranslate nohighlight">
+\[p_{i \rightarrow j} = \frac{\pi_{i \rightarrow j}}
+{\sum_{j \in C^{(i)}} \pi_{i \rightarrow j}}\]</div>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -1552,7 +1634,19 @@ adjacent cell.</p>
 <dl class="method">
 <dt id="biosim.landscape.Landscape.propensity">
 <code class="descname">propensity</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/landscape.html#Landscape.propensity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#biosim.landscape.Landscape.propensity" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculates the propensity of an animal migrating.</p>
+<dd><p>Calculates the propensity of an animal migrating.
+The propensity to move from <span class="math notranslate nohighlight">\(i\)</span> to <span class="math notranslate nohighlight">\(j \in C^{(i)}\)</span>, i.e.
+from current cell to one of it’s neighbouring cells in set
+<span class="math notranslate nohighlight">\(C^{(i)}\)</span>, is given by the equation</p>
+<div class="math notranslate nohighlight">
+\[\pi_{i \rightarrow j}
+=
+\Biggl \lbrace
+{
+0, \text{ if } j \text{ is Mountain or Ocean}
+\atop
+e^{\lambda \epsilon_{j}}, \text{ otherwise }
+}\]</div>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -1644,7 +1738,7 @@ sum of the herbivore weights.</p>
 <dd><p class="first last">Finding the relative abundance of fodder for carnivore.</p>
 </dd>
 <dt><a class="reference internal" href="#biosim.landscape.Mountain.available_fodder_herbivore" title="biosim.landscape.Mountain.available_fodder_herbivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">available_fodder_herbivore</span></code></a></dt>
-<dd><p class="first last">Finding the relative abundance of fodder for herbivore.</p>
+<dd><p class="first last">Finding the relative abundance of fodder for herbivore, which is</p>
 </dd>
 <dt><a class="reference internal" href="#biosim.landscape.Mountain.number_of_carnivores" title="biosim.landscape.Mountain.number_of_carnivores"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_of_carnivores</span></code></a></dt>
 <dd><p class="first last">Finds the total number of carnivores in a specific cell.</p>
@@ -1724,7 +1818,7 @@ sum of the herbivore weights.</p>
 <dd><p class="first last">Finding the relative abundance of fodder for carnivore.</p>
 </dd>
 <dt><a class="reference internal" href="#biosim.landscape.Mountain.available_fodder_herbivore" title="biosim.landscape.Mountain.available_fodder_herbivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">available_fodder_herbivore</span></code></a></dt>
-<dd><p class="first last">Finding the relative abundance of fodder for herbivore.</p>
+<dd><p class="first last">Finding the relative abundance of fodder for herbivore, which is</p>
 </dd>
 <dt><a class="reference internal" href="#biosim.landscape.Mountain.number_of_carnivores" title="biosim.landscape.Mountain.number_of_carnivores"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_of_carnivores</span></code></a></dt>
 <dd><p class="first last">Finds the total number of carnivores in a specific cell.</p>
@@ -1805,6 +1899,13 @@ once a year.</p>
 <dt id="biosim.landscape.Mountain.available_fodder_carnivore">
 <code class="descname">available_fodder_carnivore</code><a class="headerlink" href="#biosim.landscape.Mountain.available_fodder_carnivore" title="Permalink to this definition">¶</a></dt>
 <dd><p>Finding the relative abundance of fodder for carnivore.</p>
+<div class="math notranslate nohighlight">
+\[\epsilon_{k} = \frac{f_{k}}{(n_{k} + 1)F'},\]</div>
+<p>where <span class="math notranslate nohighlight">\(f_{k}\)</span> is the amount of relevant fodder available in cell
+<span class="math notranslate nohighlight">\(k\)</span>, <span class="math notranslate nohighlight">\(n_{k}\)</span> is the is the number of carnivores in cell
+<span class="math notranslate nohighlight">\(k\)</span> and <span class="math notranslate nohighlight">\(F\)</span> the “appetite” of each carnivore.
+“Relevant fodder” is the total weight of all herbivores in cell
+<span class="math notranslate nohighlight">\(k\)</span>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -1818,7 +1919,14 @@ once a year.</p>
 <dl class="attribute">
 <dt id="biosim.landscape.Mountain.available_fodder_herbivore">
 <code class="descname">available_fodder_herbivore</code><a class="headerlink" href="#biosim.landscape.Mountain.available_fodder_herbivore" title="Permalink to this definition">¶</a></dt>
-<dd><p>Finding the relative abundance of fodder for herbivore.</p>
+<dd><p>Finding the relative abundance of fodder for herbivore, which is
+defined as</p>
+<div class="math notranslate nohighlight">
+\[\epsilon_{k} = \frac{f_{k}}{(n_{k} + 1)F'},\]</div>
+<p>where <span class="math notranslate nohighlight">\(f_{k}\)</span> is the amount of relevant fodder available in cell
+<span class="math notranslate nohighlight">\(k\)</span>, <span class="math notranslate nohighlight">\(n_{k}\)</span> is the is the number of herbivores in cell
+<span class="math notranslate nohighlight">\(k\)</span> and <span class="math notranslate nohighlight">\(F\)</span> the “appetite” of each herbivore.
+“Relevant fodder” is the amount of plant fodder available.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -1877,6 +1985,11 @@ every year.</p>
 <dd><p>This method estimates the propensity for each neighbouring cell, and
 calculates the probability of herbivores migrating to that cell.
 Stores the result in a list.</p>
+<p>The propensity-dependent probability is calculated according to the
+equation</p>
+<div class="math notranslate nohighlight">
+\[p_{i \rightarrow j} = \frac{\pi_{i \rightarrow j}}
+{\sum_{j \in C^{(i)}} \pi_{i \rightarrow j}}\]</div>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -1953,7 +2066,19 @@ adjacent cell.</p>
 <dl class="method">
 <dt id="biosim.landscape.Mountain.propensity">
 <code class="descname">propensity</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Mountain.propensity" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculates the propensity of an animal migrating.</p>
+<dd><p>Calculates the propensity of an animal migrating.
+The propensity to move from <span class="math notranslate nohighlight">\(i\)</span> to <span class="math notranslate nohighlight">\(j \in C^{(i)}\)</span>, i.e.
+from current cell to one of it’s neighbouring cells in set
+<span class="math notranslate nohighlight">\(C^{(i)}\)</span>, is given by the equation</p>
+<div class="math notranslate nohighlight">
+\[\pi_{i \rightarrow j}
+=
+\Biggl \lbrace
+{
+0, \text{ if } j \text{ is Mountain or Ocean}
+\atop
+e^{\lambda \epsilon_{j}}, \text{ otherwise }
+}\]</div>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -2045,7 +2170,7 @@ sum of the herbivore weights.</p>
 <dd><p class="first last">Finding the relative abundance of fodder for carnivore.</p>
 </dd>
 <dt><a class="reference internal" href="#biosim.landscape.Ocean.available_fodder_herbivore" title="biosim.landscape.Ocean.available_fodder_herbivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">available_fodder_herbivore</span></code></a></dt>
-<dd><p class="first last">Finding the relative abundance of fodder for herbivore.</p>
+<dd><p class="first last">Finding the relative abundance of fodder for herbivore, which is</p>
 </dd>
 <dt><a class="reference internal" href="#biosim.landscape.Ocean.number_of_carnivores" title="biosim.landscape.Ocean.number_of_carnivores"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_of_carnivores</span></code></a></dt>
 <dd><p class="first last">Finds the total number of carnivores in a specific cell.</p>
@@ -2125,7 +2250,7 @@ sum of the herbivore weights.</p>
 <dd><p class="first last">Finding the relative abundance of fodder for carnivore.</p>
 </dd>
 <dt><a class="reference internal" href="#biosim.landscape.Ocean.available_fodder_herbivore" title="biosim.landscape.Ocean.available_fodder_herbivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">available_fodder_herbivore</span></code></a></dt>
-<dd><p class="first last">Finding the relative abundance of fodder for herbivore.</p>
+<dd><p class="first last">Finding the relative abundance of fodder for herbivore, which is</p>
 </dd>
 <dt><a class="reference internal" href="#biosim.landscape.Ocean.number_of_carnivores" title="biosim.landscape.Ocean.number_of_carnivores"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_of_carnivores</span></code></a></dt>
 <dd><p class="first last">Finds the total number of carnivores in a specific cell.</p>
@@ -2206,6 +2331,13 @@ once a year.</p>
 <dt id="biosim.landscape.Ocean.available_fodder_carnivore">
 <code class="descname">available_fodder_carnivore</code><a class="headerlink" href="#biosim.landscape.Ocean.available_fodder_carnivore" title="Permalink to this definition">¶</a></dt>
 <dd><p>Finding the relative abundance of fodder for carnivore.</p>
+<div class="math notranslate nohighlight">
+\[\epsilon_{k} = \frac{f_{k}}{(n_{k} + 1)F'},\]</div>
+<p>where <span class="math notranslate nohighlight">\(f_{k}\)</span> is the amount of relevant fodder available in cell
+<span class="math notranslate nohighlight">\(k\)</span>, <span class="math notranslate nohighlight">\(n_{k}\)</span> is the is the number of carnivores in cell
+<span class="math notranslate nohighlight">\(k\)</span> and <span class="math notranslate nohighlight">\(F\)</span> the “appetite” of each carnivore.
+“Relevant fodder” is the total weight of all herbivores in cell
+<span class="math notranslate nohighlight">\(k\)</span>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -2219,7 +2351,14 @@ once a year.</p>
 <dl class="attribute">
 <dt id="biosim.landscape.Ocean.available_fodder_herbivore">
 <code class="descname">available_fodder_herbivore</code><a class="headerlink" href="#biosim.landscape.Ocean.available_fodder_herbivore" title="Permalink to this definition">¶</a></dt>
-<dd><p>Finding the relative abundance of fodder for herbivore.</p>
+<dd><p>Finding the relative abundance of fodder for herbivore, which is
+defined as</p>
+<div class="math notranslate nohighlight">
+\[\epsilon_{k} = \frac{f_{k}}{(n_{k} + 1)F'},\]</div>
+<p>where <span class="math notranslate nohighlight">\(f_{k}\)</span> is the amount of relevant fodder available in cell
+<span class="math notranslate nohighlight">\(k\)</span>, <span class="math notranslate nohighlight">\(n_{k}\)</span> is the is the number of herbivores in cell
+<span class="math notranslate nohighlight">\(k\)</span> and <span class="math notranslate nohighlight">\(F\)</span> the “appetite” of each herbivore.
+“Relevant fodder” is the amount of plant fodder available.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -2278,6 +2417,11 @@ every year.</p>
 <dd><p>This method estimates the propensity for each neighbouring cell, and
 calculates the probability of herbivores migrating to that cell.
 Stores the result in a list.</p>
+<p>The propensity-dependent probability is calculated according to the
+equation</p>
+<div class="math notranslate nohighlight">
+\[p_{i \rightarrow j} = \frac{\pi_{i \rightarrow j}}
+{\sum_{j \in C^{(i)}} \pi_{i \rightarrow j}}\]</div>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -2354,7 +2498,19 @@ adjacent cell.</p>
 <dl class="method">
 <dt id="biosim.landscape.Ocean.propensity">
 <code class="descname">propensity</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Ocean.propensity" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculates the propensity of an animal migrating.</p>
+<dd><p>Calculates the propensity of an animal migrating.
+The propensity to move from <span class="math notranslate nohighlight">\(i\)</span> to <span class="math notranslate nohighlight">\(j \in C^{(i)}\)</span>, i.e.
+from current cell to one of it’s neighbouring cells in set
+<span class="math notranslate nohighlight">\(C^{(i)}\)</span>, is given by the equation</p>
+<div class="math notranslate nohighlight">
+\[\pi_{i \rightarrow j}
+=
+\Biggl \lbrace
+{
+0, \text{ if } j \text{ is Mountain or Ocean}
+\atop
+e^{\lambda \epsilon_{j}}, \text{ otherwise }
+}\]</div>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -2446,7 +2602,7 @@ sum of the herbivore weights.</p>
 <dd><p class="first last">Finding the relative abundance of fodder for carnivore.</p>
 </dd>
 <dt><a class="reference internal" href="#biosim.landscape.Savannah.available_fodder_herbivore" title="biosim.landscape.Savannah.available_fodder_herbivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">available_fodder_herbivore</span></code></a></dt>
-<dd><p class="first last">Finding the relative abundance of fodder for herbivore.</p>
+<dd><p class="first last">Finding the relative abundance of fodder for herbivore, which is</p>
 </dd>
 <dt><a class="reference internal" href="#biosim.landscape.Savannah.number_of_carnivores" title="biosim.landscape.Savannah.number_of_carnivores"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_of_carnivores</span></code></a></dt>
 <dd><p class="first last">Finds the total number of carnivores in a specific cell.</p>
@@ -2529,7 +2685,7 @@ sum of the herbivore weights.</p>
 <dd><p class="first last">Finding the relative abundance of fodder for carnivore.</p>
 </dd>
 <dt><a class="reference internal" href="#biosim.landscape.Savannah.available_fodder_herbivore" title="biosim.landscape.Savannah.available_fodder_herbivore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">available_fodder_herbivore</span></code></a></dt>
-<dd><p class="first last">Finding the relative abundance of fodder for herbivore.</p>
+<dd><p class="first last">Finding the relative abundance of fodder for herbivore, which is</p>
 </dd>
 <dt><a class="reference internal" href="#biosim.landscape.Savannah.number_of_carnivores" title="biosim.landscape.Savannah.number_of_carnivores"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_of_carnivores</span></code></a></dt>
 <dd><p class="first last">Finds the total number of carnivores in a specific cell.</p>
@@ -2613,6 +2769,13 @@ once a year.</p>
 <dt id="biosim.landscape.Savannah.available_fodder_carnivore">
 <code class="descname">available_fodder_carnivore</code><a class="headerlink" href="#biosim.landscape.Savannah.available_fodder_carnivore" title="Permalink to this definition">¶</a></dt>
 <dd><p>Finding the relative abundance of fodder for carnivore.</p>
+<div class="math notranslate nohighlight">
+\[\epsilon_{k} = \frac{f_{k}}{(n_{k} + 1)F'},\]</div>
+<p>where <span class="math notranslate nohighlight">\(f_{k}\)</span> is the amount of relevant fodder available in cell
+<span class="math notranslate nohighlight">\(k\)</span>, <span class="math notranslate nohighlight">\(n_{k}\)</span> is the is the number of carnivores in cell
+<span class="math notranslate nohighlight">\(k\)</span> and <span class="math notranslate nohighlight">\(F\)</span> the “appetite” of each carnivore.
+“Relevant fodder” is the total weight of all herbivores in cell
+<span class="math notranslate nohighlight">\(k\)</span>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -2626,7 +2789,14 @@ once a year.</p>
 <dl class="attribute">
 <dt id="biosim.landscape.Savannah.available_fodder_herbivore">
 <code class="descname">available_fodder_herbivore</code><a class="headerlink" href="#biosim.landscape.Savannah.available_fodder_herbivore" title="Permalink to this definition">¶</a></dt>
-<dd><p>Finding the relative abundance of fodder for herbivore.</p>
+<dd><p>Finding the relative abundance of fodder for herbivore, which is
+defined as</p>
+<div class="math notranslate nohighlight">
+\[\epsilon_{k} = \frac{f_{k}}{(n_{k} + 1)F'},\]</div>
+<p>where <span class="math notranslate nohighlight">\(f_{k}\)</span> is the amount of relevant fodder available in cell
+<span class="math notranslate nohighlight">\(k\)</span>, <span class="math notranslate nohighlight">\(n_{k}\)</span> is the is the number of herbivores in cell
+<span class="math notranslate nohighlight">\(k\)</span> and <span class="math notranslate nohighlight">\(F\)</span> the “appetite” of each herbivore.
+“Relevant fodder” is the amount of plant fodder available.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -2685,6 +2855,11 @@ every year.</p>
 <dd><p>This method estimates the propensity for each neighbouring cell, and
 calculates the probability of herbivores migrating to that cell.
 Stores the result in a list.</p>
+<p>The propensity-dependent probability is calculated according to the
+equation</p>
+<div class="math notranslate nohighlight">
+\[p_{i \rightarrow j} = \frac{\pi_{i \rightarrow j}}
+{\sum_{j \in C^{(i)}} \pi_{i \rightarrow j}}\]</div>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -2761,7 +2936,19 @@ adjacent cell.</p>
 <dl class="method">
 <dt id="biosim.landscape.Savannah.propensity">
 <code class="descname">propensity</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.landscape.Savannah.propensity" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculates the propensity of an animal migrating.</p>
+<dd><p>Calculates the propensity of an animal migrating.
+The propensity to move from <span class="math notranslate nohighlight">\(i\)</span> to <span class="math notranslate nohighlight">\(j \in C^{(i)}\)</span>, i.e.
+from current cell to one of it’s neighbouring cells in set
+<span class="math notranslate nohighlight">\(C^{(i)}\)</span>, is given by the equation</p>
+<div class="math notranslate nohighlight">
+\[\pi_{i \rightarrow j}
+=
+\Biggl \lbrace
+{
+0, \text{ if } j \text{ is Mountain or Ocean}
+\atop
+e^{\lambda \epsilon_{j}}, \text{ otherwise }
+}\]</div>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
