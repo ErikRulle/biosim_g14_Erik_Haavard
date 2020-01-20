@@ -198,7 +198,7 @@ class BioSim:
         """
         # create new figure window
         if self._fig is None:
-            self._fig = plt.figure(figsize=(20, 10))
+            self._fig = plt.figure(figsize=(12, 6))
 
         # Add left subplot for images created with imshow().
         # We cannot create the actual ImageAxis object before we know
@@ -252,8 +252,6 @@ class BioSim:
     def plot_population_graph(self):
         """
         Plots the total herbivore and carnivore population for a given year.
-
-        :param year: int, last year in simulation.
         """
         if self._pop_axis is None:
             self._pop_ax.plot(
