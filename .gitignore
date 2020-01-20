@@ -235,3 +235,4 @@ venv
 src/biosim/images
 doc/_build
 doc/_static
+doc/.DS_Store
