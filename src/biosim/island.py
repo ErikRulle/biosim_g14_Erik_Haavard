@@ -163,7 +163,6 @@ class Island:
                 cell.update_cell_population()
                 cell.aging()
                 cell.weight_loss()
-                cell.update_fitness()
                 cell.death()
 
         return self.total_species_population

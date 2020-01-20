@@ -122,7 +122,8 @@ class BioSim:
             self.last_year_simulated += 1
 
             if num_years % vis_years == 0:
-                pass
+                self.plot_island_map()
+                self.plot_population_graph()
 
     def add_population(self, population):
         """
@@ -241,7 +242,7 @@ class BioSim:
         #plt.show()
         #plt.savefig("src/biosim/images/Rossumøya.png")
 
-    def plot_population_graph(self, year):
+    def plot_population_graph(self):
         """
         Plots the total herbivore and carnivore population for a given year.
 
@@ -250,5 +251,7 @@ class BioSim:
         plt.plot(len(self.herbivore_list), self.herbivore_list)
         plt.plot(len(self.carnivore_list), self.carnivore_list)
         plt.legend(["Herbivores", "Carnivores"], loc="upper left")
-        #plt.savefig
+        plt.pause(1e-3)
+
+    def plot_heatmap(self):
 
