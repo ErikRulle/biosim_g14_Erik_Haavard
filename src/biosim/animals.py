@@ -200,7 +200,8 @@ class Animal:
         :return: bool.
         """
         migration_probability = random.random() <= (
-                self.default_parameters["mu"] * self.fitness)
+                self.default_parameters["mu"] * self.fitness
+        )
         return migration_probability
 
 

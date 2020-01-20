@@ -55,11 +55,15 @@ class Landscape:
         """
         for animal in population:
             if animal["species"] == "Herbivore":
-                self.animal_population[0].append(ba.Herbivore(
-                    age=animal["age"], weight=animal["weight"]))
+                self.animal_population[0].append(
+                    ba.Herbivore(age=animal["age"],
+                                 weight=animal["weight"])
+                )
             else:
-                self.animal_population[1].append(ba.Carnivore(
-                    age=animal["age"], weight=animal["weight"]))
+                self.animal_population[1].append(
+                    ba.Carnivore(age=animal["age"],
+                                 weight=animal["weight"])
+                )
 
     @property
     def number_of_herbivores(self):
@@ -170,7 +174,8 @@ class Landscape:
         """
         for carnivore in self.animal_population[1]:
             self.animal_population[0] = carnivore.eating(
-                self.animal_population[0])
+                self.animal_population[0]
+            )
 
     @property
     def available_fodder_herbivore(self):
@@ -236,11 +241,12 @@ class Landscape:
         """
         herbivore_propensity = np.exp(
                     ba.Herbivore.default_parameters["lambda"] *
-                    self.available_fodder_herbivore)
-
+                    self.available_fodder_herbivore
+        )
         carnivore_propensity = np.exp(
                     ba.Carnivore.default_parameters["lambda"] *
-                    self.available_fodder_carnivore)
+                    self.available_fodder_carnivore
+        )
 
         if self.habitable:
             return tuple([herbivore_propensity, carnivore_propensity])
@@ -362,7 +368,7 @@ class Savannah(Landscape):
         type
         """
         self.f += self.default_parameters["alpha"] * \
-                  (self.default_parameters["f_max"] - self.f)
+            (self.default_parameters["f_max"] - self.f)
 
 
 class Desert(Landscape):

@@ -204,8 +204,12 @@ class Island:
         :return: tuple.
         """
         population = self.population_in_each_cell
-        herbivores = [population[i][2] for i in range(len(population))]
-        carnivores = [population[i][3] for i in range(len(population))]
+        herbivores = [
+            population[i][2] for i in range(len(population))
+        ]
+        carnivores = [
+            population[i][3] for i in range(len(population))
+        ]
 
         return sum(herbivores), sum(carnivores)
 
@@ -218,7 +222,7 @@ class Island:
         """
 
         return self.total_species_population[0] + \
-               self.total_species_population[1]
+            self.total_species_population[1]
 
     def populate_the_island(self, start_population=None):
         """
@@ -235,7 +239,9 @@ class Island:
             {"loc": (10, 10), "pop":
                 [{"species": "Carnivore", "age": 5, "weight": 20}
                  for _ in range(40)]}]
-        standard_pop = start_herbivore_population + start_carnivore_population
+
+        standard_pop = start_herbivore_population + \
+            start_carnivore_population
 
         if start_population is None:
             population = standard_pop

@@ -10,7 +10,6 @@ __email__ = "erikrull@nmbu.no", "havardmo@nmbu.no"
 
 
 import random
-import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
@@ -67,10 +66,15 @@ class BioSim:
         self.ini_pop = ini_pop
         self.island = bi.Island(island_map=island_map)
         self.island.populate_the_island(ini_pop)
-        self.herbivore_list = [self.island.total_species_population[0]]
-        self.carnivore_list = [self.island.total_species_population[1]]
+        self.herbivore_list = [
+            self.island.total_species_population[0]
+        ]
+        self.carnivore_list = [
+            self.island.total_species_population[1]
+        ]
         self.ymax_animals = ymax_animals
         self.cmax_animals = cmax_animals
+
         self.img_base = img_base
         self.img_fmt = img_fmt
         self._img_ctr = 0
@@ -135,8 +139,12 @@ class BioSim:
 
         for _ in range(num_years):
             new_island_population = self.island.annual_cycle()
-            self.herbivore_list.append(new_island_population[0])
-            self.carnivore_list.append(new_island_population[1])
+            self.herbivore_list.append(
+                new_island_population[0]
+            )
+            self.carnivore_list.append(
+                new_island_population[1]
+            )
 
             if num_years % vis_years == 0:
                 self.update_graphics()
@@ -173,8 +181,10 @@ class BioSim:
         """
         Number of animals per species in island, as dictionary.
         """
-        animal_dict = {"Herbivore": self.island.total_species_population[0],
-                       "Carnivore": self.island.total_species_population[1]}
+        animal_dict = {
+            "Herbivore": self.island.total_species_population[0],
+            "Carnivore": self.island.total_species_population[1]
+        }
         return animal_dict
 
     @property
@@ -184,7 +194,10 @@ class BioSim:
         """
         pandas_population = pd.DataFrame(
             self.island.population_in_each_cell,
-            columns=["Row", "Col", "Herbivore", "Carnivore"])
+            columns=["Row", "Col",
+                     "Herbivore",
+                     "Carnivore"]
+        )
         return pandas_population
 
     def make_movie(self):
@@ -240,55 +253,57 @@ class BioSim:
         axim.set_yticks(range(len(map_rgb)))
         axim.set_yticklabels(range(0, 1 + len(map_rgb)))
 
-        axlg = self._fig.add_axes([0.3, 0.6, 0.1, 0.3])  # llx, lly, w, h
+        axlg = self._fig.add_axes([0.04, 0.55, 0.1, 0.3])  # llx, lly, w, h
         axlg.axis('off')
         for ix, name in enumerate(('Ocean', 'Mountain', 'Jungle',
                                    'Savannah', 'Desert')):
-            axlg.add_patch(plt.Rectangle((0.2, ix * 0.2), 0.6, 0.3,
+            axlg.add_patch(plt.Rectangle((0.05, ix * 0.2), 0.15, 0.1,
                                          edgecolor='none',
                                          facecolor=rgb_value[name[0]]))
-            axlg.text(0.35, ix * 0.2, name, transform=axlg.transAxes)
+            axlg.text(0.35, ix * 0.205, name, transform=axlg.transAxes)
 
     def plot_population_graph(self):
-        """
-        Plots the total herbivore and carnivore population for a given year.
-        """
-        if self._pop_axis is None:
-            self._pop_ax.plot(
-                [i for i in range(len(self.herbivore_list))],
-                self.herbivore_list)
-            self._pop_ax.plot(
-                [i for i in range(len(self.carnivore_list))],
-                self.carnivore_list)
-            self._pop_ax.legend(
-                ["Herbivores", "Carnivores"], loc="upper left")
+        pass
+        # """
+        # Plots the total herbivore and carnivore population for a given year.
+        # """
+        # if self._pop_axis is None:
+        #     self._pop_ax.plot(
+        #         [i for i in range(len(self.herbivore_list))],
+        #         self.herbivore_list)
+        #     self._pop_ax.plot(
+        #         [i for i in range(len(self.carnivore_list))],
+        #         self.carnivore_list)
+        #     self._pop_ax.legend(
+        #         ["Herbivores", "Carnivores"], loc="upper left")
 
     def plot_heatmap(self):
+        pass
         """
 
         """
-        df = self.animal_distribution
-        herbivore_array = df.pivot_table(
-            columns="Col", index="Row", values="Herbivore")
-        carnivore_array = df.pivot_table(
-            columns="Col", index="Row", values="Carnivore")
-
-        if self._herb_heat_axis is None:
-            self._herb_heat_axis = self._herb_heat_ax.imshow(
-                herbivore_array, cmap="BuGn",
-                interpolation="nearest", vmax=100)
-            # self._herb_heat_axis.colorbar()
-        else:
-            self._herb_heat_axis.set_data(herbivore_array)
-
-        if self._carn_heat_axis is None:
-            self._carn_heat_axis = self._carn_heat_ax.imshow(
-                carnivore_array, cmap="OrRd",
-                interpolation="nearest",
-                vmax=200)
-            # self._carn_heat_axis.colorbar()
-        else:
-            self._carn_heat_axis.set_data(carnivore_array)
+        # df = self.animal_distribution
+        # herbivore_array = df.pivot_table(
+        #     columns="Col", index="Row", values="Herbivore")
+        # carnivore_array = df.pivot_table(
+        #     columns="Col", index="Row", values="Carnivore")
+        #
+        # if self._herb_heat_axis is None:
+        #     self._herb_heat_axis = self._herb_heat_ax.imshow(
+        #         herbivore_array, cmap="BuGn",
+        #         interpolation="nearest", vmax=100)
+        #     # self._herb_heat_axis.colorbar()
+        # else:
+        #     self._herb_heat_axis.set_data(herbivore_array)
+        #
+        # if self._carn_heat_axis is None:
+        #     self._carn_heat_axis = self._carn_heat_ax.imshow(
+        #         carnivore_array, cmap="OrRd",
+        #         interpolation="nearest",
+        #         vmax=200)
+        #     # self._carn_heat_axis.colorbar()
+        # else:
+        #     self._carn_heat_axis.set_data(carnivore_array)
 
     def update_graphics(self):
         """
