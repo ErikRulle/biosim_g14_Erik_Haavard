@@ -131,6 +131,7 @@ class BioSim:
             img_years = vis_years
 
         self.setup_graphics()
+        self.plot_island_map()
 
         for _ in range(num_years):
             new_island_population = self.island.annual_cycle()
@@ -197,7 +198,7 @@ class BioSim:
         """
         # create new figure window
         if self._fig is None:
-            self._fig = plt.figure()
+            self._fig = plt.figure(figsize=(20, 10))
 
         # Add left subplot for images created with imshow().
         # We cannot create the actual ImageAxis object before we know
@@ -232,27 +233,21 @@ class BioSim:
         map_rgb = [[rgb_value[column] for column in row]
                    for row in self.island.string_map]
 
-        fig = plt.figure()
-
-        axim = fig.add_axes([0.1, 0.1, 0.7, 0.8])  # llx, lly, w, h
+        axim = self._map_ax  # llx, lly, w, h
         axim.imshow(map_rgb)
         axim.set_xticks(range(len(map_rgb[0])))
         axim.set_xticklabels(range(0, 1 + len(map_rgb[0])))
         axim.set_yticks(range(len(map_rgb)))
         axim.set_yticklabels(range(0, 1 + len(map_rgb)))
 
-        axlg = fig.add_axes([0.85, 0.1, 0.1, 0.8])  # llx, lly, w, h
+        axlg = self._fig.add_axes([0.3, 0.6, 0.1, 0.3])  # llx, lly, w, h
         axlg.axis('off')
         for ix, name in enumerate(('Ocean', 'Mountain', 'Jungle',
                                    'Savannah', 'Desert')):
-            axlg.add_patch(plt.Rectangle((0., ix * 0.2), 0.3, 0.1,
+            axlg.add_patch(plt.Rectangle((0.2, ix * 0.2), 0.6, 0.3,
                                          edgecolor='none',
                                          facecolor=rgb_value[name[0]]))
             axlg.text(0.35, ix * 0.2, name, transform=axlg.transAxes)
-
-        #axim.grid()
-        #plt.show()
-        #plt.savefig("src/biosim/images/Rossumøya.png")
 
     def plot_population_graph(self):
         """
@@ -261,10 +256,13 @@ class BioSim:
         :param year: int, last year in simulation.
         """
         if self._pop_axis is None:
-            self._pop_axis = plt.plot(len(self.herbivore_list),
-                                      self.herbivore_list)
-            self._pop_axis.plot(len(self.carnivore_list), self.carnivore_list)
-            self._pop_axis.legend(
+            self._pop_ax.plot(
+                [i for i in range(len(self.herbivore_list))],
+                self.herbivore_list)
+            self._pop_ax.plot(
+                [i for i in range(len(self.carnivore_list))],
+                self.carnivore_list)
+            self._pop_ax.legend(
                 ["Herbivores", "Carnivores"], loc="upper left")
 
     def plot_heatmap(self):
@@ -278,17 +276,21 @@ class BioSim:
             columns="Col", index="Row", values="Carnivore")
 
         if self._herb_heat_axis is None:
-            self._herb_heat_axis = plt.imshow(
+            self._herb_heat_axis = self._herb_heat_ax.imshow(
                 herbivore_array, cmap="BuGn",
-                interpolation="nearest", vmax=self.cmax_animals)
-            self._herb_heat_axis.colorbar()
+                interpolation="nearest", vmax=100)
+            # self._herb_heat_axis.colorbar()
+        else:
+            self._herb_heat_axis.set_data(herbivore_array)
 
         if self._carn_heat_axis is None:
-            self._carn_heat_axis = plt.imshow(
+            self._carn_heat_axis = self._carn_heat_ax.imshow(
                 carnivore_array, cmap="OrRd",
                 interpolation="nearest",
-                vmax=self.cmax_animals)
-            self._carn_heat_axis.colorbar()
+                vmax=200)
+            # self._carn_heat_axis.colorbar()
+        else:
+            self._carn_heat_axis.set_data(carnivore_array)
 
     def update_graphics(self):
         """
