@@ -132,11 +132,11 @@ def test_population_in_each_cell():
     pop = popgen.get_animals()
     island.populate_the_island(pop)
     cell_populations = island.population_in_each_cell
-    assert cell_populations[19][0] == 3
-    assert cell_populations[37][0] == 3
-    assert cell_populations[31][0] == 3
-    assert cell_populations[12][1] == 2
-    assert cell_populations[38][1] == 2
+    assert cell_populations[19][2] == 3
+    assert cell_populations[37][2] == 3
+    assert cell_populations[31][2] == 3
+    assert cell_populations[12][3] == 2
+    assert cell_populations[38][3] == 2
     assert cell_populations[36].all() == 0
 
 
