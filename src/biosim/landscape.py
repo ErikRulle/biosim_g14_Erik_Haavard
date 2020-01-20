@@ -101,14 +101,6 @@ class Landscape:
                                            key=lambda x: x.fitness,
                                            reverse=True)
 
-    def update_fitness(self):
-        """
-        Updates the fitness for all animals in the cell.
-        """
-        for species in self.animal_population:
-            for animal in species:
-                animal.fitness
-
     def weight_loss(self):
         """
         Reduces weight of all animals once a year.

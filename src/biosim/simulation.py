@@ -20,6 +20,10 @@ import biosim.animals as ba
 
 
 class BioSim:
+    """
+    This class generates the outline for the simulation of Rossumøya's
+    ecosystem, with visualisation.
+    """
     def __init__(
         self,
         island_map,

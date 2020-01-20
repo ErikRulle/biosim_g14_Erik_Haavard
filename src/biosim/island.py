@@ -154,7 +154,6 @@ class Island:
                 cell.sort_by_fitness()
                 cell.eat_request_herbivore()
                 cell.eat_request_carnivore()
-                cell.update_fitness()
                 cell.reproduction()
 
                 position = self.find_cell_position(cell)
