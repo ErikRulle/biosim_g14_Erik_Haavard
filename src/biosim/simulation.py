@@ -73,6 +73,18 @@ class BioSim:
         self.cmax_animals = cmax_animals
         self.img_base = img_base
         self.img_fmt = img_fmt
+        self._img_ctr = 0
+
+        # the following will be initialized by setup_graphics
+        self._fig = None
+        self._map_ax = None
+        self._map_axis = None
+        self._pop_ax = None
+        self._pop_axis = None
+        self._herb_heat_ax = None
+        self._herb_heat_axis = None
+        self._carn_heat_ax = None
+        self._carn_heat_axis = None
 
     def set_animal_parameters(self, species, params):
         """
@@ -115,15 +127,23 @@ class BioSim:
 
         Image files will be numbered consecutively.
         """
+        if img_years is None:
+            img_years = vis_years
+
+        self.setup_graphics()
+
         for _ in range(num_years):
             new_island_population = self.island.annual_cycle()
             self.herbivore_list.append(new_island_population[0])
             self.carnivore_list.append(new_island_population[1])
-            self.last_year_simulated += 1
 
             if num_years % vis_years == 0:
-                self.plot_island_map()
-                self.plot_population_graph()
+                self.update_graphics()
+
+            if num_years % img_years == 0:
+                self.save_graphics()
+
+            self.last_year_simulated += 1
 
     def add_population(self, population):
         """
@@ -171,40 +191,32 @@ class BioSim:
         Create MPEG4 movie from visualization images saved.
         """
 
-    # def setup_graphics(self):
-    #     """
-    #
-    #     """
-    #     # create new figure window
-    #     if self._fig is None:
-    #         self._fig = plt.figure()
-    #
-    #     # Add left subplot for images created with imshow().
-    #     # We cannot create the actual ImageAxis object before we know
-    #     # the size of the image, so we delay its creation.
-    #     if self._map_ax is None:
-    #         self._map_ax = self._fig.add_subplot(1, 2, 1)
-    #         self._img_axis = None
-    #
-    #     # Add right subplot for line graph of mean.
-    #     if self._mean_ax is None:
-    #         self._mean_ax = self._fig.add_subplot(1, 2, 2)
-    #         self._mean_ax.set_ylim(0, 0.02)
-    #
-    #     # needs updating on subsequent calls to simulate()
-    #     self._mean_ax.set_xlim(0, self._final_step + 1)
-    #
-    #     if self._mean_line is None:
-    #         mean_plot = self._mean_ax.plot(np.arange(0, self._final_step),
-    #                                        np.full(self._final_step, np.nan))
-    #         self._mean_line = mean_plot[0]
-    #     else:
-    #         xdata, ydata = self._mean_line.get_data()
-    #         xnew = np.arange(xdata[-1] + 1, self._final_step)
-    #         if len(xnew) > 0:
-    #             ynew = np.full(xnew.shape, np.nan)
-    #             self._mean_line.set_data(np.hstack((xdata, xnew)),
-    #                                      np.hstack((ydata, ynew)))
+    def setup_graphics(self):
+        """
+
+        """
+        # create new figure window
+        if self._fig is None:
+            self._fig = plt.figure()
+
+        # Add left subplot for images created with imshow().
+        # We cannot create the actual ImageAxis object before we know
+        # the size of the image, so we delay its creation.
+        if self._map_ax is None:
+            self._map_ax = self._fig.add_subplot(2, 2, 1)
+            self._map_axis = None
+
+        # Add right subplot for line graph of mean.
+        if self._pop_ax is None:
+            self._pop_ax = self._fig.add_subplot(2, 2, 2)
+            if self.ymax_animals is not None:
+                self._pop_ax.set_ylim(0, self.ymax_animals)
+
+        if self._herb_heat_ax is None:
+            self._herb_heat_ax = self._fig.add_subplot(2, 2, 3)
+
+        if self._carn_heat_ax is None:
+            self._carn_heat_ax = self._fig.add_subplot(2, 2, 4)
 
     def plot_island_map(self):
         """
@@ -248,10 +260,51 @@ class BioSim:
 
         :param year: int, last year in simulation.
         """
-        plt.plot(len(self.herbivore_list), self.herbivore_list)
-        plt.plot(len(self.carnivore_list), self.carnivore_list)
-        plt.legend(["Herbivores", "Carnivores"], loc="upper left")
-        plt.pause(1e-3)
+        if self._pop_axis is None:
+            self._pop_axis = plt.plot(len(self.herbivore_list),
+                                      self.herbivore_list)
+            self._pop_axis.plot(len(self.carnivore_list), self.carnivore_list)
+            self._pop_axis.legend(
+                ["Herbivores", "Carnivores"], loc="upper left")
 
     def plot_heatmap(self):
+        """
 
+        """
+        df = self.animal_distribution
+        herbivore_array = df.pivot_table(
+            columns="Col", index="Row", values="Herbivore")
+        carnivore_array = df.pivot_table(
+            columns="Col", index="Row", values="Carnivore")
+
+        if self._herb_heat_axis is None:
+            self._herb_heat_axis = plt.imshow(
+                herbivore_array, cmap="BuGn",
+                interpolation="nearest", vmax=self.cmax_animals)
+            self._herb_heat_axis.colorbar()
+
+        if self._carn_heat_axis is None:
+            self._carn_heat_axis = plt.imshow(
+                carnivore_array, cmap="OrRd",
+                interpolation="nearest",
+                vmax=self.cmax_animals)
+            self._carn_heat_axis.colorbar()
+
+    def update_graphics(self):
+        """
+
+        """
+        self.plot_population_graph()
+        self.plot_heatmap()
+        plt.pause(1e-3)
+
+    def save_graphics(self):
+        """
+
+        """
+        if self.img_base is None:
+            return
+
+        plt.savefig(f"{self.img_base}_{self._img_ctr:05d}.{self.img_fmt}")
+
+        self._img_ctr += 1
