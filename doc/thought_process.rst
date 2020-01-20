@@ -15,7 +15,7 @@ Structure
 We quickly understood the need for the generic class ``Island``, as well as
 the generic superclasses ``Landscape`` and ``Animal``, so we created these
 classes in different modules. Within each of these modules we could then focus
-on the what methods to implement, and whether or not the methods in question
+on what methods to implement, and whether or not the methods in question
 should be implemented in the superclass or in a subclass. We ended up with
 several subclasses, one for each landscape type, i.e. ``Jungle``, ``Savannah``,
 ``Desert``. ``Mountain`` and ``Ocean``, as well as a subclass for the two
