@@ -11,7 +11,6 @@ __email__ = "erikrull@nmbu.no", "havardmo@nmbu.no"
 
 import random
 import subprocess
-
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -313,7 +312,7 @@ class BioSim:
             columns="Col", index="Row", values="Carnivore")
 
         if self.cmax_animals is None:
-            self.cmax_animals = 200
+            self.cmax_animals = 100
 
         if self._herb_heat_axis is None:
             self._herb_heat_axis = self._herb_heat_ax.imshow(
