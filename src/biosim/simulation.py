@@ -208,11 +208,13 @@ class BioSim:
     def make_movie(self, movie_fmt):
         """
         Create MPEG4 movie from visualization images saved.
+
+        :param movie_fmt: str, movie format
         """
         if self.img_base is None:
             raise RuntimeError("No filename defined.")
 
-        if movie_fmt == 'mp4':
+        if movie_fmt == "mp4":
             try:
                 # Parameters chosen according to
                 # http://trac.ffmpeg.org/wiki/Encode/H.264,
@@ -228,7 +230,7 @@ class BioSim:
                                                       movie_fmt)])
             except subprocess.CalledProcessError as err:
                 raise RuntimeError(
-                    'ERROR: ffmpeg failed with: {}'.format(err))
+                    "ERROR: ffmpeg failed with: {}".format(err))
 
     def setup_graphics(self):
         """
@@ -275,8 +277,8 @@ class BioSim:
         axim.imshow(map_rgb)
         axim.set_xticks(np.arange(0, len(map_rgb[0]), 5))
         axim.set_xticklabels(np.arange(0, 1 + len(map_rgb[0]), 5))
-        axim.set_yticks(range(len(map_rgb)))
-        axim.set_yticklabels(range(0, 1 + len(map_rgb)))
+        axim.set_yticks(np.arange(0, len(map_rgb), 2))
+        axim.set_yticklabels(np.arange(0, 1 + len(map_rgb), 2))
 
         axlg = self._fig.add_axes([0.04, 0.55, 0.1, 0.3])  # llx, lly, w, h
         axlg.axis('off')
