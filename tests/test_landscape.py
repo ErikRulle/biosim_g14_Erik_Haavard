@@ -43,6 +43,9 @@ def reset_parameters():
                                         "zeta": 3.5, "xi": 1.1, "omega": 0.9,
                                         "F": 50.0, "DeltaPhiMax": 10.0})
 
+    bl.Jungle.set_landscape_parameters({"f_max": 800})
+    bl.Savannah.set_landscape_parameters({"f_max": 300,
+                                          "alpha": 0.3})
 
 def test_set_landscape_parameters():
     """
