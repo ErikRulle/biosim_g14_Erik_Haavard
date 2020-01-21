@@ -10,6 +10,7 @@ __email__ = "erikrull@nmbu.no", "havardmo@nmbu.no"
 
 
 import random
+import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
@@ -204,11 +205,30 @@ class BioSim:
         """
         Create MPEG4 movie from visualization images saved.
         """
+        if self.img_base is None:
+            raise RuntimeError("No filename defined.")
 
+        if movie_fmt == 'mp4':
+            try:
+                # Parameters chosen according to
+                # http://trac.ffmpeg.org/wiki/Encode/H.264,
+                # section "Compatibility"
+                subprocess.check_call([_FFMPEG_BINARY,
+                                       '-i',
+                                       '{}_%05d.png'.format(self.img_base),
+                                       '-y',
+                                       '-profile:v', 'baseline',
+                                       '-level', '3.0',
+                                       '-pix_fmt', 'yuv420p',
+                                       '{}.{}'.format(self.img_base,
+                                                      movie_fmt)])
+            except subprocess.CalledProcessError as err:
+                raise RuntimeError(
+                    'ERROR: ffmpeg failed with: {}'.format(err))
 
     def setup_graphics(self):
         """
-
+        Creates the subplots needed for the final plot.
         """
         # create new figure window
         if self._fig is None:
@@ -249,8 +269,8 @@ class BioSim:
 
         axim = self._map_ax  # llx, lly, w, h
         axim.imshow(map_rgb)
-        axim.set_xticks(range(len(map_rgb[0])))
-        axim.set_xticklabels(range(0, 1 + len(map_rgb[0])))
+        axim.set_xticks(np.arange(0, len(map_rgb[0]), 5))
+        axim.set_xticklabels(np.arange(0, 1 + len(map_rgb[0]), 5))
         axim.set_yticks(range(len(map_rgb)))
         axim.set_yticklabels(range(0, 1 + len(map_rgb)))
 
@@ -279,7 +299,7 @@ class BioSim:
 
     def plot_heatmap(self):
         """
-
+        Plots the herbivore and carnivore distribution as heatmaps.
         """
         df = self.animal_distribution
         herbivore_array = df.pivot_table(
@@ -310,7 +330,7 @@ class BioSim:
 
     def update_graphics(self):
         """
-
+        Updates the images.
         """
         self.plot_population_graph()
         self.plot_heatmap()
@@ -318,7 +338,7 @@ class BioSim:
 
     def save_graphics(self):
         """
-
+        Saves the images.
         """
         if self.img_base is None:
             return

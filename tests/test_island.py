@@ -167,38 +167,7 @@ def test_total_population():
     assert total_population == 13
 
 
-def test_annual_cycle():
-    import matplotlib.pyplot as plt
-    island_map = """\
-                     OOOOOO
-                     OJSSDO
-                     OSJJMO
-                     OOOOOO"""
-    island = bi.Island(island_map)
-
-    popgen = pg.Population(n_herbivores=3,
-                           coord_herb=[(1, 1), (1, 1), (2, 1)],
-                           n_carnivores=5, coord_carn=[(1, 1), (2, 1)])
-    pop = popgen.get_animals()
-    island.populate_the_island(pop)
-    herbivore_list = [island.total_species_population[0]]
-    carnivore_list = [island.total_species_population[1]]
-    for year in range(100):
-        new_island_population = island.annual_cycle()
-        herbivore_list.append(new_island_population[0])
-        carnivore_list.append(new_island_population[1])
-        plt.plot(range(len(herbivore_list)), herbivore_list)
-        plt.plot(range(len(carnivore_list)), carnivore_list)
-        plt.legend(["Herbivores", "Carnivores"], loc="upper left")
-        plt.pause(1e-3)
-
-    #plt.show()
-        #plt.savefig()
-
-
-
-
-def test_animals_in_island():
+def test_animals_on_island():
     island_map = "OOOO\nOJSO\nOOOO"
     ini_pop = []
     island = bi.Island(island_map)
