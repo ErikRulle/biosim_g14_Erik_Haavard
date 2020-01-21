@@ -205,6 +205,7 @@ class BioSim:
         Create MPEG4 movie from visualization images saved.
         """
 
+
     def setup_graphics(self):
         """
 
@@ -263,47 +264,46 @@ class BioSim:
             axlg.text(0.35, ix * 0.205, name, transform=axlg.transAxes)
 
     def plot_population_graph(self):
-        pass
-        # """
-        # Plots the total herbivore and carnivore population for a given year.
-        # """
-        # if self._pop_axis is None:
-        #     self._pop_ax.plot(
-        #         [i for i in range(len(self.herbivore_list))],
-        #         self.herbivore_list)
-        #     self._pop_ax.plot(
-        #         [i for i in range(len(self.carnivore_list))],
-        #         self.carnivore_list)
-        #     self._pop_ax.legend(
-        #         ["Herbivores", "Carnivores"], loc="upper left")
+        """
+        Plots the total herbivore and carnivore population for a given year.
+        """
+        if self._pop_axis is None:
+            self._pop_ax.plot(
+                [i for i in range(len(self.herbivore_list))],
+                self.herbivore_list, 'g-')
+            self._pop_ax.plot(
+                [i for i in range(len(self.carnivore_list))],
+                self.carnivore_list, 'r-')
+            self._pop_ax.legend(
+                ["Herbivores", "Carnivores"], loc="upper left")
 
     def plot_heatmap(self):
-        pass
         """
 
         """
-        # df = self.animal_distribution
-        # herbivore_array = df.pivot_table(
-        #     columns="Col", index="Row", values="Herbivore")
-        # carnivore_array = df.pivot_table(
-        #     columns="Col", index="Row", values="Carnivore")
-        #
-        # if self._herb_heat_axis is None:
-        #     self._herb_heat_axis = self._herb_heat_ax.imshow(
-        #         herbivore_array, cmap="BuGn",
-        #         interpolation="nearest", vmax=100)
-        #     # self._herb_heat_axis.colorbar()
-        # else:
-        #     self._herb_heat_axis.set_data(herbivore_array)
-        #
-        # if self._carn_heat_axis is None:
-        #     self._carn_heat_axis = self._carn_heat_ax.imshow(
-        #         carnivore_array, cmap="OrRd",
-        #         interpolation="nearest",
-        #         vmax=200)
-        #     # self._carn_heat_axis.colorbar()
-        # else:
-        #     self._carn_heat_axis.set_data(carnivore_array)
+        df = self.animal_distribution
+        herbivore_array = df.pivot_table(
+            columns="Col", index="Row", values="Herbivore")
+        carnivore_array = df.pivot_table(
+            columns="Col", index="Row", values="Carnivore")
+
+        if self._herb_heat_axis is None:
+            self._herb_heat_axis = self._herb_heat_ax.imshow(
+                herbivore_array, cmap="BuGn",
+                interpolation="nearest",
+                vmax=self.cmax_animals)
+            #self._herb_heat_axis.colorbar()
+        else:
+            self._herb_heat_axis.set_data(herbivore_array)
+
+        if self._carn_heat_axis is None:
+            self._carn_heat_axis = self._carn_heat_ax.imshow(
+                carnivore_array, cmap="OrRd",
+                interpolation="nearest",
+                vmax=self.cmax_animals)
+            #self._carn_heat_axis.colorbar()
+        else:
+            self._carn_heat_axis.set_data(carnivore_array)
 
     def update_graphics(self):
         """
