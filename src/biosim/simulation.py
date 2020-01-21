@@ -220,7 +220,7 @@ class BioSim:
                 # http://trac.ffmpeg.org/wiki/Encode/H.264,
                 # section "Compatibility"
                 subprocess.check_call([_FFMPEG_BINARY,
-                                       '-i',
+                                       '-framerate', '5', '-i',
                                        '{}_%05d.png'.format(self.img_base),
                                        '-y',
                                        '-profile:v', 'baseline',

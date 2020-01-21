@@ -18,6 +18,7 @@ __email__ = "erikrull@nmbu.no", "havardmo@nmbu.no"
 
 import numpy as np
 import random
+#from numba import jit
 
 
 class Animal:
@@ -39,6 +40,9 @@ class Animal:
         :param weight: float, weight of the animal.
         :param age: int, age of the animal.
         """
+
+        self._phi = None    # Initialised by fitness property
+        self._recompute_phi = True
 
         if age == 0:
             self.weight = random.normalvariate(
@@ -75,16 +79,49 @@ class Animal:
         """
         Animal ages by one year.
         """
-        self.age += 1
+        self.age = self.age + 1
+
+    @property
+    def age(self):
+        """
+        Returns the animals age
+        """
+        return self._age
+
+    @age.setter
+    def age(self, new_age):
+        """
+        Sets the age of the animals to the new value, and flags the fitness
+        attribute so that it will be recomputed the next time it is called.
+        """
+        self._age = new_age
+        self._recompute_phi = True
+
+    @property
+    def weight(self):
+        """
+        Returns the animals weight.
+        """
+        return self._weight
+
+    @weight.setter
+    def weight(self, new_weight):
+        """
+        Sets the weight of the animals to the new value, and flags the fitness
+        attribute so that it will be recomputed the next time it is called.
+        """
+        self._weight = new_weight
+        self._recompute_phi = True
 
     def animal_weight_loss(self):
         """
         Updates animal weight after annual weight loss with  a decrease rate
         of :math:`\\eta w`, where :math:`\\eta` is a parameter value for the
         animal, and :math:`w` is the animal's current weight.
-
         """
-        self.weight -= self.default_parameters["eta"] * self.weight
+        self.weight = self.weight - (
+                self.default_parameters["eta"] * self.weight
+        )
 
     def reproduction_probability(self, n_animals):
         """
@@ -142,7 +179,9 @@ class Animal:
         standard deviation :math:`\sigma_{birth}`, and :math:`\xi` is a
         parameter value for the animal.
         """
-        self.weight -= self.default_parameters["xi"] * self.newborn_weight
+        self.weight = self.weight - (
+                self.default_parameters["xi"] * self.newborn_weight
+        )
 
     def death(self):
         """
@@ -184,13 +223,17 @@ class Animal:
         :return: float.
         """
 
-        phi = 1 / (1 + np.exp(self.default_parameters["phi_age"] * (
-                    self.age - self.default_parameters["a_half"]
-            ))) * 1 / (1 + np.exp(
-                -self.default_parameters["phi_weight"] * (
-                        self.weight - self.default_parameters["w_half"])))
+        if not self._recompute_phi:
+            return self._phi
+        else:
+            self._phi = 1 / (1 + np.exp(self.default_parameters["phi_age"] * (
+                        self.age - self.default_parameters["a_half"]
+                ))) * 1 / (1 + np.exp(
+                    -self.default_parameters["phi_weight"] * (
+                            self.weight - self.default_parameters["w_half"])))
+            self._recompute_phi = False
 
-        return phi
+            return self._phi
 
     def migration_probability(self):
         """
