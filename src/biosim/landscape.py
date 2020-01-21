@@ -364,7 +364,7 @@ class Savannah(Landscape):
 
             f_{ij} \gets f_{ij} + \\alpha \\times (f_{max}^{Sav} - f_{ij}),
 
-        where :math:`\alpha` is a parameter value for the svannah landscape
+        where :math:`\\alpha` is a parameter value for the savannah landscape
         type
         """
         self.f += self.default_parameters["alpha"] * \
