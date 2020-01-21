@@ -349,7 +349,8 @@
 <span class="sd">        :return: bool.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">migration_probability</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">default_parameters</span><span class="p">[</span><span class="s2">&quot;mu&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">fitness</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">default_parameters</span><span class="p">[</span><span class="s2">&quot;mu&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">fitness</span>
+        <span class="p">)</span>
         <span class="k">return</span> <span class="n">migration_probability</span></div></div>
 
 
@@ -431,9 +432,9 @@
 <span class="sd">            \\atop</span>
 <span class="sd">            \\frac{\Phi_{carn} - \Phi_{herb}}{\Delta\Phi_{max}}, \\text{ if }</span>
 <span class="sd">            {0 &lt; \Phi_{carn} - \Phi_{herb} &lt; \Delta\Phi_{max}}</span>
-<span class="sd">            \\substack</span>
-<span class="sd">            1, \\text{ otherwise. }</span>
 <span class="sd">            }</span>
+
+<span class="sd">        If neither of these conditions occur, the probability is 1.</span>
 
 <span class="sd">        :param herbivores: list of herbivores.</span>
 <span class="sd">        :return: float, probability of eating.</span>

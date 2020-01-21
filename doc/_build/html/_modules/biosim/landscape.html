@@ -204,11 +204,15 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">animal</span> <span class="ow">in</span> <span class="n">population</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">animal</span><span class="p">[</span><span class="s2">&quot;species&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Herbivore&quot;</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">animal_population</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ba</span><span class="o">.</span><span class="n">Herbivore</span><span class="p">(</span>
-                    <span class="n">age</span><span class="o">=</span><span class="n">animal</span><span class="p">[</span><span class="s2">&quot;age&quot;</span><span class="p">],</span> <span class="n">weight</span><span class="o">=</span><span class="n">animal</span><span class="p">[</span><span class="s2">&quot;weight&quot;</span><span class="p">]))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">animal_population</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="n">ba</span><span class="o">.</span><span class="n">Herbivore</span><span class="p">(</span><span class="n">age</span><span class="o">=</span><span class="n">animal</span><span class="p">[</span><span class="s2">&quot;age&quot;</span><span class="p">],</span>
+                                 <span class="n">weight</span><span class="o">=</span><span class="n">animal</span><span class="p">[</span><span class="s2">&quot;weight&quot;</span><span class="p">])</span>
+                <span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">animal_population</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ba</span><span class="o">.</span><span class="n">Carnivore</span><span class="p">(</span>
-                    <span class="n">age</span><span class="o">=</span><span class="n">animal</span><span class="p">[</span><span class="s2">&quot;age&quot;</span><span class="p">],</span> <span class="n">weight</span><span class="o">=</span><span class="n">animal</span><span class="p">[</span><span class="s2">&quot;weight&quot;</span><span class="p">]))</span></div>
+                <span class="bp">self</span><span class="o">.</span><span class="n">animal_population</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="n">ba</span><span class="o">.</span><span class="n">Carnivore</span><span class="p">(</span><span class="n">age</span><span class="o">=</span><span class="n">animal</span><span class="p">[</span><span class="s2">&quot;age&quot;</span><span class="p">],</span>
+                                 <span class="n">weight</span><span class="o">=</span><span class="n">animal</span><span class="p">[</span><span class="s2">&quot;weight&quot;</span><span class="p">])</span>
+                <span class="p">)</span></div>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">number_of_herbivores</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -319,7 +323,8 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">carnivore</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">animal_population</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">animal_population</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">carnivore</span><span class="o">.</span><span class="n">eating</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">animal_population</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span></div>
+                <span class="bp">self</span><span class="o">.</span><span class="n">animal_population</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="p">)</span></div>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">available_fodder_herbivore</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -385,11 +390,12 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">herbivore_propensity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span>
                     <span class="n">ba</span><span class="o">.</span><span class="n">Herbivore</span><span class="o">.</span><span class="n">default_parameters</span><span class="p">[</span><span class="s2">&quot;lambda&quot;</span><span class="p">]</span> <span class="o">*</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">available_fodder_herbivore</span><span class="p">)</span>
-
+                    <span class="bp">self</span><span class="o">.</span><span class="n">available_fodder_herbivore</span>
+        <span class="p">)</span>
         <span class="n">carnivore_propensity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span>
                     <span class="n">ba</span><span class="o">.</span><span class="n">Carnivore</span><span class="o">.</span><span class="n">default_parameters</span><span class="p">[</span><span class="s2">&quot;lambda&quot;</span><span class="p">]</span> <span class="o">*</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">available_fodder_carnivore</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">available_fodder_carnivore</span>
+        <span class="p">)</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">habitable</span><span class="p">:</span>
             <span class="k">return</span> <span class="nb">tuple</span><span class="p">([</span><span class="n">herbivore_propensity</span><span class="p">,</span> <span class="n">carnivore_propensity</span><span class="p">])</span>
@@ -511,7 +517,7 @@
 <span class="sd">        type</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">f</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_parameters</span><span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">]</span> <span class="o">*</span> \
-                  <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">default_parameters</span><span class="p">[</span><span class="s2">&quot;f_max&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">)</span></div></div>
+            <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">default_parameters</span><span class="p">[</span><span class="s2">&quot;f_max&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="Desert"><a class="viewcode-back" href="../../api_reference.html#biosim.landscape.Desert">[docs]</a><span class="k">class</span> <span class="nc">Desert</span><span class="p">(</span><span class="n">Landscape</span><span class="p">):</span>

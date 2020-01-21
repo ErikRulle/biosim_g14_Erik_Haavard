@@ -312,7 +312,6 @@
                 <span class="n">cell</span><span class="o">.</span><span class="n">update_cell_population</span><span class="p">()</span>
                 <span class="n">cell</span><span class="o">.</span><span class="n">aging</span><span class="p">()</span>
                 <span class="n">cell</span><span class="o">.</span><span class="n">weight_loss</span><span class="p">()</span>
-                <span class="n">cell</span><span class="o">.</span><span class="n">update_fitness</span><span class="p">()</span>
                 <span class="n">cell</span><span class="o">.</span><span class="n">death</span><span class="p">()</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">total_species_population</span></div>
@@ -354,8 +353,12 @@
 <span class="sd">        :return: tuple.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">population</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">population_in_each_cell</span>
-        <span class="n">herbivores</span> <span class="o">=</span> <span class="p">[</span><span class="n">population</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">population</span><span class="p">))]</span>
-        <span class="n">carnivores</span> <span class="o">=</span> <span class="p">[</span><span class="n">population</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">population</span><span class="p">))]</span>
+        <span class="n">herbivores</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">population</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">population</span><span class="p">))</span>
+        <span class="p">]</span>
+        <span class="n">carnivores</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">population</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">population</span><span class="p">))</span>
+        <span class="p">]</span>
 
         <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">herbivores</span><span class="p">),</span> <span class="nb">sum</span><span class="p">(</span><span class="n">carnivores</span><span class="p">)</span>
 
@@ -368,7 +371,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">total_species_population</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> \
-               <span class="bp">self</span><span class="o">.</span><span class="n">total_species_population</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">total_species_population</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 
 <div class="viewcode-block" id="Island.populate_the_island"><a class="viewcode-back" href="../../api_reference.html#biosim.island.Island.populate_the_island">[docs]</a>    <span class="k">def</span> <span class="nf">populate_the_island</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start_population</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -385,7 +388,9 @@
             <span class="p">{</span><span class="s2">&quot;loc&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="s2">&quot;pop&quot;</span><span class="p">:</span>
                 <span class="p">[{</span><span class="s2">&quot;species&quot;</span><span class="p">:</span> <span class="s2">&quot;Carnivore&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;weight&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">}</span>
                  <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">40</span><span class="p">)]}]</span>
-        <span class="n">standard_pop</span> <span class="o">=</span> <span class="n">start_herbivore_population</span> <span class="o">+</span> <span class="n">start_carnivore_population</span>
+
+        <span class="n">standard_pop</span> <span class="o">=</span> <span class="n">start_herbivore_population</span> <span class="o">+</span> \
+            <span class="n">start_carnivore_population</span>
 
         <span class="k">if</span> <span class="n">start_population</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">population</span> <span class="o">=</span> <span class="n">standard_pop</span>

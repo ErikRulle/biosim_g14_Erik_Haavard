@@ -283,9 +283,9 @@ class Carnivore(Animal):
             \\atop
             \\frac{\Phi_{carn} - \Phi_{herb}}{\Delta\Phi_{max}}, \\text{ if }
             {0 < \Phi_{carn} - \Phi_{herb} < \Delta\Phi_{max}}
-            \\substack
-            1, \\text{ otherwise. }
             }
+
+        If neither of these conditions occur, the probability is 1.
 
         :param herbivores: list of herbivores.
         :return: float, probability of eating.
