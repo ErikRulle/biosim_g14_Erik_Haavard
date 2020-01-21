@@ -287,12 +287,15 @@ class BioSim:
         carnivore_array = df.pivot_table(
             columns="Col", index="Row", values="Carnivore")
 
+        if self.cmax_animals is None:
+            self.cmax_animals = 200
+
         if self._herb_heat_axis is None:
             self._herb_heat_axis = self._herb_heat_ax.imshow(
                 herbivore_array, cmap="BuGn",
                 interpolation="nearest",
                 vmax=self.cmax_animals)
-            #self._herb_heat_axis.colorbar()
+            plt.colorbar(self._herb_heat_axis, ax=self._herb_heat_ax)
         else:
             self._herb_heat_axis.set_data(herbivore_array)
 
@@ -301,7 +304,7 @@ class BioSim:
                 carnivore_array, cmap="OrRd",
                 interpolation="nearest",
                 vmax=self.cmax_animals)
-            #self._carn_heat_axis.colorbar()
+            plt.colorbar(self._carn_heat_axis, ax=self._carn_heat_ax)
         else:
             self._carn_heat_axis.set_data(carnivore_array)
 
