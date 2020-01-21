@@ -10,6 +10,8 @@ __email__ = "erikrull@nmbu.no", "havardmo@nmbu.no"
 
 
 import random
+import subprocess
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -17,6 +19,9 @@ import matplotlib.pyplot as plt
 import biosim.island as bi
 import biosim.landscape as bl
 import biosim.animals as ba
+
+# update this variable to point to your ffmpeg binaries
+_FFMPEG_BINARY = 'ffmpeg'
 
 
 class BioSim:
@@ -201,7 +206,7 @@ class BioSim:
         )
         return pandas_population
 
-    def make_movie(self):
+    def make_movie(self, movie_fmt):
         """
         Create MPEG4 movie from visualization images saved.
         """
