@@ -19,6 +19,20 @@ import pytest
 import biosim.animals as ba
 
 
+@pytest.fixture(autouse=True)
+def reset_parameters():
+    """
+    Resets all carnivore parameters.
+    """
+    ba.Carnivore.set_animal_parameters({"w_birth": 6.0, "sigma_birth": 1.0,
+                                        "beta": 0.75, "eta": 0.125,
+                                        "a_half": 60.0, "phi_age": 0.4,
+                                        "w_half": 4.0, "phi_weight": 0.4,
+                                        "mu": 0.4, "lambda": 1.0, "gamma": 0.8,
+                                        "zeta": 3.5, "xi": 1.1, "omega": 0.9,
+                                        "F": 50.0, "DeltaPhiMax": 10.0})
+
+
 def test_set_animal_parameters():
     """
     Test that manual setting of animal parameters follows the given
@@ -242,20 +256,6 @@ def test_carnivore_eating_probability(mocker):
 
     carn.set_animal_parameters({"DeltaPhiMax": 0.000001})
     assert carn.eating_probability(herb) == 1
-
-
-@pytest.fixture(autouse=True)
-def reset_parameters():
-    """
-    Resets all carnivore parameters.
-    """
-    ba.Carnivore.set_animal_parameters({"w_birth": 6.0, "sigma_birth": 1.0,
-                                        "beta": 0.75, "eta": 0.125,
-                                        "a_half": 60.0, "phi_age": 0.4,
-                                        "w_half": 4.0, "phi_weight": 0.4,
-                                        "mu": 0.4, "lambda": 1.0, "gamma": 0.8,
-                                        "zeta": 3.5, "xi": 1.1, "omega": 0.9,
-                                        "F": 50.0, "DeltaPhiMax": 10.0})
 
 
 def test_carnivore_eating():
