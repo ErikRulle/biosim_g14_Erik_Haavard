@@ -1,10 +1,10 @@
 Our thought process for solving the task
 ========================================
 
-*"Give me six hours to chop down a tree and I will spend the first four
-sharpening the axe!"*
+    *"Give me six hours to chop down a tree and I will spend the first four
+    sharpening the axe!"*
 
-- Abraham Lincoln
+    \- Abraham Lincoln
 
 When given this task, we sat down with pen and paper to get an overview of the
 task itself, and to brainstorm possible ways to solve it as best we could
