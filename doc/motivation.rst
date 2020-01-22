@@ -10,7 +10,7 @@ nature park for future generations. For more information about the task itself,
 see the `complete description. <https://github.com/yngvem/INF200-2019/blob/
 master/INF200_H19_BioSim.pdf>`_
 
-.. figure::  ../src/biosim/images/Rossumøya.png
+.. figure::  ../src/biosim/Rossumøya.png
    :align:   center
 
    Map of Rossumøya
