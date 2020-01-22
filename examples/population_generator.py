@@ -4,8 +4,9 @@ with age and weight randomly distributed and returns a list of dictionaries
 with the animals and the coordinates they are to be put.
 
 The user can define:
-#. The number of each species that are put on every defined coordinate
-#. The coordinates that the animals in that species should occupy
+
+* The number of each species that are put on every defined coordinate
+* The coordinates that the animals in that species should occupy
 
 If different sizes of the population within an species is preferable,
 the user can simply make another population and add it to the island
