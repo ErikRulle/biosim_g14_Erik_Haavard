@@ -12,7 +12,7 @@ __author__ = "Erik Rullestad", "Håvard Molversmyr"
 __email__ = "erikrull@nmbu.no", "havardmo@nmbu.no"
 
 
-import numpy as np
+import math
 import random
 
 import biosim.animals as ba
@@ -239,11 +239,11 @@ class Landscape:
         :return: tuple, the propensities of herbivore and carnivore migration
                  in first and second element of the tuple, respectively.
         """
-        herbivore_propensity = np.exp(
+        herbivore_propensity = math.exp(
                     ba.Herbivore.default_parameters["lambda"] *
                     self.available_fodder_herbivore
         )
-        carnivore_propensity = np.exp(
+        carnivore_propensity = math.exp(
                     ba.Carnivore.default_parameters["lambda"] *
                     self.available_fodder_carnivore
         )

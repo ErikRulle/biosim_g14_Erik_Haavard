@@ -24,8 +24,7 @@
         <script type="text/javascript" src="../../_static/jquery.js"></script>
         <script type="text/javascript" src="../../_static/underscore.js"></script>
         <script type="text/javascript" src="../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
@@ -162,7 +161,7 @@
 <span class="n">__email__</span> <span class="o">=</span> <span class="s2">&quot;erikrull@nmbu.no&quot;</span><span class="p">,</span> <span class="s2">&quot;havardmo@nmbu.no&quot;</span>
 
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">import</span> <span class="nn">random</span>
 
 <span class="kn">import</span> <span class="nn">biosim.animals</span> <span class="k">as</span> <span class="nn">ba</span>
@@ -176,7 +175,7 @@
     <span class="n">default_parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;f_max&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
     <span class="n">habitable</span> <span class="o">=</span> <span class="kc">None</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This method creates variables needed for the class.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -389,11 +388,11 @@
 <span class="sd">        :return: tuple, the propensities of herbivore and carnivore migration</span>
 <span class="sd">                 in first and second element of the tuple, respectively.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">herbivore_propensity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span>
+        <span class="n">herbivore_propensity</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span>
                     <span class="n">ba</span><span class="o">.</span><span class="n">Herbivore</span><span class="o">.</span><span class="n">default_parameters</span><span class="p">[</span><span class="s2">&quot;lambda&quot;</span><span class="p">]</span> <span class="o">*</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">available_fodder_herbivore</span>
         <span class="p">)</span>
-        <span class="n">carnivore_propensity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span>
+        <span class="n">carnivore_propensity</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span>
                     <span class="n">ba</span><span class="o">.</span><span class="n">Carnivore</span><span class="o">.</span><span class="n">default_parameters</span><span class="p">[</span><span class="s2">&quot;lambda&quot;</span><span class="p">]</span> <span class="o">*</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">available_fodder_carnivore</span>
         <span class="p">)</span>

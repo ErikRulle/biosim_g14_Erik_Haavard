@@ -16,9 +16,8 @@ __author__ = "Erik Rullestad", "Håvard Molversmyr"
 __email__ = "erikrull@nmbu.no", "havardmo@nmbu.no"
 
 
-import numpy as np
+import math
 import random
-#from numba import jit
 
 
 class Animal:
@@ -226,9 +225,10 @@ class Animal:
         if not self._recompute_phi:
             return self._phi
         else:
-            self._phi = 1 / (1 + np.exp(self.default_parameters["phi_age"] * (
+            self._phi = 1 / (1 + math.exp(self.default_parameters["phi_age"] *
+                                          (
                         self.age - self.default_parameters["a_half"]
-                ))) * 1 / (1 + np.exp(
+                ))) * 1 / (1 + math.exp(
                     -self.default_parameters["phi_weight"] * (
                             self.weight - self.default_parameters["w_half"])))
             self._recompute_phi = False
